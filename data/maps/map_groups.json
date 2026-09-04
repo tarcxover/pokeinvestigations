@@ -1175,6 +1175,8 @@
     "tarc3_FlorioIsland",
     "tarc3_FlorioDock",
     "tarc3_GozoRoom",
-    "tarc3_ElectricalRoom"
+    "tarc3_ElectricalRoom",
+    "tarc3_Destination",
+    "tarc3_DestinationDock"
   ]
 }

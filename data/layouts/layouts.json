@@ -9423,6 +9423,26 @@
       "secondary_tileset": "gTileset_Facility",
       "border_filepath": "data/layouts/tarc3_ElectricalRoom/border.bin",
       "blockdata_filepath": "data/layouts/tarc3_ElectricalRoom/map.bin"
+    },
+    {
+      "id": "LAYOUT_TARC3_DESTINATION",
+      "name": "tarc3_Destination_Layout",
+      "width": 30,
+      "height": 30,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_Dewford",
+      "border_filepath": "data/layouts/tarc3_Destination/border.bin",
+      "blockdata_filepath": "data/layouts/tarc3_Destination/map.bin"
+    },
+    {
+      "id": "LAYOUT_TARC3_DESTINATION_DOCK",
+      "name": "tarc3_DestinationDock_Layout",
+      "width": 30,
+      "height": 30,
+      "primary_tileset": "gTileset_Building",
+      "secondary_tileset": "gTileset_Facility",
+      "border_filepath": "data/layouts/tarc3_DestinationDock/border.bin",
+      "blockdata_filepath": "data/layouts/tarc3_DestinationDock/map.bin"
     }
   ]
 }

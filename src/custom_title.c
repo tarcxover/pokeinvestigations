@@ -3,6 +3,7 @@
 #include "constants/field_weather.h"
 #include "even_sprite.h"
 #include "field_weather.h"
+#include "fpmath.h"
 #include "gba/io_reg.h"
 #include "gba/isagbprint.h"
 #include "gba/types.h"
@@ -42,6 +43,7 @@
 #include "m4a.h"
 
 #define TITLE_TEXT_INITIAL_OFFSET 101
+#define TITLE_SCREEN_DELAY 60
 #define STEP_FRAME_DURATION 36
 
 typedef struct
@@ -56,6 +58,7 @@ struct CustomTitleState
     u8 loadState;
     u8 shipId;
     ShipBobState shipBob;
+    bool8 skipIntro;
 };
 
 static EWRAM_DATA struct CustomTitleState *sCustomTitleState = NULL;
@@ -137,6 +140,7 @@ static void Task_CustomTitleScreenMoveText(u8 taskId);
 static void Task_CustomTitleWaitFadeAndBail(u8 taskId);
 static void Task_CustomTitleWaitFadeAndExitGracefully(u8 taskId);
 static void Task_CustomTitleScreenFadeSubtitle(u8 taskId);
+static void Task_CustomTitleCheckForSkip(u8 taskId);
 
 //Custom Title helper functions
 static void CustomTitle_Init(MainCallback callback);
@@ -215,6 +219,21 @@ static void CustomTitle_ResetGpuRegsAndBgs(void)
     SetGpuReg(REG_OFFSET_DISPCNT, DISPCNT_OBJ_ON | DISPCNT_OBJ_1D_MAP | DISPCNT_WIN0_ON | DISPCNT_WIN1_ON);
     CpuFill16(0, (void*)VRAM, VRAM_SIZE);
     CpuFill32(0, (void*)OAM, OAM_SIZE);
+}
+
+static u32 SkipComfyAnimEasing(struct ComfyAnim* anim)
+{
+    auto endVal = anim->config.data.easing.to;
+    anim->completed = TRUE;
+    return Q_24_8_TO_INT(endVal);
+}
+
+static u32 CheckSkipAndReadComfyAnim(struct ComfyAnim* anim, bool32 skip)
+{
+    if (skip)
+        return SkipComfyAnimEasing(anim);
+    else
+        return ReadComfyAnimValueSmooth(anim);
 }
 
 static u32 CustomTitle_InitSubtitleFadeAnim()
@@ -299,8 +318,7 @@ static void CustomTitle_SetupCB(void)
         ScanlineEffect_InitWave(0, 92, 2, 3, 0, SCANLINE_EFFECT_REG_BG1HOFS, FALSE);
         ScanlineEffect_InitScroll(92, DISPLAY_HEIGHT, 3, -1, 0, SCANLINE_EFFECT_REG_BG1HOFS, FALSE);
         BeginNormalPaletteFade(PALETTES_ALL, 0, 16, 0, RGB_BLACK);
-        u8 taskId = CreateTask(Task_CustomTitleWaitFadeIn, 0);
-        gTasks[taskId].data[0] = CustomTitle_InitMoveTextAnim();
+        CreateTask(Task_CustomTitleWaitFadeIn, 0);
         gMain.state++;
         break;
     case 6:
@@ -335,14 +353,35 @@ static void CustomTitle_VBlankCB(void)
 
 static void Task_CustomTitleWaitFadeIn(u8 taskId)
 {
+    TASK_DATA(waitFrames);
+
     if (!gPaletteFade.active)
-        gTasks[taskId].func = Task_CustomTitleScreenMoveText;
+    {
+        if (sCustomTitleState->skipIntro || ++tData->waitFrames == TITLE_SCREEN_DELAY)
+        {
+            TASK_DATA(animId);
+            tData->animId = CustomTitle_InitMoveTextAnim();
+            gTasks[taskId].func = Task_CustomTitleScreenMoveText;
+        }
+    }
+
+    CreateTask(Task_CustomTitleCheckForSkip, 0);
+}
+
+
+static void Task_CustomTitleCheckForSkip(u8 taskId)
+{
+    if (JOY_NEW(A_BUTTON | START_BUTTON))
+    {
+        sCustomTitleState->skipIntro = TRUE;
+        DestroyTask(taskId);
+    }
 }
 
 static void Task_CustomTitleScreenMoveText(u8 taskId)
 {
     int animId = gTasks[taskId].data[0];
-    int x = ReadComfyAnimValueSmooth(&gComfyAnims[animId]);
+    int x = CheckSkipAndReadComfyAnim(&gComfyAnims[animId], sCustomTitleState->skipIntro);
 
     ChangeBgY(0, Q_8_8(x), BG_COORD_SET);
 
@@ -358,10 +397,10 @@ static void Task_CustomTitleScreenMoveText(u8 taskId)
 static void Task_CustomTitleScreenFadeSubtitle(u8 taskId)
 {
     int animId = gTasks[taskId].data[0];
-    int x = ReadComfyAnimValueSmooth(&gComfyAnims[animId]);
+    int x = CheckSkipAndReadComfyAnim(&gComfyAnims[animId], sCustomTitleState->skipIntro);
 
     int winAnimId = gTasks[taskId].data[1];
-    int v = ReadComfyAnimValueSmooth(&gComfyAnims[winAnimId]);
+    int v = CheckSkipAndReadComfyAnim(&gComfyAnims[winAnimId], sCustomTitleState->skipIntro);
     int x1 = 120 - v;
     int x2 = 120 + v;
     {

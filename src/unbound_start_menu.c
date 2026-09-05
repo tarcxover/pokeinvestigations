@@ -21,6 +21,7 @@
 #include "even_sprite.h"
 #include "event_data.h"
 #include "event_object_movement.h"
+#include "evidence.h"
 #include "field_player_avatar.h"
 #include "field_screen_effect.h"
 #include "field_weather.h"
@@ -305,7 +306,7 @@ static struct WindowTemplate Usm_GetDynamicWinTemplate(enum Usm_Windows);
 static u8 Usm_GetWindowBaseColor(u8 winId);
 static void Usm_PrintText(u8 winId, u8 fontId, s16 x, s16 y, const u8* color, const u8* str);
 static void Usm_PrintIconLabel(void);
-static void Usm_PrintClockText();
+static void Usm_PrintEvidenceCount();
 static void Usm_PrintButtonHints();
 static void Usm_AnimateSelectedIcon(void);
 static struct Sprite* Usm_GetIconSprite(u8 iconId);
@@ -378,7 +379,7 @@ static const struct Usm_MenuItem sUsmMenuItems[USM_ICO_COUNT] = {
     [USM_ICO_SAVE]     = USM_MENU_ITEM(Save),
     [USM_ICO_REST]     = USM_MENU_ITEM(Save, "Rest"),
     [USM_ICO_OPTIONS]  = USM_MENU_ITEM(Options),
-    [USM_ICO_EVIDENCE] = USM_MENU_ITEM(Evidence),
+    [USM_ICO_EVIDENCE] = USM_MENU_ITEM(Evidence, "Logic"),
     [USM_ICO_DEBUG]    = USM_MENU_ITEM(Debug),
     [USM_ICO_RETIRE]   = USM_MENU_ITEM(Retire),
 };
@@ -696,7 +697,7 @@ void Usm_InitStartMenu(void)
     Usm_LoadBgGfx();
     Usm_SetupWindows();
     Usm_BuildVisibleList();
-    Usm_PrintClockText();
+    Usm_PrintEvidenceCount();
     Usm_PrintButtonHints();
     Usm_PrintIconLabel();
     Usm_LoadIconGfx();
@@ -743,10 +744,13 @@ static void Usm_PrintIconLabel(void)
     CopyWindowToVram(winId, COPYWIN_GFX);
 }
 
-static void Usm_PrintClockText()
+static void Usm_PrintEvidenceCount()
 {
+    const u8* evdText = COMPOUND_STRING("Evidence : {STR_VAR_1}");
+    u32 count = GetHeldEvidenceCount();
+    ConvertIntToDecimalStringN(gStringVar1, count, STR_CONV_MODE_LEFT_ALIGN, 3);
+    StringExpandPlaceholders(gStringVar4, evdText);
     u8 winId = sUsmMemory->windowIds[USM_WIN_CLOCK];
-    Usm_BuildDateTimeString(gStringVar4);
     s16 x = GetStringCenterAlignXOffset(FONT_SMALL, gStringVar4, GetWindowAttribute(winId, WINDOW_WIDTH) * 8);
     FillWindowPixelBuffer(winId, PIXEL_FILL(Usm_GetWindowBaseColor(USM_WIN_CLOCK)));
     Usm_PrintText(sUsmMemory->windowIds[USM_WIN_CLOCK], FONT_SMALL, x, 0, sUsmWinFontColors[FONT_BLACK], gStringVar4);
@@ -879,7 +883,7 @@ static const u8* const sUsmWeekdayNames[WEEKDAY_COUNT] = {
     [WEEKDAY_SAT] = COMPOUND_STRING("Sat"),
 };
 
-static void Usm_BuildDateTimeString(u8* buf)
+static void UNUSED Usm_BuildDateTimeString(u8* buf)
 {
     u8 formattedBuffer[256];
     formattedBuffer[0] = EOS;

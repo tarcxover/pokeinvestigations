@@ -201,6 +201,10 @@ Debug_EventScript_Text_DefensiveIVs:
 	.string "HP IVs: {STR_VAR_1}, DEF IVs: {STR_VAR_2}, SPDEF IVs: {STR_VAR_3}$"
 
 Debug_EventScript_Script_1::
+	setflag FLAG_TARC3_DEBUG_ENDING_PICKER
+	setvar VAR_TARC3_ACT3, TARC3_ACT3_COMPLETE
+	warp MAP_TARC3_DESTINATION, 14, 18
+	waitstate
 	release
 	end
 

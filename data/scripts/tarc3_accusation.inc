@@ -2588,17 +2588,17 @@ tarc3_Accusation_EventScript_Depart::
 # 1298 "data/scripts/tarc3_accusation.pory"
 	delay 20
 # 1299 "data/scripts/tarc3_accusation.pory"
-	msgbox tarc3_Accusation_EventScript_Depart_Text_4
-# 1300 "data/scripts/tarc3_accusation.pory"
-	closemessage
-# 1301 "data/scripts/tarc3_accusation.pory"
 	savebgm MUS_DUMMY
-# 1302 "data/scripts/tarc3_accusation.pory"
+# 1300 "data/scripts/tarc3_accusation.pory"
 	fadedefaultbgm
-# 1303 "data/scripts/tarc3_accusation.pory"
+# 1301 "data/scripts/tarc3_accusation.pory"
 	setvar VAR_TARC3_ACT3, TARC3_ACT3_COMPLETE
+# 1302 "data/scripts/tarc3_accusation.pory"
+	fwdtime TARC3_TOD_DAWN_HOUR, TARC3_TOD_DAWN_MINUTE
+# 1303 "data/scripts/tarc3_accusation.pory"
+	warp MAP_TARC3_DESTINATION, 14, 18
 # 1304 "data/scripts/tarc3_accusation.pory"
-	releaseall
+	waitstate
 	end
 
 
@@ -3894,7 +3894,3 @@ tarc3_Accusation_EventScript_Depart_Text_3:
 # 1295 "data/scripts/tarc3_accusation.pory"
 	.string "Gather yourself, {PLAYER} Edgeworth.\p"
 	.string "It is time to depart.$"
-
-tarc3_Accusation_EventScript_Depart_Text_4:
-# 1299 "data/scripts/tarc3_accusation.pory"
-	.string "(debug: one final scene to come)$"

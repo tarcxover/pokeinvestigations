@@ -1,5 +1,3 @@
-// ACT THREE - the accusation (CS11)
-
 script tarc3_Accusation_EventScript_Begin {
     lockall
     hidefollower
@@ -24,8 +22,6 @@ script tarc3_Accusation_EventScript_Begin {
     goto(tarc3_Accusation_EventScript_Naming)
 }
 
-// the player takes the floor at (19,6)
-
 script tarc3_Accusation_EventScript_TakeTheFloor {
     special(StorePlayerCoordsInVars)
     if (var(VAR_0x8005) == 7) {
@@ -36,8 +32,6 @@ script tarc3_Accusation_EventScript_TakeTheFloor {
     waitmovement(0)
     return
 }
-
-// naming the accused
 
 script tarc3_Accusation_EventScript_Naming {
     setspeaker("{PLAYER}")
@@ -131,8 +125,6 @@ script tarc3_Accusation_EventScript_NameTakeshi {
     goto(tarc3_Accusation_EventScript_Q1)
 }
 
-// takeshi 'exits' closet
-
 script tarc3_Accusation_EventScript_OpenCloset {
     playse(SE_DOOR)
     clearflag(FLAG_HIDE_TARC3_CABIN_TAKESHI)
@@ -149,8 +141,6 @@ script tarc3_Accusation_EventScript_OpenCloset {
     return
 }
 
-// reads gAccuseEvidence[VAR_TARC3_ACCUSE_SLOT] into VAR_RESULT
-
 script tarc3_Accusation_EventScript_ReadSlot {
     switch (var(VAR_TARC3_ACCUSE_SLOT)) {
         case 0:
@@ -164,8 +154,6 @@ script tarc3_Accusation_EventScript_ReadSlot {
     }
     return
 }
-
-// accusation question 1
 
 script tarc3_Accusation_EventScript_Q1 {
     setspeaker("{PLAYER}")
@@ -298,8 +286,6 @@ script tarc3_Accusation_EventScript_Q1SummarySkipped {
     goto(tarc3_Accusation_EventScript_Q2)
 }
 
-// accusation question two
-
 script tarc3_Accusation_EventScript_Q2 {
     setspeaker("{PLAYER}")
     msgbox(format("Second. How Tatsuo died."))
@@ -404,8 +390,6 @@ script tarc3_Accusation_EventScript_Q2SummarySkipped {
     delay(30)
     goto(tarc3_Accusation_EventScript_Q3)
 }
-
-// accusation question three
 
 script tarc3_Accusation_EventScript_Q3 {
     setspeaker("{PLAYER}")
@@ -520,8 +504,6 @@ script tarc3_Accusation_EventScript_Q3SummarySkipped {
     delay(30)
     goto(tarc3_Accusation_EventScript_Q4)
 }
-
-// accusation question four
 
 script tarc3_Accusation_EventScript_Q4 {
     setspeaker("{PLAYER}")
@@ -1296,11 +1278,11 @@ script tarc3_Accusation_EventScript_Depart {
     setspeaker(NULL)
     closemessage
     delay(20)
-    msgbox(format("(debug: one final scene to come)"))
-    closemessage
     savebgm(MUS_DUMMY)
     fadedefaultbgm()
     setvar(VAR_TARC3_ACT3, TARC3_ACT3_COMPLETE)
-    releaseall
+    fwdtime(TARC3_TOD_DAWN_HOUR, TARC3_TOD_DAWN_MINUTE)
+    warp(MAP_TARC3_DESTINATION, 14, 18)
+    waitstate
     end
 }

@@ -319,6 +319,7 @@ static void CustomTitle_SetupCB(void)
         ScanlineEffect_InitScroll(92, DISPLAY_HEIGHT, 3, -1, 0, SCANLINE_EFFECT_REG_BG1HOFS, FALSE);
         BeginNormalPaletteFade(PALETTES_ALL, 0, 16, 0, RGB_BLACK);
         CreateTask(Task_CustomTitleWaitFadeIn, 0);
+        CreateTask(Task_CustomTitleCheckForSkip, 1);
         gMain.state++;
         break;
     case 6:
@@ -365,7 +366,6 @@ static void Task_CustomTitleWaitFadeIn(u8 taskId)
         }
     }
 
-    CreateTask(Task_CustomTitleCheckForSkip, 0);
 }
 
 

@@ -1,0 +1,546 @@
+mapscripts tarc3_Destination_MapScripts {
+    MAP_SCRIPT_ON_LOAD: tarc3_Destination_OnLoad
+    MAP_SCRIPT_ON_FRAME_TABLE [
+        VAR_TARC3_ACT3, TARC3_ACT3_COMPLETE: tarc3_Destination_EventScript_EndingRouter
+    ]
+}
+
+script tarc3_Destination_OnLoad {
+    setflag(FLAG_HIDE_TARC3_DEST_RAN)
+    setflag(FLAG_HIDE_TARC3_DEST_OFFICER_A)
+    setflag(FLAG_HIDE_TARC3_DEST_OFFICER_B)
+    setflag(FLAG_HIDE_TARC3_DEST_ICHIRO)
+    setflag(FLAG_HIDE_TARC3_DEST_NATSUE)
+    setflag(FLAG_HIDE_TARC3_DEST_TAKESHI)
+    setflag(FLAG_HIDE_TARC3_DEST_MARIKO)
+    setflag(FLAG_HIDE_TARC3_DEST_SUITMAN)
+    setflag(FLAG_HIDE_TARC3_DEST_AKIE)
+    end
+}
+
+script tarc3_Destination_EventScript_EndingRouter {
+    lockall
+    hidefollower
+    goto_if_set(FLAG_TARC3_DEBUG_ENDING_PICKER, tarc3_Destination_EventScript_DebugPicker)
+    goto(tarc3_Destination_EventScript_EndingIntro)
+}
+
+script tarc3_Destination_EventScript_DebugPicker {
+    fwdtime(TARC3_TOD_DAWN_HOUR, TARC3_TOD_DAWN_MINUTE)
+    setspeaker(NULL)
+    message(format("{FONT_NARROW}Which ending?", "1_latin_rse_narrow"))
+    waitmessage
+    dynmultipush("Perfect", TARC3_ENDING_PERFECT)
+    dynmultipush("Good", TARC3_ENDING_GOOD)
+    dynmultipush("Bad", TARC3_ENDING_BAD)
+    dynmultipush("Worst", TARC3_ENDING_WORST)
+    dynmultipush("Worst (refused)", TARC3_ENDING_WORST_REFUSED)
+    dynmultistack(0, 0, TRUE, 5, FALSE, 0, DYN_MULTICHOICE_CB_NONE)
+    closemessage
+    copyvar(VAR_TARC3_ENDING, VAR_RESULT)
+    goto(tarc3_Destination_EventScript_EndingIntro)
+}
+
+script tarc3_Destination_EventScript_EndingIntro {
+    if (var(VAR_TARC3_ENDING) <= TARC3_ENDING_GOOD) {
+        fadenewbgm(MUS_ROUTE120)
+    } else {
+        fadenewbgm(MUS_MT_PYRE_EXTERIOR)
+    }
+    delay(30)
+    switch (var(VAR_TARC3_ENDING)) {
+        case TARC3_ENDING_PERFECT:
+            goto(tarc3_Destination_EventScript_Perfect)
+        case TARC3_ENDING_GOOD:
+            goto(tarc3_Destination_EventScript_Good)
+        case TARC3_ENDING_BAD:
+            goto(tarc3_Destination_EventScript_Bad)
+        case TARC3_ENDING_WORST:
+            goto(tarc3_Destination_EventScript_Worst)
+        case TARC3_ENDING_WORST_REFUSED:
+            goto(tarc3_Destination_EventScript_Worst)
+    }
+    goto(tarc3_Destination_EventScript_Fin)
+}
+
+script tarc3_Destination_EventScript_Disembark {
+    applymovement(OBJ_EVENT_ID_PLAYER, moves(walk_up))
+    waitmovement(0)
+    setobjectxyperm(LOCALID_DEST_RAN, 14, 18)
+    clearflag(FLAG_HIDE_TARC3_DEST_RAN)
+    addobject(LOCALID_DEST_RAN)
+    delay(30)
+    playse(SE_RG_SS_ANNE_HORN)
+    delay(50)
+    applymovement(OBJ_EVENT_ID_PLAYER, moves(walk_up * 2, walk_right, face_left))
+    applymovement(LOCALID_DEST_RAN, moves(walk_up * 2, walk_right, face_left))
+    waitmovement(0)
+    delay(40)
+    setspeaker(NULL)
+    msgbox(format("{FONT_NARROW}Dawn at the harbour.", "1_latin_rse_narrow"))
+    closemessage
+    delay(30)
+    return
+}
+
+script tarc3_Destination_EventScript_OfficersBoard {
+    setobjectxyperm(LOCALID_DEST_OFFICER_A, 14, 5)
+    setobjectxyperm(LOCALID_DEST_OFFICER_B, 14, 4)
+    clearflag(FLAG_HIDE_TARC3_DEST_OFFICER_A)
+    clearflag(FLAG_HIDE_TARC3_DEST_OFFICER_B)
+    addobject(LOCALID_DEST_OFFICER_A)
+    addobject(LOCALID_DEST_OFFICER_B)
+    delay(20)
+    applymovement(LOCALID_DEST_OFFICER_A, moves(walk_down * 13))
+    applymovement(LOCALID_DEST_OFFICER_B, moves(walk_down * 13))
+    waitmovement(0)
+    delay(20)
+    setspeaker(NULL)
+    msgbox(format("{FONT_NARROW}Two officers come down the pier and go aboard.", "1_latin_rse_narrow"))
+    closemessage
+    delay(20)
+    fadescreen(FADE_TO_BLACK)
+    removeobject(LOCALID_DEST_OFFICER_A)
+    removeobject(LOCALID_DEST_OFFICER_B)
+    delay(50)
+    fadescreen(FADE_FROM_BLACK)
+    delay(30)
+    return
+}
+
+script tarc3_Destination_EventScript_EscortUp {
+    setobjectxyperm(LOCALID_DEST_OFFICER_A, 14, 18)
+    clearflag(FLAG_HIDE_TARC3_DEST_OFFICER_A)
+    addobject(LOCALID_DEST_OFFICER_A)
+    applymovement(LOCALID_DEST_OFFICER_A, moves(walk_up * 4))
+    delay(16)
+    if (var(VAR_0x8000) != 0) {
+        setobjectxyperm(VAR_0x8000, 14, 18)
+        addobject(VAR_0x8000)
+        applymovement(VAR_0x8000, moves(walk_up * 3))
+        delay(16)
+        setobjectxyperm(LOCALID_DEST_OFFICER_B, 14, 18)
+        clearflag(FLAG_HIDE_TARC3_DEST_OFFICER_B)
+        addobject(LOCALID_DEST_OFFICER_B)
+        applymovement(LOCALID_DEST_OFFICER_B, moves(walk_up * 2))
+    } else {
+        setobjectxyperm(LOCALID_DEST_OFFICER_B, 14, 18)
+        clearflag(FLAG_HIDE_TARC3_DEST_OFFICER_B)
+        addobject(LOCALID_DEST_OFFICER_B)
+        applymovement(LOCALID_DEST_OFFICER_B, moves(walk_up * 3))
+    }
+    waitmovement(0)
+    delay(40)
+    return
+}
+
+script tarc3_Destination_EventScript_EscortAway {
+    applymovement(LOCALID_DEST_OFFICER_A, moves(walk_up * 8))
+    applymovement(LOCALID_DEST_OFFICER_B, moves(walk_up * 8))
+    if (var(VAR_0x8000) != 0) {
+        applymovement(VAR_0x8000, moves(walk_up * 8))
+    }
+    waitmovement(0)
+    removeobject(LOCALID_DEST_OFFICER_A)
+    removeobject(LOCALID_DEST_OFFICER_B)
+    if (var(VAR_0x8000) != 0) {
+        removeobject(VAR_0x8000)
+    }
+    delay(40)
+    return
+}
+
+script tarc3_Destination_EventScript_FacePlayerToRan {
+    applymovement(OBJ_EVENT_ID_PLAYER, moves(face_down))
+    applymovement(LOCALID_DEST_RAN, moves(face_up))
+    waitmovement(0)
+    delay(20)
+    return
+}
+
+// perfect ending
+
+script tarc3_Destination_EventScript_Perfect {
+    call(tarc3_Destination_EventScript_Disembark)
+    call(tarc3_Destination_EventScript_OfficersBoard)
+    setvar(VAR_0x8000, LOCALID_DEST_ICHIRO)
+    call(tarc3_Destination_EventScript_EscortUp)
+    setspeaker(NULL)
+    msgbox(format("{FONT_NARROW}Nobody is taken but Ichiro. He does not resist, and he does not look back.", "1_latin_rse_narrow"))
+    closemessage
+    delay(30)
+    call(tarc3_Destination_EventScript_EscortAway)
+    goto(tarc3_Destination_EventScript_PerfectFamily)
+}
+
+script tarc3_Destination_EventScript_PerfectFamily {
+    setobjectxyperm(LOCALID_DEST_NATSUE, 13, 18)
+    setobjectxyperm(LOCALID_DEST_TAKESHI, 14, 18)
+    clearflag(FLAG_HIDE_TARC3_DEST_NATSUE)
+    clearflag(FLAG_HIDE_TARC3_DEST_TAKESHI)
+    addobject(LOCALID_DEST_NATSUE)
+    addobject(LOCALID_DEST_TAKESHI)
+    applymovement(LOCALID_DEST_NATSUE, moves(walk_up * 4))
+    applymovement(LOCALID_DEST_TAKESHI, moves(walk_up * 4))
+    delay(32)
+    setobjectxyperm(LOCALID_DEST_AKIE, 14, 18)
+    clearflag(FLAG_HIDE_TARC3_DEST_AKIE)
+    addobject(LOCALID_DEST_AKIE)
+    applymovement(LOCALID_DEST_AKIE, moves(walk_up * 2))
+    waitmovement(0)
+    delay(30)
+    setspeaker(NULL)
+    msgbox(format("{FONT_NARROW}Natsue and Takeshi come off together.\pAkie follows a little way behind them. She does not take anybody's arm.", "1_latin_rse_narrow"))
+    closemessage
+    delay(30)
+    applymovement(LOCALID_DEST_NATSUE, moves(walk_up * 8))
+    applymovement(LOCALID_DEST_TAKESHI, moves(walk_up * 8))
+    applymovement(LOCALID_DEST_AKIE, moves(walk_up * 8))
+    waitmovement(0)
+    removeobject(LOCALID_DEST_NATSUE)
+    removeobject(LOCALID_DEST_TAKESHI)
+    removeobject(LOCALID_DEST_AKIE)
+    delay(60)
+    goto(tarc3_Destination_EventScript_PerfectClose)
+}
+
+script tarc3_Destination_EventScript_PerfectClose {
+    call(tarc3_Destination_EventScript_FacePlayerToRan)
+    setspeaker("{RIVAL}")
+    msgbox(format("You were right. About every part of it."))
+    setspeaker("{PLAYER}")
+    msgbox(format("..."))
+    setspeaker("{RIVAL}")
+    msgbox(format("You don't look like somebody who was right."))
+    setspeaker("{PLAYER}")
+    msgbox(format("I've learned to not attempt to ascribe rationality to killers."))
+    setspeaker("{RIVAL}")
+    msgbox(format("...\p...Yeah.\pCome on. There's a ferry at six and I am not missing another one because of you."))
+    setspeaker(NULL)
+    closemessage
+    delay(40)
+    goto(tarc3_Destination_EventScript_PerfectEpilogue)
+}
+
+script tarc3_Destination_EventScript_PerfectEpilogue {
+    fadescreen(FADE_TO_BLACK)
+    delay(30)
+    setspeaker(NULL)
+    msgbox(format("{FONT_NARROW}Ichiro was taken into custody at the harbour. He did not speak again until the trial.", "1_latin_rse_narrow"))
+    msgbox(format("{FONT_NARROW}The court heard the whole of his motive, in his own words. He was found guilty and sentenced to life in jail.", "1_latin_rse_narrow"))
+    msgbox(format("{FONT_NARROW}After her grandfather's will was read, Natsue chose Takeshi and Kitaro to lead what he had built.\pThey did not agree often, and they often said so out loud.", "1_latin_rse_narrow"))
+    msgbox(format("{FONT_NARROW}Akie did not come to the reading. She sends mail, from time to time.", "1_latin_rse_narrow"))
+    msgbox(format("{FONT_NARROW}The family is healing as best as it can.", "1_latin_rse_narrow"))
+    closemessage
+    delay(40)
+    goto(tarc3_Destination_EventScript_FinOnBlack)
+}
+
+// good ending
+
+script tarc3_Destination_EventScript_Good {
+    call(tarc3_Destination_EventScript_Disembark)
+    call(tarc3_Destination_EventScript_OfficersBoard)
+    setvar(VAR_0x8000, LOCALID_DEST_ICHIRO)
+    call(tarc3_Destination_EventScript_EscortUp)
+    setspeaker(NULL)
+    msgbox(format("{FONT_NARROW}They take Ichiro. He answers every question they put to him on the way down, and not one of the answers is true.", "1_latin_rse_narrow"))
+    closemessage
+    delay(30)
+    call(tarc3_Destination_EventScript_EscortAway)
+    call(tarc3_Destination_EventScript_FacePlayerToRan)
+    setspeaker("{RIVAL}")
+    msgbox(format("You got him."))
+    setspeaker("{PLAYER}")
+    msgbox(format("I got him for the wrong reason."))
+    setspeaker("{RIVAL}")
+    msgbox(format("Does that matter, if he's got?"))
+    setspeaker("{PLAYER}")
+    msgbox(format("...\pAsk me in a year."))
+    setspeaker(NULL)
+    closemessage
+    delay(40)
+    goto(tarc3_Destination_EventScript_GoodEpilogue)
+}
+
+script tarc3_Destination_EventScript_GoodEpilogue {
+    fadescreen(FADE_TO_BLACK)
+    delay(30)
+    setspeaker(NULL)
+    msgbox(format("{FONT_NARROW}Ichiro gave the court an acceptable motive. They sentenced him accordingly.", "1_latin_rse_narrow"))
+    msgbox(format("{FONT_NARROW}Without Gozo to deny his request, Kitaro resigned that autumn. He enjoys a quiet life with Mariko.", "1_latin_rse_narrow"))
+    msgbox(format("{FONT_NARROW}Nobody else was charged. It was enough.", "1_latin_rse_narrow"))
+    closemessage
+    delay(40)
+    goto(tarc3_Destination_EventScript_FinOnBlack)
+}
+
+// bad ending
+
+script tarc3_Destination_EventScript_Bad {
+    call(tarc3_Destination_EventScript_Disembark)
+    call(tarc3_Destination_EventScript_OfficersBoard)
+    setvar(VAR_0x8000, LOCALID_DEST_TAKESHI)
+    call(tarc3_Destination_EventScript_EscortUp)
+    setspeaker(NULL)
+    msgbox(format("{FONT_NARROW}They take Takeshi. He asks them to let him speak to Natsue first, and they do not.", "1_latin_rse_narrow"))
+    closemessage
+    delay(30)
+    call(tarc3_Destination_EventScript_EscortAway)
+    goto(tarc3_Destination_EventScript_BadNatsue)
+}
+
+script tarc3_Destination_EventScript_BadNatsue {
+    setobjectxyperm(LOCALID_DEST_ICHIRO, 13, 18)
+    setobjectxyperm(LOCALID_DEST_NATSUE, 14, 18)
+    clearflag(FLAG_HIDE_TARC3_DEST_ICHIRO)
+    clearflag(FLAG_HIDE_TARC3_DEST_NATSUE)
+    addobject(LOCALID_DEST_ICHIRO)
+    addobject(LOCALID_DEST_NATSUE)
+    delay(20)
+    applymovement(LOCALID_DEST_ICHIRO, moves(walk_up * 4, face_right))
+    applymovement(LOCALID_DEST_NATSUE, moves(walk_up * 4, face_left))
+    waitmovement(0)
+    delay(30)
+    setspeaker(NULL)
+    msgbox(format("{FONT_NARROW}Natsue does not look at us. She does not say anything to us at all.", "1_latin_rse_narrow"))
+    closemessage
+    delay(30)
+    setspeaker("Ichiro")
+    msgbox(format("Natsue."))
+    msgbox(format("I'll come and see you. Once a week, if you'd like that.\pYou shouldn't be in that house on your own while all this goes on."))
+    setspeaker("Natsue")
+    msgbox(format("...\p...Thank you, Ichiro."))
+    setspeaker(NULL)
+    closemessage
+    delay(30)
+    applymovement(LOCALID_DEST_ICHIRO, moves(face_up))
+    applymovement(LOCALID_DEST_NATSUE, moves(face_up))
+    waitmovement(0)
+    delay(20)
+    setspeaker(NULL)
+    msgbox(format("{FONT_NARROW}He offers her his arm. She takes it.", "1_latin_rse_narrow"))
+    closemessage
+    delay(30)
+    applymovement(LOCALID_DEST_ICHIRO, moves(walk_up * 8))
+    applymovement(LOCALID_DEST_NATSUE, moves(walk_up * 8))
+    waitmovement(0)
+    removeobject(LOCALID_DEST_ICHIRO)
+    removeobject(LOCALID_DEST_NATSUE)
+    delay(50)
+    goto(tarc3_Destination_EventScript_BadClose)
+}
+
+script tarc3_Destination_EventScript_BadClose {
+    call(tarc3_Destination_EventScript_FacePlayerToRan)
+    setspeaker("{RIVAL}")
+    msgbox(format("You named the right man, {PLAYER} Edgeworth.\pYou named him in front of eight witnesses, and you could not hold him for one minute."))
+    setspeaker("{PLAYER}")
+    msgbox(format("I know."))
+    setspeaker("{RIVAL}")
+    msgbox(format("He answered every word of it before you had finished speaking.\pYou put nothing to him that he had not already prepared for."))
+    msgbox(format("And a man who was hiding for his life is in custody tonight because your case was not ready.\pA foolish accusation is worse than no accusation at all."))
+    setspeaker("{PLAYER}")
+    msgbox(format("..."))
+    setspeaker("{RIVAL}")
+    msgbox(format("Somebody will answer for two men on that ship, but it will not be him."))
+    setspeaker(NULL)
+    closemessage
+    delay(40)
+    goto(tarc3_Destination_EventScript_BadEpilogue)
+}
+
+script tarc3_Destination_EventScript_BadEpilogue {
+    fadescreen(FADE_TO_BLACK)
+    delay(30)
+    setspeaker(NULL)
+    msgbox(format("{FONT_NARROW}Takeshi Hatamoto was charged on the strength of a flower found outside a locked cabin.", "1_latin_rse_narrow"))
+    msgbox(format("{FONT_NARROW}No court ever heard why Gozo Hatamoto nor Tatsuo Kaneko died.", "1_latin_rse_narrow"))
+    msgbox(format("{FONT_NARROW}Ichiro was questioned once.\pNothing he said could be contradicted.", "1_latin_rse_narrow"))
+    msgbox(format("{FONT_NARROW}It was suggested the ship's blackout was due to poor wiring.", "1_latin_rse_narrow"))
+    msgbox(format("{FONT_NARROW}Natsue waited on the trial for most of a year, in that house, on her own.", "1_latin_rse_narrow"))
+    msgbox(format("{FONT_NARROW}She wasn't always alone. Ichiro visited every week.", "1_latin_rse_narrow"))
+    closemessage
+    delay(40)
+    goto(tarc3_Destination_EventScript_FinOnBlack)
+}
+
+// worst ending
+
+script tarc3_Destination_EventScript_Worst {
+    setobjectxyperm(LOCALID_DEST_MARIKO, 17, 12)
+    setobjectxyperm(LOCALID_DEST_SUITMAN, 18, 12)
+    clearflag(FLAG_HIDE_TARC3_DEST_MARIKO)
+    clearflag(FLAG_HIDE_TARC3_DEST_SUITMAN)
+    addobject(LOCALID_DEST_MARIKO)
+    addobject(LOCALID_DEST_SUITMAN)
+    call(tarc3_Destination_EventScript_Disembark)
+    setspeaker(NULL)
+    msgbox(format("{FONT_NARROW}Mariko is already talking to a man in a suit. Another investigator, it seems.", "1_latin_rse_narrow"))
+    closemessage
+    delay(30)
+    call(tarc3_Destination_EventScript_OfficersBoard)
+    if (var(VAR_TARC3_ENDING) == TARC3_ENDING_WORST) {
+        goto(tarc3_Destination_EventScript_WorstTakenAway)
+    }
+    goto(tarc3_Destination_EventScript_WorstNobodyTaken)
+}
+
+script tarc3_Destination_EventScript_WorstTakenAway {
+    setvar(VAR_0x8000, LOCALID_DEST_TAKESHI)
+    call(tarc3_Destination_EventScript_EscortUp)
+    setspeaker(NULL)
+    msgbox(format("{FONT_NARROW}Takeshi does not argue with them. He moves robotically, with empty eyes and an expressionless face.", "1_latin_rse_narrow"))
+    closemessage
+    delay(30)
+    call(tarc3_Destination_EventScript_EscortAway)
+    goto(tarc3_Destination_EventScript_WorstAkie)
+}
+
+script tarc3_Destination_EventScript_WorstNobodyTaken {
+    setvar(VAR_0x8000, 0)
+    call(tarc3_Destination_EventScript_EscortUp)
+    setspeaker(NULL)
+    msgbox(format("{FONT_NARROW}Nobody is charged. Nobody is cleared. The officers promise to be in contact soon, once they complete their investigation.", "1_latin_rse_narrow"))
+    closemessage
+    delay(30)
+    call(tarc3_Destination_EventScript_EscortAway)
+    goto(tarc3_Destination_EventScript_WorstAkie)
+}
+
+script tarc3_Destination_EventScript_WorstAkie {
+    setobjectxyperm(LOCALID_DEST_AKIE, 14, 18)
+    clearflag(FLAG_HIDE_TARC3_DEST_AKIE)
+    addobject(LOCALID_DEST_AKIE)
+    delay(20)
+    applymovement(LOCALID_DEST_AKIE, moves(walk_up * 4))
+    waitmovement(0)
+    delay(20)
+    setspeaker(NULL)
+    msgbox(format("{FONT_NARROW}Akie comes off alone and does not wait for anybody.\pThe rest do not get off the ship at all.", "1_latin_rse_narrow"))
+    closemessage
+    delay(20)
+    applymovement(LOCALID_DEST_AKIE, moves(walk_up * 8))
+    waitmovement(0)
+    removeobject(LOCALID_DEST_AKIE)
+    delay(50)
+    goto(tarc3_Destination_EventScript_WorstIchiro)
+}
+
+script tarc3_Destination_EventScript_WorstIchiro {
+    setobjectxyperm(LOCALID_DEST_ICHIRO, 14, 18)
+    clearflag(FLAG_HIDE_TARC3_DEST_ICHIRO)
+    addobject(LOCALID_DEST_ICHIRO)
+    delay(20)
+    applymovement(LOCALID_DEST_ICHIRO, moves(walk_up * 3, face_right))
+    waitmovement(0)
+    delay(30)
+    setspeaker("Ichiro")
+    msgbox(format("{PLAYER}.\pI wanted to say thank you before you went."))
+    setspeaker("{PLAYER}")
+    msgbox(format("..."))
+    setspeaker("Ichiro")
+    msgbox(format("I mean it. I know exactly how it sounds."))
+    msgbox(format("This family has been tearing itself apart for years.\pYou ended it."))
+    msgbox(format("Natsue can start again now. That's all I ever wanted for her."))
+    closemessage
+    delay(60)
+    setspeaker("Ichiro")
+    msgbox(format("...Would you ever sit for a portrait? I'm good with faces.\pI'd like to do yours."))
+    setspeaker("{PLAYER}")
+    msgbox(format("..."))
+    setspeaker("Ichiro")
+    msgbox(format("Another time, then.\pSafe travels, {PLAYER}."))
+    setspeaker(NULL)
+    closemessage
+    delay(40)
+    applymovement(LOCALID_DEST_ICHIRO, moves(walk_down * 3))
+    waitmovement(0)
+    delay(20)
+    fadescreen(FADE_TO_BLACK)
+    removeobject(LOCALID_DEST_ICHIRO)
+    delay(50)
+    fadescreen(FADE_FROM_BLACK)
+    delay(40)
+    goto(tarc3_Destination_EventScript_WorstClose)
+}
+
+script tarc3_Destination_EventScript_WorstClose {
+    call(tarc3_Destination_EventScript_FacePlayerToRan)
+    setspeaker("{RIVAL}")
+    msgbox(format("...\pHe was the only one who thanked you."))
+    setspeaker("{PLAYER}")
+    msgbox(format("..."))
+    setspeaker("{RIVAL}")
+    msgbox(format("...I'm sure it doesn't mean anything."))
+    setspeaker(NULL)
+    closemessage
+    delay(40)
+    if (var(VAR_TARC3_ENDING) == TARC3_ENDING_WORST) {
+        goto(tarc3_Destination_EventScript_WorstEpilogue)
+    }
+    goto(tarc3_Destination_EventScript_WorstRefusedEpilogue)
+}
+
+script tarc3_Destination_EventScript_WorstEpilogue {
+    fadescreen(FADE_TO_BLACK)
+    delay(30)
+    setspeaker(NULL)
+    msgbox(format("{FONT_NARROW}Takeshi, born Zaiki, was charged with two murders.", "1_latin_rse_narrow"))
+    msgbox(format("{FONT_NARROW}He never once contested the account of himself he gave that night.\pHe was sentenced to life in jail.", "1_latin_rse_narrow"))
+    msgbox(format("{FONT_NARROW}Natsue wanted nothing further to do with the family that let it happen.\pShe left the house before the spring, and did not tell any of them where she had gone.", "1_latin_rse_narrow"))
+    msgbox(format("{FONT_NARROW}Mariko put Kitaro at the head of Hatamoto Corp.\pHe had asked three times to be let go of one division. Now he had all of them.", "1_latin_rse_narrow"))
+    msgbox(format("{FONT_NARROW}He lasted nine months.", "1_latin_rse_narrow"))
+    msgbox(format("{FONT_NARROW}Ichiro went back to art school in the spring.", "1_latin_rse_narrow"))
+    closemessage
+    delay(40)
+    goto(tarc3_Destination_EventScript_FinOnBlack)
+}
+
+script tarc3_Destination_EventScript_WorstRefusedEpilogue {
+    fadescreen(FADE_TO_BLACK)
+    delay(30)
+    setspeaker(NULL)
+    msgbox(format("{FONT_NARROW}Nobody was charged at the harbour, and nobody was cleared.", "1_latin_rse_narrow"))
+    msgbox(format("{FONT_NARROW}Takeshi's name was in three papers by the end of the week.\pNatsue's was in all of them.", "1_latin_rse_narrow"))
+    msgbox(format("{FONT_NARROW}Kitaro's resignation went in that week. It was refused - by Mariko now, instead of by Gozo.", "1_latin_rse_narrow"))
+    msgbox(format("{FONT_NARROW}Ichiro was never questioned.\pHe sent Natsue a drawing at New Year.", "1_latin_rse_narrow"))
+    closemessage
+    delay(40)
+    goto(tarc3_Destination_EventScript_FinOnBlack)
+}
+
+script tarc3_Destination_EventScript_Fin {
+    closemessage
+    fadescreen(FADE_TO_BLACK)
+    delay(60)
+    goto(tarc3_Destination_EventScript_FinOnBlack)
+}
+
+script tarc3_Destination_EventScript_FinOnBlack {
+    closemessage
+    goto_if_set(FLAG_TARC3_DEBUG_ENDING_PICKER, tarc3_Destination_EventScript_DebugFin)
+    setvar(VAR_TARC3_ACT3, TARC3_ACT3_PIER)
+    setflag(FLAG_SYS_GAME_CLEAR)
+    delay(30)
+    call(Common_EventScript_SaveGame)
+    waitstate
+    closemessage
+    delay(30)
+    // start credits??
+    fadescreen(FADE_FROM_BLACK)
+    delay(30)
+    releaseall
+    end
+}
+
+script tarc3_Destination_EventScript_DebugFin {
+    delay(30)
+    fadescreen(FADE_FROM_BLACK)
+    delay(30)
+    setspeaker(NULL)
+    msgbox(format("{FONT_NARROW}ENDING COMPLETE!", "1_latin_rse_narrow"))
+    closemessage
+    releaseall
+    end
+}

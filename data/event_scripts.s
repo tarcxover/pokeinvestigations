@@ -1767,4 +1767,9 @@ EventScript_PalletTown_PlayersHouse_2F_TurnOnPC::
 	.include "data/maps/tarc3_GozoRoom/scripts.inc"
 
 	.include "data/maps/tarc3_ElectricalRoom/scripts.inc"
+
+	.include "data/maps/tarc3_Destination/scripts.inc"
+
+	.include "data/maps/tarc3_DestinationDock/scripts.inc"
+
 	.include "data/scripts/bxpy.inc" 

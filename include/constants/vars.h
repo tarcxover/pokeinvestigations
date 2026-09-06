@@ -462,7 +462,8 @@
 #define TARC3_ACT3_GATHERING       1  // move to Akie's cabin
 #define TARC3_ACT3_ASSEMBLED       2  // everyone gathered in Akie's cabin; the deduction follows
 #define TARC3_ACT3_ACCUSATION      3  // the accusation scene is running
-#define TARC3_ACT3_COMPLETE        4  // an ending has played
+#define TARC3_ACT3_COMPLETE        4  // an ending has played; triggers the pier warp
+#define TARC3_ACT3_PIER            5  // the pier ending has played
 
 // VAR_TARC3_ACCUSED
 #define TARC3_ACCUSED_ICHIRO       1
@@ -481,10 +482,16 @@
 #define TARC3_T3_SELF_INFLICTED    4  // question four
 #define TARC3_T3_ALL               7
 
-// Reachable VAR_TARC3_ACCUSE_T3 masks that the Good ending's epilogue tint keys off
+// Every reachable VAR_TARC3_ACCUSE_T3 mask; the Good ending's epilogue keys off these.
+// No spaces inside the parentheses - these are passed through cpp into GAS macro
+// arguments, which split on whitespace.
+#define TARC3_T3_NONE              0
 #define TARC3_T3_REFUSAL_ONLY      (TARC3_T3_TWIN_REFUSAL)
-#define TARC3_T3_REFUSAL_LIGHTS    (TARC3_T3_TWIN_REFUSAL | TARC3_T3_SKETCHED_DISCHARGE)
-#define TARC3_T3_REFUSAL_WOUND     (TARC3_T3_TWIN_REFUSAL | TARC3_T3_SELF_INFLICTED)
+#define TARC3_T3_LIGHTS_ONLY       (TARC3_T3_SKETCHED_DISCHARGE)
+#define TARC3_T3_WOUND_ONLY        (TARC3_T3_SELF_INFLICTED)
+#define TARC3_T3_REFUSAL_LIGHTS    (TARC3_T3_TWIN_REFUSAL|TARC3_T3_SKETCHED_DISCHARGE)
+#define TARC3_T3_REFUSAL_WOUND     (TARC3_T3_TWIN_REFUSAL|TARC3_T3_SELF_INFLICTED)
+#define TARC3_T3_LIGHTS_WOUND      (TARC3_T3_SKETCHED_DISCHARGE|TARC3_T3_SELF_INFLICTED)
 
 // "None" entry in the accusation evidence menus; EVD_* ids are 0-46
 #define TARC3_ACCUSE_NONE          999
@@ -498,6 +505,8 @@
 
 // passed to overridetodblend, which forces a blend onto maps with no natural light
 #define TARC3_TOD_BLACKOUT         23 // full night tint while the lights are out
+#define TARC3_TOD_DAWN_HOUR         9 // pier ending; morning
+#define TARC3_TOD_DAWN_MINUTE       0
 
 #if TESTING
 #define TESTING_VARS_START                  0x9000

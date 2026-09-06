@@ -412,8 +412,6 @@ script tarc3_TatsuoRecon_EventScript_Q4Right {
     }
     setspeaker(NULL)
     closemessage
-    giveevidence(EVD_SILENCED_WITNESS)
-    closemessage
     delay(20)
     goto(tarc3_TatsuoRecon_EventScript_Closing)
 }
@@ -422,8 +420,6 @@ script tarc3_TatsuoRecon_EventScript_Q4Give {
     setspeaker("{RIVAL}")
     msgbox(format("He saw it. That is the whole of it."))
     setspeaker(NULL)
-    closemessage
-    giveevidence(EVD_SILENCED_WITNESS)
     closemessage
     delay(20)
     goto(tarc3_TatsuoRecon_EventScript_Closing)

@@ -936,18 +936,18 @@ tarc3_TatsuoRecon_EventScript_Q1_Text_0:
 
 tarc3_TatsuoRecon_EventScript_Q1_Text_1:
 # 29 "data/scripts/tarc3_tatsuo_reconstruction.pory"
-	.string "You heard it, then. The two of them, one\n"
-	.string "after the other.$"
+	.string "You heard it, then. The two of them,\n"
+	.string "one after the other.$"
 
 tarc3_TatsuoRecon_EventScript_Q1_Text_2:
 # 31 "data/scripts/tarc3_tatsuo_reconstruction.pory"
-	.string "A splash. Then, some seconds after it, a\n"
-	.string "heavy thing striking this deck.$"
+	.string "A splash. Then, some seconds after it,\n"
+	.string "a heavy thing striking this deck.$"
 
 tarc3_TatsuoRecon_EventScript_Q1_Text_3:
 # 32 "data/scripts/tarc3_tatsuo_reconstruction.pory"
-	.string "The second of those was Tatsuo. Nobody\n"
-	.string "in this family disputes that.$"
+	.string "The second of those was Tatsuo.\n"
+	.string "Nobody in this family disputes that.$"
 
 tarc3_TatsuoRecon_EventScript_Q1Ask_Text_0:
 # 41 "data/scripts/tarc3_tatsuo_reconstruction.pory"
@@ -976,9 +976,9 @@ tarc3_TatsuoRecon_EventScript_Q1WrongAfter_Text_1:
 
 tarc3_TatsuoRecon_EventScript_Q1WrongAfter_Text_2:
 # 61 "data/scripts/tarc3_tatsuo_reconstruction.pory"
-	.string "The splash was first. Either that order\n"
-	.string "means something or you have wasted an\l"
-	.string "hour of my evening.$"
+	.string "The splash was first. Either that\n"
+	.string "order means something or you have\l"
+	.string "wasted an hour of my evening.$"
 
 tarc3_TatsuoRecon_EventScript_Q1WrongMon_Text_0:
 # 69 "data/scripts/tarc3_tatsuo_reconstruction.pory"
@@ -999,16 +999,18 @@ tarc3_TatsuoRecon_EventScript_Q1Right_Text_0:
 
 tarc3_TatsuoRecon_EventScript_Q1Right_Text_1:
 # 89 "data/scripts/tarc3_tatsuo_reconstruction.pory"
-	.string "A man who comes out here to kill strikes\n"
-	.string "first and drops the weapon after.\p"
+	.string "A man who comes out here to kill\n"
+	.string "strikes first and drops the weapon\l"
+	.string "after.\p"
 	.string "That gives you a thud, and then a\n"
 	.string "splash.$"
 
 tarc3_TatsuoRecon_EventScript_Q1Right_Text_2:
 # 90 "data/scripts/tarc3_tatsuo_reconstruction.pory"
-	.string "We heard the reverse. Whoever stood at\n"
-	.string "this rail was disposing of something\l"
-	.string "before Tatsuo was ever touched.$"
+	.string "We heard the reverse. Whoever stood\n"
+	.string "at this rail was disposing of\l"
+	.string "something before Tatsuo was ever\l"
+	.string "touched.$"
 
 tarc3_TatsuoRecon_EventScript_Q1React_Text_0:
 # 101 "data/scripts/tarc3_tatsuo_reconstruction.pory"
@@ -1021,8 +1023,9 @@ tarc3_TatsuoRecon_EventScript_Q1React_Text_1:
 tarc3_TatsuoRecon_EventScript_Q1Give_Text_0:
 # 111 "data/scripts/tarc3_tatsuo_reconstruction.pory"
 	.string "The splash came first, so it cannot\n"
-	.string "have been the weapon that killed him. He\l"
-	.string "was already disposing of something.$"
+	.string "have been the weapon that killed him.\l"
+	.string "He was already disposing of\l"
+	.string "something.$"
 
 tarc3_TatsuoRecon_EventScript_Q1Give_Text_1:
 # 112 "data/scripts/tarc3_tatsuo_reconstruction.pory"
@@ -1036,8 +1039,8 @@ tarc3_TatsuoRecon_EventScript_Q2_Text_0:
 
 tarc3_TatsuoRecon_EventScript_Q2_Text_1:
 # 131 "data/scripts/tarc3_tatsuo_reconstruction.pory"
-	.string "Then say what went into the sea, if you\n"
-	.string "are so certain of the order of it.$"
+	.string "Then say what went into the sea, if\n"
+	.string "you are so certain of the order of it.$"
 
 tarc3_TatsuoRecon_EventScript_Q2_Text_2:
 # 133 "data/scripts/tarc3_tatsuo_reconstruction.pory"
@@ -1069,8 +1072,9 @@ tarc3_TatsuoRecon_EventScript_Q2WrongPipe_Text_0:
 
 tarc3_TatsuoRecon_EventScript_Q2WrongPipe_Text_1:
 # 162 "data/scripts/tarc3_tatsuo_reconstruction.pory"
-	.string "You have established one fact tonight.\n"
-	.string "Kindly stop walking back over it.$"
+	.string "You have established one fact\n"
+	.string "tonight. Kindly stop walking back over\l"
+	.string "it.$"
 
 tarc3_TatsuoRecon_EventScript_Q2WrongHis_Text_0:
 # 169 "data/scripts/tarc3_tatsuo_reconstruction.pory"
@@ -1093,8 +1097,8 @@ tarc3_TatsuoRecon_EventScript_Q2Right_Text_0:
 tarc3_TatsuoRecon_EventScript_Q2Right_Text_1:
 # 191 "data/scripts/tarc3_tatsuo_reconstruction.pory"
 	.string "There is no blade in that cabin. I\n"
-	.string "expect that blade is no longer anywhere\l"
-	.string "on this ship.$"
+	.string "expect that blade is no longer\l"
+	.string "anywhere on this ship.$"
 
 tarc3_TatsuoRecon_EventScript_Q2Right_Text_2:
 # 192 "data/scripts/tarc3_tatsuo_reconstruction.pory"
@@ -1137,7 +1141,8 @@ tarc3_TatsuoRecon_EventScript_Q3_Text_1:
 
 tarc3_TatsuoRecon_EventScript_Q3Ask_Text_0:
 # 233 "data/scripts/tarc3_tatsuo_reconstruction.pory"
-	.string "{FONT_NARROW}Where did the thing that killed him come from?$"
+	.string "{FONT_NARROW}Where did the thing that killed him come\n"
+	.string "from?$"
 
 tarc3_TatsuoRecon_EventScript_Q3Ask_Text_1:
 # 235 "data/scripts/tarc3_tatsuo_reconstruction.pory"
@@ -1158,8 +1163,8 @@ tarc3_TatsuoRecon_EventScript_Q3WrongCarried_Text_0:
 
 tarc3_TatsuoRecon_EventScript_Q3WrongCarried_Text_1:
 # 253 "data/scripts/tarc3_tatsuo_reconstruction.pory"
-	.string "Say that sentence aloud and hear what\n"
-	.string "is wrong with it.$"
+	.string "Say that sentence aloud and hear\n"
+	.string "what is wrong with it.$"
 
 tarc3_TatsuoRecon_EventScript_Q3Hands_Text_0:
 # 261 "data/scripts/tarc3_tatsuo_reconstruction.pory"
@@ -1199,8 +1204,8 @@ tarc3_TatsuoRecon_EventScript_Q3React_Text_0:
 	.string "Nothing was carried onto this deck. He\n"
 	.string "took up the first heavy thing he\l"
 	.string "stumbled over.\p"
-	.string "Which is what a man does when he did not\n"
-	.string "come out here to kill.$"
+	.string "Which is what a man does when he did\n"
+	.string "not come out here to kill.$"
 
 tarc3_TatsuoRecon_EventScript_Q3Weapon_Text_0:
 # 318 "data/scripts/tarc3_tatsuo_reconstruction.pory"
@@ -1215,8 +1220,8 @@ tarc3_TatsuoRecon_EventScript_Q3Weapon_Text_1:
 
 tarc3_TatsuoRecon_EventScript_Q3Weapon_Text_2:
 # 322 "data/scripts/tarc3_tatsuo_reconstruction.pory"
-	.string "He carried the knife the length of this\n"
-	.string "deck to drown it.\p"
+	.string "He carried the knife the length of\n"
+	.string "this deck to drown it.\p"
 	.string "The pipe he left where he found it.\p"
 	.string "The knife was the errand. The pipe was\n"
 	.string "the accident, and he heard us coming.$"
@@ -1230,13 +1235,15 @@ tarc3_TatsuoRecon_EventScript_Q3Give_Text_0:
 tarc3_TatsuoRecon_EventScript_Q3Give_Text_1:
 # 332 "data/scripts/tarc3_tatsuo_reconstruction.pory"
 	.string "Nothing about this was prepared. The\n"
-	.string "most useful thing this deck has told us.\p"
+	.string "most useful thing this deck has told\l"
+	.string "us.\p"
 	.string "And you walked past it twice.$"
 
 tarc3_TatsuoRecon_EventScript_Q4_Text_0:
 # 344 "data/scripts/tarc3_tatsuo_reconstruction.pory"
 	.string "Unprepared. Improvised. You are\n"
-	.string "describing an unlucky man, not a reason.$"
+	.string "describing an unlucky man, not a\l"
+	.string "reason.$"
 
 tarc3_TatsuoRecon_EventScript_Q4_Text_1:
 # 346 "data/scripts/tarc3_tatsuo_reconstruction.pory"
@@ -1261,8 +1268,8 @@ tarc3_TatsuoRecon_EventScript_Q4Ask_Text_3:
 
 tarc3_TatsuoRecon_EventScript_Q4WrongEstate_Text_0:
 # 374 "data/scripts/tarc3_tatsuo_reconstruction.pory"
-	.string "His share. The murderer wanted a larger\n"
-	.string "share for themselves.$"
+	.string "His share. The murderer wanted a\n"
+	.string "larger share for themselves.$"
 
 tarc3_TatsuoRecon_EventScript_Q4WrongEstate_Text_1:
 # 376 "data/scripts/tarc3_tatsuo_reconstruction.pory"
@@ -1273,8 +1280,8 @@ tarc3_TatsuoRecon_EventScript_Q4WrongEstate_Text_1:
 tarc3_TatsuoRecon_EventScript_Q4WrongMistake_Text_0:
 # 384 "data/scripts/tarc3_tatsuo_reconstruction.pory"
 	.string "Mistaken identity.\p"
-	.string "On a ship where every soul aboard knows\n"
-	.string "every other by name.$"
+	.string "On a ship where every soul aboard\n"
+	.string "knows every other by name.$"
 
 tarc3_TatsuoRecon_EventScript_Q4WrongMistake_Text_1:
 # 385 "data/scripts/tarc3_tatsuo_reconstruction.pory"
@@ -1310,15 +1317,15 @@ tarc3_TatsuoRecon_EventScript_Q4Give_Text_0:
 tarc3_TatsuoRecon_EventScript_Closing_Text_0:
 # 432 "data/scripts/tarc3_tatsuo_reconstruction.pory"
 	.string "So. A man came out onto this deck\n"
-	.string "tonight with the knife that killed Gozo\l"
-	.string "Hatamoto.\p"
+	.string "tonight with the knife that killed\l"
+	.string "Gozo Hatamoto.\p"
 	.string "Wrapped, and meant for the sea.$"
 
 tarc3_TatsuoRecon_EventScript_Closing_Text_1:
 # 433 "data/scripts/tarc3_tatsuo_reconstruction.pory"
 	.string "He did that first. The sea has it, and\n"
-	.string "the wrapping tore off on the rail on the\l"
-	.string "way down.$"
+	.string "the wrapping tore off on the rail on\l"
+	.string "the way down.$"
 
 tarc3_TatsuoRecon_EventScript_Closing_Text_2:
 # 434 "data/scripts/tarc3_tatsuo_reconstruction.pory"
@@ -1328,14 +1335,16 @@ tarc3_TatsuoRecon_EventScript_Closing_Text_2:
 tarc3_TatsuoRecon_EventScript_Closing_Text_3:
 # 439 "data/scripts/tarc3_tatsuo_reconstruction.pory"
 	.string "Nobody planned this death.\p"
-	.string "He died for standing in the wrong place\n"
-	.string "at the wrong minute.\p"
-	.string "The man who did it escaped afterwards.$"
+	.string "He died for standing in the wrong\n"
+	.string "place at the wrong minute.\p"
+	.string "The man who did it escaped\n"
+	.string "afterwards.$"
 
 tarc3_TatsuoRecon_EventScript_ClosingBest_Text_0:
 # 463 "data/scripts/tarc3_tatsuo_reconstruction.pory"
 	.string "He was standing there minding his own\n"
-	.string "business and somebody killed him for it.$"
+	.string "business and somebody killed him for\l"
+	.string "it.$"
 
 tarc3_TatsuoRecon_EventScript_ClosingBest_Text_1:
 # 464 "data/scripts/tarc3_tatsuo_reconstruction.pory"
@@ -1352,8 +1361,9 @@ tarc3_TatsuoRecon_EventScript_ClosingFair_Text_0:
 
 tarc3_TatsuoRecon_EventScript_ClosingFair_Text_1:
 # 478 "data/scripts/tarc3_tatsuo_reconstruction.pory"
-	.string "It holds together and it names nobody.\n"
-	.string "You have described a rail to us.$"
+	.string "It holds together and it names\n"
+	.string "nobody. You have described a rail to\l"
+	.string "us.$"
 
 tarc3_TatsuoRecon_EventScript_ClosingFair_Text_2:
 # 480 "data/scripts/tarc3_tatsuo_reconstruction.pory"

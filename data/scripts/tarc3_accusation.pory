@@ -52,11 +52,11 @@ script tarc3_Accusation_EventScript_NameMenu {
     setspeaker(NULL)
     message(format("{FONT_NARROW}Whose name am I about to place before this room?", "1_latin_rse_narrow"))
     waitmessage
-    dynmultipush("Ichiro", 0)
-    dynmultipush("Takeshi", 1)
+    dynmultipush("Ichiro", 1)
+    dynmultipush("Takeshi", 2)
     dynmultistack(0, 0, TRUE, 2, FALSE, 0, DYN_MULTICHOICE_CB_NONE)
     closemessage
-    if (var(VAR_RESULT) == 1) {
+    if (var(VAR_RESULT) == 2) {
         msgbox(format("{FONT_NARROW}Takeshi. Am I certain on this?", "1_latin_rse_narrow"), MSGBOX_YESNO)
         closemessage
         if (var(VAR_RESULT) == NO) {

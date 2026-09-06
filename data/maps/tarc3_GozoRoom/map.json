@@ -32,7 +32,7 @@
       "local_id": "LOCALID_GOZOROOM_GOZO_BODY",
       "graphics_id": "OBJ_EVENT_GFX_GOZO_DEAD",
       "x": 9,
-      "y": 9,
+      "y": 8,
       "elevation": 0,
       "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
       "movement_range_x": 0,

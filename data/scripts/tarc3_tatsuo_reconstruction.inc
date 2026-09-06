@@ -68,11 +68,11 @@ tarc3_TatsuoRecon_EventScript_Q1Ask::
 # 42 "data/scripts/tarc3_tatsuo_reconstruction.pory"
 	waitmessage
 # 43 "data/scripts/tarc3_tatsuo_reconstruction.pory"
-	dynmultipush tarc3_TatsuoRecon_EventScript_Q1Ask_Text_1, 0
+	dynmultipush tarc3_TatsuoRecon_EventScript_Q1Ask_Text_1, 1
 # 44 "data/scripts/tarc3_tatsuo_reconstruction.pory"
-	dynmultipush tarc3_TatsuoRecon_EventScript_Q1Ask_Text_2, 1
+	dynmultipush tarc3_TatsuoRecon_EventScript_Q1Ask_Text_2, 2
 # 45 "data/scripts/tarc3_tatsuo_reconstruction.pory"
-	dynmultipush tarc3_TatsuoRecon_EventScript_Q1Ask_Text_3, 2
+	dynmultipush tarc3_TatsuoRecon_EventScript_Q1Ask_Text_3, 3
 # 46 "data/scripts/tarc3_tatsuo_reconstruction.pory"
 	dynmultistack 0, 0, TRUE, 3, FALSE, 0, DYN_MULTICHOICE_CB_NONE
 # 47 "data/scripts/tarc3_tatsuo_reconstruction.pory"
@@ -80,9 +80,9 @@ tarc3_TatsuoRecon_EventScript_Q1Ask::
 # 48 "data/scripts/tarc3_tatsuo_reconstruction.pory"
 	switch VAR_RESULT
 # 49 "data/scripts/tarc3_tatsuo_reconstruction.pory"
-	case 0, tarc3_TatsuoRecon_EventScript_Q1Ask_2
+	case 1, tarc3_TatsuoRecon_EventScript_Q1Ask_2
 # 51 "data/scripts/tarc3_tatsuo_reconstruction.pory"
-	case 1, tarc3_TatsuoRecon_EventScript_Q1Ask_3
+	case 2, tarc3_TatsuoRecon_EventScript_Q1Ask_3
 # 54 "data/scripts/tarc3_tatsuo_reconstruction.pory"
 	goto tarc3_TatsuoRecon_EventScript_Q1Right
 	return
@@ -253,11 +253,11 @@ tarc3_TatsuoRecon_EventScript_Q2Ask::
 # 143 "data/scripts/tarc3_tatsuo_reconstruction.pory"
 	waitmessage
 # 144 "data/scripts/tarc3_tatsuo_reconstruction.pory"
-	dynmultipush tarc3_TatsuoRecon_EventScript_Q2Ask_Text_1, 0
+	dynmultipush tarc3_TatsuoRecon_EventScript_Q2Ask_Text_1, 1
 # 145 "data/scripts/tarc3_tatsuo_reconstruction.pory"
-	dynmultipush tarc3_TatsuoRecon_EventScript_Q2Ask_Text_2, 1
+	dynmultipush tarc3_TatsuoRecon_EventScript_Q2Ask_Text_2, 2
 # 146 "data/scripts/tarc3_tatsuo_reconstruction.pory"
-	dynmultipush tarc3_TatsuoRecon_EventScript_Q2Ask_Text_3, 2
+	dynmultipush tarc3_TatsuoRecon_EventScript_Q2Ask_Text_3, 3
 # 147 "data/scripts/tarc3_tatsuo_reconstruction.pory"
 	dynmultistack 0, 0, TRUE, 3, FALSE, 0, DYN_MULTICHOICE_CB_NONE
 # 148 "data/scripts/tarc3_tatsuo_reconstruction.pory"
@@ -265,9 +265,9 @@ tarc3_TatsuoRecon_EventScript_Q2Ask::
 # 149 "data/scripts/tarc3_tatsuo_reconstruction.pory"
 	switch VAR_RESULT
 # 150 "data/scripts/tarc3_tatsuo_reconstruction.pory"
-	case 0, tarc3_TatsuoRecon_EventScript_Q2Ask_2
+	case 1, tarc3_TatsuoRecon_EventScript_Q2Ask_2
 # 152 "data/scripts/tarc3_tatsuo_reconstruction.pory"
-	case 1, tarc3_TatsuoRecon_EventScript_Q2Ask_3
+	case 2, tarc3_TatsuoRecon_EventScript_Q2Ask_3
 # 155 "data/scripts/tarc3_tatsuo_reconstruction.pory"
 	goto tarc3_TatsuoRecon_EventScript_Q2Right
 	return
@@ -422,11 +422,11 @@ tarc3_TatsuoRecon_EventScript_Q3Ask::
 # 234 "data/scripts/tarc3_tatsuo_reconstruction.pory"
 	waitmessage
 # 235 "data/scripts/tarc3_tatsuo_reconstruction.pory"
-	dynmultipush tarc3_TatsuoRecon_EventScript_Q3Ask_Text_1, 0
+	dynmultipush tarc3_TatsuoRecon_EventScript_Q3Ask_Text_1, 1
 # 236 "data/scripts/tarc3_tatsuo_reconstruction.pory"
-	dynmultipush tarc3_TatsuoRecon_EventScript_Q3Ask_Text_2, 1
+	dynmultipush tarc3_TatsuoRecon_EventScript_Q3Ask_Text_2, 2
 # 237 "data/scripts/tarc3_tatsuo_reconstruction.pory"
-	dynmultipush tarc3_TatsuoRecon_EventScript_Q3Ask_Text_3, 2
+	dynmultipush tarc3_TatsuoRecon_EventScript_Q3Ask_Text_3, 3
 # 238 "data/scripts/tarc3_tatsuo_reconstruction.pory"
 	dynmultistack 0, 0, TRUE, 3, FALSE, 0, DYN_MULTICHOICE_CB_NONE
 # 239 "data/scripts/tarc3_tatsuo_reconstruction.pory"
@@ -434,9 +434,9 @@ tarc3_TatsuoRecon_EventScript_Q3Ask::
 # 240 "data/scripts/tarc3_tatsuo_reconstruction.pory"
 	switch VAR_RESULT
 # 241 "data/scripts/tarc3_tatsuo_reconstruction.pory"
-	case 0, tarc3_TatsuoRecon_EventScript_Q3Ask_2
+	case 1, tarc3_TatsuoRecon_EventScript_Q3Ask_2
 # 243 "data/scripts/tarc3_tatsuo_reconstruction.pory"
-	case 1, tarc3_TatsuoRecon_EventScript_Q3Ask_3
+	case 2, tarc3_TatsuoRecon_EventScript_Q3Ask_3
 # 246 "data/scripts/tarc3_tatsuo_reconstruction.pory"
 	goto tarc3_TatsuoRecon_EventScript_Q3Right
 	return
@@ -639,11 +639,11 @@ tarc3_TatsuoRecon_EventScript_Q4Ask::
 # 356 "data/scripts/tarc3_tatsuo_reconstruction.pory"
 	waitmessage
 # 357 "data/scripts/tarc3_tatsuo_reconstruction.pory"
-	dynmultipush tarc3_TatsuoRecon_EventScript_Q4Ask_Text_1, 0
+	dynmultipush tarc3_TatsuoRecon_EventScript_Q4Ask_Text_1, 1
 # 358 "data/scripts/tarc3_tatsuo_reconstruction.pory"
-	dynmultipush tarc3_TatsuoRecon_EventScript_Q4Ask_Text_2, 1
+	dynmultipush tarc3_TatsuoRecon_EventScript_Q4Ask_Text_2, 2
 # 359 "data/scripts/tarc3_tatsuo_reconstruction.pory"
-	dynmultipush tarc3_TatsuoRecon_EventScript_Q4Ask_Text_3, 2
+	dynmultipush tarc3_TatsuoRecon_EventScript_Q4Ask_Text_3, 3
 # 360 "data/scripts/tarc3_tatsuo_reconstruction.pory"
 	dynmultistack 0, 0, TRUE, 3, FALSE, 0, DYN_MULTICHOICE_CB_NONE
 # 361 "data/scripts/tarc3_tatsuo_reconstruction.pory"
@@ -651,9 +651,9 @@ tarc3_TatsuoRecon_EventScript_Q4Ask::
 # 362 "data/scripts/tarc3_tatsuo_reconstruction.pory"
 	switch VAR_RESULT
 # 363 "data/scripts/tarc3_tatsuo_reconstruction.pory"
-	case 0, tarc3_TatsuoRecon_EventScript_Q4Ask_2
+	case 1, tarc3_TatsuoRecon_EventScript_Q4Ask_2
 # 365 "data/scripts/tarc3_tatsuo_reconstruction.pory"
-	case 1, tarc3_TatsuoRecon_EventScript_Q4Ask_3
+	case 2, tarc3_TatsuoRecon_EventScript_Q4Ask_3
 # 368 "data/scripts/tarc3_tatsuo_reconstruction.pory"
 	goto tarc3_TatsuoRecon_EventScript_Q4Right
 	return

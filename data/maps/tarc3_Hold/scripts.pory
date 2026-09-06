@@ -212,13 +212,13 @@ script tarc3_Hold_EventScript_RecapName {
     setspeaker(NULL)
     message(format("{FONT_NARROW}Mariko put all of it in the open upstairs. What was worth keeping?", "1_latin_rse_narrow"))
     waitmessage
-    dynmultipush("Natsue walked out", 1)
-    dynmultipush("Takeshi's family name is Zaiki", 0)
-    dynmultipush("Mariko wants him locked away", 2)
+    dynmultipush("Natsue walked out", 2)
+    dynmultipush("Takeshi's family name is Zaiki", 1)
+    dynmultipush("Mariko wants him locked away", 3)
     dynmultistack(0, 0, TRUE, 3, FALSE, 0, DYN_MULTICHOICE_CB_NONE)
     closemessage
     switch (var(VAR_RESULT)) {
-        case 0:
+        case 1:
             goto(tarc3_Hold_EventScript_RecapNameRight)
         default:
             goto(tarc3_Hold_EventScript_RecapNameWrong)
@@ -243,13 +243,13 @@ script tarc3_Hold_EventScript_RecapArgument {
     setspeaker(NULL)
     message(format("{FONT_NARROW}And what does she claim she heard, standing at that door?", "1_latin_rse_narrow"))
     waitmessage
-    dynmultipush("His name, shouted through it", 0)
-    dynmultipush("Nothing at all", 2)
-    dynmultipush("A struggle inside the cabin", 1)
+    dynmultipush("His name, shouted through it", 1)
+    dynmultipush("Nothing at all", 3)
+    dynmultipush("A struggle inside the cabin", 2)
     dynmultistack(0, 0, TRUE, 3, FALSE, 0, DYN_MULTICHOICE_CB_NONE)
     closemessage
     switch (var(VAR_RESULT)) {
-        case 0:
+        case 1:
             goto(tarc3_Hold_EventScript_RecapArgumentRight)
         default:
             goto(tarc3_Hold_EventScript_RecapArgumentWrong)
@@ -274,13 +274,13 @@ script tarc3_Hold_EventScript_RecapWill {
     setspeaker(NULL)
     message(format("{FONT_NARROW}Then Suzuki chose that moment to read out the will. Who does it favour?", "1_latin_rse_narrow"))
     waitmessage
-    dynmultipush("The Corporation, not the family", 2)
-    dynmultipush("Mariko, as the eldest", 1)
-    dynmultipush("Natsue, and the man she chose", 0)
+    dynmultipush("The Corporation, not the family", 3)
+    dynmultipush("Mariko, as the eldest", 2)
+    dynmultipush("Natsue, and the man she chose", 1)
     dynmultistack(0, 0, TRUE, 3, FALSE, 0, DYN_MULTICHOICE_CB_NONE)
     closemessage
     switch (var(VAR_RESULT)) {
-        case 0:
+        case 1:
             goto(tarc3_Hold_EventScript_RecapWillRight)
         default:
             goto(tarc3_Hold_EventScript_RecapWillWrong)
@@ -304,13 +304,13 @@ script tarc3_Hold_EventScript_RecapBolt {
     setspeaker(NULL)
     message(format("{FONT_NARROW}One more. That door Suzuki bolted behind him.", "1_latin_rse_narrow"))
     waitmessage
-    dynmultipush("Suzuki holds the only key", 1)
-    dynmultipush("It only opens from out here", 0)
-    dynmultipush("Takeshi bolted it himself", 2)
+    dynmultipush("Suzuki holds the only key", 2)
+    dynmultipush("It only opens from out here", 1)
+    dynmultipush("Takeshi bolted it himself", 3)
     dynmultistack(0, 0, TRUE, 3, FALSE, 0, DYN_MULTICHOICE_CB_NONE)
     closemessage
     switch (var(VAR_RESULT)) {
-        case 0:
+        case 1:
             goto(tarc3_Hold_EventScript_RecapBoltRight)
         default:
             goto(tarc3_Hold_EventScript_RecapBoltWrong)

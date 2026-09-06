@@ -87,15 +87,15 @@ tarc3_Accusation_EventScript_NameMenu::
 # 54 "data/scripts/tarc3_accusation.pory"
 	waitmessage
 # 55 "data/scripts/tarc3_accusation.pory"
-	dynmultipush tarc3_Accusation_EventScript_NameMenu_Text_1, 0
+	dynmultipush tarc3_Accusation_EventScript_NameMenu_Text_1, 1
 # 56 "data/scripts/tarc3_accusation.pory"
-	dynmultipush tarc3_Accusation_EventScript_NameMenu_Text_2, 1
+	dynmultipush tarc3_Accusation_EventScript_NameMenu_Text_2, 2
 # 57 "data/scripts/tarc3_accusation.pory"
 	dynmultistack 0, 0, TRUE, 2, FALSE, 0, DYN_MULTICHOICE_CB_NONE
 # 58 "data/scripts/tarc3_accusation.pory"
 	closemessage
 # 59 "data/scripts/tarc3_accusation.pory"
-	compare VAR_RESULT, 1
+	compare VAR_RESULT, 2
 	goto_if_eq tarc3_Accusation_EventScript_NameMenu_2
 tarc3_Accusation_EventScript_NameMenu_1:
 # 67 "data/scripts/tarc3_accusation.pory"

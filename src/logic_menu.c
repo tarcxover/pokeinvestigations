@@ -54,8 +54,8 @@
 #define TASK_DATA(...) struct { s16 __VA_ARGS__; } *tData = (void *)gTasks[taskId].data
 #define TASK_DATA_N(n,...) struct { s16 __VA_ARGS__; } *tData = (void *)&gTasks[taskId].data[n]
 
-#define LOGIC_MENU_BORDER_TILE 0x1D5
-#define LOGIC_MENU_DIALOG_TILE 0x1DD
+#define LOGIC_MENU_BORDER_TILE 1
+#define LOGIC_MENU_DIALOG_TILE 270
 
 enum {
 
@@ -76,6 +76,7 @@ struct LogicMenuState
     u8 loadState;
     u8 maxSelections;
     u8 remainingSelections;
+    u8 helpWinId;
     u32 selected[MAX_SELECTIONS];
 };
 
@@ -106,20 +107,26 @@ static const struct BgTemplate sLogicMenuBgTemplates[] =
     {
         .bg = 0,
         .charBaseIndex = 0,
-        .mapBaseIndex = 31,
+        .mapBaseIndex = 7,
         .priority = 2
     },
     {
         .bg = 1,
         .charBaseIndex = 1,
-        .mapBaseIndex = 30,
+        .mapBaseIndex = 14,
         .priority = 3
     },
     {
         .bg = 2,
         .charBaseIndex = 2,
-        .mapBaseIndex = 29,
+        .mapBaseIndex = 23,
         .priority = 1
+    },
+    {
+        .bg = 3,
+        .charBaseIndex = 3,
+        .mapBaseIndex = 31,
+        .priority = 0,
     }
 };
 
@@ -140,7 +147,7 @@ static const struct WindowTemplate sLogicMenuWindowTemplates[] = {
             .bg = 2,
             .tilemapLeft = 2,
             .tilemapTop = 15,
-            .width = 27,
+            .width = 26,
             .height = 4,
             .paletteNum = 15,
             .baseBlock = 1,
@@ -168,14 +175,24 @@ static const struct WindowTemplate sLogicMenuWindowTemplates[] = {
     [WIN_LOGIC_HINTS] =
         {
             .bg = 0,
-            .tilemapLeft = 3,
+            .tilemapLeft = 1,
             .tilemapTop = 16,
-            .width = 9,
+            .width = 13,
             .height = 2,
             .paletteNum = 15,
             .baseBlock = 1,
         },
     DUMMY_WIN_TEMPLATE,
+};
+
+static const struct WindowTemplate sLogicMsgWinTemplHelp = {
+    .bg = 3,
+    .tilemapLeft = 2,
+    .tilemapTop = 3,
+    .width = 26,
+    .height = 14,
+    .paletteNum = 15,
+    .baseBlock = 10,
 };
 
 static const u32 sLogicMenuTiles[] = INCBIN_U32("graphics/evidence_menu/wizbook/tiles.4bpp.smol");
@@ -240,7 +257,7 @@ enum {
 
 static const struct Coords16 sLogicMenuIconPos[3] = {
     [EVD_POS_LEFT] = {153, 44},
-    [EVD_POS_RIGHT] = {187, 44},
+    [EVD_POS_RIGHT] = {186, 44},
     [EVD_POS_RESULT] = {169, 76},
 };
 
@@ -255,6 +272,7 @@ static void Task_LogicMenuInitList(u8 taskId);
 static void Task_LogicMenuMainInput(u8 taskId);
 static void Task_LogicMenuHandleDeduction(u8 taskId);
 static void Task_LogicMenuWaitFadeAndExit(u8 taskId);
+static void Task_HelpWinInput(u8 taskId);
 
 static void LogicMenu_Init(MainCallback callback);
 static void LogicMenu_ResetGpuRegsAndBgs(void);
@@ -278,7 +296,7 @@ static void PrintLogicMenuHints(u32 color);
 static void PrintLogicMenuItemName(enum Item item);
 static u32 FillEvdList(struct ListMenuItem *items);
 static u32 AddLogicMenuScrollArrows(struct ListMenu *list);
-
+static u32 DrawLogicMenuHelpWindow(const struct WindowTemplate *t, const u8 *string, bool32 autoBreak);
 
 static void LogicMenu_MoveCursorFunc(s32 itemIndex, bool8 onInit, struct ListMenu *list);
 static void LogicMenu_FreeResources(void);
@@ -409,6 +427,25 @@ static void Task_LogicMenuMainInput(u8 taskId)
     TASK_DATA(state, listTaskId, p1, p2);
 
     struct ListMenu* list = (void*) gTasks[tData->listTaskId].data;
+
+    if (JOY_NEW(SELECT_BUTTON))
+    {
+        PlaySE(SE_SUCCESS);
+        sLogicMenuState->helpWinId = DrawLogicMenuHelpWindow(&sLogicMsgWinTemplHelp, COMPOUND_STRING(
+            "Select 2 pieces of evidence that and connect\n"
+            "them to deduce new evidence. Deductions\n"
+            "reveal more information and help\n"
+            "you solve the mystery\n"
+            "\n"
+            "{A_BUTTON} Toggle evidence on or off\n"
+            "{START_BUTTON} Deduce new evidence\n"
+            "{SELECT_BUTTON} Open or close help menu"
+        ), FALSE);
+        RemoveScrollIndicatorArrowPair(sLogicMenuState->scrollIndicatorTask);
+        gTasks[taskId].func = Task_HelpWinInput;
+    }
+
+
     s32 input = ListMenu_ProcessInput(tData->listTaskId);
     switch (input)
     {
@@ -817,7 +854,7 @@ static bool8 LogicMenu_LoadGraphics(void)
         sLogicMenuState->loadState++;
         break;
     case 2:
-        LoadBgTiles(2, GetWindowFrameTilesPal(gSaveBlock2Ptr->optionsWindowFrameType)->tiles, 0x120, LOGIC_MENU_BORDER_TILE);
+        LoadBgTiles(3, GetWindowFrameTilesPal(gSaveBlock2Ptr->optionsWindowFrameType)->tiles, 0x120, LOGIC_MENU_BORDER_TILE);
         LoadPalette(GetWindowFrameTilesPal(gSaveBlock2Ptr->optionsWindowFrameType)->pal, BG_PLTT_ID(0), PLTT_SIZE_4BPP);
         LoadPalette(sLogicMenuPalette, BG_PLTT_ID(1), PLTT_SIZE_4BPP * 2);
         LoadPalette(gMessageBox_Pal, BG_PLTT_ID(15), PLTT_SIZE_4BPP);
@@ -860,14 +897,14 @@ static void UNUSED DrawLogicMenuWindowBorder(const struct WindowTemplate *templa
     const s16 width = template->width;
     const s16 height = template->height;
 
-    FillBgTilemapBufferRect(bg, topLeft, winLeft - 1, winTop - 1, 1, 1, 2);
-    FillBgTilemapBufferRect(bg, top, winLeft, winTop - 1, width, 1, 2);
-    FillBgTilemapBufferRect(bg, topRight, winLeft + width, winTop - 1, 1, 1, 2);
-    FillBgTilemapBufferRect(bg, left, winLeft - 1, winTop, 1, height, 2);
-    FillBgTilemapBufferRect(bg, right, winLeft + width, winTop, 1, height, 2);
-    FillBgTilemapBufferRect(bg, bottomLeft, winLeft - 1, winTop + height, 1, 1, 2);
-    FillBgTilemapBufferRect(bg, bottom, winLeft, winTop + height, width, 1, 2);
-    FillBgTilemapBufferRect(bg, bottomRight, winLeft + width, winTop + height, 1, 1, 2);
+    FillBgTilemapBufferRect(bg, topLeft,     winLeft - 1,     winTop - 1,      1,     1,      0);
+    FillBgTilemapBufferRect(bg, top,         winLeft,         winTop - 1,      width, 1,      0);
+    FillBgTilemapBufferRect(bg, topRight,    winLeft + width, winTop - 1,      1,     1,      0);
+    FillBgTilemapBufferRect(bg, left,        winLeft - 1,     winTop,          1,     height, 0);
+    FillBgTilemapBufferRect(bg, right,       winLeft + width, winTop,          1,     height, 0);
+    FillBgTilemapBufferRect(bg, bottomLeft,  winLeft - 1,     winTop + height, 1,     1,      0);
+    FillBgTilemapBufferRect(bg, bottom,      winLeft,         winTop + height, width, 1,      0);
+    FillBgTilemapBufferRect(bg, bottomRight, winLeft + width, winTop + height, 1,     1,      0);
 
     CopyBgTilemapBufferToVram(bg);
 }
@@ -947,9 +984,9 @@ static void PrintDescription(enum Item id)
 
 static void PrintLogicMenuHints(u32 color)
 {
-    const u8 fontId = FONT_SMALL;
-    const u8* text = COMPOUND_STRING("{START_BUTTON} Deduce!");
-    s16 x = GetStringCenterAlignXOffset(fontId, text, GetWindowAttribute(WIN_LOGIC_HINTS, WINDOW_WIDTH) * 8);
+    const u8 fontId = FONT_SMALL_NARROWER;
+    const u8* text = COMPOUND_STRING("{START_BUTTON} Deduce! {SELECT_BUTTON} Info");
+    s16 x = GetStringRightAlignXOffset(fontId, text, GetWindowAttribute(WIN_LOGIC_HINTS, WINDOW_WIDTH) * 8);
     FillWindowPixelBuffer(WIN_LOGIC_HINTS, PIXEL_FILL(TEXT_COLOR_TRANSPARENT));
 
     struct LogicMenuPrint p = {
@@ -961,6 +998,9 @@ static void PrintLogicMenuHints(u32 color)
         .color.asU32 = color,
     };
     LogicMenuPrintMsg(&p);
+
+
+
     CopyWindowToVram(WIN_LOGIC_HINTS, COPYWIN_GFX);
 }
 
@@ -988,6 +1028,59 @@ static void LogicMenuPrintMsg(struct LogicMenuPrint *p)
         ((p->color.asU32 >> 16) & 0xFF),
     };
     AddTextPrinterParameterized4(p->window, p->font, p->x, p->y, 0, 0, colors, 0, p->text);
+}
+
+static u32 DrawLogicMenuHelpWindow(const struct WindowTemplate *t, const u8 *string, bool32 autoBreak)
+{
+    u32 msgWin = AddWindow(t);
+    FillWindowPixelBuffer(msgWin, PIXEL_FILL(1));
+    DrawLogicMenuWindowBorder(t, LOGIC_MENU_BORDER_TILE);
+    PutWindowTilemap(msgWin);
+
+    union TextColor c = {{
+        .background = 0,
+        .foreground = 2,
+        .shadow = 3,
+    }};
+
+    struct LogicMenuPrint p = {
+        .font = FONT_SMALL,
+        .x = 2,
+        .window = msgWin,
+        .text = gStringVar4,
+        .color = c,
+    };
+
+    StringCopy(gStringVar4, string);
+    if (autoBreak)
+    {
+        StripLineBreaks(gStringVar4);
+        u32 w = GetWindowAttribute(p.window, WINDOW_WIDTH) * 8;
+        BreakStringAutomatic(gStringVar4, w, 8, p.font, HIDE_SCROLL_PROMPT);
+    }
+
+    LogicMenuPrintMsg(&p);
+    CopyWindowToVram(msgWin, COPYWIN_FULL);
+    SetGpuReg(REG_OFFSET_BLDCNT,
+              (BLDCNT_TGT1_ALL & ~BLDCNT_TGT1_BG3) | BLDCNT_EFFECT_DARKEN);
+    SetGpuReg(REG_OFFSET_BLDY, 10);
+    ShowBg(3);
+    return msgWin;
+}
+
+static void Task_HelpWinInput(u8 taskId)
+{
+    TASK_DATA(state, listTaskId, p1, p2);
+
+    if (JOY_NEW(A_BUTTON | SELECT_BUTTON))
+    {
+        struct ListMenu *list = (void *)gTasks[tData->listTaskId].data;
+        HideBg(3);
+        sLogicMenuState->scrollIndicatorTask = AddLogicMenuScrollArrows(list);
+        RedrawListMenu(tData->listTaskId);
+        SetGpuReg(REG_OFFSET_BLDCNT, 0);
+        gTasks[taskId].func = Task_LogicMenuMainInput;
+    }
 }
 
 static void LogicMenu_FreeResources(void)

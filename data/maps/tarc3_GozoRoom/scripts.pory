@@ -912,7 +912,7 @@ script tarc3_GozoRoom_EventScript_RevealRoom {
     setmetatile(6, 9, 0x096, TRUE)
     setmetatile(7, 9, 0x085, FALSE)
     setmetatile(8, 9, 0x080, FALSE)
-    setmetatile(9, 9, 0x080, FALSE)
+    setmetatile(9, 9, 0x0E2, FALSE)
     setmetatile(10, 9, 0x080, FALSE)
     setmetatile(11, 9, 0x080, FALSE)
     setmetatile(12, 9, 0x080, FALSE)

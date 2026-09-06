@@ -1,9 +1,17 @@
 mapscripts tarc3_Foredeck_MapScripts {
+    MAP_SCRIPT_ON_TRANSITION: tarc3_Foredeck_OnTransition
     MAP_SCRIPT_ON_LOAD: tarc3_Foredeck_OnLoad
     MAP_SCRIPT_ON_FRAME_TABLE [
         VAR_TARC3_ACT1, TARC3_ACT1_BOARDED: tarc3_Foredeck_EventScript_Departure
         VAR_TARC3_ACT2, TARC3_ACT2_BODY_ON_DECK: tarc3_Foredeck_EventScript_TatsuoBody
     ]
+}
+
+script tarc3_Foredeck_OnTransition {
+    if (var(VAR_TARC3_ACT2) == TARC3_ACT2_BODY_ON_DECK) {
+        savebgm(MUS_NONE)
+    }
+    end
 }
 
 script tarc3_Foredeck_OnLoad {
@@ -385,61 +393,18 @@ script tarc3_Foredeck_EventScript_Kitaro {
     msgbox(format("Twenty-two years I've run that division for him.\pHe still introduces me as the man Mariko married."))
     msgbox(format("...Forget I said any of that. You're a guest here."))
     setspeaker(NULL)
-    closemessage
-    if (var(VAR_TARC3_ACT1) >= TARC3_ACT1_DEPARTED && !defeated(TRAINER_TARC3_KITARO)) {
-        goto(tarc3_Foredeck_EventScript_KitaroBattle)
-    }
     release
     end
 }
 
-script tarc3_Foredeck_EventScript_KitaroBattle {
-    delay(20)
-    setspeaker("Kitaro")
-    msgbox(format("Would you humour me instead?\pOne battle. It would quell some nerves."))
-    setspeaker(NULL)
-    closemessage
-    setflag(FLAG_TARC3_NO_WHITEOUT)
-    trainerbattle_no_intro(TRAINER_TARC3_KITARO, tarc3_Foredeck_Text_KitaroDefeat)
-    clearflag(FLAG_TARC3_NO_WHITEOUT)
-    specialvar(VAR_RESULT, GetBattleOutcome)
-    goto_if_ne(VAR_RESULT, B_OUTCOME_WON, tarc3_Foredeck_EventScript_KitaroBattleLost)
-    delay(20)
-    setspeaker("Kitaro")
-    msgbox(format("Well fought.\pIt has been a while since anybody made us work for it. Thank you for that."))
-    setspeaker(NULL)
-    closemessage
-    msgbox(format("{FONT_NARROW}He enjoyed that. I do not think he expected to.", "1_latin_rse_narrow"))
-    closemessage
-    goto(tarc3_Foredeck_EventScript_KitaroBattleEnd)
-}
 
-script tarc3_Foredeck_EventScript_KitaroBattleLost {
-    settrainerflag(TRAINER_TARC3_KITARO)
-    delay(20)
-    setspeaker("Kitaro")
-    msgbox(format("Thank you.\pLet me see to your team. It's the least I can do."))
-    setspeaker(NULL)
-    closemessage
-    goto(tarc3_Foredeck_EventScript_KitaroBattleEnd)
-}
-
-script tarc3_Foredeck_EventScript_KitaroBattleEnd {
-    special(HealPlayerParty)
-    delay(20)
-    release
-    end
-}
-
-text tarc3_Foredeck_Text_KitaroDefeat {
-    format("You certainly have some aptitude as a trainer.")
-}
 
 
 // CS8
 
 script tarc3_Foredeck_EventScript_TatsuoBody {
     lockall
+    fadenewbgm(MUS_NONE)
     applymovement(OBJ_EVENT_ID_PLAYER, moves(walk_left * 3, walk_down * 2, face_left))
     waitmovement(0)
     delay(20)
@@ -453,7 +418,6 @@ script tarc3_Foredeck_EventScript_TatsuoBody {
     applymovement(LOCALID_FOREDECK_NATSUE_2, moves(walk_left, face_left))
     waitmovement(0)
     delay(20)
-    fadenewbgm(MUS_NONE)
     delay(60)
     playse(SE_PIN)
     applymovement(OBJ_EVENT_ID_PLAYER, moves(emote_exclamation_mark))
@@ -731,8 +695,20 @@ script tarc3_Foredeck_EventScript_Deck2Kitaro {
     lock
     faceplayer
     setspeaker("Kitaro")
-    msgbox(format("PLACEHOLDER: was somewhere > if battle watched > yes i battled ichiro."))
+    msgbox(format("I never left the dining room. Suzuki and Joji will tell you the same."))
+    msgbox(format("The first any of us knew of it was the shouting."))
     setspeaker(NULL)
+    closemessage
+    goto_if_set(FLAG_TARC3_KITARO_SMEARGLE, tarc3_Foredeck_EventScript_Deck2KitaroBattle)
+    release
+    end
+}
+
+script tarc3_Foredeck_EventScript_Deck2KitaroBattle {
+    setspeaker("Kitaro")
+    msgbox(format("Ichiro sat with us a while. Asked me for a battle, of all things.\pI think he went back to his cabin afterwards."))
+    setspeaker(NULL)
+    closemessage
     release
     end
 }
@@ -741,8 +717,10 @@ script tarc3_Foredeck_EventScript_Deck2Joji {
     lock
     faceplayer
     setspeaker("Joji")
-    msgbox(format("PLACEHOLDER: was in my room?."))
+    msgbox(format("The galley, and then the dining room. Suzuki was stood right beside me the whole time."))
+    msgbox(format("I'd only just finished cleaning down.\pAnd then this."))
     setspeaker(NULL)
+    closemessage
     release
     end
 }
@@ -763,7 +741,7 @@ script tarc3_Foredeck_EventScript_Deck2Ichiro {
     setspeaker("Ichiro")
     msgbox(format("Takeshi's in the hold. So it can't have been him, can it."))
     delay(20)
-    msgbox(format("...Sorry. That came out wrong."))
+    msgbox(format("...Or did he escape?"))
     setspeaker(NULL)
     release
     end

@@ -438,7 +438,9 @@
 #define TARC3_ACT1_THE_BODY        5  // CS3: Gozo's room
 #define TARC3_ACT1_INVESTIGATE_1   6  // free roam; CS4 and CS5 run off Franziska
 #define TARC3_ACT1_JAIL_TAKESHI    7  // CS6: Hold
-#define TARC3_ACT1_COMPLETE        8  // act one over, VAR_TARC3_ACT2 takes over
+#define TARC3_ACT1_NIGHT_RECAP     8  // CS6b: the recap in the player's cabin
+#define TARC3_ACT1_NIGHT_ROAM      9  // free investigation before Tatsuo's death
+#define TARC3_ACT1_COMPLETE       10  // act one over, VAR_TARC3_ACT2 takes over
 
 // VAR_TARC3_ACT2
 #define TARC3_ACT2_DECK_DOOR       1  // CS7: MainDeck west lobby

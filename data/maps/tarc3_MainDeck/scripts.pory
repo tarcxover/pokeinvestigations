@@ -24,10 +24,15 @@ script tarc3_MainDeck_OnTransition {
 
 script tarc3_MainDeck_OnLoad {
     setflag(FLAG_HIDE_TARC3_COMFEY)
-    if (var(VAR_TARC3_ACT2) == TARC3_ACT2_DECK_DOOR) {
+    setflag(FLAG_HIDE_TARC3_NIGHT_MONS)
+    if (var(VAR_TARC3_ACT1) == TARC3_ACT1_NIGHT_ROAM || var(VAR_TARC3_ACT2) == TARC3_ACT2_DECK_DOOR) {
         clearflag(FLAG_HIDE_TARC3_DECKDOOR_CAST)
     } else {
         setflag(FLAG_HIDE_TARC3_DECKDOOR_CAST)
+    }
+    if (var(VAR_TARC3_ACT1) != TARC3_ACT1_NIGHT_ROAM) {
+        setflag(FLAG_HIDE_TARC3_NIGHT_CAST)
+        setflag(FLAG_HIDE_TARC3_NIGHT_ICHIRO)
     }
     if (var(VAR_TARC3_ACT2) == TARC3_ACT2_TO_BATHROOM) {
         clearflag(FLAG_HIDE_TARC3_CORRIDOR_RAN)
@@ -80,6 +85,20 @@ script tarc3_MainDeck_EventScript_CabinDoor {
 }
 
 script tarc3_MainDeck_EventScript_CabinDoorOpen {
+    end
+}
+
+// Tatsuo is out of this cabin from the moment he storms off in the hold
+// until CS7 kills him, i.e. ACT1 past the hold and ACT2 not yet started.
+script tarc3_MainDeck_EventScript_AkieCabinDoor {
+    goto_if_ne(VAR_TARC3_ACT2, 0, tarc3_MainDeck_EventScript_CabinDoor)
+    goto_if_lt(VAR_TARC3_ACT1, TARC3_ACT1_NIGHT_RECAP, tarc3_MainDeck_EventScript_CabinDoor)
+    lockall
+    setspeaker("Akie")
+    msgbox(format("Tatsuo?! Is that you?\pStay out. I'm still angry with you."))
+    setspeaker(NULL)
+    closemessage
+    releaseall
     end
 }
 
@@ -695,9 +714,6 @@ script tarc3_MainDeck_EventScript_DiningKitaro {
         msgbox(format("But somebody in this room did it.\pThat's the part I can't put down."))
         setspeaker(NULL)
         closemessage
-        if (defeated(TRAINER_TARC3_KITARO) && !flag(FLAG_TARC3_KITARO_SMEARGLE)) {
-            goto(tarc3_MainDeck_EventScript_DiningKitaroSmeargle)
-        }
         release
         end
     }
@@ -826,49 +842,7 @@ script tarc3_MainDeck_EventScript_DiningIchiroEvidence {
     end
 }
 
-// CS7 (probably a better way to do this)
-
-script tarc3_MainDeck_EventScript_DeckDoorFrom9 {
-    lockall
-    applymovement(OBJ_EVENT_ID_PLAYER, moves(walk_left * 3, walk_up * 2, face_left))
-    goto(tarc3_MainDeck_EventScript_DeckDoorScene)
-}
-
-script tarc3_MainDeck_EventScript_DeckDoorFrom10 {
-    lockall
-    applymovement(OBJ_EVENT_ID_PLAYER, moves(walk_left * 3, walk_up * 3, face_left))
-    goto(tarc3_MainDeck_EventScript_DeckDoorScene)
-}
-
-script tarc3_MainDeck_EventScript_DeckDoorFrom11 {
-    lockall
-    applymovement(OBJ_EVENT_ID_PLAYER, moves(walk_left * 3, walk_up * 4, face_left))
-    goto(tarc3_MainDeck_EventScript_DeckDoorScene)
-}
-
-script tarc3_MainDeck_EventScript_DeckDoorFrom12 {
-    lockall
-    applymovement(OBJ_EVENT_ID_PLAYER, moves(walk_left * 3, walk_up * 5, face_left))
-    goto(tarc3_MainDeck_EventScript_DeckDoorScene)
-}
-
-script tarc3_MainDeck_EventScript_DeckDoorFrom13 {
-    lockall
-    applymovement(OBJ_EVENT_ID_PLAYER, moves(walk_left * 3, walk_up * 6, face_left))
-    goto(tarc3_MainDeck_EventScript_DeckDoorScene)
-}
-
-script tarc3_MainDeck_EventScript_DeckDoorFromStairsA {
-    lockall
-    applymovement(OBJ_EVENT_ID_PLAYER, moves(walk_left, face_left))
-    goto(tarc3_MainDeck_EventScript_DeckDoorScene)
-}
-
-script tarc3_MainDeck_EventScript_DeckDoorFromStairsB {
-    lockall
-    applymovement(OBJ_EVENT_ID_PLAYER, moves(walk_down, face_left))
-    goto(tarc3_MainDeck_EventScript_DeckDoorScene)
-}
+// CS7
 
 script tarc3_MainDeck_EventScript_DeckDoorScene {
     waitmovement(0)
@@ -902,6 +876,13 @@ script tarc3_MainDeck_EventScript_DeckDoorScene {
     setspeaker(NULL)
     closemessage
     delay(40)
+    fadescreen(FADE_TO_BLACK)
+    delay(30)
+    msgbox(format("Some time passes..."))
+    closemessage
+    delay(30)
+    fadescreen(FADE_FROM_BLACK)
+    delay(50)
     playse(SE_M_DIVE)
     delay(50)
     applymovement(OBJ_EVENT_ID_PLAYER, moves(face_left))
@@ -1108,9 +1089,6 @@ script tarc3_MainDeck_EventScript_GatherKitaro {
     if (!flag(FLAG_TARC3_GATHER_KITARO_TATSUO)) {
         addvar(VAR_TEMP_4, 1)
     }
-    if (defeated(TRAINER_TARC3_KITARO) && !flag(FLAG_TARC3_KITARO_SMEARGLE)) {
-        addvar(VAR_TEMP_4, 1)
-    }
     if (var(VAR_TEMP_4) == 0) {
         goto(tarc3_MainDeck_EventScript_GatherKitaroExhausted)
     }
@@ -1123,9 +1101,6 @@ script tarc3_MainDeck_EventScript_GatherKitaro {
     if (!flag(FLAG_TARC3_GATHER_KITARO_TATSUO)) {
         dynmultipush("Tatsuo", 2)
     }
-    if (defeated(TRAINER_TARC3_KITARO) && !flag(FLAG_TARC3_KITARO_SMEARGLE)) {
-        dynmultipush("How he spent the day", 3)
-    }
     dynmultipush("Nothing", 4)
     dynmultistack(0, 0, FALSE, 4, FALSE, 0, DYN_MULTICHOICE_CB_NONE)
     closemessage
@@ -1134,8 +1109,6 @@ script tarc3_MainDeck_EventScript_GatherKitaro {
             goto(tarc3_MainDeck_EventScript_GatherKitaroCabins)
         case 2:
             goto(tarc3_MainDeck_EventScript_GatherKitaroTatsuo)
-        case 3:
-            goto(tarc3_MainDeck_EventScript_GatherKitaroSmeargle)
         case MULTI_B_PRESSED:
             goto(tarc3_MainDeck_EventScript_GatherKitaroExhausted)
         default:
@@ -1198,33 +1171,6 @@ script tarc3_MainDeck_EventScript_GatherKitaroTatsuo {
     closemessage
     setflag(FLAG_TARC3_GATHER_KITARO_TATSUO)
     goto(tarc3_MainDeck_EventScript_GatherKitaroReflectEnd)
-}
-
-script tarc3_MainDeck_EventScript_GatherKitaroSmeargle {
-    call(tarc3_MainDeck_EventScript_KitaroSmeargleBody)
-    goto(tarc3_MainDeck_EventScript_GatherKitaroReflectEnd)
-}
-
-script tarc3_MainDeck_EventScript_DiningKitaroSmeargle {
-    call(tarc3_MainDeck_EventScript_KitaroSmeargleBody)
-    release
-    end
-}
-
-script tarc3_MainDeck_EventScript_KitaroSmeargleBody {
-    setspeaker("Kitaro")
-    msgbox(format("Ichiro asked me for a battle, right as they were calling us in. He never asks."))
-    msgbox(format("Odd sort of battle. He didn't attack once.\pHis Smeargle just kept dodging, until I hit it with a well-aimed Discharge."))
-    msgbox(format("Then he thanked me and put his sketchbook back under his arm."))
-    setspeaker(NULL)
-    closemessage
-    delay(20)
-    msgbox(format("{FONT_NARROW}Ichiro does not ask anyone for anything. And then he did not throw a single move.", "1_latin_rse_narrow"))
-    closemessage
-    setflag(FLAG_TARC3_KITARO_SMEARGLE)
-    giveevidence(EVD_THE_ODD_BATTLE)
-    closemessage
-    return
 }
 
 script tarc3_MainDeck_EventScript_GatherKitaroReflectEnd {
@@ -1792,5 +1738,325 @@ script tarc3_MainDeck_EventScript_DiningRanAct3 {
     fadescreenspeed(FADE_TO_BLACK, 6)
     warp(MAP_TARC3_CABINS, 19, 6)
     waitstate
+    end
+}
+
+
+// CS6c - the night investigation between Takeshi's imprisonment and Tatsuo's death
+
+script tarc3_MainDeck_EventScript_NightNoExitDeck {
+    lockall
+    msgbox(format("{FONT_NARROW}Nothing out on that deck will keep until I have spoken to {RIVAL}.", "1_latin_rse_narrow"))
+    closemessage
+    applymovement(OBJ_EVENT_ID_PLAYER, moves(walk_right))
+    waitmovement(0)
+    releaseall
+    end
+}
+
+script tarc3_MainDeck_EventScript_DeckDoorNatsue {
+    lock
+    faceplayer
+    setspeaker("Natsue")
+    msgbox(format("I keep looking at that door.\pAs though he might walk back through it and none of this evening happened."))
+    setspeaker(NULL)
+    release
+    end
+}
+
+script tarc3_MainDeck_EventScript_DeckDoorRan {
+    lockall
+    applymovement(LOCALID_MAINDECK_RAN_DECK, moves(face_player))
+    waitmovement(0)
+    setspeaker("{RIVAL}")
+    msgbox(format("Well?\pHave you seen everything you needed to see?"), MSGBOX_YESNO)
+    if (var(VAR_RESULT) == NO) {
+        msgbox(format("Then go back and see it.\pI have no interest in a half-read room."))
+        setspeaker(NULL)
+        closemessage
+        releaseall
+        end
+    }
+    msgbox(format("Then stand with us a moment. Natsue has had a wretched evening."))
+    setspeaker(NULL)
+    closemessage
+    delay(20)
+    getplayerxy(VAR_TEMP_1, VAR_TEMP_2)
+    if (var(VAR_TEMP_2) == 9) {
+        applymovement(OBJ_EVENT_ID_PLAYER, moves(walk_right, walk_up * 2, face_left))
+    } else {
+        applymovement(OBJ_EVENT_ID_PLAYER, moves(walk_up, face_left))
+    }
+    setflag(FLAG_HIDE_TARC3_NIGHT_CAST)
+    setflag(FLAG_HIDE_TARC3_NIGHT_ICHIRO)
+    removeobject(LOCALID_MAINDECK_SUZUKI_NIGHT)
+    removeobject(LOCALID_MAINDECK_JOJI_NIGHT)
+    removeobject(LOCALID_MAINDECK_ICHIRO_NIGHT)
+    removeobject(LOCALID_MAINDECK_KITARO_NIGHT)
+    setvar(VAR_TARC3_ACT1, TARC3_ACT1_COMPLETE)
+    setvar(VAR_TARC3_ACT2, TARC3_ACT2_DECK_DOOR)
+    goto(tarc3_MainDeck_EventScript_DeckDoorScene)
+}
+
+script tarc3_MainDeck_EventScript_NightSuzuki {
+    lock
+    faceplayer
+    setspeaker("Suzuki")
+    msgbox(format("The master kept a decanter in the salon for evenings like this.\pI have not the heart to open it."))
+    msgbox(format("Forgive me. There is nothing useful in an old man at this hour."))
+    setspeaker(NULL)
+    release
+    end
+}
+
+script tarc3_MainDeck_EventScript_NightJoji {
+    lock
+    faceplayer
+    setspeaker("Joji")
+    msgbox(format("The kitchen's clean. Every pan scrubbed, every surface wiped down."))
+    msgbox(format("I know how that sounds tonight.\pBut it was that or sit in here and listen to them."))
+    setspeaker(NULL)
+    release
+    end
+}
+
+script tarc3_MainDeck_EventScript_NightIchiro {
+    lock
+    faceplayer
+    setspeaker("Ichiro")
+    msgbox(format("...I'd rather not talk."))
+    setspeaker(NULL)
+    release
+    end
+}
+
+script tarc3_MainDeck_EventScript_NightKitaro {
+    lock
+    faceplayer
+    setspeaker("Kitaro")
+    msgbox(format("They've put a man in a storeroom and gone back to their seats.\pI don't know what else any of us was meant to do."))
+    setspeaker(NULL)
+    closemessage
+    if (!defeated(TRAINER_TARC3_KITARO)) {
+        goto(tarc3_MainDeck_EventScript_NightKitaroBattle)
+    }
+    release
+    end
+}
+
+script tarc3_MainDeck_EventScript_NightKitaroBattle {
+    delay(20)
+    setspeaker("Kitaro")
+    msgbox(format("You carry Pokémon, don't you.\pWould you humour me? One battle. It would quell some nerves."))
+    setspeaker(NULL)
+    closemessage
+    setflag(FLAG_TARC3_NO_WHITEOUT)
+    trainerbattle_no_intro(TRAINER_TARC3_KITARO, tarc3_MainDeck_Text_NightKitaroDefeat)
+    clearflag(FLAG_TARC3_NO_WHITEOUT)
+    specialvar(VAR_RESULT, GetBattleOutcome)
+    goto_if_ne(VAR_RESULT, B_OUTCOME_WON, tarc3_MainDeck_EventScript_NightKitaroBattleLost)
+    special(HealPlayerParty)
+    delay(20)
+    setspeaker("Kitaro")
+    msgbox(format("Well fought.\pIt has been a while since anybody made us work for it. Thank you for that."))
+    setspeaker(NULL)
+    closemessage
+    goto(tarc3_MainDeck_EventScript_NightOddBattle)
+}
+
+script tarc3_MainDeck_EventScript_NightKitaroBattleLost {
+    settrainerflag(TRAINER_TARC3_KITARO)
+    special(HealPlayerParty)
+    delay(20)
+    setspeaker("Kitaro")
+    msgbox(format("Thank you.\pLet me see to your team. That's enough for one night."))
+    setspeaker(NULL)
+    closemessage
+    release
+    end
+}
+
+text tarc3_MainDeck_Text_NightKitaroDefeat {
+    format("You certainly have some aptitude as a trainer.")
+}
+
+script tarc3_MainDeck_EventScript_NightOddBattle {
+    goto_if_set(FLAG_TARC3_KITARO_SMEARGLE, tarc3_MainDeck_EventScript_NightOddBattleEnd)
+    hidefollower
+    getplayerxy(VAR_TEMP_1, VAR_TEMP_2)
+    if (var(VAR_TEMP_1) == 44) {
+        if (var(VAR_TEMP_2) == 10 || var(VAR_TEMP_2) == 11) {
+            applymovement(OBJ_EVENT_ID_PLAYER, moves(walk_right, face_left))
+            waitmovement(0)
+        }
+    }
+    delay(20)
+    applymovement(LOCALID_MAINDECK_ICHIRO_NIGHT, moves(walk_down * 2))
+    waitmovement(0)
+    delay(20)
+    applymovement(LOCALID_MAINDECK_KITARO_NIGHT, moves(face_up))
+    setspeaker("Ichiro")
+    msgbox(format("...Kitaro. May I challenge you?"))
+    setspeaker("Kitaro")
+    msgbox(format("I didn't think you were one for battling, lad."))
+    setspeaker("Ichiro")
+    msgbox(format("I just need something to distract me. Your battle with {PLAYER} inspired me."))
+    setspeaker("Kitaro")
+    msgbox(format("Sure, Pawmot and I can go again."))
+    setspeaker(NULL)
+    closemessage
+    delay(20)
+    applymovement(LOCALID_MAINDECK_ICHIRO_NIGHT, moves(walk_up * 2, face_down))
+    waitmovement(0)
+    delay(20)
+    clearflag(FLAG_HIDE_TARC3_NIGHT_MONS)
+    setspeaker("Kitaro")
+    msgbox(format("Pawmot. If you'd oblige me."))
+    setspeaker(NULL)
+    closemessage
+    call(tarc3_MainDeck_EventScript_NightSendOutPawmot)
+    setspeaker("Ichiro")
+    msgbox(format("Smeargle."))
+    setspeaker(NULL)
+    closemessage
+    call(tarc3_MainDeck_EventScript_NightSendOutSmeargle)
+    delay(20)
+    setspeaker("Ichiro")
+    msgbox(format("Be on your guard Smeargle.\pHe is quicker than he looks."))
+    setspeaker("Kitaro")
+    msgbox(format("Flattery. It won't help you."))
+    msgbox(format("Pawmot, close the distance - Mach Punch!"))
+    setspeaker(NULL)
+    closemessage
+    playse(SE_M_MEGA_KICK)
+    applymovement(LOCALID_MAINDECK_PAWMOT, moves(jump_in_place_up))
+    waitmovement(0)
+    setspeaker("Ichiro")
+    msgbox(format("Protect yourself!"))
+    setspeaker(NULL)
+    closemessage
+    playse(SE_M_REFLECT)
+    applymovement(LOCALID_MAINDECK_SMEARGLE, moves(walk_in_place_fast_down * 2))
+    waitmovement(0)
+    delay(20)
+    setspeaker("Kitaro")
+    msgbox(format("Held it. Of course it did."))
+    msgbox(format("Then we won't go through the front of it.\pPawmot - wind up. Take your time."))
+    setspeaker(NULL)
+    closemessage
+    playse(SE_M_CHARGE)
+    applymovement(LOCALID_MAINDECK_PAWMOT, moves(walk_in_place_fast_up * 3))
+    waitmovement(0)
+    delay(20)
+    setspeaker("Kitaro")
+    msgbox(format("Now. Discharge - all of it!"))
+    setspeaker(NULL)
+    closemessage
+    playse(SE_M_THUNDERBOLT2)
+    applymovement(LOCALID_MAINDECK_PAWMOT, moves(jump_in_place_up))
+    waitmovement(0)
+    applymovement(LOCALID_MAINDECK_SMEARGLE, moves(jump_in_place_down_up))
+    waitmovement(0)
+    delay(40)
+    setspeaker("Kitaro")
+    msgbox(format("That caught it square. Get it clear, Ichiro, and we'll call it there."))
+    setspeaker("Ichiro")
+    msgbox(format("...No."))
+    msgbox(format("Smeargle. Sketch that move!"))
+    setspeaker(NULL)
+    closemessage
+    playse(SE_M_SKETCH)
+    applymovement(LOCALID_MAINDECK_SMEARGLE, moves(walk_in_place_slow_down * 2))
+    waitmovement(0)
+    delay(30)
+    setspeaker("Kitaro")
+    msgbox(format("Sketch? After a hit like that?"))
+    msgbox(format("Pawmot, once more. Mach Punch, and we're finished."))
+    setspeaker(NULL)
+    closemessage
+    playse(SE_M_MEGA_KICK2)
+    applymovement(LOCALID_MAINDECK_PAWMOT, moves(jump_in_place_up))
+    waitmovement(0)
+    applymovement(LOCALID_MAINDECK_SMEARGLE, moves(jump_in_place_down))
+    waitmovement(0)
+    delay(40)
+    call(tarc3_MainDeck_EventScript_NightRecallMons)
+    delay(20)
+    playse(SE_PIN)
+    applymovement(LOCALID_MAINDECK_KITARO_NIGHT, moves(emote_exclamation_mark))
+    waitmovement(0)
+    delay(20)
+    setspeaker("Kitaro")
+    msgbox(format("Hold on.\pYou never attacked. Not once, the whole way through."))
+    setspeaker("Ichiro")
+    msgbox(format("I... I'm not much of a battler.\pThank you, Kitaro."))
+    setspeaker("Kitaro")
+    msgbox(format("...Any time, lad."))
+    setspeaker(NULL)
+    closemessage
+    delay(20)
+    setspeaker("Ichiro")
+    msgbox(format("I'll turn in. Goodnight, all."))
+    setspeaker(NULL)
+    closemessage
+    delay(20)
+    applymovement(LOCALID_MAINDECK_ICHIRO_NIGHT, moves(face_left, walk_left * 16))
+    waitmovement(0)
+    playse(SE_EXIT)
+    setflag(FLAG_HIDE_TARC3_NIGHT_ICHIRO)
+    removeobject(LOCALID_MAINDECK_ICHIRO_NIGHT)
+    updatefollowingmon
+    delay(30)
+    msgbox(format("{FONT_NARROW}A battle he asked for, and then declined to fight.\pHis Smeargle stood in a Discharge at full strength and did not step aside once.", "1_latin_rse_narrow"))
+    closemessage
+    giveevidence(EVD_THE_ODD_BATTLE)
+    closemessage
+    setflag(FLAG_TARC3_KITARO_SMEARGLE)
+    goto(tarc3_MainDeck_EventScript_NightOddBattleEnd)
+}
+
+script tarc3_MainDeck_EventScript_NightSendOutPawmot {
+    addobject(LOCALID_MAINDECK_PAWMOT)
+    applymovement(LOCALID_MAINDECK_PAWMOT, moves(set_invisible))
+    waitmovement(0)
+    playse(SE_BALL_THROW)
+    delay(10)
+    applymovement(LOCALID_MAINDECK_PAWMOT, moves(exit_pokeball))
+    waitmovement(0)
+    applymovement(LOCALID_MAINDECK_PAWMOT, moves(face_up))
+    waitmovement(0)
+    playmoncry(SPECIES_PAWMOT, CRY_MODE_NORMAL)
+    waitmoncry
+    return
+}
+
+script tarc3_MainDeck_EventScript_NightSendOutSmeargle {
+    addobject(LOCALID_MAINDECK_SMEARGLE)
+    applymovement(LOCALID_MAINDECK_SMEARGLE, moves(set_invisible))
+    waitmovement(0)
+    playse(SE_BALL_THROW)
+    delay(10)
+    applymovement(LOCALID_MAINDECK_SMEARGLE, moves(exit_pokeball))
+    waitmovement(0)
+    applymovement(LOCALID_MAINDECK_SMEARGLE, moves(face_down))
+    waitmovement(0)
+    playmoncry(SPECIES_SMEARGLE, CRY_MODE_NORMAL)
+    waitmoncry
+    return
+}
+
+script tarc3_MainDeck_EventScript_NightRecallMons {
+    playse(SE_BALL_THROW)
+    applymovement(LOCALID_MAINDECK_PAWMOT, moves(enter_pokeball))
+    applymovement(LOCALID_MAINDECK_SMEARGLE, moves(enter_pokeball))
+    waitmovement(0)
+    removeobject(LOCALID_MAINDECK_PAWMOT)
+    removeobject(LOCALID_MAINDECK_SMEARGLE)
+    setflag(FLAG_HIDE_TARC3_NIGHT_MONS)
+    return
+}
+
+script tarc3_MainDeck_EventScript_NightOddBattleEnd {
+    release
     end
 }

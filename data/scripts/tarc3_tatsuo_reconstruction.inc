@@ -744,12 +744,8 @@ tarc3_TatsuoRecon_EventScript_Q4Right_4:
 # 414 "data/scripts/tarc3_tatsuo_reconstruction.pory"
 	closemessage
 # 415 "data/scripts/tarc3_tatsuo_reconstruction.pory"
-	giveevidence EVD_SILENCED_WITNESS
-# 416 "data/scripts/tarc3_tatsuo_reconstruction.pory"
-	closemessage
-# 417 "data/scripts/tarc3_tatsuo_reconstruction.pory"
 	delay 20
-# 418 "data/scripts/tarc3_tatsuo_reconstruction.pory"
+# 416 "data/scripts/tarc3_tatsuo_reconstruction.pory"
 	goto tarc3_TatsuoRecon_EventScript_Closing
 	return
 
@@ -765,143 +761,139 @@ tarc3_TatsuoRecon_EventScript_Q4Right_5:
 
 
 tarc3_TatsuoRecon_EventScript_Q4Give::
-# 422 "data/scripts/tarc3_tatsuo_reconstruction.pory"
+# 420 "data/scripts/tarc3_tatsuo_reconstruction.pory"
 	setspeaker tarc3_TatsuoRecon_EventScript_Q1WrongAfter_Text_0
-# 423 "data/scripts/tarc3_tatsuo_reconstruction.pory"
+# 421 "data/scripts/tarc3_tatsuo_reconstruction.pory"
 	msgbox tarc3_TatsuoRecon_EventScript_Q4Give_Text_0
-# 424 "data/scripts/tarc3_tatsuo_reconstruction.pory"
+# 422 "data/scripts/tarc3_tatsuo_reconstruction.pory"
 	setspeaker NULL
-# 425 "data/scripts/tarc3_tatsuo_reconstruction.pory"
+# 423 "data/scripts/tarc3_tatsuo_reconstruction.pory"
 	closemessage
-# 426 "data/scripts/tarc3_tatsuo_reconstruction.pory"
-	giveevidence EVD_SILENCED_WITNESS
-# 427 "data/scripts/tarc3_tatsuo_reconstruction.pory"
-	closemessage
-# 428 "data/scripts/tarc3_tatsuo_reconstruction.pory"
+# 424 "data/scripts/tarc3_tatsuo_reconstruction.pory"
 	delay 20
-# 429 "data/scripts/tarc3_tatsuo_reconstruction.pory"
+# 425 "data/scripts/tarc3_tatsuo_reconstruction.pory"
 	goto tarc3_TatsuoRecon_EventScript_Closing
 	return
 
 
 tarc3_TatsuoRecon_EventScript_Closing::
-# 435 "data/scripts/tarc3_tatsuo_reconstruction.pory"
+# 431 "data/scripts/tarc3_tatsuo_reconstruction.pory"
 	setspeaker tarc3_TatsuoRecon_EventScript_Begin_Text_0
-# 436 "data/scripts/tarc3_tatsuo_reconstruction.pory"
+# 432 "data/scripts/tarc3_tatsuo_reconstruction.pory"
 	msgbox tarc3_TatsuoRecon_EventScript_Closing_Text_0
-# 437 "data/scripts/tarc3_tatsuo_reconstruction.pory"
+# 433 "data/scripts/tarc3_tatsuo_reconstruction.pory"
 	msgbox tarc3_TatsuoRecon_EventScript_Closing_Text_1
-# 438 "data/scripts/tarc3_tatsuo_reconstruction.pory"
+# 434 "data/scripts/tarc3_tatsuo_reconstruction.pory"
 	msgbox tarc3_TatsuoRecon_EventScript_Closing_Text_2
-# 439 "data/scripts/tarc3_tatsuo_reconstruction.pory"
+# 435 "data/scripts/tarc3_tatsuo_reconstruction.pory"
 	setspeaker NULL
-# 440 "data/scripts/tarc3_tatsuo_reconstruction.pory"
+# 436 "data/scripts/tarc3_tatsuo_reconstruction.pory"
 	closemessage
-# 441 "data/scripts/tarc3_tatsuo_reconstruction.pory"
+# 437 "data/scripts/tarc3_tatsuo_reconstruction.pory"
 	delay 20
-# 442 "data/scripts/tarc3_tatsuo_reconstruction.pory"
+# 438 "data/scripts/tarc3_tatsuo_reconstruction.pory"
 	setspeaker tarc3_TatsuoRecon_EventScript_Begin_Text_0
-# 443 "data/scripts/tarc3_tatsuo_reconstruction.pory"
+# 439 "data/scripts/tarc3_tatsuo_reconstruction.pory"
 	msgbox tarc3_TatsuoRecon_EventScript_Closing_Text_3
-# 444 "data/scripts/tarc3_tatsuo_reconstruction.pory"
+# 440 "data/scripts/tarc3_tatsuo_reconstruction.pory"
 	setspeaker NULL
-# 445 "data/scripts/tarc3_tatsuo_reconstruction.pory"
+# 441 "data/scripts/tarc3_tatsuo_reconstruction.pory"
 	closemessage
-# 446 "data/scripts/tarc3_tatsuo_reconstruction.pory"
+# 442 "data/scripts/tarc3_tatsuo_reconstruction.pory"
 	delay 20
-# 447 "data/scripts/tarc3_tatsuo_reconstruction.pory"
+# 443 "data/scripts/tarc3_tatsuo_reconstruction.pory"
 	goto tarc3_TatsuoRecon_EventScript_ClosingGrade
 	return
 
 
 tarc3_TatsuoRecon_EventScript_ClosingGrade::
-# 451 "data/scripts/tarc3_tatsuo_reconstruction.pory"
+# 447 "data/scripts/tarc3_tatsuo_reconstruction.pory"
 	goto_if_eq VAR_TEMP_9, 4, tarc3_TatsuoRecon_EventScript_ClosingGrade4
-# 452 "data/scripts/tarc3_tatsuo_reconstruction.pory"
+# 448 "data/scripts/tarc3_tatsuo_reconstruction.pory"
 	goto_if_ge VAR_TEMP_8, 3, tarc3_TatsuoRecon_EventScript_ClosingBest
-# 453 "data/scripts/tarc3_tatsuo_reconstruction.pory"
+# 449 "data/scripts/tarc3_tatsuo_reconstruction.pory"
 	goto_if_ge VAR_TEMP_8, 2, tarc3_TatsuoRecon_EventScript_ClosingFair
-# 454 "data/scripts/tarc3_tatsuo_reconstruction.pory"
+# 450 "data/scripts/tarc3_tatsuo_reconstruction.pory"
 	goto tarc3_TatsuoRecon_EventScript_ClosingPoor
 	return
 
 
 tarc3_TatsuoRecon_EventScript_ClosingGrade4::
-# 458 "data/scripts/tarc3_tatsuo_reconstruction.pory"
+# 454 "data/scripts/tarc3_tatsuo_reconstruction.pory"
 	goto_if_ge VAR_TEMP_8, 4, tarc3_TatsuoRecon_EventScript_ClosingBest
-# 459 "data/scripts/tarc3_tatsuo_reconstruction.pory"
+# 455 "data/scripts/tarc3_tatsuo_reconstruction.pory"
 	goto_if_ge VAR_TEMP_8, 2, tarc3_TatsuoRecon_EventScript_ClosingFair
-# 460 "data/scripts/tarc3_tatsuo_reconstruction.pory"
+# 456 "data/scripts/tarc3_tatsuo_reconstruction.pory"
 	goto tarc3_TatsuoRecon_EventScript_ClosingPoor
 	return
 
 
 tarc3_TatsuoRecon_EventScript_ClosingBest::
-# 464 "data/scripts/tarc3_tatsuo_reconstruction.pory"
+# 460 "data/scripts/tarc3_tatsuo_reconstruction.pory"
 	fadeoutbgm 4
-# 465 "data/scripts/tarc3_tatsuo_reconstruction.pory"
+# 461 "data/scripts/tarc3_tatsuo_reconstruction.pory"
 	delay 60
-# 466 "data/scripts/tarc3_tatsuo_reconstruction.pory"
+# 462 "data/scripts/tarc3_tatsuo_reconstruction.pory"
 	setspeaker tarc3_TatsuoRecon_EventScript_Q2WrongHis_Text_0
-# 467 "data/scripts/tarc3_tatsuo_reconstruction.pory"
+# 463 "data/scripts/tarc3_tatsuo_reconstruction.pory"
 	msgbox tarc3_TatsuoRecon_EventScript_ClosingBest_Text_0
-# 468 "data/scripts/tarc3_tatsuo_reconstruction.pory"
+# 464 "data/scripts/tarc3_tatsuo_reconstruction.pory"
 	msgbox tarc3_TatsuoRecon_EventScript_ClosingBest_Text_1
-# 469 "data/scripts/tarc3_tatsuo_reconstruction.pory"
+# 465 "data/scripts/tarc3_tatsuo_reconstruction.pory"
 	setspeaker tarc3_TatsuoRecon_EventScript_Q1WrongAfter_Text_0
-# 470 "data/scripts/tarc3_tatsuo_reconstruction.pory"
+# 466 "data/scripts/tarc3_tatsuo_reconstruction.pory"
 	msgbox tarc3_TatsuoRecon_EventScript_ClosingBest_Text_2
-# 471 "data/scripts/tarc3_tatsuo_reconstruction.pory"
+# 467 "data/scripts/tarc3_tatsuo_reconstruction.pory"
 	setspeaker NULL
-# 472 "data/scripts/tarc3_tatsuo_reconstruction.pory"
+# 468 "data/scripts/tarc3_tatsuo_reconstruction.pory"
 	closemessage
-# 473 "data/scripts/tarc3_tatsuo_reconstruction.pory"
+# 469 "data/scripts/tarc3_tatsuo_reconstruction.pory"
 	delay 20
-# 474 "data/scripts/tarc3_tatsuo_reconstruction.pory"
+# 470 "data/scripts/tarc3_tatsuo_reconstruction.pory"
 	setflag FLAG_TARC3_TATSUO_RECONSTRUCTED
 	return
 
 
 tarc3_TatsuoRecon_EventScript_ClosingFair::
-# 479 "data/scripts/tarc3_tatsuo_reconstruction.pory"
+# 475 "data/scripts/tarc3_tatsuo_reconstruction.pory"
 	setspeaker tarc3_TatsuoRecon_EventScript_Q1_Text_0
-# 480 "data/scripts/tarc3_tatsuo_reconstruction.pory"
+# 476 "data/scripts/tarc3_tatsuo_reconstruction.pory"
 	msgbox tarc3_TatsuoRecon_EventScript_ClosingFair_Text_0
-# 481 "data/scripts/tarc3_tatsuo_reconstruction.pory"
+# 477 "data/scripts/tarc3_tatsuo_reconstruction.pory"
 	setspeaker tarc3_TatsuoRecon_EventScript_Q2_Text_0
-# 482 "data/scripts/tarc3_tatsuo_reconstruction.pory"
+# 478 "data/scripts/tarc3_tatsuo_reconstruction.pory"
 	msgbox tarc3_TatsuoRecon_EventScript_ClosingFair_Text_1
-# 483 "data/scripts/tarc3_tatsuo_reconstruction.pory"
+# 479 "data/scripts/tarc3_tatsuo_reconstruction.pory"
 	setspeaker tarc3_TatsuoRecon_EventScript_Q1WrongAfter_Text_0
-# 484 "data/scripts/tarc3_tatsuo_reconstruction.pory"
+# 480 "data/scripts/tarc3_tatsuo_reconstruction.pory"
 	msgbox tarc3_TatsuoRecon_EventScript_ClosingFair_Text_2
-# 485 "data/scripts/tarc3_tatsuo_reconstruction.pory"
+# 481 "data/scripts/tarc3_tatsuo_reconstruction.pory"
 	setspeaker NULL
-# 486 "data/scripts/tarc3_tatsuo_reconstruction.pory"
+# 482 "data/scripts/tarc3_tatsuo_reconstruction.pory"
 	closemessage
-# 487 "data/scripts/tarc3_tatsuo_reconstruction.pory"
+# 483 "data/scripts/tarc3_tatsuo_reconstruction.pory"
 	delay 20
-# 488 "data/scripts/tarc3_tatsuo_reconstruction.pory"
+# 484 "data/scripts/tarc3_tatsuo_reconstruction.pory"
 	setflag FLAG_TARC3_TATSUO_RECONSTRUCTED
 	return
 
 
 tarc3_TatsuoRecon_EventScript_ClosingPoor::
-# 493 "data/scripts/tarc3_tatsuo_reconstruction.pory"
+# 489 "data/scripts/tarc3_tatsuo_reconstruction.pory"
 	setspeaker tarc3_TatsuoRecon_EventScript_Q2_Text_0
-# 494 "data/scripts/tarc3_tatsuo_reconstruction.pory"
+# 490 "data/scripts/tarc3_tatsuo_reconstruction.pory"
 	msgbox tarc3_TatsuoRecon_EventScript_ClosingPoor_Text_0
-# 495 "data/scripts/tarc3_tatsuo_reconstruction.pory"
+# 491 "data/scripts/tarc3_tatsuo_reconstruction.pory"
 	setspeaker tarc3_TatsuoRecon_EventScript_Q1WrongAfter_Text_0
-# 496 "data/scripts/tarc3_tatsuo_reconstruction.pory"
+# 492 "data/scripts/tarc3_tatsuo_reconstruction.pory"
 	msgbox tarc3_TatsuoRecon_EventScript_ClosingPoor_Text_1
-# 497 "data/scripts/tarc3_tatsuo_reconstruction.pory"
+# 493 "data/scripts/tarc3_tatsuo_reconstruction.pory"
 	setspeaker NULL
-# 498 "data/scripts/tarc3_tatsuo_reconstruction.pory"
+# 494 "data/scripts/tarc3_tatsuo_reconstruction.pory"
 	closemessage
-# 499 "data/scripts/tarc3_tatsuo_reconstruction.pory"
+# 495 "data/scripts/tarc3_tatsuo_reconstruction.pory"
 	delay 20
-# 500 "data/scripts/tarc3_tatsuo_reconstruction.pory"
+# 496 "data/scripts/tarc3_tatsuo_reconstruction.pory"
 	setflag FLAG_TARC3_TATSUO_RECONSTRUCTED
 	return
 
@@ -1312,70 +1304,70 @@ tarc3_TatsuoRecon_EventScript_Q4Right_Text_3:
 	.string "it.$"
 
 tarc3_TatsuoRecon_EventScript_Q4Give_Text_0:
-# 423 "data/scripts/tarc3_tatsuo_reconstruction.pory"
+# 421 "data/scripts/tarc3_tatsuo_reconstruction.pory"
 	.string "He saw it. That is the whole of it.$"
 
 tarc3_TatsuoRecon_EventScript_Closing_Text_0:
-# 436 "data/scripts/tarc3_tatsuo_reconstruction.pory"
+# 432 "data/scripts/tarc3_tatsuo_reconstruction.pory"
 	.string "So. A man came out onto this deck\n"
 	.string "tonight with the knife that killed Gozo\l"
 	.string "Hatamoto.\p"
 	.string "Wrapped, and meant for the sea.$"
 
 tarc3_TatsuoRecon_EventScript_Closing_Text_1:
-# 437 "data/scripts/tarc3_tatsuo_reconstruction.pory"
+# 433 "data/scripts/tarc3_tatsuo_reconstruction.pory"
 	.string "He did that first. The sea has it, and\n"
 	.string "the wrapping tore off on the rail on the\l"
 	.string "way down.$"
 
 tarc3_TatsuoRecon_EventScript_Closing_Text_2:
-# 438 "data/scripts/tarc3_tatsuo_reconstruction.pory"
+# 434 "data/scripts/tarc3_tatsuo_reconstruction.pory"
 	.string "Tatsuo was already out here. He saw it\n"
 	.string "happen.$"
 
 tarc3_TatsuoRecon_EventScript_Closing_Text_3:
-# 443 "data/scripts/tarc3_tatsuo_reconstruction.pory"
+# 439 "data/scripts/tarc3_tatsuo_reconstruction.pory"
 	.string "Nobody planned this death.\p"
 	.string "He died for standing in the wrong place\n"
 	.string "at the wrong minute.\p"
 	.string "The man who did it escaped afterwards.$"
 
 tarc3_TatsuoRecon_EventScript_ClosingBest_Text_0:
-# 467 "data/scripts/tarc3_tatsuo_reconstruction.pory"
+# 463 "data/scripts/tarc3_tatsuo_reconstruction.pory"
 	.string "He was standing there minding his own\n"
 	.string "business and somebody killed him for it.$"
 
 tarc3_TatsuoRecon_EventScript_ClosingBest_Text_1:
-# 468 "data/scripts/tarc3_tatsuo_reconstruction.pory"
+# 464 "data/scripts/tarc3_tatsuo_reconstruction.pory"
 	.string "For nothing. For being in the way.$"
 
 tarc3_TatsuoRecon_EventScript_ClosingBest_Text_2:
-# 470 "data/scripts/tarc3_tatsuo_reconstruction.pory"
+# 466 "data/scripts/tarc3_tatsuo_reconstruction.pory"
 	.string "Adequate, {PLAYER} Edgeworth. Twice\n"
 	.string "in one night.$"
 
 tarc3_TatsuoRecon_EventScript_ClosingFair_Text_0:
-# 480 "data/scripts/tarc3_tatsuo_reconstruction.pory"
+# 476 "data/scripts/tarc3_tatsuo_reconstruction.pory"
 	.string "...It holds together.$"
 
 tarc3_TatsuoRecon_EventScript_ClosingFair_Text_1:
-# 482 "data/scripts/tarc3_tatsuo_reconstruction.pory"
+# 478 "data/scripts/tarc3_tatsuo_reconstruction.pory"
 	.string "It holds together and it names nobody.\n"
 	.string "You have described a rail to us.$"
 
 tarc3_TatsuoRecon_EventScript_ClosingFair_Text_2:
-# 484 "data/scripts/tarc3_tatsuo_reconstruction.pory"
+# 480 "data/scripts/tarc3_tatsuo_reconstruction.pory"
 	.string "He has described a man improvising.\p"
 	.string "This family decided first, and went\n"
 	.string "looking for reasons after.$"
 
 tarc3_TatsuoRecon_EventScript_ClosingPoor_Text_0:
-# 494 "data/scripts/tarc3_tatsuo_reconstruction.pory"
+# 490 "data/scripts/tarc3_tatsuo_reconstruction.pory"
 	.string "Most of that came out of her mouth\n"
 	.string "again.$"
 
 tarc3_TatsuoRecon_EventScript_ClosingPoor_Text_1:
-# 496 "data/scripts/tarc3_tatsuo_reconstruction.pory"
+# 492 "data/scripts/tarc3_tatsuo_reconstruction.pory"
 	.string "The reconstruction is sound. How much\n"
 	.string "of it I had to hand him is a matter\l"
 	.string "between him and me.$"

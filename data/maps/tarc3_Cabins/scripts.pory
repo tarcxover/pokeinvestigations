@@ -281,22 +281,22 @@ script tarc3_Cabins_EventScript_EvdClosetTopics {
     message(format("(What do I still need to hear from him?)"))
     waitmessage
     if (var(VAR_TEMP_4) == 0) {
-        dynmultipush("Your escape", 0)
+        dynmultipush("Your escape", 1)
     }
     if (var(VAR_TEMP_5) == 0) {
-        dynmultipush("Your garland", 1)
+        dynmultipush("Your garland", 2)
     }
     if (var(VAR_TEMP_6) == 0) {
-        dynmultipush("Gozo conversation", 2)
+        dynmultipush("Gozo conversation", 3)
     }
     dynmultistack(0, 0, TRUE, 3, FALSE, 0, DYN_MULTICHOICE_CB_NONE)
     closemessage
     switch (var(VAR_RESULT)) {
-        case 0:
-            goto(tarc3_Cabins_EventScript_EvdClosetEscape)
         case 1:
-            goto(tarc3_Cabins_EventScript_EvdClosetGarland)
+            goto(tarc3_Cabins_EventScript_EvdClosetEscape)
         case 2:
+            goto(tarc3_Cabins_EventScript_EvdClosetGarland)
+        case 3:
             goto(tarc3_Cabins_EventScript_EvdClosetGozo)
         default:
             goto(tarc3_Cabins_EventScript_EvdClosetTopics)

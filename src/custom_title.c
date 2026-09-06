@@ -253,7 +253,7 @@ static u32 CustomTitle_InitMoveTextAnim()
     InitComfyAnimConfig_Easing(&config);
     config.from = Q_24_8(TITLE_TEXT_INITIAL_OFFSET);
     config.to = Q_24_8(0);
-    config.durationFrames = 90;
+    config.durationFrames = 120;
     config.easingFunc = ComfyAnimEasing_EaseInOutBack;
     return CreateComfyAnim_Easing(&config);
 }

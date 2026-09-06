@@ -8,6 +8,7 @@
 #include "constants/battle_move_effects.h"
 #include "constants/battle_string_ids.h"
 #include "constants/battle_z_move_effects.h"
+#include "constants/battle_set_effect.h"
 #include "constants/moves.h"
 
 #define STAT_CHANGE_FORCE_MAX 7 // Used for belly drum as a way to show that stats are maxed
@@ -152,7 +153,7 @@ struct MoveInfo
     bool32 alwaysHitsInHailSnow:1;
     bool32 alwaysHitsOnSameType:1; // Always hits if user is of same type as move
     bool32 noAffectOnSameTypeTarget:1; // Fails if target is of same type as move
-    bool32 accIncreaseByTenOnSameType:1; // Accuracy is increased by 10% if user is of same type as move
+    bool32 accDecreaseIfUserNotSameType:1; // Accuracy is increased by 10% if user is of same type as move
     bool32 padding1:15;
     // end of word
 
@@ -517,9 +518,9 @@ static inline bool32 MoveHasNoEffectOnSameType(enum Move moveId)
     return gMovesInfo[SanitizeMoveId(moveId)].noAffectOnSameTypeTarget;
 }
 
-static inline bool32 MoveHasIncreasedAccByTenOnSameType(enum Move moveId)
+static inline bool32 MoveDecreasesAccIfUserNotSameType(enum Move moveId)
 {
-    return gMovesInfo[SanitizeMoveId(moveId)].accIncreaseByTenOnSameType;
+    return gMovesInfo[SanitizeMoveId(moveId)].accDecreaseIfUserNotSameType;
 }
 
 static inline bool32 IsMoveGravityBanned(enum Move moveId)

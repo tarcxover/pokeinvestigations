@@ -277,7 +277,7 @@
       "movement_range_y": 0,
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "NULL",
+      "script": "tarc3_MainDeck_EventScript_DeckDoorNatsue",
       "flag": "FLAG_HIDE_TARC3_DECKDOOR_CAST"
     },
     {
@@ -305,8 +305,92 @@
       "movement_range_y": 0,
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "NULL",
+      "script": "tarc3_MainDeck_EventScript_DeckDoorRan",
       "flag": "FLAG_HIDE_TARC3_DECKDOOR_CAST"
+    },
+    {
+      "local_id": "LOCALID_MAINDECK_SUZUKI_NIGHT",
+      "graphics_id": "OBJ_EVENT_GFX_EXPERT_M",
+      "x": 39,
+      "y": 10,
+      "elevation": 0,
+      "movement_type": "MOVEMENT_TYPE_FACE_RIGHT",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "tarc3_MainDeck_EventScript_NightSuzuki",
+      "flag": "FLAG_HIDE_TARC3_NIGHT_CAST"
+    },
+    {
+      "local_id": "LOCALID_MAINDECK_JOJI_NIGHT",
+      "graphics_id": "OBJ_EVENT_GFX_COOK",
+      "x": 40,
+      "y": 10,
+      "elevation": 0,
+      "movement_type": "MOVEMENT_TYPE_FACE_LEFT",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "tarc3_MainDeck_EventScript_NightJoji",
+      "flag": "FLAG_HIDE_TARC3_NIGHT_CAST"
+    },
+    {
+      "local_id": "LOCALID_MAINDECK_ICHIRO_NIGHT",
+      "graphics_id": "OBJ_EVENT_GFX_MAN_4",
+      "x": 44,
+      "y": 9,
+      "elevation": 0,
+      "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "tarc3_MainDeck_EventScript_NightIchiro",
+      "flag": "FLAG_HIDE_TARC3_NIGHT_ICHIRO"
+    },
+    {
+      "local_id": "LOCALID_MAINDECK_KITARO_NIGHT",
+      "graphics_id": "OBJ_EVENT_GFX_MAN_1",
+      "x": 44,
+      "y": 12,
+      "elevation": 0,
+      "movement_type": "MOVEMENT_TYPE_FACE_UP",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "tarc3_MainDeck_EventScript_NightKitaro",
+      "flag": "FLAG_HIDE_TARC3_NIGHT_CAST"
+    },
+    {
+      "local_id": "LOCALID_MAINDECK_SMEARGLE",
+      "graphics_id": "OBJ_EVENT_GFX_SPECIES(SMEARGLE)",
+      "x": 44,
+      "y": 10,
+      "elevation": 0,
+      "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "NULL",
+      "flag": "FLAG_HIDE_TARC3_NIGHT_MONS"
+    },
+    {
+      "local_id": "LOCALID_MAINDECK_PAWMOT",
+      "graphics_id": "OBJ_EVENT_GFX_SPECIES(PAWMOT)",
+      "x": 44,
+      "y": 11,
+      "elevation": 0,
+      "movement_type": "MOVEMENT_TYPE_FACE_UP",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "NULL",
+      "flag": "FLAG_HIDE_TARC3_NIGHT_MONS"
     }
   ],
   "warp_events": [
@@ -652,69 +736,6 @@
     },
     {
       "type": "trigger",
-      "x": 11,
-      "y": 9,
-      "elevation": 0,
-      "var": "VAR_TARC3_ACT2",
-      "var_value": "TARC3_ACT2_DECK_DOOR",
-      "script": "tarc3_MainDeck_EventScript_DeckDoorFrom9"
-    },
-    {
-      "type": "trigger",
-      "x": 11,
-      "y": 10,
-      "elevation": 0,
-      "var": "VAR_TARC3_ACT2",
-      "var_value": "TARC3_ACT2_DECK_DOOR",
-      "script": "tarc3_MainDeck_EventScript_DeckDoorFrom10"
-    },
-    {
-      "type": "trigger",
-      "x": 11,
-      "y": 11,
-      "elevation": 0,
-      "var": "VAR_TARC3_ACT2",
-      "var_value": "TARC3_ACT2_DECK_DOOR",
-      "script": "tarc3_MainDeck_EventScript_DeckDoorFrom11"
-    },
-    {
-      "type": "trigger",
-      "x": 11,
-      "y": 12,
-      "elevation": 0,
-      "var": "VAR_TARC3_ACT2",
-      "var_value": "TARC3_ACT2_DECK_DOOR",
-      "script": "tarc3_MainDeck_EventScript_DeckDoorFrom12"
-    },
-    {
-      "type": "trigger",
-      "x": 9,
-      "y": 7,
-      "elevation": 0,
-      "var": "VAR_TARC3_ACT2",
-      "var_value": "TARC3_ACT2_DECK_DOOR",
-      "script": "tarc3_MainDeck_EventScript_DeckDoorFromStairsA"
-    },
-    {
-      "type": "trigger",
-      "x": 8,
-      "y": 6,
-      "elevation": 0,
-      "var": "VAR_TARC3_ACT2",
-      "var_value": "TARC3_ACT2_DECK_DOOR",
-      "script": "tarc3_MainDeck_EventScript_DeckDoorFromStairsB"
-    },
-    {
-      "type": "trigger",
-      "x": 11,
-      "y": 13,
-      "elevation": 0,
-      "var": "VAR_TARC3_ACT2",
-      "var_value": "TARC3_ACT2_DECK_DOOR",
-      "script": "tarc3_MainDeck_EventScript_DeckDoorFrom13"
-    },
-    {
-      "type": "trigger",
       "x": 7,
       "y": 10,
       "elevation": 0,
@@ -766,6 +787,60 @@
       "var": "VAR_TARC3_ACT2",
       "var_value": "TARC3_ACT2_TO_BATHROOM",
       "script": "tarc3_MainDeck_EventScript_ScreamNoExitStairs"
+    },
+    {
+      "type": "trigger",
+      "x": 34,
+      "y": 7,
+      "elevation": 0,
+      "var": "VAR_TARC3_ACT2",
+      "var_value": "TARC3_ACT2_SUZUKI_BELOW",
+      "script": "tarc3_MainDeck_EventScript_BlackoutNoExitHold"
+    },
+    {
+      "type": "trigger",
+      "x": 35,
+      "y": 7,
+      "elevation": 0,
+      "var": "VAR_TARC3_ACT2",
+      "var_value": "TARC3_ACT2_SUZUKI_BELOW",
+      "script": "tarc3_MainDeck_EventScript_BlackoutNoExitHold"
+    },
+    {
+      "type": "trigger",
+      "x": 34,
+      "y": 7,
+      "elevation": 0,
+      "var": "VAR_TARC3_ACT2",
+      "var_value": "TARC3_ACT2_TO_BATHROOM",
+      "script": "tarc3_MainDeck_EventScript_ScreamNoExitStairs"
+    },
+    {
+      "type": "trigger",
+      "x": 35,
+      "y": 7,
+      "elevation": 0,
+      "var": "VAR_TARC3_ACT2",
+      "var_value": "TARC3_ACT2_TO_BATHROOM",
+      "script": "tarc3_MainDeck_EventScript_ScreamNoExitStairs"
+    },
+    {
+      "type": "trigger",
+      "x": 7,
+      "y": 10,
+      "elevation": 0,
+      "var": "VAR_TARC3_ACT1",
+      "var_value": "TARC3_ACT1_NIGHT_ROAM",
+      "script": "tarc3_MainDeck_EventScript_NightNoExitDeck"
+    },
+    {
+      "type": "trigger",
+      "x": 7,
+      "y": 11,
+      "elevation": 0,
+      "var": "VAR_TARC3_ACT1",
+      "var_value": "TARC3_ACT1_NIGHT_ROAM",
+      "script": "tarc3_MainDeck_EventScript_NightNoExitDeck"
     }
   ],
   "bg_events": [
@@ -811,8 +886,8 @@
       "y": 8,
       "elevation": 0,
       "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
-      "script": "tarc3_MainDeck_EventScript_CabinDoor",
-      "notes": "gozo cabin door"
+      "script": "tarc3_MainDeck_EventScript_GozoCabinDoor",
+      "notes": "gozo cabin door - blood across the doorframe after his death"
     },
     {
       "type": "sign",
@@ -820,7 +895,7 @@
       "y": 8,
       "elevation": 0,
       "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
-      "script": "tarc3_MainDeck_EventScript_CabinDoor",
+      "script": "tarc3_MainDeck_EventScript_AkieCabinDoor",
       "notes": "akie & tatsuo cabin door"
     },
     {

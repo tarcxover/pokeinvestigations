@@ -4,12 +4,14 @@
 #include "constants/characters.h"
 #include "constants/event_object_movement.h"
 #include "constants/event_objects.h"
+#include "constants/field_weather.h"
 #include "constants/flags.h"
 #include "constants/global.h"
 #include "constants/pokedex.h"
 #include "constants/rgb.h"
 #include "constants/songs.h"
 #include "constants/species.h"
+#include "custom_credits.h"
 #include "data.h"
 #include "decompress.h"
 #include "even_sprite.h"
@@ -17,6 +19,7 @@
 #include "event_object_movement.h"
 #include "evidence.h"
 #include "field_player_avatar.h"
+#include "field_weather.h"
 #include "gba/defines.h"
 #include "gba/io_reg.h"
 #include "gba/macro.h"
@@ -97,7 +100,7 @@ enum CmmTileTags {
 enum CmmButtonIds {
     CMM_BUTTON_NEWGAME,
     CMM_BUTTON_OPTIONS,
-    CMM_BUTTON_MYSTERY,
+    CMM_BUTTON_CREDITS,
     CMM_BUTTON_INFOBOX,
     CMM_BUTTON_COUNT,
 };
@@ -244,15 +247,6 @@ static u32 Cmm_CreateMenuButton(s16 x, s16 y, u32 tileTag, u32 palTag);
 static void Cmm_CreateAllMenuButtons();
 static void Cmm_PrintButtonLabels(void);
 static bool32 Cmm_IsSpriteButton(enum CmmButtonIds buttonId);
-
-static u32 Cmm_CreateMenuBadge(s16 x, s16 y, enum CmmTokens token);
-static void Cmm_CreateAllBadges(s16 x, s16 y);
-static void Cmm_DarkenBadges(void);
-static void Cmm_RestoreBadges(void);
-static u32 Cmm_GetTokenCount(void);
-static u16 Cmm_GetBadgePalTag(enum CmmTokens token);
-static const u16* Cmm_GetBadgePal(enum CmmTokens token);
-static const u32* Cmm_GetBadgeGfx(enum CmmTokens token);
 
 static void Cmm_SetInfoboxActive(bool32 active);
 static void Cmm_SetButtonPalette(u8 buttonId, const u16* pal, u32 palTag);
@@ -429,7 +423,6 @@ static void Cmm_DrawContinueMenuItems(void)
     FreeMonIconPalettes();
     LoadMonIconPalettes();
     Cmm_DrawPartyIcons();
-    Cmm_CreateAllBadges(91, 21);
 }
 
 static void Cmm_CreateAllMenuButtons()
@@ -467,89 +460,6 @@ static void Cmm_RestorePlayerMugshot(void)
 {
     FreeSpritePaletteByTag(CMM_PALTAG_PLAYER);
     LoadSpritePaletteWithTag(sPlayerGirlPal, CMM_PALTAG_PLAYER);
-}
-
-static u32 Cmm_CreateMenuBadge(s16 x, s16 y, enum CmmTokens token)
-{
-    u8 tileTag = CMM_TILETAG_BOTTLED + token;
-    u32 spriteId =  Even_CreateSpriteParametrized(Cmm_GetBadgeGfx(token), tileTag, Cmm_GetBadgePal(token), Cmm_GetBadgePalTag(token), SPRITE_SIZE(16x16),
-                                         SPRITE_SHAPE(16x16), x, y, 0, SpriteCallbackDummy, TRUE);
-    return spriteId;
-}
-
-static const u32* Cmm_GetBadgeGfx(enum CmmTokens token)
-{
-    switch (token) {
-        case BOTTLED_TOKEN:   return sMenuBottledTokenGfx;
-        case CARVED_TOKEN:    return sMenuCarvedTokenGfx;
-        case SEWN_TOKEN:      return sMenuSewnTokenGfx;
-        case FORGED_TOKEN:    return sMenuForgedTokenGfx;
-        case CAPTURED_TOKEN:  return sMenuCapturedTokenGfx;
-        case FOLDED_TOKEN:    return sMenuFoldedTokenGfx;
-        case POLISHED_TOKEN:  return sMenuPolishedTokenGfx;
-        case CHERISHED_TOKEN: return sMenuCherishedTokenGfx;
-        default:              return sMenuBottledTokenGfx;
-    }
-}
-
-static const u16* Cmm_GetBadgePal(enum CmmTokens token)
-{
-    switch (token) {
-        case CARVED_TOKEN:
-        case SEWN_TOKEN:
-            return sMenuBadgesPal2;
-        default:
-            return sMenuBadgesPal1;
-    }
-}
-static u16 Cmm_GetBadgePalTag(enum CmmTokens token)
-{
-    switch (token) {
-        case CARVED_TOKEN:
-        case SEWN_TOKEN:
-            return CMM_PALTAG_BADGES2;
-        default:
-            return CMM_PALTAG_BADGES1;
-    }
-}
-
-static void Cmm_CreateAllBadges(s16 x, s16 y)
-{
-    u32 badgeCount = Cmm_GetTokenCount();
-    for (u32 i = 0; i < badgeCount; i++) {
-        x+= !!i*2;
-        Cmm_CreateMenuBadge(x + i * 16, y, i);
-    }
-}
-
-static void Cmm_DarkenBadges(void)
-{
-    u16 index1 = IndexOfSpritePaletteTag(CMM_PALTAG_BADGES1);
-    u16 index2 = IndexOfSpritePaletteTag(CMM_PALTAG_BADGES2);
-    BlendPalette(OBJ_PLTT_ID(index1), 16, 8, RGB_BLACK);
-    BlendPalette(OBJ_PLTT_ID(index2), 16, 8, RGB_BLACK);
-}
-
-
-static void Cmm_RestoreBadges(void)
-{
-    FreeSpritePaletteByTag(CMM_PALTAG_BADGES1);
-    FreeSpritePaletteByTag(CMM_PALTAG_BADGES2);
-    LoadSpritePaletteWithTag(sMenuBadgesPal1, CMM_PALTAG_BADGES1);
-    LoadSpritePaletteWithTag(sMenuBadgesPal2, CMM_PALTAG_BADGES2);
-}
-
-static u32 Cmm_GetTokenCount(void)
-{
-    return 0;
-    u32 badgeCount = 0;
-    u32 lastBadge = FLAG_BADGE01_GET + NUM_BADGES;
-    for (u32 i = FLAG_BADGE01_GET; i < lastBadge; i++)
-    {
-        if (FlagGet(i))
-            badgeCount++;
-    }
-    return badgeCount;
 }
 
 static u32 Cmm_CreateMenuButton(s16 x, s16 y, u32 tileTag, u32 palTag)
@@ -619,7 +529,7 @@ static const union TextColor sButtonTextColor = {.background = 0, .foreground = 
 
 static const u8* const sButtonTexts[3] = {
     [CMM_BUTTON_NEWGAME] = COMPOUND_STRING("New Game"),   [CMM_BUTTON_OPTIONS] = COMPOUND_STRING("Options"),
-    [CMM_BUTTON_MYSTERY] = COMPOUND_STRING("Mystery Gift"), };
+    [CMM_BUTTON_CREDITS] = COMPOUND_STRING("Credits"), };
 
 static void Cmm_PrintButtonLabels(void)
 {
@@ -657,7 +567,7 @@ static void Cmm_MoveSelection(enum CmmDirs direction)
             if (cur == CMM_BUTTON_INFOBOX)
                 break;
             if (cur == CMM_BUTTON_NEWGAME)
-                Cmm_SetActiveButton(CMM_BUTTON_MYSTERY);
+                Cmm_SetActiveButton(CMM_BUTTON_CREDITS);
             else
                 Cmm_SetActiveButton(cur - 1);
             break;
@@ -665,7 +575,7 @@ static void Cmm_MoveSelection(enum CmmDirs direction)
         case CMM_DIR_RIGHT:
             if (cur == CMM_BUTTON_INFOBOX)
                 break;
-            if (cur == CMM_BUTTON_MYSTERY)
+            if (cur == CMM_BUTTON_CREDITS)
                 Cmm_SetActiveButton(CMM_BUTTON_NEWGAME);
             else
                 Cmm_SetActiveButton(cur + 1);
@@ -736,7 +646,7 @@ static void Task_CmmWaitFadeIn(u8 taskId)
 {
     if (!gPaletteFade.active) {
         CpuFastCopy(sCmmMemory->sTempPaletteBuffer, gPlttBufferUnfaded, sizeof(gPlttBufferUnfaded));
-        PlayBGM(MUS_BLACK_SUN);
+        PlayBGM(MUS_INVESTIGATION);
         gTasks[taskId].func = Task_CmmInput;
     }
 }
@@ -793,6 +703,10 @@ static void Cmm_HandleButtonPressA(void)
             Cmm_ExitOnSelect(CB2_InitOptionMenu);
             break;
 
+        case CMM_BUTTON_CREDITS:
+            Cmm_ExitOnSelect(CB2_OpenCustomCredits);
+            break;
+
         default:
             PlaySE(SE_FAILURE);
             break;
@@ -824,7 +738,6 @@ static void Cmm_SetInfoboxActive(bool32 active)
         FreeMonIconPalettes();
         LoadMonIconPalettes();
         Cmm_RestorePlayerMugshot();
-        Cmm_RestoreBadges();
         for (u32 i = 0; i < PARTY_SIZE; i++) {
             u8 id = sCmmMemory->state.partyIconId[i];
             struct Sprite* sprite = &gSprites[id];
@@ -837,9 +750,11 @@ static void Cmm_SetInfoboxActive(bool32 active)
         LoadPalette(CmmBgActivePalette, BG_PLTT_ID(0), PLTT_SIZE_4BPP);
         BlendPalette(BG_PLTT_ID(0), 16, 8, RGB_BLACK);
         gSprites[sCmmMemory->state.playerSpriteId].animPaused = TRUE;
-        Cmm_DarkenPartyIcons();
-        Cmm_DarkenPlayerMugshot();
-        Cmm_DarkenBadges();
+        if (Cmm_IsContinueMenu())
+        {
+            Cmm_DarkenPartyIcons();
+            Cmm_DarkenPlayerMugshot();
+        }
         for (u32 i = 0; i < PARTY_SIZE; i++) {
             u8 id = sCmmMemory->state.partyIconId[i];
             struct Sprite* sprite = &gSprites[id];

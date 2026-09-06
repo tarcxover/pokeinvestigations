@@ -50,14 +50,14 @@ script tarc3_Accusation_EventScript_Naming {
 
 script tarc3_Accusation_EventScript_NameMenu {
     setspeaker(NULL)
-    message(format("{FONT_NARROW}(Whose name am I about to place before this room?)", "1_latin_rse_narrow"))
+    message(format("{FONT_NARROW}Whose name am I about to place before this room?", "1_latin_rse_narrow"))
     waitmessage
-    dynmultipush("Ichiro", 0)
-    dynmultipush("Takeshi", 1)
+    dynmultipush("Ichiro", 1)
+    dynmultipush("Takeshi", 2)
     dynmultistack(0, 0, TRUE, 2, FALSE, 0, DYN_MULTICHOICE_CB_NONE)
     closemessage
-    if (var(VAR_RESULT) == 1) {
-        msgbox(format("{FONT_NARROW}(Takeshi. Am I certain on this?)", "1_latin_rse_narrow"), MSGBOX_YESNO)
+    if (var(VAR_RESULT) == 2) {
+        msgbox(format("{FONT_NARROW}Takeshi. Am I certain on this?", "1_latin_rse_narrow"), MSGBOX_YESNO)
         closemessage
         if (var(VAR_RESULT) == NO) {
             goto(tarc3_Accusation_EventScript_NameMenu)
@@ -65,7 +65,7 @@ script tarc3_Accusation_EventScript_NameMenu {
         goto(tarc3_Accusation_EventScript_NameTakeshi)
     }
     setspeaker(NULL)
-    msgbox(format("{FONT_NARROW}(Ichiro. Am I certain on this?)", "1_latin_rse_narrow"), MSGBOX_YESNO)
+    msgbox(format("{FONT_NARROW}Ichiro. Am I certain on this?", "1_latin_rse_narrow"), MSGBOX_YESNO)
     closemessage
     if (var(VAR_RESULT) == NO) {
         goto(tarc3_Accusation_EventScript_NameMenu)
@@ -862,10 +862,10 @@ script tarc3_Accusation_EventScript_GoodMotiveKept {
     closemessage
     delay(40)
     setspeaker(NULL)
-    msgbox(format("{FONT_NARROW}(That is not it.)", "1_latin_rse_narrow"))
+    msgbox(format("{FONT_NARROW}That is not it.", "1_latin_rse_narrow"))
     closemessage
     delay(20)
-    msgbox(format("{FONT_NARROW}(That was never it - but the evidence I presented did not tell the full story.)", "1_latin_rse_narrow"))
+    msgbox(format("{FONT_NARROW}That was never it - but the evidence I presented did not tell the full story.", "1_latin_rse_narrow"))
     closemessage
     delay(20)
     setspeaker("{PLAYER}")
@@ -893,7 +893,7 @@ script tarc3_Accusation_EventScript_GoodMotiveDenied {
     setspeaker(NULL)
     closemessage
     delay(40)
-    msgbox(format("{FONT_NARROW}(He will deny her to the last.)", "1_latin_rse_narrow"))
+    msgbox(format("{FONT_NARROW}He will deny her to the last.", "1_latin_rse_narrow"))
     closemessage
     delay(20)
     goto(tarc3_Accusation_EventScript_GoodAnswerEnough)
@@ -1072,7 +1072,7 @@ script tarc3_Accusation_EventScript_BadWall {
     closemessage
     delay(20)
     setspeaker(NULL)
-    msgbox(format("{FONT_NARROW}(He said that to me two hours ago, in the dining room.)", "1_latin_rse_narrow"))
+    msgbox(format("{FONT_NARROW}He said that to me two hours ago, in the dining room.", "1_latin_rse_narrow"))
     closemessage
     delay(30)
     setspeaker("Mariko")

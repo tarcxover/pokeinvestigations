@@ -41,7 +41,7 @@ script tarc3_ElectricalRoom_EventScript_Breakers {
     setspeaker(NULL)
     closemessage
     delay(20)
-    msgbox(format("{FONT_NARROW}(...There's scorching around the switch housing.)", "1_latin_rse_narrow"))
+    msgbox(format("{FONT_NARROW}...There's scorching around the switch housing.", "1_latin_rse_narrow"))
     closemessage
     delay(20)
     applymovement(LOCALID_ELEC_MARIKO, moves(face_down))
@@ -81,12 +81,12 @@ script tarc3_ElectricalRoom_EventScript_Breaker {
     lockall
     goto_if_set(FLAG_TARC3_ELEC_FOUND_PANEL, tarc3_ElectricalRoom_EventScript_BreakerSeen)
     msgbox(format("The scorching around the switch housing is blistered outward, not inward."))
-    msgbox(format("{FONT_NARROW}(Nothing inside this panel burned out. The heat arrived from the room.)", "1_latin_rse_narrow"))
+    msgbox(format("{FONT_NARROW}Nothing inside this panel burned out. The heat arrived from the room.", "1_latin_rse_narrow"))
     closemessage
     giveevidence(EVD_SCORCHED_PANEL)
     closemessage
     delay(20)
-    msgbox(format("{FONT_NARROW}(And Suzuki merely suggested it's just because the ship is twenty years old?)", "1_latin_rse_narrow"))
+    msgbox(format("{FONT_NARROW}And Suzuki merely suggested it's just because the ship is twenty years old?", "1_latin_rse_narrow"))
     closemessage
     // EVD_OLD_WIRING cut
     closemessage

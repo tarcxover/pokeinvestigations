@@ -348,16 +348,8 @@
     },
     {
       "type": "sign",
-      "x": 14,
-      "y": 11,
-      "elevation": 0,
-      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
-      "script": "tarc3_Hold_EventScript_EvdStorageDoor"
-    },
-    {
-      "type": "sign",
       "x": 17,
-      "y": 20,
+      "y": 21,
       "elevation": 0,
       "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
       "script": "tarc3_Hold_EventScript_StorageDoor"

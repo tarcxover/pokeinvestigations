@@ -1041,7 +1041,7 @@ static void LoadCopyrightGraphics(u16 tilesetAddress, u16 tilemapAddress, u16 pa
 {
     DecompressDataWithHeaderVram(gIntroCopyright_Gfx, (void *)(VRAM + tilesetAddress));
     DecompressDataWithHeaderVram(gIntroCopyright_Tilemap, (void *)(VRAM + tilemapAddress));
-    LoadPalette(gIntroCopyright_Pal, paletteOffset, PLTT_SIZE_4BPP);
+    LoadPalette(gIntroCopyright_Pal, paletteOffset, PLTT_SIZE_4BPP * 2);
 }
 
 static void SerialCB_CopyrightScreen(void)
@@ -1083,15 +1083,17 @@ static bool8 SetUpCopyrightScreenCustom(void)
         if (!UpdatePaletteFade())
         {
             gMain.state++;
-                SetSerialCallback(SerialCB);
+            SetSerialCallback(SerialCB);
             return FALSE;
         }
         break;
     case 2:
         ResetSerial();
-        SetMainCallback2(CB2_InitTitleScreen);
-        /* CreateTask(Task_HandleExpansionIntro, 0); */
+        gMain.state++;
         break;
+    default:
+        if (++gMain.state == 60 + 2)
+            SetMainCallback2(CB2_InitTitleScreen);
     }
     return TRUE;
 }

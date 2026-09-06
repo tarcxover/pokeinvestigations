@@ -153,6 +153,20 @@
       "trainer_sight_or_berry_tree_id": "0",
       "script": "tarc3_Cabins_EventScript_GatherRan",
       "flag": "FLAG_HIDE_TARC3_CABIN_RAN"
+    },
+    {
+      "local_id": "LOCALID_CABINS_RAN_NIGHT",
+      "graphics_id": "OBJ_EVENT_GFX_MAY_NORMAL",
+      "x": 50,
+      "y": 20,
+      "elevation": 0,
+      "movement_type": "MOVEMENT_TYPE_FACE_LEFT",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "NULL",
+      "flag": "FLAG_HIDE_TARC3_CABIN_RAN_NIGHT"
     }
   ],
   "warp_events": [
@@ -295,6 +309,69 @@
       "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
       "script": "tarc3_Cabins_EventScript_EvdPicture",
       "notes": "takeshi & natsue's cabin - family photograph"
+    },
+    {
+      "type": "sign",
+      "x": 4,
+      "y": 1,
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+      "script": "tarc3_GozoRoom_EventScript_Window",
+      "notes": "gozo's cabin - sealed window"
+    },
+    {
+      "type": "sign",
+      "x": 2,
+      "y": 2,
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+      "script": "tarc3_GozoRoom_EventScript_SearchBed",
+      "notes": "gozo's cabin - under the bed"
+    },
+    {
+      "type": "sign",
+      "x": 7,
+      "y": 2,
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+      "script": "tarc3_GozoRoom_EventScript_SearchBin",
+      "notes": "gozo's cabin - the bin, medication"
+    },
+    {
+      "type": "sign",
+      "x": 7,
+      "y": 5,
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+      "script": "tarc3_GozoRoom_EventScript_SearchCouch",
+      "notes": "gozo's cabin - under the couch"
+    },
+    {
+      "type": "sign",
+      "x": 3,
+      "y": 7,
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+      "script": "tarc3_GozoRoom_EventScript_EvdLatch",
+      "notes": "gozo's cabin - the latch on the inner face of the door"
+    },
+    {
+      "type": "sign",
+      "x": 4,
+      "y": 6,
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+      "script": "tarc3_GozoRoom_EventScript_EvdTrail",
+      "notes": "gozo's cabin - the blood trail from the threshold"
+    },
+    {
+      "type": "sign",
+      "x": 4,
+      "y": 7,
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+      "script": "tarc3_GozoRoom_EventScript_EvdDoorframe",
+      "notes": "gozo's cabin - blood across the doorframe"
     }
   ]
 }

@@ -1,12 +1,16 @@
 mapscripts tarc3_Cabins_MapScripts {
     MAP_SCRIPT_ON_LOAD: tarc3_Cabins_OnLoad
     MAP_SCRIPT_ON_FRAME_TABLE [
+        VAR_TARC3_ACT1, TARC3_ACT1_NIGHT_RECAP: tarc3_Cabins_EventScript_NightRecap
         VAR_TARC3_ACT3, TARC3_ACT3_GATHERING: tarc3_Cabins_EventScript_Assembly
     ]
 }
 
 script tarc3_Cabins_OnLoad {
     setflag(FLAG_HIDE_TARC3_CABIN_TAKESHI)
+    if (var(VAR_TARC3_ACT1) != TARC3_ACT1_NIGHT_RECAP) {
+        setflag(FLAG_HIDE_TARC3_CABIN_RAN_NIGHT)
+    }
     if (var(VAR_TARC3_ACT3) >= TARC3_ACT3_COMPLETE) {
         setflag(FLAG_HIDE_TARC3_CABIN_CAST)
         setflag(FLAG_HIDE_TARC3_CABIN_RAN)
@@ -150,6 +154,8 @@ script tarc3_Cabins_EventScript_EvdSketchbook {
     closemessage
     delay(20)
     playse(SE_PIN)
+    applymovement(LOCALID_CABINS_TAKESHI_CLOSET, moves(emote_exclamation_mark))
+    waitmovement(0)
     delay(20)
     msgbox(format("{FONT_NARROW}There's a section of the book dedicated to the same girl.\pNatsue.", "1_latin_rse_narrow"))
     closemessage
@@ -279,22 +285,22 @@ script tarc3_Cabins_EventScript_EvdClosetTopics {
     message(format("(What do I still need to hear from him?)"))
     waitmessage
     if (var(VAR_TEMP_4) == 0) {
-        dynmultipush("Your escape", 0)
+        dynmultipush("Your escape", 1)
     }
     if (var(VAR_TEMP_5) == 0) {
-        dynmultipush("Your garland", 1)
+        dynmultipush("Your garland", 2)
     }
     if (var(VAR_TEMP_6) == 0) {
-        dynmultipush("Gozo conversation", 2)
+        dynmultipush("Gozo conversation", 3)
     }
     dynmultistack(0, 0, TRUE, 3, FALSE, 0, DYN_MULTICHOICE_CB_NONE)
     closemessage
     switch (var(VAR_RESULT)) {
-        case 0:
-            goto(tarc3_Cabins_EventScript_EvdClosetEscape)
         case 1:
-            goto(tarc3_Cabins_EventScript_EvdClosetGarland)
+            goto(tarc3_Cabins_EventScript_EvdClosetEscape)
         case 2:
+            goto(tarc3_Cabins_EventScript_EvdClosetGarland)
+        case 3:
             goto(tarc3_Cabins_EventScript_EvdClosetGozo)
         default:
             goto(tarc3_Cabins_EventScript_EvdClosetTopics)
@@ -532,4 +538,224 @@ script tarc3_Cabins_EventScript_GatherIchiro {
     setspeaker(NULL)
     release
     end
+}
+
+
+// CS6b - the recap in the player's cabin, before the night investigation
+
+script tarc3_Cabins_EventScript_NightRecap {
+    lockall
+    delay(30)
+    applymovement(OBJ_EVENT_ID_PLAYER, moves(face_right))
+    waitmovement(0)
+    delay(20)
+    setspeaker("{RIVAL}")
+    msgbox(format("They have locked a man in a storage room on the strength of a single flower.\pThat is not evidence. That is a mob grown tired of thinking."))
+    msgbox(format("Take a moment to think about what we've witnessed thus far."))
+    setspeaker(NULL)
+    closemessage
+    call(tarc3_Cabins_EventScript_RecapCS5)
+    delay(20)
+    setspeaker("{RIVAL}")
+    msgbox(format("Good. Now put it somewhere it will keep.\pA fact you cannot find again is a fact you do not have."))
+    setspeaker(NULL)
+    closemessage
+    delay(20)
+    call(tarc3_Cabins_EventScript_NightGarland)
+    delay(20)
+    call(tarc3_Cabins_EventScript_NotebookPrimer)
+    delay(20)
+    setspeaker("{RIVAL}")
+    msgbox(format("Read back over what you are carrying, and then go and speak to that family.\pThey are still awake. They will not be honest, but they will be talkative."))
+    msgbox(format("I am going to find Natsue.\pSomebody ought to be with her, and plainly, it will not be any of them."))
+    msgbox(format("We will be at the door out to the deck. Come and find us when you are finished."))
+    setspeaker(NULL)
+    closemessage
+    delay(20)
+    applymovement(LOCALID_CABINS_RAN_NIGHT, moves(walk_up * 2))
+    waitmovement(0)
+    delay(10)
+    opendoor(50, 17)
+    waitdooranim
+    applymovement(LOCALID_CABINS_RAN_NIGHT, moves(walk_up))
+    waitmovement(0)
+    removeobject(LOCALID_CABINS_RAN_NIGHT)
+    setflag(FLAG_HIDE_TARC3_CABIN_RAN_NIGHT)
+    closedoor(50, 17)
+    waitdooranim
+    delay(30)
+    clearflag(FLAG_HIDE_TARC3_NIGHT_CAST)
+    clearflag(FLAG_HIDE_TARC3_NIGHT_ICHIRO)
+    clearflag(FLAG_HIDE_TARC3_DECKDOOR_CAST)
+    setflag(FLAG_HIDE_TARC3_NIGHT_MONS)
+    setvar(VAR_TARC3_ACT1, TARC3_ACT1_NIGHT_ROAM)
+    releaseall
+    end
+}
+
+script tarc3_Cabins_EventScript_NightGarland {
+    checkevidence(EVD_DROPPED_FLOWER)
+    goto_if_eq(VAR_RESULT, TRUE, tarc3_Cabins_EventScript_NightGarlandHeld)
+    setspeaker("{RIVAL}")
+    msgbox(format("And one thing nobody in that room disputed.\pMariko said it out loud, in front of all of them."))
+    msgbox(format("The garland was lying in the corridor, a step from his door, before any of them knew he was dead."))
+    setspeaker(NULL)
+    closemessage
+    giveevidence(EVD_DROPPED_FLOWER)
+    closemessage
+    return
+}
+
+script tarc3_Cabins_EventScript_NightGarlandHeld {
+    setspeaker("{RIVAL}")
+    msgbox(format("You already have the garland written down. Good.\pThat, and the meeting Gozo demanded of Takeshi."))
+    setspeaker(NULL)
+    closemessage
+    return
+}
+
+script tarc3_Cabins_EventScript_NotebookPrimer {
+    setspeaker(NULL)
+    msgbox(format("Press {START_BUTTON} and choose Evidence to review what {PLAYER} is carrying."))
+    msgbox(format("Highlight one piece with {A_BUTTON}, then a second, and press {START_BUTTON} to deduce.\pA pair that fits becomes a new, stronger conclusion."))
+    msgbox(format("Try Requested Meeting together with Dropped Flower."))
+    closemessage
+    return
+}
+// CS6 recap - the reflections on what was said in CS5 and CS6
+
+script tarc3_Cabins_EventScript_RecapCS5 {
+    goto_if_set(FLAG_TARC3_REFLECT_HOLD_CS5, tarc3_Cabins_EventScript_RecapEnd)
+    call(tarc3_Cabins_EventScript_RecapName)
+    call(tarc3_Cabins_EventScript_RecapArgument)
+    call(tarc3_Cabins_EventScript_RecapWill)
+    call(tarc3_Cabins_EventScript_RecapBolt)
+    setflag(FLAG_TARC3_REFLECT_HOLD_CS5)
+    goto(tarc3_Cabins_EventScript_RecapEnd)
+}
+
+script tarc3_Cabins_EventScript_RecapName {
+    setspeaker(NULL)
+    message(format("{FONT_NARROW}Mariko put all of it in the open upstairs. What was worth keeping?", "1_latin_rse_narrow"))
+    waitmessage
+    dynmultipush("Natsue walked out", 2)
+    dynmultipush("Takeshi's family name is Zaiki", 1)
+    dynmultipush("Mariko wants him locked away", 3)
+    dynmultistack(0, 0, TRUE, 3, FALSE, 0, DYN_MULTICHOICE_CB_NONE)
+    closemessage
+    switch (var(VAR_RESULT)) {
+        case 1:
+            goto(tarc3_Cabins_EventScript_RecapNameRight)
+        default:
+            goto(tarc3_Cabins_EventScript_RecapNameWrong)
+    }
+}
+
+script tarc3_Cabins_EventScript_RecapNameRight {
+    msgbox(format("{FONT_NARROW}Gozo took his father's company and the man killed himself over it.\pTakeshi married into the family that did it.", "1_latin_rse_narrow"))
+    closemessage
+    giveevidence(EVD_TAKESHIS_HISTORY)
+    closemessage
+    return
+}
+
+script tarc3_Cabins_EventScript_RecapNameWrong {
+    msgbox(format("{FONT_NARROW}I'd have walked out too. It doesn't tell me anything.", "1_latin_rse_narrow"))
+    closemessage
+    return
+}
+
+script tarc3_Cabins_EventScript_RecapArgument {
+    setspeaker(NULL)
+    message(format("{FONT_NARROW}And what does she claim she heard, standing at that door?", "1_latin_rse_narrow"))
+    waitmessage
+    dynmultipush("His name, shouted through it", 1)
+    dynmultipush("Nothing at all", 3)
+    dynmultipush("A struggle inside the cabin", 2)
+    dynmultistack(0, 0, TRUE, 3, FALSE, 0, DYN_MULTICHOICE_CB_NONE)
+    closemessage
+    switch (var(VAR_RESULT)) {
+        case 1:
+            goto(tarc3_Cabins_EventScript_RecapArgumentRight)
+        default:
+            goto(tarc3_Cabins_EventScript_RecapArgumentWrong)
+    }
+}
+
+script tarc3_Cabins_EventScript_RecapArgumentRight {
+    msgbox(format("{FONT_NARROW}She stood at that door before dinner and heard her father shouting Takeshi's name.\pSo she says.", "1_latin_rse_narrow"))
+    closemessage
+    giveevidence(EVD_OVERHEARD_ARGUMENT)
+    closemessage
+    return
+}
+
+script tarc3_Cabins_EventScript_RecapArgumentWrong {
+    msgbox(format("{FONT_NARROW}No. A raised voice and a name, and nothing beyond that.\pI will not improve on her account for her.", "1_latin_rse_narrow"))
+    closemessage
+    return
+}
+
+script tarc3_Cabins_EventScript_RecapWill {
+    setspeaker(NULL)
+    message(format("{FONT_NARROW}Then Suzuki chose that moment to read out the will. Who does it favour?", "1_latin_rse_narrow"))
+    waitmessage
+    dynmultipush("The Corporation, not the family", 3)
+    dynmultipush("Mariko, as the eldest", 2)
+    dynmultipush("Natsue, and the man she chose", 1)
+    dynmultistack(0, 0, TRUE, 3, FALSE, 0, DYN_MULTICHOICE_CB_NONE)
+    closemessage
+    switch (var(VAR_RESULT)) {
+        case 1:
+            goto(tarc3_Cabins_EventScript_RecapWillRight)
+        default:
+            goto(tarc3_Cabins_EventScript_RecapWillWrong)
+    }
+}
+
+script tarc3_Cabins_EventScript_RecapWillRight {
+    msgbox(format("{FONT_NARROW}Everything to Natsue, and her husband at the head of the Corporation.\pTakeshi was handed a motive in front of seven witnesses.", "1_latin_rse_narrow"))
+    msgbox(format("{FONT_NARROW}And so was every one of them, the moment they understood what they had lost.", "1_latin_rse_narrow"))
+    closemessage
+    return
+}
+
+script tarc3_Cabins_EventScript_RecapWillWrong {
+    msgbox(format("{FONT_NARROW}That is not what was read out. If I cannot keep the terms straight, I have no business using them.", "1_latin_rse_narrow"))
+    closemessage
+    return
+}
+
+script tarc3_Cabins_EventScript_RecapBolt {
+    setspeaker(NULL)
+    message(format("{FONT_NARROW}One more. That door Suzuki bolted behind him.", "1_latin_rse_narrow"))
+    waitmessage
+    dynmultipush("Suzuki holds the only key", 2)
+    dynmultipush("It only opens from out here", 1)
+    dynmultipush("Takeshi bolted it himself", 3)
+    dynmultistack(0, 0, TRUE, 3, FALSE, 0, DYN_MULTICHOICE_CB_NONE)
+    closemessage
+    switch (var(VAR_RESULT)) {
+        case 1:
+            goto(tarc3_Cabins_EventScript_RecapBoltRight)
+        default:
+            goto(tarc3_Cabins_EventScript_RecapBoltWrong)
+    }
+}
+
+script tarc3_Cabins_EventScript_RecapBoltRight {
+    msgbox(format("{FONT_NARROW}No handle on the inside. He cannot open that door and he cannot close it.", "1_latin_rse_narrow"))
+    msgbox(format("{FONT_NARROW}So if it is ever found standing open, somebody on this side of it opened it.", "1_latin_rse_narrow"))
+    closemessage
+    return
+}
+
+script tarc3_Cabins_EventScript_RecapBoltWrong {
+    msgbox(format("{FONT_NARROW}There is no lock and there is no key. It is a bolt, and it is on this side of the door.", "1_latin_rse_narrow"))
+    closemessage
+    return
+}
+
+script tarc3_Cabins_EventScript_RecapEnd {
+    return
 }

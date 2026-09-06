@@ -87,15 +87,15 @@ tarc3_Accusation_EventScript_NameMenu::
 # 54 "data/scripts/tarc3_accusation.pory"
 	waitmessage
 # 55 "data/scripts/tarc3_accusation.pory"
-	dynmultipush tarc3_Accusation_EventScript_NameMenu_Text_1, 0
+	dynmultipush tarc3_Accusation_EventScript_NameMenu_Text_1, 1
 # 56 "data/scripts/tarc3_accusation.pory"
-	dynmultipush tarc3_Accusation_EventScript_NameMenu_Text_2, 1
+	dynmultipush tarc3_Accusation_EventScript_NameMenu_Text_2, 2
 # 57 "data/scripts/tarc3_accusation.pory"
 	dynmultistack 0, 0, TRUE, 2, FALSE, 0, DYN_MULTICHOICE_CB_NONE
 # 58 "data/scripts/tarc3_accusation.pory"
 	closemessage
 # 59 "data/scripts/tarc3_accusation.pory"
-	compare VAR_RESULT, 1
+	compare VAR_RESULT, 2
 	goto_if_eq tarc3_Accusation_EventScript_NameMenu_2
 tarc3_Accusation_EventScript_NameMenu_1:
 # 67 "data/scripts/tarc3_accusation.pory"
@@ -2744,8 +2744,8 @@ tarc3_Accusation_EventScript_Naming_Text_2:
 
 tarc3_Accusation_EventScript_NameMenu_Text_0:
 # 53 "data/scripts/tarc3_accusation.pory"
-	.string "{FONT_NARROW}(Whose name am I about to place before this\n"
-	.string "room?)$"
+	.string "{FONT_NARROW}Whose name am I about to place before this\n"
+	.string "room?$"
 
 tarc3_Accusation_EventScript_NameMenu_Text_1:
 # 55 "data/scripts/tarc3_accusation.pory"
@@ -2757,11 +2757,11 @@ tarc3_Accusation_EventScript_NameMenu_Text_2:
 
 tarc3_Accusation_EventScript_NameMenu_Text_3:
 # 60 "data/scripts/tarc3_accusation.pory"
-	.string "{FONT_NARROW}(Takeshi. Am I certain on this?)$"
+	.string "{FONT_NARROW}Takeshi. Am I certain on this?$"
 
 tarc3_Accusation_EventScript_NameMenu_Text_4:
 # 68 "data/scripts/tarc3_accusation.pory"
-	.string "{FONT_NARROW}(Ichiro. Am I certain on this?)$"
+	.string "{FONT_NARROW}Ichiro. Am I certain on this?$"
 
 tarc3_Accusation_EventScript_NameIchiro_Text_0:
 # 79 "data/scripts/tarc3_accusation.pory"
@@ -3405,12 +3405,12 @@ tarc3_Accusation_EventScript_GoodMotiveKept_Text_5:
 
 tarc3_Accusation_EventScript_GoodMotiveKept_Text_6:
 # 865 "data/scripts/tarc3_accusation.pory"
-	.string "{FONT_NARROW}(That is not it.)$"
+	.string "{FONT_NARROW}That is not it.$"
 
 tarc3_Accusation_EventScript_GoodMotiveKept_Text_7:
 # 868 "data/scripts/tarc3_accusation.pory"
-	.string "{FONT_NARROW}(That was never it - but the evidence I\n"
-	.string "presented did not tell the full story.)$"
+	.string "{FONT_NARROW}That was never it - but the evidence I\n"
+	.string "presented did not tell the full story.$"
 
 tarc3_Accusation_EventScript_GoodMotiveKept_Text_8:
 # 872 "data/scripts/tarc3_accusation.pory"
@@ -3444,7 +3444,7 @@ tarc3_Accusation_EventScript_GoodMotiveDenied_Text_4:
 
 tarc3_Accusation_EventScript_GoodMotiveDenied_Text_5:
 # 896 "data/scripts/tarc3_accusation.pory"
-	.string "{FONT_NARROW}(He will deny her to the last.)$"
+	.string "{FONT_NARROW}He will deny her to the last.$"
 
 tarc3_Accusation_EventScript_GoodAnswerEnough_Text_0:
 # 907 "data/scripts/tarc3_accusation.pory"
@@ -3632,8 +3632,8 @@ tarc3_Accusation_EventScript_BadWall_Text_0:
 
 tarc3_Accusation_EventScript_BadWall_Text_1:
 # 1075 "data/scripts/tarc3_accusation.pory"
-	.string "{FONT_NARROW}(He said that to me two hours ago, in the\n"
-	.string "dining room.)$"
+	.string "{FONT_NARROW}He said that to me two hours ago, in the\n"
+	.string "dining room.$"
 
 tarc3_Accusation_EventScript_BadWall_Text_2:
 # 1079 "data/scripts/tarc3_accusation.pory"

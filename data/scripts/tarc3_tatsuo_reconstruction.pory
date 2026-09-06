@@ -4,6 +4,14 @@
 script tarc3_TatsuoRecon_EventScript_Begin {
     setvar(VAR_TEMP_8, 0)
     setvar(VAR_TEMP_9, 3)
+    applymovement(LOCALID_FOREDECK_SUZUKI_2, moves(walk_in_place_fast_right))
+    applymovement(LOCALID_FOREDECK_AKIE_2, moves(walk_in_place_fast_down))
+    applymovement(LOCALID_FOREDECK_KITARO_2, moves(walk_in_place_fast_right))
+    applymovement(LOCALID_FOREDECK_JOJI_2, moves(walk_in_place_fast_down))
+    applymovement(LOCALID_FOREDECK_ICHIRO_2, moves(walk_in_place_fast_right))
+    applymovement(LOCALID_FOREDECK_MARIKO_2, moves(walk_in_place_fast_down))
+    waitmovement(0)
+    delay(20)
     setspeaker("{PLAYER}")
     msgbox(format("I do not know the identity of the murderer. Yet."))
     msgbox(format("However, I believe I can give you a reason for this cruelty."))
@@ -32,15 +40,15 @@ script tarc3_TatsuoRecon_EventScript_Q1Ask {
     setspeaker(NULL)
     message(format("{FONT_NARROW}Then what was the splash?", "1_latin_rse_narrow"))
     waitmessage
-    dynmultipush("The weapon, thrown over afterwards", 0)
-    dynmultipush("A Pelipper out in the water", 1)
-    dynmultipush("Something he was already disposing of", 2)
+    dynmultipush("The weapon, thrown over afterwards", 1)
+    dynmultipush("A Pelipper out in the water", 2)
+    dynmultipush("Something he was already disposing of", 3)
     dynmultistack(0, 0, TRUE, 3, FALSE, 0, DYN_MULTICHOICE_CB_NONE)
     closemessage
     switch (var(VAR_RESULT)) {
-        case 0:
-            goto(tarc3_TatsuoRecon_EventScript_Q1WrongAfter)
         case 1:
+            goto(tarc3_TatsuoRecon_EventScript_Q1WrongAfter)
+        case 2:
             goto(tarc3_TatsuoRecon_EventScript_Q1WrongMon)
         default:
             goto(tarc3_TatsuoRecon_EventScript_Q1Right)
@@ -133,15 +141,15 @@ script tarc3_TatsuoRecon_EventScript_Q2Ask {
     setspeaker(NULL)
     message(format("{FONT_NARROW}What went over that rail?", "1_latin_rse_narrow"))
     waitmessage
-    dynmultipush("The pipe that killed him", 0)
-    dynmultipush("Something of Tatsuo's", 1)
-    dynmultipush("The knife that killed Gozo", 2)
+    dynmultipush("The pipe that killed him", 1)
+    dynmultipush("Something of Tatsuo's", 2)
+    dynmultipush("The knife that killed Gozo", 3)
     dynmultistack(0, 0, TRUE, 3, FALSE, 0, DYN_MULTICHOICE_CB_NONE)
     closemessage
     switch (var(VAR_RESULT)) {
-        case 0:
-            goto(tarc3_TatsuoRecon_EventScript_Q2WrongPipe)
         case 1:
+            goto(tarc3_TatsuoRecon_EventScript_Q2WrongPipe)
+        case 2:
             goto(tarc3_TatsuoRecon_EventScript_Q2WrongHis)
         default:
             goto(tarc3_TatsuoRecon_EventScript_Q2Right)
@@ -224,15 +232,15 @@ script tarc3_TatsuoRecon_EventScript_Q3Ask {
     setspeaker(NULL)
     message(format("{FONT_NARROW}Where did the thing that killed him come from?", "1_latin_rse_narrow"))
     waitmessage
-    dynmultipush("He carried it out with him", 0)
-    dynmultipush("He used his bare hands", 1)
-    dynmultipush("It was already lying on this deck", 2)
+    dynmultipush("He carried it out with him", 1)
+    dynmultipush("He used his bare hands", 2)
+    dynmultipush("It was already lying on this deck", 3)
     dynmultistack(0, 0, TRUE, 3, FALSE, 0, DYN_MULTICHOICE_CB_NONE)
     closemessage
     switch (var(VAR_RESULT)) {
-        case 0:
-            goto(tarc3_TatsuoRecon_EventScript_Q3WrongCarried)
         case 1:
+            goto(tarc3_TatsuoRecon_EventScript_Q3WrongCarried)
+        case 2:
             goto(tarc3_TatsuoRecon_EventScript_Q3Hands)
         default:
             goto(tarc3_TatsuoRecon_EventScript_Q3Right)
@@ -346,15 +354,15 @@ script tarc3_TatsuoRecon_EventScript_Q4Ask {
     setspeaker(NULL)
     message(format("{FONT_NARROW}Then why is Tatsuo Kaneko dead?", "1_latin_rse_narrow"))
     waitmessage
-    dynmultipush("For his share of the estate", 0)
-    dynmultipush("He was mistaken for somebody else", 1)
-    dynmultipush("He was nearby", 2)
+    dynmultipush("For his share of the estate", 1)
+    dynmultipush("He was mistaken for somebody else", 2)
+    dynmultipush("He was nearby", 3)
     dynmultistack(0, 0, TRUE, 3, FALSE, 0, DYN_MULTICHOICE_CB_NONE)
     closemessage
     switch (var(VAR_RESULT)) {
-        case 0:
-            goto(tarc3_TatsuoRecon_EventScript_Q4WrongEstate)
         case 1:
+            goto(tarc3_TatsuoRecon_EventScript_Q4WrongEstate)
+        case 2:
             goto(tarc3_TatsuoRecon_EventScript_Q4WrongMistake)
         default:
             goto(tarc3_TatsuoRecon_EventScript_Q4Right)
@@ -404,8 +412,6 @@ script tarc3_TatsuoRecon_EventScript_Q4Right {
     }
     setspeaker(NULL)
     closemessage
-    giveevidence(EVD_SILENCED_WITNESS)
-    closemessage
     delay(20)
     goto(tarc3_TatsuoRecon_EventScript_Closing)
 }
@@ -414,8 +420,6 @@ script tarc3_TatsuoRecon_EventScript_Q4Give {
     setspeaker("{RIVAL}")
     msgbox(format("He saw it. That is the whole of it."))
     setspeaker(NULL)
-    closemessage
-    giveevidence(EVD_SILENCED_WITNESS)
     closemessage
     delay(20)
     goto(tarc3_TatsuoRecon_EventScript_Closing)

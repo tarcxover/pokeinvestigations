@@ -1,7 +1,7 @@
 #include "global.h"
 #include "test/battle.h"
 
-SINGLE_BATTLE_TEST("Smelling Salts does not cure paralyzed pokemons behind substitutes or get increased power")
+SINGLE_BATTLE_TEST("Smelling Salts does not cure paralyzed targets behind substitutes or get increased power")
 {
     enum Ability ability;
     PARAMETRIZE { ability = ABILITY_INNER_FOCUS; }
@@ -12,7 +12,7 @@ SINGLE_BATTLE_TEST("Smelling Salts does not cure paralyzed pokemons behind subst
         PLAYER(SPECIES_CROBAT) { Ability(ability); }
         OPPONENT(SPECIES_SEISMITOAD) { Status1(STATUS1_PARALYSIS); }
     } WHEN {
-        TURN { MOVE(opponent, MOVE_SUBSTITUTE); MOVE(player, MOVE_CELEBRATE); }
+        TURN { MOVE(opponent, MOVE_SUBSTITUTE, WITH_RNG(RNG_PARALYSIS, FALSE)); MOVE(player, MOVE_CELEBRATE); }
         TURN { MOVE(opponent, MOVE_CELEBRATE); MOVE(player, MOVE_SMELLING_SALTS); }
     } SCENE {
         ANIMATION(ANIM_TYPE_MOVE, MOVE_SMELLING_SALTS, player);
@@ -33,7 +33,7 @@ SINGLE_BATTLE_TEST("Smelling Salts does not cure paralyzed pokemons behind subst
     }
 }
 
-SINGLE_BATTLE_TEST("Smelling Salts get incread power vs. paralyzed targets")
+SINGLE_BATTLE_TEST("Smelling Salts get increased power vs. paralyzed targets")
 {
     u32 status1;
     PARAMETRIZE { status1 = STATUS1_PARALYSIS; }
@@ -132,8 +132,8 @@ DOUBLE_BATTLE_TEST("Sparkling Aria cures burns from all Pokemon on the field and
     } WHEN {
         TURN { MOVE(opponentLeft, MOVE_SUBSTITUTE); MOVE(opponentRight, MOVE_CELEBRATE); MOVE(playerRight, MOVE_CELEBRATE); MOVE(playerLeft, MOVE_SPARKLING_ARIA); }
     } SCENE {
-        MESSAGE("The opposing Wobbuffet's burn was cured!");
         MESSAGE("Wobbuffet's burn was cured!");
+        MESSAGE("The opposing Wobbuffet's burn was cured!");
         MESSAGE("The opposing Wynaut's burn was cured!");
     }
 }

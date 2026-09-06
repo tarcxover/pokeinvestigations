@@ -201,35 +201,18 @@ Debug_EventScript_Text_DefensiveIVs:
 	.string "HP IVs: {STR_VAR_1}, DEF IVs: {STR_VAR_2}, SPDEF IVs: {STR_VAR_3}$"
 
 Debug_EventScript_Script_1::
-	openaccusemenu QUESTION_LIGHTS, SUSPECT_ICHIRO
-	waitstate
-	getaccuseevidence 0
-	evidencetoitem VAR_RESULT
-	bufferitemname STR_VAR_1, VAR_RESULT
-	msgbox gStringVar1
-	waitmessage
-	releaseall
 	release
 	end
 
 Debug_EventScript_Script_2::
-	callnative Debug_EvidenceGetAll
 	release
 	end
 
 Debug_EventScript_Script_3::
-	getaccuseevidence 0
-	evidencetoitem VAR_RESULT
-	bufferitemname STR_VAR_1, VAR_RESULT
-	msgbox gStringVar1
-	waitmessage
-	releaseall
+	release
 	end
 
 Debug_EventScript_Script_4::
-	giveevidence EVD_DROPPED_FLOWER
-	giveevidence EVD_TAKESHIS_MEETING
-	callnative CB2_InitLogicMenu
 	release
 	end
 

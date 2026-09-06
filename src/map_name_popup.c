@@ -10,6 +10,7 @@
 #include "main.h"
 #include "menu.h"
 #include "map_name_popup.h"
+#include "overworld.h"
 #include "palette.h"
 #include "region_map.h"
 #include "rtc.h"
@@ -378,6 +379,9 @@ enum {
 
 void ShowMapNamePopup(void)
 {
+    if (OW_POPUP_GENERATION == GEN_8 && (GetFlashLevel() || InBattlePyramid()))
+        return;
+
     if (FlagGet(FLAG_HIDE_MAP_NAME_POPUP) != TRUE)
     {
         if (!FuncIsActiveTask(Task_MapNamePopUpWindow))

@@ -70,4 +70,5 @@ tools/poryscript/poryscript
 data/maps/**/scripts.inc
 include/constants/evidence_macros.h
 include/generated
+src/data/credits_list.h
 .porydaw/

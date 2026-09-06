@@ -6958,7 +6958,7 @@ static void BagMenu_ShowPPMoveSelectWindow(u8 taskId)
         {
             u8 currentPp = GetMonData(mon, MON_DATA_PP1 + i);
             u8 maxPp = CalculatePPWithBonus(move, GetMonData(mon, MON_DATA_PP_BONUSES), i);
-            u8 ppState = GetCurrentPpToMaxPpState(currentPp, maxPp);
+            u8 ppState = GetCurrentPPToMaxPPState(currentPp, maxPp);
             s32 x;
 
             ConvertIntToDecimalStringN(gStringVar1, currentPp, STR_CONV_MODE_RIGHT_ALIGN, 2);
@@ -8780,7 +8780,7 @@ static u8 BagMenu_BattleTargetSlotId(bool8 partner, u8 partyIndex)
 {
     if (IsMultiBattle())
     {
-        u8 battler = partner ? BATTLE_PARTNER(gBattlerInMenuId) : gBattlerInMenuId;
+        u8 battler = partner ? GetPartnerBattler(gBattlerInMenuId) : gBattlerInMenuId;
         if (gBattlerPartyIndexes[battler] != partyIndex)
             return PARTY_SIZE;
         return (GetBattlerPosition(battler) == B_POSITION_PLAYER_RIGHT) ? 1 : 0;

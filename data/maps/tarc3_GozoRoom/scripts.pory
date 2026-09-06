@@ -616,7 +616,7 @@ script tarc3_GozoRoom_EventScript_EvdGarland {
     msgbox(format("A garland is lying in the corridor a step from the door."))
     msgbox(format("{FONT_NARROW}Not a mark on it. Amongst the blood spilled here, this came away clean.", "1_latin_rse_narrow"))
     closemessage
-    // EVD_UNSTAINED_GARLAND cut
+    giveevidence(EVD_DROPPED_FLOWER)
     closemessage
     call(tarc3_GozoRoom_EventScript_ClearEvidence)
     special(DrawWholeMapView)
@@ -652,6 +652,8 @@ script tarc3_GozoRoom_EventScript_SuzukiBeat3 {
     msgbox(format("The corridor was empty. There was nothing on the floor at all, except that flower."))
     setspeaker(NULL)
     closemessage
+    giveevidence(EVD_DROPPED_FLOWER)
+    closemessage
     goto(tarc3_GozoRoom_EventScript_SuzukiReflect3)
 }
 
@@ -659,13 +661,13 @@ script tarc3_GozoRoom_EventScript_SuzukiReflect3 {
     setspeaker(NULL)
     message(format("{FONT_NARROW}He walked past all of it. What was he actually looking at?", "1_latin_rse_narrow"))
     waitmessage
-    dynmultipush("Garland was there first", 0)
-    dynmultipush("He should have knocked", 1)
-    dynmultipush("Nobody heard a sound", 2)
+    dynmultipush("Garland was there first", 1)
+    dynmultipush("He should have knocked", 2)
+    dynmultipush("Nobody heard a sound", 3)
     dynmultistack(0, 0, TRUE, 3, FALSE, 0, DYN_MULTICHOICE_CB_NONE)
     closemessage
     switch (var(VAR_RESULT)) {
-        case 0:
+        case 1:
             goto(tarc3_GozoRoom_EventScript_SuzukiReflect3Flower)
         default:
             goto(tarc3_GozoRoom_EventScript_SuzukiReflect3Irrelevant)
@@ -676,13 +678,11 @@ script tarc3_GozoRoom_EventScript_SuzukiReflect3Flower {
     msgbox(format("{FONT_NARROW}Lying there half an hour before anyone knew he was dead.\pTakeshi's garland, on the floor, waiting to be found.", "1_latin_rse_narrow"))
     closemessage
     setflag(FLAG_TARC3_REFLECT_GOZO_SUZUKI_3)
-    giveevidence(EVD_DROPPED_FLOWER)
-    closemessage
     goto(tarc3_GozoRoom_EventScript_SuzukiReflectEnd)
 }
 
 script tarc3_GozoRoom_EventScript_SuzukiReflect3Irrelevant {
-    msgbox(format("{FONT_NARROW}True. It isn't evidence, though.", "1_latin_rse_narrow"))
+    msgbox(format("{FONT_NARROW}Perhaps. But that isn't what he walked past.", "1_latin_rse_narrow"))
     closemessage
     setflag(FLAG_TARC3_REFLECT_GOZO_SUZUKI_3)
     goto(tarc3_GozoRoom_EventScript_SuzukiReflectEnd)
@@ -912,7 +912,7 @@ script tarc3_GozoRoom_EventScript_RevealRoom {
     setmetatile(6, 9, 0x096, TRUE)
     setmetatile(7, 9, 0x085, FALSE)
     setmetatile(8, 9, 0x080, FALSE)
-    setmetatile(9, 9, 0x080, FALSE)
+    setmetatile(9, 9, 0x0E2, FALSE)
     setmetatile(10, 9, 0x080, FALSE)
     setmetatile(11, 9, 0x080, FALSE)
     setmetatile(12, 9, 0x080, FALSE)

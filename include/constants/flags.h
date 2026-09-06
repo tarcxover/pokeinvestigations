@@ -1773,11 +1773,11 @@
 #define FLAG_TARC3_DECK2_PIPE_SCENT                 (TARC3_RESERVED_FLAGS_START + 0x84)
 #define FLAG_TARC3_TATSUO_RECONSTRUCTED             (TARC3_RESERVED_FLAGS_START + 0x85)
 #define FLAG_TARC3_ACCUSE_SEEN_HELP                  (TARC3_RESERVED_FLAGS_START + 0x86)
-#define FLAG_UNUSED_0x9E7                           (TARC3_RESERVED_FLAGS_START + 0x87) // Unused Flag
-#define FLAG_UNUSED_0x9E8                           (TARC3_RESERVED_FLAGS_START + 0x88) // Unused Flag
-#define FLAG_UNUSED_0x9E9                           (TARC3_RESERVED_FLAGS_START + 0x89) // Unused Flag
-#define FLAG_UNUSED_0x9EA                           (TARC3_RESERVED_FLAGS_START + 0x8A) // Unused Flag
-#define FLAG_UNUSED_0x9EB                           (TARC3_RESERVED_FLAGS_START + 0x8B) // Unused Flag
+#define FLAG_TARC3_NO_WHITEOUT                      (TARC3_RESERVED_FLAGS_START + 0x87) // B_FLAG_NO_WHITEOUT, set around scripted trainer battles so a loss returns to the field
+#define FLAG_HIDE_TARC3_NIGHT_CAST                  (TARC3_RESERVED_FLAGS_START + 0x88)
+#define FLAG_HIDE_TARC3_NIGHT_MONS                  (TARC3_RESERVED_FLAGS_START + 0x89)
+#define FLAG_HIDE_TARC3_CABIN_RAN_NIGHT             (TARC3_RESERVED_FLAGS_START + 0x8A)
+#define FLAG_HIDE_TARC3_NIGHT_ICHIRO                (TARC3_RESERVED_FLAGS_START + 0x8B)
 #define FLAG_UNUSED_0x9EC                           (TARC3_RESERVED_FLAGS_START + 0x8C) // Unused Flag
 #define FLAG_UNUSED_0x9ED                           (TARC3_RESERVED_FLAGS_START + 0x8D) // Unused Flag
 #define FLAG_UNUSED_0x9EE                           (TARC3_RESERVED_FLAGS_START + 0x8E) // Unused Flag

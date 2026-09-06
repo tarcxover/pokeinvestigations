@@ -1,0 +1,51 @@
+credits:
+  developers:
+    - Miriam
+    - Fisham
+  playtesters:
+    - MaximeGr
+    - Pommelo
+  feature_branches:
+    - Montblanc (SwSh Uis)
+    - RavePossum (Swsh Uis)
+    - TheXaman (Options Menu)
+  assets:
+    - Mudskip
+    - Eva (Pokemon Hearth)
+    - AveonTrainer
+    - ekat99
+    - PMD Explorers of Skies
+    - PMD Red Rescue Team
+    - Cursenho (UI Essentials Pack)
+    - Glionox (Items pack)
+  music:
+    - Specker
+    - Castlevania Aria of Sorrow
+    - Ace Attorney
+    - Ace Attorney Investigations
+  inspiration:
+    - PMD Explorers of Skies
+    - PMD Red Rescue Team
+    - Detective Conan
+    - Castlevania Aria of Sorrow
+    - Ace Attorney
+    - Ace Attorney Investigations
+    - Pokemon Hearth
+  tooling:
+    - ShantyTown (porydaw)
+    - grunt-lucas (porytiles)
+    - GriffinR (porymap)
+  misc_code:
+    - Hedara (even_sprite)
+    - grunt-lucas (sample_ui)
+  special_thanks:
+    - Eva
+    - Gudf
+    - Hedara
+    - Lemmanade
+    - pret (pokeemerald)
+    - RHH (pokeemerald-expansion)
+  emotional_support:
+    - GBATEK
+    - TONC
+

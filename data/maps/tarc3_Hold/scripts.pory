@@ -171,84 +171,22 @@ script tarc3_Hold_EventScript_JailTakeshi {
     delay(30)
     applymovement(OBJ_EVENT_ID_PLAYER, moves(face_down))
     setspeaker("{RIVAL}")
-    msgbox(format("They have locked a man in a storage room on the strength of a single flower.\pThat is not evidence. That is a mob grown tired of thinking."))
-    msgbox(format("Before we go up. Everything that was said in this room, while it is still ordered in your head."))
+    msgbox(format("I suggest we return to our cabin. We must review the facts."))
     setspeaker(NULL)
     closemessage
-    call(tarc3_Hold_EventScript_RecapCS5)
-    delay(20)
-    setspeaker("{RIVAL}")
-    msgbox(format("I am going to find Natsue.\pSomebody ought to be with her, and plainly, it will not be any of them."))
-    msgbox(format("We will be at the door out to the deck. Come and find us."))
-    setspeaker(NULL)
-    closemessage
-    delay(20)
-    applymovement(LOCALID_HOLD_RAN_LOCKUP, moves(walk_left, walk_up * 2, walk_right))
-    waitmovement(0)
-    playse(SE_EXIT)
+    delay(30)
+    fadescreen(FADE_TO_BLACK)
     removeobject(LOCALID_HOLD_RAN_LOCKUP)
     setflag(FLAG_HIDE_TARC3_LOCKUP_CAST)
-    delay(30)
-    clearflag(FLAG_HIDE_TARC3_DECKDOOR_CAST)
-    setvar(VAR_TARC3_ACT1, TARC3_ACT1_COMPLETE)
-    setvar(VAR_TARC3_ACT2, TARC3_ACT2_DECK_DOOR)
-    releaseall
+    clearflag(FLAG_HIDE_TARC3_CABIN_RAN_NIGHT)
+    setvar(VAR_TARC3_ACT1, TARC3_ACT1_NIGHT_RECAP)
+    warp(MAP_TARC3_CABINS, 49, 20)
+    waitstate
     end
 }
 
-// CS6 recap - the reflections on what was said in CS5 and CS6
-
-script tarc3_Hold_EventScript_RecapCS5 {
-    goto_if_set(FLAG_TARC3_REFLECT_HOLD_CS5, tarc3_Hold_EventScript_RecapEnd)
-    setspeaker(NULL)
-    message(format("{FONT_NARROW}Mariko put all of it in the open upstairs. What was worth keeping?", "1_latin_rse_narrow"))
-    waitmessage
-    dynmultipush("Takeshi's family name is Zaiki", 0)
-    dynmultipush("Mariko heard them argue", 1)
-    dynmultipush("Natsue walked out", 2)
-    dynmultistack(0, 0, TRUE, 3, FALSE, 0, DYN_MULTICHOICE_CB_NONE)
-    closemessage
-    switch (var(VAR_RESULT)) {
-        case 0:
-            goto(tarc3_Hold_EventScript_RecapHistory)
-        case 1:
-            goto(tarc3_Hold_EventScript_RecapArgument)
-        default:
-            goto(tarc3_Hold_EventScript_RecapCS5Irrelevant)
-    }
-}
-
-
-script tarc3_Hold_EventScript_RecapHistory {
-    msgbox(format("{FONT_NARROW}Gozo took his father's company and the man killed himself over it.\pTakeshi married into the family that did it.", "1_latin_rse_narrow"))
-    closemessage
-    setflag(FLAG_TARC3_REFLECT_HOLD_CS5)
-    giveevidence(EVD_TAKESHIS_HISTORY)
-    closemessage
-    goto(tarc3_Hold_EventScript_RecapEnd)
-}
-
-script tarc3_Hold_EventScript_RecapArgument {
-    msgbox(format("{FONT_NARROW}She stood at that door before dinner and heard her father shouting Takeshi's name.\pSo she says.", "1_latin_rse_narrow"))
-    closemessage
-    setflag(FLAG_TARC3_REFLECT_HOLD_CS5)
-    giveevidence(EVD_OVERHEARD_ARGUMENT)
-    closemessage
-    goto(tarc3_Hold_EventScript_RecapEnd)
-}
-
-script tarc3_Hold_EventScript_RecapCS5Irrelevant {
-    msgbox(format("{FONT_NARROW}I'd have walked out too. It doesn't tell me anything.", "1_latin_rse_narrow"))
-    closemessage
-    setflag(FLAG_TARC3_REFLECT_HOLD_CS5)
-    goto(tarc3_Hold_EventScript_RecapEnd)
-}
-
-script tarc3_Hold_EventScript_RecapEnd {
-    return
-}
-
 script tarc3_Hold_EventScript_EvdManifest {
+    // this evidence is no longer used
     lockall
     if (var(VAR_TARC3_ACT1) < TARC3_ACT1_COMPLETE) {
         msgbox(format("The passenger manifest, hung by the stairs in Kitaro's handwriting."))
@@ -274,12 +212,18 @@ script tarc3_Hold_EventScript_EvdManifestSeen {
 
 // investigation - the storage door
 
-script tarc3_Hold_EventScript_EvdStorageDoor {
+script tarc3_Hold_EventScript_StorageDoor {
     lockall
-    if (var(VAR_TARC3_ACT2) < TARC3_ACT2_HOLD_SEARCH) {
-        goto(tarc3_Hold_EventScript_EvdStorageDoorShut)
+    if (var(VAR_TARC3_ACT2) < TARC3_ACT2_ROOM_SETTLES) {
+        msgbox(format("A heavy storage door, bolted from this side. There is no handle on the other one."))
+        releaseall
+        end
     }
-    goto_if_set(FLAG_TARC3_HOLD_FOUND_DOOR, tarc3_Hold_EventScript_EvdStorageDoorSeen)
+    if (flag(FLAG_TARC3_HOLD_FOUND_DOOR) == TRUE) {
+        msgbox(format("The bolt slid back clean. Nobody broke this door open."))
+        releaseall
+        end
+    }
     msgbox(format("The bolt is drawn back and resting in its keeper. Not bent, not forced, not a mark on the plate."))
     msgbox(format("{FONT_NARROW}(It only works from out here. No handle on the inside, and Suzuki shot it across in front of everybody.)", "1_latin_rse_narrow"))
     msgbox(format("{FONT_NARROW}(So somebody stood where I'm standing and slid it open again.)", "1_latin_rse_narrow"))
@@ -291,19 +235,8 @@ script tarc3_Hold_EventScript_EvdStorageDoor {
     end
 }
 
-script tarc3_Hold_EventScript_EvdStorageDoorShut {
-    msgbox(format("A heavy storage door, bolted from this side. There is no handle on the other one."))
-    releaseall
-    end
-}
-
-script tarc3_Hold_EventScript_EvdStorageDoorSeen {
-    msgbox(format("The bolt slid back clean. Nobody broke this door open."))
-    releaseall
-    end
-}
-
 script tarc3_Hold_EventScript_ElectricalDoor {
+    // no longer used
     goto_if_ge(VAR_TARC3_ACT2, TARC3_ACT2_TO_ELECTRICAL, tarc3_Hold_EventScript_ElectricalDoorOpen)
     lockall
     msgbox(format("The electrical room door is locked."))
@@ -312,13 +245,6 @@ script tarc3_Hold_EventScript_ElectricalDoor {
 }
 
 script tarc3_Hold_EventScript_ElectricalDoorOpen {
-    end
-}
-
-script tarc3_Hold_EventScript_StorageDoor {
-    lockall
-    msgbox(format("The storage door is locked."))
-    releaseall
     end
 }
 
@@ -425,7 +351,7 @@ script tarc3_Hold_EventScript_Ran {
 
 script tarc3_Hold_EventScript_EvdDeckPlan {
     lockall
-    if (var(VAR_TARC3_ACT2) < TARC3_ACT2_SEARCH_TAKESHI) {
+    if (var(VAR_TARC3_ACT1) < TARC3_ACT1_JAIL_TAKESHI) {
         msgbox(format("A deck plan of the lower level."))
         releaseall
         end

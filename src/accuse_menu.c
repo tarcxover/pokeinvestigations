@@ -763,9 +763,6 @@ static void AccuseMenu_MoveCursorFunc(s32 itemIndex, bool8 onInit, struct ListMe
 
     PrintDescription(itemIndex);
     PrintAccuseMenuItemName(itemIndex);
-    u32 evdId = itemIndex - ITEM_EVIDENCE_START;
-    u32 score = gEvidence[evdId].score;
-    DebugPrintf("Score: %d", score);
 }
 
 static const struct ScrollArrowsTemplate sEvidenceMenuScrollArrowTemplate =

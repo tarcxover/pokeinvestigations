@@ -1440,14 +1440,15 @@ tarc3_Accusation_EventScript_Ev_RawClue_Text_1:
 
 tarc3_Accusation_EventScript_Ev_RawClue_Text_2:
 # 122 "data/scripts/tarc3_accusation_evidence.pory"
-	.string "A fact, and a true one. It is not yet an\n"
-	.string "argument.\p"
+	.string "A fact, and a true one. It is not yet\n"
+	.string "an argument.\p"
 	.string "Find what it means, {PLAYER}\n"
 	.string "Edgeworth, and bring me that instead.$"
 
 tarc3_Accusation_EventScript_Ev_Sketchbook_Text_0:
 # 134 "data/scripts/tarc3_accusation_evidence.pory"
-	.string "Ichiro's sketchbook. Dozens of studies.\p"
+	.string "Ichiro's sketchbook. Dozens of\n"
+	.string "studies.\p"
 	.string "And all throughout, the same face.\n"
 	.string "Natsue's.$"
 
@@ -1509,14 +1510,14 @@ tarc3_Accusation_EventScript_Ev_IchiroSponsorship_Text_1:
 
 tarc3_Accusation_EventScript_Ev_IchiroSponsorship_Text_2:
 # 177 "data/scripts/tarc3_accusation_evidence.pory"
-	.string "Eleven years, paid each term. I handled\n"
-	.string "the arrangements myself.$"
+	.string "Eleven years, paid each term. I\n"
+	.string "handled the arrangements myself.$"
 
 tarc3_Accusation_EventScript_Ev_BreadEraser_Text_0:
 # 189 "data/scripts/tarc3_accusation_evidence.pory"
 	.string "There is a dry loaf in Ichiro's art bag.\p"
-	.string "Artists use bread to lift charcoal from\n"
-	.string "a page.$"
+	.string "Artists use bread to lift charcoal\n"
+	.string "from a page.$"
 
 tarc3_Accusation_EventScript_Ev_BreadEraser_Text_1:
 # 191 "data/scripts/tarc3_accusation_evidence.pory"
@@ -1555,7 +1556,8 @@ tarc3_Accusation_EventScript_Ev_SponsorshipWithdrawal_Text_0:
 	.string "The sponsorship was not lapsing\n"
 	.string "quietly.\p"
 	.string "Gozo was severing the very career he\n"
-	.string "had spent eleven years paying to build.$"
+	.string "had spent eleven years paying to\l"
+	.string "build.$"
 
 tarc3_Accusation_EventScript_Ev_SponsorshipWithdrawal_Text_1:
 # 228 "data/scripts/tarc3_accusation_evidence.pory"
@@ -1570,8 +1572,8 @@ tarc3_Accusation_EventScript_Ev_ArtistAtTheDoor_Text_0:
 # 242 "data/scripts/tarc3_accusation_evidence.pory"
 	.string "Inside that doorway, in the blood\n"
 	.string "itself, there were crumbs.\p"
-	.string "Dry, and black with charcoal. They came\n"
-	.string "off an artist's eraser.$"
+	.string "Dry, and black with charcoal. They\n"
+	.string "came off an artist's eraser.$"
 
 tarc3_Accusation_EventScript_Ev_ArtistAtTheDoor_Text_1:
 # 244 "data/scripts/tarc3_accusation_evidence.pory"
@@ -1584,7 +1586,8 @@ tarc3_Accusation_EventScript_Ev_ArtistAtTheDoor_Text_2:
 	.string "In the blood, Joji. Not beside it. The\n"
 	.string "distinction is the entire point.\p"
 	.string "They fell while it was still wet - from\n"
-	.string "the cuff of the hand holding the knife.$"
+	.string "the cuff of the hand holding the\l"
+	.string "knife.$"
 
 tarc3_Accusation_EventScript_Ev_ArtistAtTheDoor_Text_3:
 # 248 "data/scripts/tarc3_accusation_evidence.pory"
@@ -1605,9 +1608,9 @@ tarc3_Accusation_EventScript_Ev_TwinRefusal_Text_1:
 
 tarc3_Accusation_EventScript_Ev_TwinRefusal_Text_2:
 # 264 "data/scripts/tarc3_accusation_evidence.pory"
-	.string "Then, on the deck this afternoon, Gozo\n"
-	.string "told us he was finished paying for the\l"
-	.string "boy.\p"
+	.string "Then, on the deck this afternoon,\n"
+	.string "Gozo told us he was finished paying\l"
+	.string "for the boy.\p"
 	.string "Not privately. He performed it, before\n"
 	.string "his family, with Ichiro standing eight\l"
 	.string "feet away.$"
@@ -1630,8 +1633,8 @@ tarc3_Accusation_EventScript_Ev_TwinRefusal_Text_5:
 
 tarc3_Accusation_EventScript_Ev_TwinRefusal_Text_6:
 # 278 "data/scripts/tarc3_accusation_evidence.pory"
-	.string "Do not preen, {PLAYER} Edgeworth. It\n"
-	.string "took you all evening.$"
+	.string "Do not preen, {PLAYER} Edgeworth.\n"
+	.string "It took you all evening.$"
 
 tarc3_Accusation_EventScript_Ev_TwinRefusal_Text_7:
 # 281 "data/scripts/tarc3_accusation_evidence.pory"
@@ -1650,8 +1653,8 @@ tarc3_Accusation_EventScript_Ev_TakeshisMeeting_Text_0:
 
 tarc3_Accusation_EventScript_Ev_TakeshisMeeting_Text_1:
 # 294 "data/scripts/tarc3_accusation_evidence.pory"
-	.string "So the last appointment my father ever\n"
-	.string "kept was with him.$"
+	.string "So the last appointment my father\n"
+	.string "ever kept was with him.$"
 
 tarc3_Accusation_EventScript_Ev_TakeshisHistory_Text_0:
 # 306 "data/scripts/tarc3_accusation_evidence.pory"
@@ -1691,8 +1694,8 @@ tarc3_Accusation_EventScript_Ev_OverheardArgument_Text_1:
 
 tarc3_Accusation_EventScript_Ev_GozosFinalMeeting_Text_0:
 # 346 "data/scripts/tarc3_accusation_evidence.pory"
-	.string "Gozo summoned him to that cabin before\n"
-	.string "dinner.\p"
+	.string "Gozo summoned him to that cabin\n"
+	.string "before dinner.\p"
 	.string "And a little while later, Suzuki found\n"
 	.string "his flower lying outside the door.$"
 
@@ -1703,8 +1706,8 @@ tarc3_Accusation_EventScript_Ev_GozosFinalMeeting_Text_1:
 
 tarc3_Accusation_EventScript_Ev_GozosFinalMeeting_Text_2:
 # 350 "data/scripts/tarc3_accusation_evidence.pory"
-	.string "He lost that garland before that point!\n"
-	.string "He told you that!$"
+	.string "He lost that garland before that\n"
+	.string "point! He told you that!$"
 
 tarc3_Accusation_EventScript_Ev_GozosFinalMeeting_Text_3:
 # 352 "data/scripts/tarc3_accusation_evidence.pory"
@@ -1740,8 +1743,8 @@ tarc3_Accusation_EventScript_Ev_TakeshisRevenge_Text_1:
 
 tarc3_Accusation_EventScript_Ev_TakeshisRevenge_Text_2:
 # 375 "data/scripts/tarc3_accusation_evidence.pory"
-	.string "He came to us on purpose. He was always\n"
-	.string "here on purpose.$"
+	.string "He came to us on purpose. He was\n"
+	.string "always here on purpose.$"
 
 tarc3_Accusation_EventScript_Ev_CharcoalOnBolt_Text_0:
 # 392 "data/scripts/tarc3_accusation_evidence.pory"
@@ -1758,7 +1761,8 @@ tarc3_Accusation_EventScript_Ev_CharcoalOnBolt_Text_2:
 # 396 "data/scripts/tarc3_accusation_evidence.pory"
 	.string "He is right, and you have no answer for\n"
 	.string "him.\p"
-	.string "Do not present what you cannot defend.$"
+	.string "Do not present what you cannot\n"
+	.string "defend.$"
 
 tarc3_Accusation_EventScript_Ev_LongAbsence_Text_0:
 # 406 "data/scripts/tarc3_accusation_evidence.pory"
@@ -1774,8 +1778,8 @@ tarc3_Accusation_EventScript_Ev_LongAbsence_Text_1:
 tarc3_Accusation_EventScript_Ev_LongAbsence_Text_2:
 # 410 "data/scripts/tarc3_accusation_evidence.pory"
 	.string "You would do well to remember,\n"
-	.string "{PLAYER} Edgeworth, that an absence\l"
-	.string "alone is not a crime.$"
+	.string "{PLAYER} Edgeworth, that an\l"
+	.string "absence alone is not a crime.$"
 
 tarc3_Accusation_EventScript_Ev_AnAccomplice_Text_0:
 # 420 "data/scripts/tarc3_accusation_evidence.pory"
@@ -1829,8 +1833,8 @@ tarc3_Accusation_EventScript_Ev_BloodOnTheStair_Text_3:
 # 453 "data/scripts/tarc3_accusation_evidence.pory"
 	.string "Takeshi was still bolted in. Someone\n"
 	.string "came down these stairs to let him out.\p"
-	.string "And he was already carrying Tatsuo with\n"
-	.string "him.$"
+	.string "And he was already carrying Tatsuo\n"
+	.string "with him.$"
 
 tarc3_Accusation_EventScript_Ev_SilencedWitness_Text_0:
 # 464 "data/scripts/tarc3_accusation_evidence.pory"
@@ -1848,8 +1852,9 @@ tarc3_Accusation_EventScript_Ev_SilencedWitness_Text_1:
 
 tarc3_Accusation_EventScript_Ev_SilencedWitness_Text_2:
 # 466 "data/scripts/tarc3_accusation_evidence.pory"
-	.string "Tatsuo saw the weapon go over the side.\n"
-	.string "That is the entire reason he is dead.$"
+	.string "Tatsuo saw the weapon go over the\n"
+	.string "side. That is the entire reason he is\l"
+	.string "dead.$"
 
 tarc3_Accusation_EventScript_Ev_SilencedWitness_Text_3:
 # 468 "data/scripts/tarc3_accusation_evidence.pory"
@@ -1860,8 +1865,9 @@ tarc3_Accusation_EventScript_Ev_SilencedWitness_Text_3:
 tarc3_Accusation_EventScript_Ev_SilencedWitness_Text_4:
 # 470 "data/scripts/tarc3_accusation_evidence.pory"
 	.string "There is no accomplice.\p"
-	.string "There is one man disposing of a weapon,\n"
-	.string "and the misfortune of being observed.$"
+	.string "There is one man disposing of a\n"
+	.string "weapon, and the misfortune of being\l"
+	.string "observed.$"
 
 tarc3_Accusation_EventScript_Ev_SilencedWitness_Text_5:
 # 471 "data/scripts/tarc3_accusation_evidence.pory"
@@ -1870,29 +1876,29 @@ tarc3_Accusation_EventScript_Ev_SilencedWitness_Text_5:
 tarc3_Accusation_EventScript_Ev_SilencedWitness_Text_6:
 # 478 "data/scripts/tarc3_accusation_evidence.pory"
 	.string "I yelled at him.\p"
-	.string "He went to the deck to give me space... I\n"
-	.string "did this.$"
+	.string "He went to the deck to give me space...\n"
+	.string "I did this.$"
 
 tarc3_Accusation_EventScript_Ev_TheAccompliceTheory_Text_0:
 # 488 "data/scripts/tarc3_accusation_evidence.pory"
 	.string "On the matter of the supposed\n"
 	.string "accomplice.\p"
 	.string "Takeshi heard his door unbolted, and\n"
-	.string "footsteps departing. Someone released\l"
-	.string "him.\p"
+	.string "footsteps departing. Someone\l"
+	.string "released him.\p"
 	.string "From that moment, a man moved freely\n"
 	.string "about this ship whom nobody could\l"
 	.string "account for.$"
 
 tarc3_Accusation_EventScript_Ev_TheAccompliceTheory_Text_1:
 # 490 "data/scripts/tarc3_accusation_evidence.pory"
-	.string "Someone let him out. I have said so from\n"
-	.string "the start.$"
+	.string "Someone let him out. I have said so\n"
+	.string "from the start.$"
 
 tarc3_Accusation_EventScript_Ev_TheAccompliceTheory_Text_2:
 # 493 "data/scripts/tarc3_accusation_evidence.pory"
-	.string "I didn't unlock that door. I've told you.\n"
-	.string "I heard it open.$"
+	.string "I didn't unlock that door. I've told\n"
+	.string "you. I heard it open.$"
 
 tarc3_Accusation_EventScript_Ev_TheAccompliceTheory_Text_3:
 # 495 "data/scripts/tarc3_accusation_evidence.pory"
@@ -1900,8 +1906,8 @@ tarc3_Accusation_EventScript_Ev_TheAccompliceTheory_Text_3:
 
 tarc3_Accusation_EventScript_Ev_TheAccompliceTheory_Text_4:
 # 498 "data/scripts/tarc3_accusation_evidence.pory"
-	.string "Then where is this accomplice? Name one\n"
-	.string "person in this room.$"
+	.string "Then where is this accomplice? Name\n"
+	.string "one person in this room.$"
 
 tarc3_Accusation_EventScript_Ev_SmeargleRepertoire_Text_0:
 # 512 "data/scripts/tarc3_accusation_evidence.pory"
@@ -1912,8 +1918,8 @@ tarc3_Accusation_EventScript_Ev_SmeargleRepertoire_Text_0:
 
 tarc3_Accusation_EventScript_Ev_SmeargleRepertoire_Text_1:
 # 514 "data/scripts/tarc3_accusation_evidence.pory"
-	.string "It's an artist, like its trainer. It never\n"
-	.string "needed one.$"
+	.string "It's an artist, like its trainer. It\n"
+	.string "never needed one.$"
 
 tarc3_Accusation_EventScript_Ev_TheOddBattle_Text_0:
 # 525 "data/scripts/tarc3_accusation_evidence.pory"
@@ -1929,8 +1935,9 @@ tarc3_Accusation_EventScript_Ev_TheOddBattle_Text_1:
 
 tarc3_Accusation_EventScript_Ev_BrokenLatch_Text_0:
 # 538 "data/scripts/tarc3_accusation_evidence.pory"
-	.string "The breaker housing had a latch. It was\n"
-	.string "broken off and thrown in a bin nearby.$"
+	.string "The breaker housing had a latch. It\n"
+	.string "was broken off and thrown in a bin\l"
+	.string "nearby.$"
 
 tarc3_Accusation_EventScript_Ev_BrokenLatch_Text_1:
 # 540 "data/scripts/tarc3_accusation_evidence.pory"
@@ -1976,8 +1983,8 @@ tarc3_Accusation_EventScript_Ev_PanelStruck_Text_0:
 
 tarc3_Accusation_EventScript_Ev_PanelStruck_Text_1:
 # 581 "data/scripts/tarc3_accusation_evidence.pory"
-	.string "I said the wiring was old. I believed it,\n"
-	.string "too.$"
+	.string "I said the wiring was old. I believed\n"
+	.string "it, too.$"
 
 tarc3_Accusation_EventScript_Ev_PanelStruck_Text_2:
 # 582 "data/scripts/tarc3_accusation_evidence.pory"
@@ -1993,8 +2000,9 @@ tarc3_Accusation_EventScript_Ev_TheNearestHand_Text_0:
 
 tarc3_Accusation_EventScript_Ev_TheNearestHand_Text_1:
 # 595 "data/scripts/tarc3_accusation_evidence.pory"
-	.string "So he walked out of a room he was locked\n"
-	.string "in and just put his hand on a switch.$"
+	.string "So he walked out of a room he was\n"
+	.string "locked in and just put his hand on a\l"
+	.string "switch.$"
 
 tarc3_Accusation_EventScript_Ev_TheNearestHand_Text_2:
 # 602 "data/scripts/tarc3_accusation_evidence.pory"
@@ -2015,7 +2023,8 @@ tarc3_Accusation_EventScript_Ev_SketchedDischarge_Text_1:
 tarc3_Accusation_EventScript_Ev_SketchedDischarge_Text_2:
 # 619 "data/scripts/tarc3_accusation_evidence.pory"
 	.string "Ichiro's Smeargle carried no Electric\n"
-	.string "move when it battled me this afternoon.\p"
+	.string "move when it battled me this\l"
+	.string "afternoon.\p"
 	.string "I have the notes. Tonight it knows\n"
 	.string "Discharge - sketched from Kitaro's\l"
 	.string "Pawmot, on Ichiro's instruction.$"
@@ -2052,8 +2061,8 @@ tarc3_Accusation_EventScript_Ev_SketchedDischarge_Text_8:
 
 tarc3_Accusation_EventScript_Ev_SketchedDischarge_Text_9:
 # 637 "data/scripts/tarc3_accusation_evidence.pory"
-	.string "You are prosecuting your own case into\n"
-	.string "the ground.$"
+	.string "You are prosecuting your own case\n"
+	.string "into the ground.$"
 
 tarc3_Accusation_EventScript_Ev_NoDefensiveWounds_Text_0:
 # 649 "data/scripts/tarc3_accusation_evidence.pory"
@@ -2084,28 +2093,29 @@ tarc3_Accusation_EventScript_Ev_TheSecondStory_Text_2:
 
 tarc3_Accusation_EventScript_Ev_ImpossiblePrecision_Text_0:
 # 676 "data/scripts/tarc3_accusation_evidence.pory"
-	.string "One clean, careful wound, in a non-vital\n"
-	.string "place.\p"
+	.string "One clean, careful wound, in a\n"
+	.string "non-vital place.\p"
 	.string "Placed in total darkness, upon a man\n"
 	.string "who claims he never saw his attacker.$"
 
 tarc3_Accusation_EventScript_Ev_ImpossiblePrecision_Text_1:
 # 678 "data/scripts/tarc3_accusation_evidence.pory"
-	.string "In the dark, into a struggling man... no.\p"
+	.string "In the dark, into a struggling man...\n"
+	.string "no.\p"
 	.string "That cut was placed slowly.$"
 
 tarc3_Accusation_EventScript_Ev_InconsistentDisposal_Text_0:
 # 689 "data/scripts/tarc3_accusation_evidence.pory"
 	.string "The first knife went into the sea, and\n"
-	.string "the man who threw it killed to keep that\l"
-	.string "quiet.\p"
-	.string "The second was left lying on a bathroom\n"
-	.string "floor, six feet from Ichiro.$"
+	.string "the man who threw it killed to keep\l"
+	.string "that quiet.\p"
+	.string "The second was left lying on a\n"
+	.string "bathroom floor, six feet from Ichiro.$"
 
 tarc3_Accusation_EventScript_Ev_InconsistentDisposal_Text_1:
 # 691 "data/scripts/tarc3_accusation_evidence.pory"
-	.string "He was on the floor. There was blood on\n"
-	.string "the tiles - I saw it, I was there.$"
+	.string "He was on the floor. There was blood\n"
+	.string "on the tiles - I saw it, I was there.$"
 
 tarc3_Accusation_EventScript_Ev_InconsistentDisposal_Text_2:
 # 693 "data/scripts/tarc3_accusation_evidence.pory"
@@ -2135,21 +2145,21 @@ tarc3_Accusation_EventScript_Ev_SelfInflictedWound_Text_2:
 # 715 "data/scripts/tarc3_accusation_evidence.pory"
 	.string "Consider the others. Gozo was stabbed\n"
 	.string "relentlessly.\p"
-	.string "Tatsuo took a vicious blow to the back\n"
-	.string "of the head.$"
+	.string "Tatsuo took a vicious blow to the\n"
+	.string "back of the head.$"
 
 tarc3_Accusation_EventScript_Ev_SelfInflictedWound_Text_3:
 # 716 "data/scripts/tarc3_accusation_evidence.pory"
-	.string "And yet there is not one defensive mark\n"
-	.string "upon Ichiro's hands.$"
+	.string "And yet there is not one defensive\n"
+	.string "mark upon Ichiro's hands.$"
 
 tarc3_Accusation_EventScript_Ev_SelfInflictedWound_Text_4:
 # 717 "data/scripts/tarc3_accusation_evidence.pory"
-	.string "The knife then presents itself six feet\n"
-	.string "from him, on the bathroom floor.\p"
-	.string "The first weapon went into the sea, and\n"
-	.string "the man who threw it killed to keep that\l"
-	.string "quiet.$"
+	.string "The knife then presents itself six\n"
+	.string "feet from him, on the bathroom floor.\p"
+	.string "The first weapon went into the sea,\n"
+	.string "and the man who threw it killed to\l"
+	.string "keep that quiet.$"
 
 tarc3_Accusation_EventScript_Ev_SelfInflictedWound_Text_5:
 # 718 "data/scripts/tarc3_accusation_evidence.pory"
@@ -2177,8 +2187,9 @@ tarc3_Accusation_EventScript_Ev_HiddenPipe_Text_0:
 	.string "equipment on the foredeck, with two\l"
 	.string "lengths of pipe jutting out of the top\l"
 	.string "of it.\p"
-	.string "Every one of you has walked past it all\n"
-	.string "evening and taken it for ship's stores.$"
+	.string "Every one of you has walked past it\n"
+	.string "all evening and taken it for ship's\l"
+	.string "stores.$"
 
 tarc3_Accusation_EventScript_Ev_HiddenPipe_Text_1:
 # 740 "data/scripts/tarc3_accusation_evidence.pory"
@@ -2193,18 +2204,19 @@ tarc3_Accusation_EventScript_Ev_HiddenPipe_Text_2:
 
 tarc3_Accusation_EventScript_Ev_HiddenPipe_Text_3:
 # 744 "data/scripts/tarc3_accusation_evidence.pory"
-	.string "One of those two pipes has his blood on\n"
-	.string "it, and it is still in that sack.\p"
+	.string "One of those two pipes has his blood\n"
+	.string "on it, and it is still in that sack.\p"
 	.string "The weapon that killed him was lying a\n"
 	.string "step from where he stood.$"
 
 tarc3_Accusation_EventScript_Ev_HiddenPipe_Text_4:
 # 745 "data/scripts/tarc3_accusation_evidence.pory"
-	.string "Nothing was carried out onto that deck.\n"
-	.string "Whoever went out to be rid of the knife\l"
-	.string "took up the first heavy thing he\l"
-	.string "stumbled over - because he had not\l"
-	.string "gone out there to kill anybody.$"
+	.string "Nothing was carried out onto that\n"
+	.string "deck. Whoever went out to be rid of\l"
+	.string "the knife took up the first heavy\l"
+	.string "thing he stumbled over - because he\l"
+	.string "had not gone out there to kill\l"
+	.string "anybody.$"
 
 tarc3_Accusation_EventScript_Ev_KnivesCounted_Text_0:
 # 756 "data/scripts/tarc3_accusation_evidence.pory"

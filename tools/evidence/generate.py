@@ -9,6 +9,7 @@ import re
 from collections import defaultdict
 from dataclasses import dataclass
 from pathlib import Path
+from socket import if_indextoname
 from textwrap import dedent
 
 import yaml
@@ -218,16 +219,32 @@ def build_question_map(data) -> list[Question]:
     return res
 
 def calculate_score(evd: list[Evidence]):
-    def get_score_from_recipes(count: int):
-        if count > 1:
+
+    def get_evd_by_id(id: str):
+        return next(e for e in evd if e.id == id)
+
+    def is_deduction(evd_item: Evidence):
+        deductions_required: int = evd_item.recipes != []
+        return int(deductions_required)
+
+    def get_score_for_evidence(evd_item: Evidence):
+        num_deductions = is_deduction(evd_item)
+
+        if not num_deductions:
+            return 2
+
+        for r in sorted(set(flatten(evd_item.recipes))):
+            num_deductions += is_deduction(get_evd_by_id(r))
+
+        if num_deductions > 1:
             return 13
-        elif count > 0:
+        if num_deductions > 0:
             return 5
         else:
             return 2
 
     for i, e in enumerate(evd):
-        evd[i].score = get_score_from_recipes(len(e.recipes))
+        evd[i].score = get_score_for_evidence(e)
 
 def main() -> None:
     script_dir = Path(__file__).resolve().parent

@@ -142,29 +142,29 @@ tarc3_EventScript_OfferEnd::
 
 
 tarc3_EventScript_ToDiningRoom::
-# 93 "data/scripts/tarc3_common.pory"
+# 89 "data/scripts/tarc3_common.pory"
 	setflag FLAG_HIDE_TARC3_DECK2_RAN
-# 94 "data/scripts/tarc3_common.pory"
+# 90 "data/scripts/tarc3_common.pory"
 	clearflag FLAG_HIDE_TARC3_DINING_RAN
-# 95 "data/scripts/tarc3_common.pory"
+# 91 "data/scripts/tarc3_common.pory"
 	clearflag FLAG_HIDE_TARC3_DINING_NATSUE
-# 96 "data/scripts/tarc3_common.pory"
+# 92 "data/scripts/tarc3_common.pory"
 	clearflag FLAG_HIDE_TARC3_DINING_JOJI
-# 97 "data/scripts/tarc3_common.pory"
+# 93 "data/scripts/tarc3_common.pory"
 	clearflag FLAG_HIDE_TARC3_DINING_MARIKO
-# 98 "data/scripts/tarc3_common.pory"
+# 94 "data/scripts/tarc3_common.pory"
 	clearflag FLAG_HIDE_TARC3_DINING_KITARO
-# 99 "data/scripts/tarc3_common.pory"
+# 95 "data/scripts/tarc3_common.pory"
 	clearflag FLAG_HIDE_TARC3_DINING_AKIE
-# 100 "data/scripts/tarc3_common.pory"
+# 96 "data/scripts/tarc3_common.pory"
 	clearflag FLAG_HIDE_TARC3_DINING_ICHIRO
-# 101 "data/scripts/tarc3_common.pory"
+# 97 "data/scripts/tarc3_common.pory"
 	clearflag FLAG_HIDE_TARC3_DINING_SUZUKI
-# 102 "data/scripts/tarc3_common.pory"
+# 98 "data/scripts/tarc3_common.pory"
 	setvar VAR_TARC3_ACT2, TARC3_ACT2_ROOM_SETTLES
-# 103 "data/scripts/tarc3_common.pory"
+# 99 "data/scripts/tarc3_common.pory"
 	warp MAP_TARC3_MAIN_DECK, 41, 12
-# 104 "data/scripts/tarc3_common.pory"
+# 100 "data/scripts/tarc3_common.pory"
 	waitstate
 	end
 

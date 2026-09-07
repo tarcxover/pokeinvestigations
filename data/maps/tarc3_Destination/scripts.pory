@@ -268,7 +268,9 @@ script tarc3_Destination_EventScript_GoodEpilogue {
     delay(30)
     setspeaker(NULL)
     msgbox(format("{FONT_NARROW}Ichiro gave the court an acceptable motive. They sentenced him accordingly.", "1_latin_rse_narrow"))
+    msgbox(format("{FONT_NARROW}Natsue was never told the other one.\pShe wrote to him twice in the first year. He answered neither letter.", "1_latin_rse_narrow"))
     msgbox(format("{FONT_NARROW}Without Gozo to deny his request, Kitaro resigned that autumn. He enjoys a quiet life with Mariko.", "1_latin_rse_narrow"))
+    msgbox(format("{FONT_NARROW}Suzuki continued to assist the family for another two years, then retired to the coast.\pHe said once that he had liked working for the father a great deal more than he liked working for the children.", "1_latin_rse_narrow"))
     msgbox(format("{FONT_NARROW}Nobody else was charged. It was enough.", "1_latin_rse_narrow"))
     closemessage
     delay(40)
@@ -283,7 +285,7 @@ script tarc3_Destination_EventScript_Bad {
     setvar(VAR_0x8000, LOCALID_DEST_TAKESHI)
     call(tarc3_Destination_EventScript_EscortUp)
     setspeaker(NULL)
-    msgbox(format("{FONT_NARROW}They take Takeshi. He asks them to let him speak to Natsue first, and they do not.", "1_latin_rse_narrow"))
+    msgbox(format("{FONT_NARROW}They take Takeshi. He wasn't offered a chance to say goodbye to Natsue.", "1_latin_rse_narrow"))
     closemessage
     delay(30)
     call(tarc3_Destination_EventScript_EscortAway)

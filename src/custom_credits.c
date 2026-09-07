@@ -515,5 +515,6 @@ bool32 ScrCmd_showcredits(struct ScriptContext* ctx)
     FadeScreen(FADE_TO_BLACK, 0);
     u32 taskId = CreateTask(Task_OpenCustomCreditsFromOverworld, 0);
     SetWordTaskArg(taskId, 0, (uintptr_t)cb);
-    return FALSE;
+    ScriptContext_Stop();
+    return TRUE;
 }

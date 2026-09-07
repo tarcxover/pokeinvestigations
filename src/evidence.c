@@ -1,5 +1,6 @@
 #include "global.h"
 #include "assertf.h"
+#include "constants/characters.h"
 #include "constants/evidence.h"
 #include "constants/evidence_macros.h"
 #include "constants/item.h"
@@ -179,6 +180,14 @@ bool32 ScrCmd_getdeduction(struct ScriptContext *ctx)
 bool32 ScrCmd_getheldevidencecount(struct ScriptContext *ctx)
 {
     gSpecialVar_Result = GetHeldEvidenceCount();
+    return FALSE;
+}
+
+bool32 ScrCmd_bufferevidencecount(struct ScriptContext *ctx)
+{
+    u8 *dest = ConvertIntToDecimalStringN(gStringVar1, GetHeldEvidenceCount(), STR_CONV_MODE_LEFT_ALIGN, 3);
+    *dest++ = CHAR_SLASH;
+    ConvertIntToDecimalStringN(dest, EVD_COUNT, STR_CONV_MODE_LEFT_ALIGN, 3);
     return FALSE;
 }
 

@@ -928,7 +928,7 @@ static bool32 Usm_ListContains(enum Usm_Icons item, u8 *list, u8 count)
 
 static const enum Usm_Icons sUsmDefaultItems[] = {
     USM_ICO_DEBUG,   USM_ICO_POKEDEX, USM_ICO_PARTY, USM_ICO_BAG,
-    USM_ICO_POKENAV, USM_ICO_DEXNAV, USM_ICO_TRAINER, USM_ICO_EVIDENCE,
+    USM_ICO_POKENAV, USM_ICO_DEXNAV, USM_ICO_EVIDENCE,
     USM_ICO_SAVE, USM_ICO_REST, USM_ICO_OPTIONS, USM_ICO_RETIRE
 };
 
@@ -1022,16 +1022,17 @@ static void Usm_BuildMenuItems(void)
 static bool32 Usm_IsItemAvailable(enum Usm_Icons item)
 {
     switch (item) {
-        case USM_ICO_POKEDEX: return FlagGet(FLAG_SYS_POKEDEX_GET);
-        case USM_ICO_PARTY:   return FlagGet(FLAG_SYS_POKEMON_GET);
-        case USM_ICO_POKENAV: return FlagGet(FLAG_SYS_POKENAV_GET);
-        case USM_ICO_DEXNAV:  return DEXNAV_ENABLED;
-        case USM_ICO_RETIRE:  return Usm_IsPlayerInBattlePyramid() || GetSafariZoneFlag();
-        case USM_ICO_SAVE:    return !GetSafariZoneFlag() && !Usm_IsPlayerInBattlePyramid();
-        case USM_ICO_REST:    return Usm_IsPlayerInBattlePyramid();
-        case USM_ICO_DEBUG:   return DEBUG_OVERWORLD_MENU && DEBUG_OVERWORLD_IN_MENU;
+        case USM_ICO_POKEDEX:  return FlagGet(FLAG_SYS_POKEDEX_GET);
+        case USM_ICO_PARTY:    return FlagGet(FLAG_SYS_POKEMON_GET);
+        case USM_ICO_POKENAV:  return FlagGet(FLAG_SYS_POKENAV_GET);
+        case USM_ICO_DEXNAV:   return DEXNAV_ENABLED;
+        case USM_ICO_RETIRE:   return Usm_IsPlayerInBattlePyramid() || GetSafariZoneFlag();
+        case USM_ICO_SAVE:     return !GetSafariZoneFlag() && !Usm_IsPlayerInBattlePyramid();
+        case USM_ICO_REST:     return Usm_IsPlayerInBattlePyramid();
+        case USM_ICO_DEBUG:    return DEBUG_OVERWORLD_MENU && DEBUG_OVERWORLD_IN_MENU;
         case USM_ICO_EVIDENCE: return FlagGet(FLAG_TARC3_EVIDENCE_MENU);
-        default:              return TRUE;
+        case USM_ICO_TRAINER:  return FALSE;
+        default:               return TRUE;
     }
 }
 

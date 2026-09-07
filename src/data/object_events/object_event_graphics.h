@@ -494,6 +494,9 @@ const u16 gObjectEventPal_TatsuoDead[] = INCGFX_U16("graphics/object_events/pics
 const u32 gObjectEventPic_IchiroInjured[] = INCGFX_U32("graphics/object_events/pics/people/ichiro_injured.png", ".4bpp", "-mwidth 2 -mheight 4");
 const u16 gObjectEventPal_IchiroInjured[] = INCGFX_U16("graphics/object_events/pics/people/ichiro_injured.png", ".gbapal");
 
+const u32 gObjectEventPic_PoliceofficerM[] = INCGFX_U32("graphics/object_events/pics/people/policeofficer_m.png", ".4bpp", "-mwidth 2 -mheight 4");
+const u16 gObjectEventPal_PoliceofficerM[] = INCGFX_U16("graphics/object_events/pics/people/policeofficer_m.png", ".gbapal");
+
 #if IS_FRLG
 
 const u16 gObjectEventPic_RedNormal[] = INCGFX_U16("graphics/object_events/pics/people/red/red_normal.png", ".4bpp", "-mwidth 2 -mheight 4");

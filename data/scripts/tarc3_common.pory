@@ -63,12 +63,19 @@ script tarc3_EventScript_FollowerStoutland {
 
 script tarc3_EventScript_FollowerMagnezoneFlash {
     goto_if_set(FLAG_TARC3_MAGNEZONE_FLASH, tarc3_EventScript_FollowerHookEnd)
+    call(tarc3_EventScript_MagnezoneFlash)
+    goto(tarc3_EventScript_FollowerHandled)
+}
+
+// the effect on its own. the follower route needs no sprite, since Magnezone is already on screen.
+
+script tarc3_EventScript_MagnezoneFlash {
     msgbox(format("Magnezone lit up the room!"))
     closemessage
     animateflash(4)
     setflashlevel(4)
     setflag(FLAG_TARC3_MAGNEZONE_FLASH)
-    goto(tarc3_EventScript_FollowerHandled)
+    return
 }
 
 script tarc3_EventScript_FollowerHandled {

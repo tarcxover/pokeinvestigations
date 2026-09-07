@@ -3185,7 +3185,7 @@ tarc3_Accusation_EventScript_PerfectAnswer_Text_15:
 
 tarc3_Accusation_EventScript_PerfectAnswer_Text_16:
 # 699 "data/scripts/tarc3_accusation.pory"
-	.string "I was counting what I owed. $500,000\n"
+	.string "I was counting what I owed. ¥500,000\n"
 	.string "per year.$"
 
 tarc3_Accusation_EventScript_PerfectAnswer_Text_17:

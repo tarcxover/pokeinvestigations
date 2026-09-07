@@ -734,82 +734,80 @@ tarc3_Recon_EventScript_Closing::
 
 tarc3_Recon_EventScript_ClosingBest::
 # 405 "data/scripts/tarc3_gozo_reconstruction.pory"
-	fadeoutbgm 4
-# 406 "data/scripts/tarc3_gozo_reconstruction.pory"
 	delay 60
+# 406 "data/scripts/tarc3_gozo_reconstruction.pory"
+	setspeaker NULL
 # 407 "data/scripts/tarc3_gozo_reconstruction.pory"
-	setspeaker NULL
-# 408 "data/scripts/tarc3_gozo_reconstruction.pory"
 	msgbox tarc3_Recon_EventScript_ClosingBest_Text_0
+# 408 "data/scripts/tarc3_gozo_reconstruction.pory"
+	closemessage
 # 409 "data/scripts/tarc3_gozo_reconstruction.pory"
-	closemessage
-# 410 "data/scripts/tarc3_gozo_reconstruction.pory"
 	delay 40
-# 411 "data/scripts/tarc3_gozo_reconstruction.pory"
+# 410 "data/scripts/tarc3_gozo_reconstruction.pory"
 	setspeaker tarc3_Recon_EventScript_Q3Right_Text_3
-# 412 "data/scripts/tarc3_gozo_reconstruction.pory"
+# 411 "data/scripts/tarc3_gozo_reconstruction.pory"
 	msgbox tarc3_Recon_EventScript_ClosingBest_Text_1
-# 413 "data/scripts/tarc3_gozo_reconstruction.pory"
+# 412 "data/scripts/tarc3_gozo_reconstruction.pory"
 	msgbox tarc3_Recon_EventScript_ClosingBest_Text_2
-# 414 "data/scripts/tarc3_gozo_reconstruction.pory"
+# 413 "data/scripts/tarc3_gozo_reconstruction.pory"
 	setspeaker tarc3_Recon_EventScript_Q1WrongWindow_Text_0
-# 415 "data/scripts/tarc3_gozo_reconstruction.pory"
+# 414 "data/scripts/tarc3_gozo_reconstruction.pory"
 	msgbox tarc3_Recon_EventScript_ClosingBest_Text_3
-# 416 "data/scripts/tarc3_gozo_reconstruction.pory"
+# 415 "data/scripts/tarc3_gozo_reconstruction.pory"
 	setspeaker NULL
-# 417 "data/scripts/tarc3_gozo_reconstruction.pory"
+# 416 "data/scripts/tarc3_gozo_reconstruction.pory"
 	closemessage
-# 418 "data/scripts/tarc3_gozo_reconstruction.pory"
+# 417 "data/scripts/tarc3_gozo_reconstruction.pory"
 	delay 20
-# 419 "data/scripts/tarc3_gozo_reconstruction.pory"
+# 418 "data/scripts/tarc3_gozo_reconstruction.pory"
 	setflag FLAG_TARC3_GOZO_RECONSTRUCTED
 	return
 
 
 tarc3_Recon_EventScript_ClosingFair::
-# 424 "data/scripts/tarc3_gozo_reconstruction.pory"
+# 423 "data/scripts/tarc3_gozo_reconstruction.pory"
 	setspeaker tarc3_Recon_EventScript_Q2Right_Text_3
-# 425 "data/scripts/tarc3_gozo_reconstruction.pory"
+# 424 "data/scripts/tarc3_gozo_reconstruction.pory"
 	msgbox tarc3_Recon_EventScript_ClosingFair_Text_0
-# 426 "data/scripts/tarc3_gozo_reconstruction.pory"
+# 425 "data/scripts/tarc3_gozo_reconstruction.pory"
 	setspeaker tarc3_Recon_EventScript_Q1_Text_1
-# 427 "data/scripts/tarc3_gozo_reconstruction.pory"
+# 426 "data/scripts/tarc3_gozo_reconstruction.pory"
 	msgbox tarc3_Recon_EventScript_ClosingFair_Text_1
-# 428 "data/scripts/tarc3_gozo_reconstruction.pory"
+# 427 "data/scripts/tarc3_gozo_reconstruction.pory"
 	setspeaker tarc3_Recon_EventScript_Q1WrongWindow_Text_0
-# 429 "data/scripts/tarc3_gozo_reconstruction.pory"
+# 428 "data/scripts/tarc3_gozo_reconstruction.pory"
 	msgbox tarc3_Recon_EventScript_ClosingFair_Text_2
-# 430 "data/scripts/tarc3_gozo_reconstruction.pory"
+# 429 "data/scripts/tarc3_gozo_reconstruction.pory"
 	setspeaker NULL
-# 431 "data/scripts/tarc3_gozo_reconstruction.pory"
+# 430 "data/scripts/tarc3_gozo_reconstruction.pory"
 	closemessage
-# 432 "data/scripts/tarc3_gozo_reconstruction.pory"
+# 431 "data/scripts/tarc3_gozo_reconstruction.pory"
 	delay 20
-# 433 "data/scripts/tarc3_gozo_reconstruction.pory"
+# 432 "data/scripts/tarc3_gozo_reconstruction.pory"
 	setflag FLAG_TARC3_GOZO_RECONSTRUCTED
 	return
 
 
 tarc3_Recon_EventScript_ClosingPoor::
-# 438 "data/scripts/tarc3_gozo_reconstruction.pory"
+# 437 "data/scripts/tarc3_gozo_reconstruction.pory"
 	setspeaker tarc3_Recon_EventScript_Q1_Text_1
-# 439 "data/scripts/tarc3_gozo_reconstruction.pory"
+# 438 "data/scripts/tarc3_gozo_reconstruction.pory"
 	msgbox tarc3_Recon_EventScript_ClosingPoor_Text_0
-# 440 "data/scripts/tarc3_gozo_reconstruction.pory"
+# 439 "data/scripts/tarc3_gozo_reconstruction.pory"
 	setspeaker tarc3_Recon_EventScript_ClosingPoor_Text_1
-# 441 "data/scripts/tarc3_gozo_reconstruction.pory"
+# 440 "data/scripts/tarc3_gozo_reconstruction.pory"
 	msgbox tarc3_Recon_EventScript_ClosingPoor_Text_2
-# 442 "data/scripts/tarc3_gozo_reconstruction.pory"
+# 441 "data/scripts/tarc3_gozo_reconstruction.pory"
 	setspeaker tarc3_Recon_EventScript_Q1WrongWindow_Text_0
-# 443 "data/scripts/tarc3_gozo_reconstruction.pory"
+# 442 "data/scripts/tarc3_gozo_reconstruction.pory"
 	msgbox tarc3_Recon_EventScript_ClosingPoor_Text_3
-# 444 "data/scripts/tarc3_gozo_reconstruction.pory"
+# 443 "data/scripts/tarc3_gozo_reconstruction.pory"
 	setspeaker NULL
-# 445 "data/scripts/tarc3_gozo_reconstruction.pory"
+# 444 "data/scripts/tarc3_gozo_reconstruction.pory"
 	closemessage
-# 446 "data/scripts/tarc3_gozo_reconstruction.pory"
+# 445 "data/scripts/tarc3_gozo_reconstruction.pory"
 	delay 20
-# 447 "data/scripts/tarc3_gozo_reconstruction.pory"
+# 446 "data/scripts/tarc3_gozo_reconstruction.pory"
 	setflag FLAG_TARC3_GOZO_RECONSTRUCTED
 	return
 
@@ -858,8 +856,8 @@ tarc3_Recon_EventScript_Q1_Text_1:
 
 tarc3_Recon_EventScript_Q1_Text_2:
 # 23 "data/scripts/tarc3_gozo_reconstruction.pory"
-	.string "The cabin was locked. Suzuki opened it\n"
-	.string "in front of all of us.$"
+	.string "The cabin was locked. Suzuki opened\n"
+	.string "it in front of all of us.$"
 
 tarc3_Recon_EventScript_Q1Ask_Text_0:
 # 34 "data/scripts/tarc3_gozo_reconstruction.pory"
@@ -885,7 +883,8 @@ tarc3_Recon_EventScript_Q1WrongWindow_Text_0:
 tarc3_Recon_EventScript_Q1WrongWindow_Text_1:
 # 53 "data/scripts/tarc3_gozo_reconstruction.pory"
 	.string "You put your hands on that window\n"
-	.string "yourself. It has not opened in years.$"
+	.string "yourself. It has not opened in\l"
+	.string "years.$"
 
 tarc3_Recon_EventScript_Q1WrongKey_Text_0:
 # 61 "data/scripts/tarc3_gozo_reconstruction.pory"
@@ -895,19 +894,20 @@ tarc3_Recon_EventScript_Q1WrongKey_Text_0:
 
 tarc3_Recon_EventScript_Q1WrongKey_Text_1:
 # 62 "data/scripts/tarc3_gozo_reconstruction.pory"
-	.string "If you intend to accuse the butler, do\n"
-	.string "it in a sentence and not in a shrug.$"
+	.string "If you intend to accuse the butler,\n"
+	.string "do it in a sentence and not in a\l"
+	.string "shrug.$"
 
 tarc3_Recon_EventScript_Q1Right_Text_0:
 # 80 "data/scripts/tarc3_gozo_reconstruction.pory"
-	.string "Nobody. One door, and one window that\n"
-	.string "has not opened in years.$"
+	.string "Nobody. One door, and one window\n"
+	.string "that has not opened in years.$"
 
 tarc3_Recon_EventScript_Q1Right_Text_1:
 # 81 "data/scripts/tarc3_gozo_reconstruction.pory"
-	.string "The door takes a key from the corridor\n"
-	.string "and a latch from the inside. When\l"
-	.string "Suzuki reached it, it was shut.$"
+	.string "The door takes a key from the\n"
+	.string "corridor and a latch from the inside.\l"
+	.string "When Suzuki reached it, it was shut.$"
 
 tarc3_Recon_EventScript_Q1Right_Text_2:
 # 88 "data/scripts/tarc3_gozo_reconstruction.pory"
@@ -920,9 +920,9 @@ tarc3_Recon_EventScript_Q1Right_Text_3:
 
 tarc3_Recon_EventScript_Q1Give_Text_0:
 # 98 "data/scripts/tarc3_gozo_reconstruction.pory"
-	.string "Nobody came through that window and\n"
-	.string "nobody borrowed that key. The room\l"
-	.string "was shut.$"
+	.string "Nobody came through that window\n"
+	.string "and nobody borrowed that key. The\l"
+	.string "room was shut.$"
 
 tarc3_Recon_EventScript_Q1Give_Text_1:
 # 99 "data/scripts/tarc3_gozo_reconstruction.pory"
@@ -937,8 +937,8 @@ tarc3_Recon_EventScript_Q2_Text_0:
 
 tarc3_Recon_EventScript_Q2_Text_1:
 # 113 "data/scripts/tarc3_gozo_reconstruction.pory"
-	.string "No. And this room can prove it cannot\n"
-	.string "have been that.$"
+	.string "No. And this room can prove it\n"
+	.string "cannot have been that.$"
 
 tarc3_Recon_EventScript_Q2Ask_Text_0:
 # 122 "data/scripts/tarc3_gozo_reconstruction.pory"
@@ -959,9 +959,9 @@ tarc3_Recon_EventScript_Q2Ask_Text_3:
 
 tarc3_Recon_EventScript_Q2WrongMotive_Text_0:
 # 141 "data/scripts/tarc3_gozo_reconstruction.pory"
-	.string "You met my father this afternoon. Do\n"
-	.string "not tell this family what he did and\l"
-	.string "did not have reason to do.$"
+	.string "You met my father this afternoon.\n"
+	.string "Do not tell this family what he did\l"
+	.string "and did not have reason to do.$"
 
 tarc3_Recon_EventScript_Q2WrongMotive_Text_1:
 # 143 "data/scripts/tarc3_gozo_reconstruction.pory"
@@ -977,8 +977,9 @@ tarc3_Recon_EventScript_Q2WrongFrail_Text_0:
 
 tarc3_Recon_EventScript_Q2WrongFrail_Text_1:
 # 152 "data/scripts/tarc3_gozo_reconstruction.pory"
-	.string "You are guessing at what he could not\n"
-	.string "do. Argue from what is in this room.$"
+	.string "You are guessing at what he could\n"
+	.string "not do. Argue from what is in this\l"
+	.string "room.$"
 
 tarc3_Recon_EventScript_Q2Right_Text_0:
 # 170 "data/scripts/tarc3_gozo_reconstruction.pory"
@@ -994,9 +995,9 @@ tarc3_Recon_EventScript_Q2Right_Text_1:
 
 tarc3_Recon_EventScript_Q2Right_Text_2:
 # 172 "data/scripts/tarc3_gozo_reconstruction.pory"
-	.string "And a dead man does not put the blade\n"
-	.string "somewhere else and then lock the door\l"
-	.string "on himself.$"
+	.string "And a dead man does not put the\n"
+	.string "blade somewhere else and then lock\l"
+	.string "the door on himself.$"
 
 tarc3_Recon_EventScript_Q2Right_Text_3:
 # 179 "data/scripts/tarc3_gozo_reconstruction.pory"
@@ -1004,8 +1005,9 @@ tarc3_Recon_EventScript_Q2Right_Text_3:
 
 tarc3_Recon_EventScript_Q2Right_Text_4:
 # 180 "data/scripts/tarc3_gozo_reconstruction.pory"
-	.string "That is the question I asked earlier,\n"
-	.string "and not one of you would look at me.$"
+	.string "That is the question I asked\n"
+	.string "earlier, and not one of you would\l"
+	.string "look at me.$"
 
 tarc3_Recon_EventScript_Q2Right_Text_5:
 # 182 "data/scripts/tarc3_gozo_reconstruction.pory"
@@ -1018,9 +1020,9 @@ tarc3_Recon_EventScript_Q2Give_Text_0:
 
 tarc3_Recon_EventScript_Q2Give_Text_1:
 # 192 "data/scripts/tarc3_gozo_reconstruction.pory"
-	.string "A man may do that to himself. Not one\n"
-	.string "of them has ever tidied the blade away\l"
-	.string "afterwards.$"
+	.string "A man may do that to himself. Not\n"
+	.string "one of them has ever tidied the\l"
+	.string "blade away afterwards.$"
 
 tarc3_Recon_EventScript_Q3_Text_0:
 # 204 "data/scripts/tarc3_gozo_reconstruction.pory"
@@ -1035,8 +1037,8 @@ tarc3_Recon_EventScript_Q3_Text_1:
 
 tarc3_Recon_EventScript_Q3Ask_Text_0:
 # 215 "data/scripts/tarc3_gozo_reconstruction.pory"
-	.string "{FONT_NARROW}Where was Gozo standing when the first blow\n"
-	.string "landed?$"
+	.string "{FONT_NARROW}Where was Gozo standing when the first\n"
+	.string "blow landed?$"
 
 tarc3_Recon_EventScript_Q3Ask_Text_1:
 # 217 "data/scripts/tarc3_gozo_reconstruction.pory"
@@ -1053,13 +1055,13 @@ tarc3_Recon_EventScript_Q3Ask_Text_3:
 tarc3_Recon_EventScript_Q3WrongWall_Text_0:
 # 234 "data/scripts/tarc3_gozo_reconstruction.pory"
 	.string "Then his attacker was inside a room\n"
-	.string "that was locked from within, and left\l"
-	.string "it without unlocking anything.$"
+	.string "that was locked from within, and\l"
+	.string "left it without unlocking anything.$"
 
 tarc3_Recon_EventScript_Q3WrongWall_Text_1:
 # 235 "data/scripts/tarc3_gozo_reconstruction.pory"
-	.string "You have just made this worse. Look at\n"
-	.string "the frame of the door.$"
+	.string "You have just made this worse. Look\n"
+	.string "at the frame of the door.$"
 
 tarc3_Recon_EventScript_Q3WrongCorridor_Text_0:
 # 243 "data/scripts/tarc3_gozo_reconstruction.pory"
@@ -1099,14 +1101,14 @@ tarc3_Recon_EventScript_Q3Right_Text_4:
 
 tarc3_Recon_EventScript_Q3Give_Text_0:
 # 281 "data/scripts/tarc3_gozo_reconstruction.pory"
-	.string "In the doorway, you fool. Look at the\n"
-	.string "frame.$"
+	.string "In the doorway, you fool. Look at\n"
+	.string "the frame.$"
 
 tarc3_Recon_EventScript_Q3Give_Text_1:
 # 282 "data/scripts/tarc3_gozo_reconstruction.pory"
 	.string "Blood at chest height, and the door\n"
-	.string "found shut. The wound came before the\l"
-	.string "lock.$"
+	.string "found shut. The wound came before\l"
+	.string "the lock.$"
 
 tarc3_Recon_EventScript_Q4_Text_0:
 # 293 "data/scripts/tarc3_gozo_reconstruction.pory"
@@ -1115,7 +1117,8 @@ tarc3_Recon_EventScript_Q4_Text_0:
 tarc3_Recon_EventScript_Q4_Text_1:
 # 294 "data/scripts/tarc3_gozo_reconstruction.pory"
 	.string "Cut in the doorway. Found behind a\n"
-	.string "locked door. But who locked the door?$"
+	.string "locked door. But who locked the\l"
+	.string "door?$"
 
 tarc3_Recon_EventScript_Q4Ask_Text_0:
 # 303 "data/scripts/tarc3_gozo_reconstruction.pory"
@@ -1135,10 +1138,10 @@ tarc3_Recon_EventScript_Q4Ask_Text_3:
 
 tarc3_Recon_EventScript_Q4WrongKey_Text_0:
 # 322 "data/scripts/tarc3_gozo_reconstruction.pory"
-	.string "We have been over the key. It did not\n"
-	.string "leave Suzuki's pocket, and you have\l"
-	.string "offered this room no reason to think\l"
-	.string "it did.$"
+	.string "We have been over the key. It did\n"
+	.string "not leave Suzuki's pocket, and you\l"
+	.string "have offered this room no reason to\l"
+	.string "think it did.$"
 
 tarc3_Recon_EventScript_Q4WrongKey_Text_1:
 # 323 "data/scripts/tarc3_gozo_reconstruction.pory"
@@ -1148,7 +1151,8 @@ tarc3_Recon_EventScript_Q4WrongKey_Text_1:
 tarc3_Recon_EventScript_Q4WrongOpen_Text_0:
 # 331 "data/scripts/tarc3_gozo_reconstruction.pory"
 	.string "Forgive me, but it was locked. Gozo\n"
-	.string "conducts all of his affairs in privacy.$"
+	.string "conducts all of his affairs in\l"
+	.string "privacy.$"
 
 tarc3_Recon_EventScript_Q4WrongOpen_Text_1:
 # 332 "data/scripts/tarc3_gozo_reconstruction.pory"
@@ -1171,9 +1175,9 @@ tarc3_Recon_EventScript_Q4Right_Text_0:
 tarc3_Recon_EventScript_Q4Right_Text_1:
 # 359 "data/scripts/tarc3_gozo_reconstruction.pory"
 	.string "He was cut in his own doorway by\n"
-	.string "someone he had opened the door to. He\l"
-	.string "got that door shut, and he turned the\l"
-	.string "latch against him.$"
+	.string "someone he had opened the door to.\l"
+	.string "He got that door shut, and he turned\l"
+	.string "the latch against him.$"
 
 tarc3_Recon_EventScript_Q4Trail_Text_0:
 # 370 "data/scripts/tarc3_gozo_reconstruction.pory"
@@ -1190,31 +1194,34 @@ tarc3_Recon_EventScript_Q4Trail_Text_1:
 
 tarc3_Recon_EventScript_Q4Give_Text_0:
 # 380 "data/scripts/tarc3_gozo_reconstruction.pory"
-	.string "Gozo turned it. Obviously Gozo turned\n"
-	.string "it.$"
+	.string "Gozo turned it. Obviously Gozo\n"
+	.string "turned it.$"
 
 tarc3_Recon_EventScript_Q4Give_Text_1:
 # 381 "data/scripts/tarc3_gozo_reconstruction.pory"
-	.string "He was cut in the doorway, he shut the\n"
-	.string "door on the man who cut him, and he\l"
-	.string "locked it. The sealed room is the\l"
+	.string "He was cut in the doorway, he shut\n"
+	.string "the door on the man who cut him, and\l"
+	.string "he locked it. The sealed room is the\l"
 	.string "victim's own work.$"
 
 tarc3_Recon_EventScript_Closing_Text_0:
 # 392 "data/scripts/tarc3_gozo_reconstruction.pory"
-	.string "So. Gozo Hatamoto opened that door to\n"
-	.string "somebody he was willing to open it to.$"
+	.string "So. Gozo Hatamoto opened that door\n"
+	.string "to somebody he was willing to open\l"
+	.string "it to.$"
 
 tarc3_Recon_EventScript_Closing_Text_1:
 # 393 "data/scripts/tarc3_gozo_reconstruction.pory"
 	.string "He was struck in the doorway, more\n"
 	.string "than once, and left standing. His\l"
-	.string "attacker walked away with the blade.$"
+	.string "attacker walked away with the\l"
+	.string "blade.$"
 
 tarc3_Recon_EventScript_Closing_Text_2:
 # 394 "data/scripts/tarc3_gozo_reconstruction.pory"
-	.string "Gozo shut the door and locked it. Not\n"
-	.string "to keep us out. To keep that man out.$"
+	.string "Gozo shut the door and locked it.\n"
+	.string "Not to keep us out. To keep that man\l"
+	.string "out.$"
 
 tarc3_Recon_EventScript_Closing_Text_3:
 # 395 "data/scripts/tarc3_gozo_reconstruction.pory"
@@ -1222,56 +1229,58 @@ tarc3_Recon_EventScript_Closing_Text_3:
 	.string "kill him. He sealed it trying to live.$"
 
 tarc3_Recon_EventScript_ClosingBest_Text_0:
-# 408 "data/scripts/tarc3_gozo_reconstruction.pory"
-	.string "Nobody in the corridor says anything\n"
-	.string "at all.$"
+# 407 "data/scripts/tarc3_gozo_reconstruction.pory"
+	.string "Nobody in the corridor says\n"
+	.string "anything at all.$"
 
 tarc3_Recon_EventScript_ClosingBest_Text_1:
-# 412 "data/scripts/tarc3_gozo_reconstruction.pory"
-	.string "...He was thirty-one years my employer,\n"
-	.string "and I never once heard that man ask\l"
-	.string "anybody for help.$"
+# 411 "data/scripts/tarc3_gozo_reconstruction.pory"
+	.string "...He was thirty-one years my\n"
+	.string "employer, and I never once heard\l"
+	.string "that man ask anybody for help.$"
 
 tarc3_Recon_EventScript_ClosingBest_Text_2:
-# 413 "data/scripts/tarc3_gozo_reconstruction.pory"
-	.string "He would have shut that door. He would\n"
-	.string "have shut it exactly like that.$"
+# 412 "data/scripts/tarc3_gozo_reconstruction.pory"
+	.string "He would have shut that door. He\n"
+	.string "would have shut it exactly like\l"
+	.string "that.$"
 
 tarc3_Recon_EventScript_ClosingBest_Text_3:
-# 415 "data/scripts/tarc3_gozo_reconstruction.pory"
+# 414 "data/scripts/tarc3_gozo_reconstruction.pory"
 	.string "Adequate, {PLAYER} Edgeworth.$"
 
 tarc3_Recon_EventScript_ClosingFair_Text_0:
-# 425 "data/scripts/tarc3_gozo_reconstruction.pory"
+# 424 "data/scripts/tarc3_gozo_reconstruction.pory"
 	.string "...It holds. I do not enjoy it, but it\n"
 	.string "holds.$"
 
 tarc3_Recon_EventScript_ClosingFair_Text_1:
-# 427 "data/scripts/tarc3_gozo_reconstruction.pory"
+# 426 "data/scripts/tarc3_gozo_reconstruction.pory"
 	.string "It holds and it tells us nothing. You\n"
 	.string "have described a door to us.$"
 
 tarc3_Recon_EventScript_ClosingFair_Text_2:
-# 429 "data/scripts/tarc3_gozo_reconstruction.pory"
+# 428 "data/scripts/tarc3_gozo_reconstruction.pory"
 	.string "He has described a murder to you,\n"
-	.string "while some of you had characterised it\l"
-	.string "as suicide moments earlier.$"
+	.string "while some of you had characterised\l"
+	.string "it as suicide moments earlier.$"
 
 tarc3_Recon_EventScript_ClosingPoor_Text_0:
-# 439 "data/scripts/tarc3_gozo_reconstruction.pory"
+# 438 "data/scripts/tarc3_gozo_reconstruction.pory"
 	.string "Most of that came out of her mouth\n"
 	.string "and not yours.$"
 
 tarc3_Recon_EventScript_ClosingPoor_Text_1:
-# 440 "data/scripts/tarc3_gozo_reconstruction.pory"
+# 439 "data/scripts/tarc3_gozo_reconstruction.pory"
 	.string "Tatsuo$"
 
 tarc3_Recon_EventScript_ClosingPoor_Text_2:
-# 441 "data/scripts/tarc3_gozo_reconstruction.pory"
+# 440 "data/scripts/tarc3_gozo_reconstruction.pory"
 	.string "It rather did, didn't it.$"
 
 tarc3_Recon_EventScript_ClosingPoor_Text_3:
-# 443 "data/scripts/tarc3_gozo_reconstruction.pory"
-	.string "The conclusion is sound and it is his.\n"
-	.string "Whether he arrived at it with any\l"
-	.string "grace is a matter between him and me.$"
+# 442 "data/scripts/tarc3_gozo_reconstruction.pory"
+	.string "The conclusion is sound and it is\n"
+	.string "his. Whether he arrived at it with\l"
+	.string "any grace is a matter between him\l"
+	.string "and me.$"

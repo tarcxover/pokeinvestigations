@@ -1,11 +1,11 @@
 {
   "data/tilesets/secondary/tarc3_cabins/porytiles_bin/metatile_attributes.bin": "f1084a10edd9af76c3e8ec16f8ac76f8",
-  "data/tilesets/secondary/tarc3_cabins/porytiles_bin/metatiles.bin": "0aca5fa2134a76dafbe35c0d656ee571",
+  "data/tilesets/secondary/tarc3_cabins/porytiles_bin/metatiles.bin": "7fdbb46e0556b4d4c211b47984f9c325",
   "data/tilesets/secondary/tarc3_cabins/porytiles_bin/palettes/00.pal": "9e41b747b057cf3dd8c1e5d15ad10529",
   "data/tilesets/secondary/tarc3_cabins/porytiles_bin/palettes/01.pal": "a7f53c4f81697598396f8bd8bb591503",
   "data/tilesets/secondary/tarc3_cabins/porytiles_bin/palettes/02.pal": "64f56c3917cea57811a6ecbe8e1de1e9",
   "data/tilesets/secondary/tarc3_cabins/porytiles_bin/palettes/03.pal": "eb9efa0d6ea5e2ac6fd68b1a09864728",
-  "data/tilesets/secondary/tarc3_cabins/porytiles_bin/palettes/04.pal": "d30641f57326e9dd368a65c964c87488",
+  "data/tilesets/secondary/tarc3_cabins/porytiles_bin/palettes/04.pal": "db965a43fd69e5a99ef0c57e0e7f50ba",
   "data/tilesets/secondary/tarc3_cabins/porytiles_bin/palettes/05.pal": "db52f4c6e29b7e19a2d69eef7d67f752",
   "data/tilesets/secondary/tarc3_cabins/porytiles_bin/palettes/06.pal": "a495db75f26ca23e230038793d04ce2c",
   "data/tilesets/secondary/tarc3_cabins/porytiles_bin/palettes/07.pal": "9cf8786596ef514604e7927445c1afd8",
@@ -17,9 +17,9 @@
   "data/tilesets/secondary/tarc3_cabins/porytiles_bin/palettes/13.pal": "59f83737350efeb148a299bdbf87e97f",
   "data/tilesets/secondary/tarc3_cabins/porytiles_bin/palettes/14.pal": "59f83737350efeb148a299bdbf87e97f",
   "data/tilesets/secondary/tarc3_cabins/porytiles_bin/palettes/15.pal": "59f83737350efeb148a299bdbf87e97f",
-  "data/tilesets/secondary/tarc3_cabins/porytiles_bin/tiles.png": "03c4ebc05fb9a9349275be433583e4a7",
+  "data/tilesets/secondary/tarc3_cabins/porytiles_bin/tiles.png": "8e0621908ca063525ad208fb6e77a4ba",
   "data/tilesets/secondary/tarc3_cabins/porytiles_src/attributes.csv": "df3fb67252f25094dcc2fcf278e51135",
-  "data/tilesets/secondary/tarc3_cabins/porytiles_src/bottom.png": "1973801157a42db563e488e6279770c7",
-  "data/tilesets/secondary/tarc3_cabins/porytiles_src/middle.png": "096f5300b085af113e68d9180e870351",
+  "data/tilesets/secondary/tarc3_cabins/porytiles_src/bottom.png": "f41156050f47adb29321a22e7e08e8fa",
+  "data/tilesets/secondary/tarc3_cabins/porytiles_src/middle.png": "8fefc3f7e1bd97ab93f8722e8b1f9d1e",
   "data/tilesets/secondary/tarc3_cabins/porytiles_src/top.png": "78c8311ddde1fc45b89eda9d3af7b774"
 }

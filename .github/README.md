@@ -80,6 +80,10 @@ Glionox (Items pack)
 
 Specker (universal voicegroup)
 
+Ipatix (HQ Mixer)
+
+Hedara (HQ Mixer Implementation)
+
 ### Graphics Inspiration
 
 PMD Explorers of Skies

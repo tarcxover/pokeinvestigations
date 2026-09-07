@@ -176,6 +176,7 @@ script tarc3_GozoRoom_EventScript_TheBody {
     setspeaker(NULL)
     closemessage
     delay(30)
+    call(tarc3_GozoRoom_EventScript_OfferMagnezoneSearch)
     setvar(VAR_TARC3_ACT1, TARC3_ACT1_INVESTIGATE_1)
     releaseall
     end
@@ -454,6 +455,28 @@ script tarc3_GozoRoom_EventScript_SearchEnd {
 
 // pokemon evidence interaction. see tarc3_EventScript_FollowerMagnezone for context
 
+script tarc3_GozoRoom_EventScript_OfferMagnezoneSearch {
+    goto_if_set(FLAG_TARC3_GOZO_FOUND_WEAPON, tarc3_EventScript_OfferEnd)
+    setvar(VAR_0x8004, SPECIES_MAGNEZONE)
+    specialvar(VAR_RESULT, DoesPlayerPartyContainSpecies)
+    goto_if_eq(VAR_RESULT, FALSE, tarc3_EventScript_OfferEnd)
+    msgbox(format("{FONT_NARROW}The blade did not walk out of a locked room.\pMagnezone would draw steel out of anywhere in here.", "1_latin_rse_narrow"))
+    msgbox(format("Have Magnezone sweep the room for the knife?"), MSGBOX_YESNO)
+    goto_if_eq(VAR_RESULT, NO, tarc3_EventScript_OfferEnd)
+    goto(tarc3_GozoRoom_EventScript_FollowerMagnezoneSearch)
+}
+
+script tarc3_GozoRoom_EventScript_OfferStoutlandCrumbs {
+    goto_if_set(FLAG_TARC3_GOZO_FOUND_RESIDUE, tarc3_EventScript_OfferEnd)
+    setvar(VAR_0x8004, SPECIES_STOUTLAND)
+    specialvar(VAR_RESULT, DoesPlayerPartyContainSpecies)
+    goto_if_eq(VAR_RESULT, FALSE, tarc3_EventScript_OfferEnd)
+    msgbox(format("{FONT_NARROW}Bread tells you nothing by looking at it.\pStoutland's nose is another matter.", "1_latin_rse_narrow"))
+    msgbox(format("Have Stoutland read the crumbs?"), MSGBOX_YESNO)
+    goto_if_eq(VAR_RESULT, NO, tarc3_EventScript_OfferEnd)
+    goto(tarc3_GozoRoom_EventScript_FollowerStoutlandResidue)
+}
+
 script tarc3_GozoRoom_EventScript_FollowerMagnezoneSearch {
     goto_if_set(FLAG_TARC3_GOZO_FOUND_WEAPON, tarc3_EventScript_FollowerHookEnd)
     msgbox(format("Magnezone used its magnets to try and find the knife!"))
@@ -489,8 +512,11 @@ script tarc3_GozoRoom_EventScript_FollowerStoutlandSniff {
 // once the crumbs are documented, Stoutland can tell what is on them
 
 script tarc3_GozoRoom_EventScript_FollowerStoutlandResidue {
-    applymovement(OBJ_EVENT_ID_FOLLOWER, moves(walk_in_place_fast_down, walk_in_place_fast_down))
-    waitmovement(0)
+    getlivemonspecies(VAR_0x8008)
+    if (var(VAR_0x8008) == SPECIES_STOUTLAND) {
+        applymovement(OBJ_EVENT_ID_FOLLOWER, moves(walk_in_place_fast_down, walk_in_place_fast_down))
+        waitmovement(0)
+    }
     delay(20)
     msgbox(format("Stoutland works its nose over the breadcrumbs and sneezes."))
     closemessage
@@ -511,12 +537,14 @@ script tarc3_GozoRoom_EventScript_EvdCrumbs {
     giveevidence(EVD_BREADCRUMBS)
     closemessage
     setflag(FLAG_TARC3_GOZO_FOUND_CRUMBS)
+    call(tarc3_GozoRoom_EventScript_OfferStoutlandCrumbs)
     releaseall
     end
 }
 
 script tarc3_GozoRoom_EventScript_EvdCrumbsSeen {
     msgbox(format("Breadcrumbs trodden into the blood, a step outside the door."))
+    call(tarc3_GozoRoom_EventScript_OfferStoutlandCrumbs)
     releaseall
     end
 }

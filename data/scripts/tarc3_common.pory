@@ -81,6 +81,10 @@ script tarc3_EventScript_FollowerHookEnd {
     return
 }
 
+script tarc3_EventScript_OfferEnd {
+    return
+}
+
 script tarc3_EventScript_ToDiningRoom {
     setflag(FLAG_HIDE_TARC3_DECK2_RAN)
     clearflag(FLAG_HIDE_TARC3_DINING_RAN)

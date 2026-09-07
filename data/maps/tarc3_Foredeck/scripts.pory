@@ -615,6 +615,7 @@ script tarc3_Foredeck_EventScript_EvdPipe {
     // EVD_DISPLACED_PIPE cut
     closemessage
     setflag(FLAG_TARC3_DECK2_FOUND_WEAPON)
+    call(tarc3_Foredeck_EventScript_OfferStoutlandPipe)
     releaseall
     end
 }
@@ -632,17 +633,32 @@ script tarc3_Foredeck_EventScript_EvdPipeQuiet {
 
 script tarc3_Foredeck_EventScript_EvdPipeSeen {
     msgbox(format("The equipment sack. Two lengths of pipe, one of them bloodied."))
+    call(tarc3_Foredeck_EventScript_OfferStoutlandPipe)
     releaseall
     end
 }
 
 // Stoutland can tell what else is on the pipe
 
+script tarc3_Foredeck_EventScript_OfferStoutlandPipe {
+    goto_if_set(FLAG_TARC3_DECK2_PIPE_SCENT, tarc3_EventScript_OfferEnd)
+    setvar(VAR_0x8004, SPECIES_STOUTLAND)
+    specialvar(VAR_RESULT, DoesPlayerPartyContainSpecies)
+    goto_if_eq(VAR_RESULT, FALSE, tarc3_EventScript_OfferEnd)
+    msgbox(format("{FONT_NARROW}Blood is not the only thing that clings to a length of pipe.", "1_latin_rse_narrow"))
+    msgbox(format("Have Stoutland examine the pipe?"), MSGBOX_YESNO)
+    goto_if_eq(VAR_RESULT, NO, tarc3_EventScript_OfferEnd)
+    goto(tarc3_Foredeck_EventScript_FollowerStoutlandSack)
+}
+
 script tarc3_Foredeck_EventScript_FollowerStoutlandSack {
     goto_if_unset(FLAG_TARC3_DECK2_FOUND_WEAPON, tarc3_EventScript_FollowerHookEnd)
     goto_if_set(FLAG_TARC3_DECK2_PIPE_SCENT, tarc3_EventScript_FollowerHookEnd)
-    applymovement(OBJ_EVENT_ID_FOLLOWER, moves(walk_in_place_fast_up, walk_in_place_fast_right, walk_in_place_fast_down))
-    waitmovement(0)
+    getlivemonspecies(VAR_0x8008)
+    if (var(VAR_0x8008) == SPECIES_STOUTLAND) {
+        applymovement(OBJ_EVENT_ID_FOLLOWER, moves(walk_in_place_fast_up, walk_in_place_fast_right, walk_in_place_fast_down))
+        waitmovement(0)
+    }
     delay(20)
     msgbox(format("Stoutland works its nose along the pipe, and then along it again."))
     closemessage

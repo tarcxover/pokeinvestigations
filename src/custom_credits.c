@@ -46,6 +46,7 @@
 #include "custom_title.h"
 #include "subsprite.h"
 #include "m4a.h"
+#include <stdint.h>
 #include <string.h>
 
 struct CustomCreditsState
@@ -146,6 +147,17 @@ static void CB2_GoToMainMenu(void)
     }
     if (!UpdatePaletteFade())
         SetMainCallback2(cb);
+}
+
+void Task_OpenCustomCreditsFromOverworld(u8 taskId)
+{
+    if (!gPaletteFade.active)
+    {
+        uintptr_t callbackPtr = GetWordTaskArg(taskId, 0);
+        CleanupOverworldWindowsAndTilemaps();
+        CustomCredits_Init((MainCallback)callbackPtr);
+        DestroyTask(taskId);
+    }
 }
 
 void CB2_InitCustomCreditsScreen(void)
@@ -498,9 +510,10 @@ static void CustomCredits_FreeResources(void)
 
 bool32 ScrCmd_showcredits(struct ScriptContext* ctx)
 {
-    MainCallback cb = (MainCallback)ScriptReadWord(ctx);
+    uintptr_t cb = (uintptr_t)ScriptReadWord(ctx);
     FadeOutBGM(2);
     FadeScreen(FADE_TO_BLACK, 0);
-    CustomCredits_Init(cb);
+    u32 taskId = CreateTask(Task_OpenCustomCreditsFromOverworld, 0);
+    SetWordTaskArg(taskId, 0, (uintptr_t)cb);
     return FALSE;
 }

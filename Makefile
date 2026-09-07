@@ -57,7 +57,7 @@ endif
 ifeq (debug,$(MAKECMDGOALS))
   DEBUG := 1
 endif
-ifneq (,$(filter release tidyrelease, patch,$(MAKECMDGOALS)))
+ifneq (,$(filter release tidyrelease patch,$(MAKECMDGOALS)))
   RELEASE := 1
 endif
 ifneq (,$(filter patch,$(MAKECMDGOALS)))

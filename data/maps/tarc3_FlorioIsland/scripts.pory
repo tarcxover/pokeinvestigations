@@ -16,6 +16,7 @@ script tarc3_FlorioIsland_EventScript_HidePlayerForDeparture {
 script tarc3_FlorioIsland_EventScript_OpeningCutscene {
     lockall
     setflag(FLAG_SYS_POKEMON_GET)
+    givemon(SPECIES_BISHARP, 50, ball=ITEM_POKE_BALL, nature=NATURE_HARDY, abilityNum=1, hpIv=31, atkIv=31, defIv=31, speedIv=31, spAtkIv=31, spDefIv=31, move1=MOVE_NIGHT_SLASH, move2=MOVE_IRON_HEAD, move3=MOVE_RETALIATE, move4=MOVE_ASSURANCE)
     setflag(FLAG_BADGE01_GET)
     setflag(FLAG_BADGE02_GET)
     setflag(FLAG_BADGE03_GET)
@@ -48,18 +49,20 @@ script tarc3_FlorioIsland_EventScript_OpeningCutscene {
     setspeaker("{RIVAL}")
     msgbox(format("Gone.\pAnd not another until tomorrow. An entire day, surrendered to a timetable."))
     setspeaker(NULL)
-    msgbox(format("{FONT_NARROW}No passage home, then.\pThere will be another way off this island. There always is.", "1_latin_rse_narrow"))
+    msgbox(format("{FONT_NARROW}No passage home, then.\pThere will be another way off this island. I'm sure of it.", "1_latin_rse_narrow"))
     setspeaker("{RIVAL}")
-    msgbox(format("You have spoken of nothing but this island's Pokémon since dawn.\pGo. Look at them. We are plainly going nowhere."))
+    msgbox(format("You have spoken of nothing but this island's Pokémon since dawn.\pGo. Look at them."))
     msgbox(format("I will secure us passage myself. It is hardly a difficult problem.\pPresent yourself at the dock when you have finished amusing yourself."))
     setspeaker(NULL)
-    msgbox(format("{FONT_NARROW}{RIVAL} has taken charge of the ferry, as she takes charge of everything.\pAnd I have yet to catch a single Pokémon.", "1_latin_rse_narrow"))
+    msgbox(format("{FONT_NARROW}{RIVAL} has taken charge of transport procurement.\pAnd I have yet to catch a single Pokémon.", "1_latin_rse_narrow"))
+    msgbox(format("{FONT_NARROW}She won't afford me any luxuries. One is all I will have time for.\pI had best choose well.", "1_latin_rse_narrow"))
     closemessage
     applymovement(LOCALID_FLORIO_RAN_1, moves(walk_down * 7))
     waitmovement(0)
     setflag(FLAG_HIDE_TARC3_FLORIO_RAN)
     removeobject(LOCALID_FLORIO_RAN_1)
     delay(20)
+    updatefollowingmon
     setvar(VAR_TARC3_FLORIO_INTRO, 1)
     releaseall
     end
@@ -76,32 +79,12 @@ script tarc3_FlorioIsland_EventScript_CatchStoutland {
         release
         end
     }
-    givemon(SPECIES_STOUTLAND, 50)
+    givemon(SPECIES_STOUTLAND, 50, ball=ITEM_POKE_BALL, nature=NATURE_HARDY, abilityNum=0, hpIv=20, atkIv=20, defIv=20, speedIv=20, spAtkIv=20, spDefIv=20, move1=MOVE_BODY_SLAM, move2=MOVE_CRUNCH, move3=MOVE_PLAY_ROUGH, move4=MOVE_ODOR_SLEUTH)
     playfanfare(MUS_CAUGHT)
     msgbox(format("{PLAYER} added Stoutland to the party!"))
     waitfanfare
     setflag(FLAG_HIDE_TARC3_FLORIO_STOUTLAND)
     removeobject(LOCALID_FLORIO_STOUTLAND)
-    goto(tarc3_FlorioIsland_EventScript_AfterCatch)
-}
-
-script tarc3_FlorioIsland_EventScript_CatchTangrowth {
-    lock
-    faceplayer
-    playmoncry(SPECIES_TANGROWTH, CRY_MODE_ENCOUNTER)
-    waitmoncry
-    msgbox(format("Tangrowth realises {PLAYER} doesn't mean harm.\pAdd Tangrowth to the party?"), MSGBOX_YESNO)
-    if (var(VAR_RESULT) == NO) {
-        msgbox(format("The Tangrowth looks uneasy..."))
-        release
-        end
-    }
-    givemon(SPECIES_TANGROWTH, 50)
-    playfanfare(MUS_CAUGHT)
-    msgbox(format("{PLAYER} added Tangrowth to the party!"))
-    waitfanfare
-    setflag(FLAG_HIDE_TARC3_FLORIO_TANGROWTH)
-    removeobject(LOCALID_FLORIO_TANGROWTH)
     goto(tarc3_FlorioIsland_EventScript_AfterCatch)
 }
 
@@ -116,7 +99,7 @@ script tarc3_FlorioIsland_EventScript_CatchMagnezone {
         release
         end
     }
-    givemon(SPECIES_MAGNEZONE, 50)
+    givemon(SPECIES_MAGNEZONE, 50, ball=ITEM_POKE_BALL, nature=NATURE_HARDY, abilityNum=0, hpIv=20, atkIv=20, defIv=20, speedIv=20, spAtkIv=20, spDefIv=20, move1=MOVE_THUNDERBOLT, move2=MOVE_FLASH_CANNON, move3=MOVE_THUNDER_WAVE, move4=MOVE_FLASH)
     playfanfare(MUS_CAUGHT)
     msgbox(format("{PLAYER} added Magnezone to the party!"))
     waitfanfare
@@ -130,7 +113,7 @@ script tarc3_FlorioIsland_EventScript_CatchCramorant {
     faceplayer
     playmoncry(SPECIES_CRAMORANT, CRY_MODE_ENCOUNTER)
     waitmoncry
-    msgbox(format("A Cramorant waddles up from the shoreline.\pIt tilts its head at {PLAYER} expectantly.\pAdd Cramorant to the party?"), MSGBOX_YESNO)
+    msgbox(format("A Cramorant retreats up the path, then stops.\pIt tilts its head at {PLAYER}, and does not run again.\pAdd Cramorant to the party?"), MSGBOX_YESNO)
     if (var(VAR_RESULT) == NO) {
         msgbox(format("The Cramorant caws indignantly."))
         playmoncry(SPECIES_CRAMORANT, CRY_MODE_ENCOUNTER)
@@ -138,7 +121,7 @@ script tarc3_FlorioIsland_EventScript_CatchCramorant {
         release
         end
     }
-    givemon(SPECIES_CRAMORANT, 50)
+    givemon(SPECIES_CRAMORANT, 50, ball=ITEM_POKE_BALL, nature=NATURE_HARDY, abilityNum=0, hpIv=20, atkIv=20, defIv=20, speedIv=20, spAtkIv=20, spDefIv=20, move1=MOVE_SURF, move2=MOVE_DRILL_PECK, move3=MOVE_ROOST, move4=MOVE_DIVE)
     playfanfare(MUS_CAUGHT)
     msgbox(format("{PLAYER} added Cramorant to the party!"))
     waitfanfare
@@ -147,21 +130,13 @@ script tarc3_FlorioIsland_EventScript_CatchCramorant {
     goto(tarc3_FlorioIsland_EventScript_AfterCatch)
 }
 
-
-
 script tarc3_FlorioIsland_EventScript_AfterCatch {
-    if (getpartysize() < 2) {
-        release
-        end
-    }
-    msgbox(format("{FONT_NARROW}Two of them.\p{RIVAL} has had ample time. She will not thank me for keeping her waiting at the dock.", "1_latin_rse_narrow"))
+    msgbox(format("{FONT_NARROW}One companion, and no time for any more.\pI best return to {RIVAL} now, she will not thank me for keeping her waiting at the dock.", "1_latin_rse_narrow"))
     closemessage
     setflag(FLAG_HIDE_TARC3_FLORIO_STOUTLAND)
-    setflag(FLAG_HIDE_TARC3_FLORIO_TANGROWTH)
     setflag(FLAG_HIDE_TARC3_FLORIO_MAGNEZONE)
     setflag(FLAG_HIDE_TARC3_FLORIO_CRAMORANT)
     removeobject(LOCALID_FLORIO_STOUTLAND)
-    removeobject(LOCALID_FLORIO_TANGROWTH)
     removeobject(LOCALID_FLORIO_MAGNEZONE)
     removeobject(LOCALID_FLORIO_CRAMORANT)
     setobjectxyperm(LOCALID_FLORIO_RAN_1, 17, 34)

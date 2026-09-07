@@ -6,6 +6,8 @@ on:
       - main
       - ci/*
       - merge/*
+    tags:
+      - "v*.*.*"
   pull_request:
       branches:
         - main
@@ -18,6 +20,55 @@ env:
   DEPRECATED_ERROR: 1
 
 jobs:
+  baserom:
+    if: github.actor != 'allcontributors[bot]' && github.ref_type == 'tag'
+    runs-on: ubuntu-latest
+    env:
+      GAME_VERSION: EMERALD
+      GAME_REVISION: 0
+      GAME_LANGUAGE: ENGLISH
+      MODERN: 0
+      COMPARE: 1
+    steps:
+      - name: Checkout pokeemerald
+        uses: actions/checkout@master
+        with:
+          path: baserom
+          repository: pret/pokeemerald
+
+      - name: Checkout agbcc
+        uses: actions/checkout@master
+        with:
+          path: agbcc
+          repository: pret/agbcc
+
+      - name: Install binutils
+        run: |
+          sudo apt update
+          sudo apt install gcc-arm-none-eabi binutils-arm-none-eabi libpng-dev
+
+      - name: Install agbcc
+        run: |
+          ./build.sh
+          ./install.sh ../baserom
+        working-directory: agbcc
+
+      - name: Make
+        working-directory: baserom
+        run: make -j${nproc}
+
+      - name: Rename
+        working-directory: baserom
+        run: mv pokeemerald.gba baserom.gba
+
+      - name: Save baserom
+        uses: actions/upload-artifact@v7
+        with:
+          name: baserom
+          path: baserom/baserom.gba
+          archive: false
+
+
   emerald:
     if: github.actor != 'allcontributors[bot]'
     runs-on: ubuntu-latest
@@ -56,6 +107,33 @@ jobs:
         env:
           GAME_VERSION: EMERALD
         run: make -j$(nproc) release
+
+  emerald-patch:
+    permissions:
+      contents: write
+    if: github.actor != 'allcontributors[bot]' && github.ref_type == 'tag'
+    needs: baserom
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+      - name: Environment Setup
+        uses: ./.github/actions/environment-setup
+
+      - uses: actions/download-artifact@v8
+        with:
+          name: baserom.gba
+
+      - name: Patch (Emerald)
+        env:
+          GAME_VERSION: EMERALD
+        run: make -j$(nproc) patch
+
+      - name: Publish
+        uses: softprops/action-gh-release@v3
+        with:
+          token: ${{secrets.RELEASE_TOKEN}}
+          files: pokeemerald-release.xdelta
+          target_commitish: ${{ github.sha }}
 
   test:
     if: github.actor != 'allcontributors[bot]'

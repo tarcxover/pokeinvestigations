@@ -13,7 +13,7 @@ runs:
     - name: Install binutils
       run: |
         sudo apt-get update
-        sudo apt-get install -y --no-install-recommends binutils-arm-none-eabi gcc-arm-none-eabi libnewlib-arm-none-eabi libpng-dev python3
+        sudo apt-get install -y --no-install-recommends binutils-arm-none-eabi gcc-arm-none-eabi libnewlib-arm-none-eabi libpng-dev python3 xdelta3
       shell: bash
 
     - name: Cache build tools

@@ -16881,7 +16881,7 @@ IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 === TRAINER_TARC3_ICHIRO ===
 Name: Ichiro
 Class: Tarc3 Artist
-Pic: Guitarist
+Pic: Super Nerd Frlg
 Gender: Male
 Music: Male
 Double Battle: Yes
@@ -16909,7 +16909,7 @@ Class: Tarc3 Executive
 Pic: Gentleman
 Gender: Male
 Music: Male
-Double Battle: Yes
+Double Battle: No
 AI: Check Bad Move / Try To Faint
 
 Pawmot
@@ -16917,7 +16917,7 @@ Level: 50
 Ability: Volt Absorb
 - Discharge
 - Charm
-- Helping Hand
+- Feint
 - Mach Punch
 
 Donphan
@@ -16948,7 +16948,7 @@ Level: 50
 Bruxish
 Ability: Strong Jaw
 Level: 50
-- Wave Crash
+- Waterfall
 - Psychic Fangs
 - Aqua Jet
 - Crunch
@@ -16984,14 +16984,14 @@ Class: Tarc3 Son In Law
 Pic: Rich Boy
 Gender: Male
 Music: Male
-Double Battle: No
+Double Battle: Yes
 AI: Check Bad Move / Try To Faint
 
 Toxtricity
 Level: 50
 Ability: Punk Rock
-- Overdrive
-- Sludge Bomb
+- Shock Wave
+- Sludge
 - Round
 - Shift Gear
 
@@ -17001,4 +17001,4 @@ Ability: Unaware
 - Round
 - Slack Off
 - Flamethrower
-- Shadow Ball
+- Hex

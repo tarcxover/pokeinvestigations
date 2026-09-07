@@ -431,6 +431,8 @@ script tarc3_Accusation_EventScript_Q3Loop {
             call(tarc3_Accusation_EventScript_Ev_TheHoldAdjoins)
         case EVD_OPEN_STORAGE_DOOR:
             call(tarc3_Accusation_EventScript_Ev_OpenStorageDoor)
+        case EVD_BROKEN_LATCH:
+            call(tarc3_Accusation_EventScript_Ev_RawClue)
         case EVD_SCORCHED_PANEL:
             call(tarc3_Accusation_EventScript_Ev_RawClue)
         default:

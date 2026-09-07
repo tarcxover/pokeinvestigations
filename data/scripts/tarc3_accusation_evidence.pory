@@ -1,5 +1,3 @@
-// ACT THREE - evidence presentation scenes for the accusation (CS11)
-
 // scoring helpers - scores only count when you accuse the correct character, otherwise it doesn't count
 // qscore: score for this question (wiped when player progresses from Qn -> Qn+1)
 // score: the rolling score
@@ -97,8 +95,6 @@ script tarc3_Accusation_EventScript_Fz_OffTargetTakeshiT2 {
     return
 }
 
-// the item has no bearing on the question being answered
-
 script tarc3_Accusation_EventScript_Fz_OffQuestion {
     evidencetoitem(VAR_RESULT)
     bufferitemname(STR_VAR_1, VAR_RESULT)
@@ -111,7 +107,7 @@ script tarc3_Accusation_EventScript_Fz_OffQuestion {
     return
 }
 
-// a premise presented on its own - true, on-question, but not yet an argument
+// a premise presented on its own (it is evidence and could be used in a deduction, but also doesn't mean anything by itself)
 
 script tarc3_Accusation_EventScript_Ev_RawClue {
     evidencetoitem(VAR_RESULT)
@@ -119,7 +115,7 @@ script tarc3_Accusation_EventScript_Ev_RawClue {
     setspeaker("{PLAYER}")
     msgbox(format("The {STR_VAR_1}."))
     setspeaker("{RIVAL}")
-    msgbox(format("A fact, and a true one. It is not yet an argument.\pFind what it means, {PLAYER} Edgeworth, and bring me that instead."))
+    msgbox(format("That's a fact. However, this evidence doesn't implicate anyone."))
     setspeaker(NULL)
     closemessage
     delay(20)
@@ -131,11 +127,11 @@ script tarc3_Accusation_EventScript_Ev_RawClue {
 script tarc3_Accusation_EventScript_Ev_Sketchbook {
     call(tarc3_Accusation_EventScript_ScoreIchiroT1)
     setspeaker("{PLAYER}")
-    msgbox(format("Ichiro's sketchbook. Dozens of studies.\pAnd all throughout, the same face. Natsue's."))
+    msgbox(format("Ichiro's sketchbook. Dozens of artworks.\pAnd consistently, the same face. Natsue's."))
     setspeaker("Natsue")
     msgbox(format("..."))
     setspeaker("Joji")
-    msgbox(format("He's an art student. He draws what's in front of him."))
+    msgbox(format("He's an artist. He draws what's in front of him."))
     setspeaker(NULL)
     closemessage
     delay(20)
@@ -172,9 +168,9 @@ script tarc3_Accusation_EventScript_Ev_TuitionFunds {
 script tarc3_Accusation_EventScript_Ev_IchiroSponsorship {
     call(tarc3_Accusation_EventScript_ScoreIchiroT1)
     setspeaker("{PLAYER}")
-    msgbox(format("Gozo funded Ichiro's art training.\pNot a gesture. Years of it."))
+    msgbox(format("Gozo funded Ichiro's art training.\pIt wasn't a one-off gesture. Years of it."))
     setspeaker("Suzuki")
-    msgbox(format("Eleven years, paid each term. I handled the arrangements myself."))
+    msgbox(format("It's true. I handled the arrangements myself, for eleven years."))
     setspeaker(NULL)
     closemessage
     delay(20)
@@ -225,7 +221,7 @@ script tarc3_Accusation_EventScript_Ev_SponsorshipWithdrawal {
     setspeaker("{PLAYER}")
     msgbox(format("The sponsorship was not lapsing quietly.\pGozo was severing the very career he had spent eleven years paying to build."))
     setspeaker("Kitaro")
-    msgbox(format("And he made certain it was heard. That was his way."))
+    msgbox(format("He made certain it was heard. That was his way."))
     setspeaker("Suzuki")
     msgbox(format("...It was."))
     setspeaker(NULL)
@@ -245,7 +241,7 @@ script tarc3_Accusation_EventScript_Ev_ArtistAtTheDoor {
     setspeaker("{PLAYER}")
     msgbox(format("In the blood, Joji. Not beside it. The distinction is the entire point.\pThey fell while it was still wet - from the cuff of the hand holding the knife."))
     setspeaker("Joji")
-    msgbox(format("...Ah."))
+    msgbox(format("...I see."))
     setspeaker(NULL)
     closemessage
     delay(20)
@@ -255,14 +251,14 @@ script tarc3_Accusation_EventScript_Ev_ArtistAtTheDoor {
 
 script tarc3_Accusation_EventScript_Ev_TwinRefusal {
     call(tarc3_Accusation_EventScript_ScoreIchiroT3)
-    if (var(VAR_TARC3_ACCUSED) == TARC3_ACCUSED_ICHIRO && var(VAR_TARC3_ACCUSE_T3) == 0) {
+    if (var(VAR_TARC3_ACCUSED) == TARC3_ACCUSED_ICHIRO) {
         addvar(VAR_TARC3_ACCUSE_T3, TARC3_T3_TWIN_REFUSAL)
     }
     setspeaker("{PLAYER}")
-    msgbox(format("You have all settled on a sponsorship that simply ran its course.\pDiscard that."))
+    msgbox(format("You have all accepted Ichiro's sponsorship had simply ran its course.\pDiscard that."))
     msgbox(format("He asked Gozo for permission to court Natsue, and was refused.\pIn that same week, Gozo announced her engagement to Takeshi."))
-    msgbox(format("Then, on the deck this afternoon, Gozo told us he was finished paying for the boy.\pNot privately. He performed it, before his family, with Ichiro standing eight feet away."))
-    msgbox(format("Gozo refused him twice over. His love, and his art.\pTwo humiliations - and to Ichiro, they were one and the same wound."))
+    msgbox(format("Then, on the deck this afternoon, Gozo told us he was finished paying for the boy.\pHe performed it before us on the deck, with Ichiro standing eight feet away."))
+    msgbox(format("Gozo refused him twice over. His love, and his art.\pTwo humiliations - and to Ichiro, they were the same wound."))
     closemessage
     playse(SE_PIN)
     applymovement(LOCALID_CABINS_NATSUE, moves(emote_exclamation_mark))
@@ -316,7 +312,7 @@ script tarc3_Accusation_EventScript_Ev_TakeshisHistory {
 script tarc3_Accusation_EventScript_Ev_FamilyPicture {
     call(tarc3_Accusation_EventScript_ScoreTakeshiT1)
     setspeaker("{PLAYER}")
-    msgbox(format("A photograph from Takeshi's cabin.\pA boy, smiling, flanked by his father."))
+    msgbox(format("See this, a photograph from Takeshi's cabin.\pA boy, smiling, flanked by his father."))
     setspeaker("Natsue")
     msgbox(format("But why is this relevant?"))
     setspeaker("{RIVAL}")
@@ -330,9 +326,9 @@ script tarc3_Accusation_EventScript_Ev_FamilyPicture {
 script tarc3_Accusation_EventScript_Ev_OverheardArgument {
     call(tarc3_Accusation_EventScript_ScoreTakeshiT1)
     setspeaker("{PLAYER}")
-    msgbox(format("Mariko overheard Gozo and Takeshi in argument before dinner."))
+    msgbox(format("Mariko told me she overheard Gozo and Takeshi in argument before dinner."))
     setspeaker("Mariko")
-    msgbox(format("I did. Through the cabin wall, and neither voice was calm."))
+    msgbox(format("I did. Through the cabin wall."))
     setspeaker(NULL)
     closemessage
     delay(20)
@@ -345,7 +341,7 @@ script tarc3_Accusation_EventScript_Ev_GozosFinalMeeting {
     setspeaker("{PLAYER}")
     msgbox(format("Gozo summoned him to that cabin before dinner.\pAnd a little while later, Suzuki found his flower lying outside the door."))
     setspeaker("Mariko")
-    msgbox(format("There. That is the whole of it, and we have known it all night."))
+    msgbox(format("There. We have known it all night."))
     setspeaker("Natsue")
     msgbox(format("He lost that garland before that point! He told you that!"))
     if (var(VAR_TARC3_ACCUSED) == TARC3_ACCUSED_TAKESHI) {
@@ -393,7 +389,7 @@ script tarc3_Accusation_EventScript_Ev_CharcoalOnBolt {
     setspeaker("Kitaro")
     msgbox(format("Are you certain? It would have rubbed off when you inspected it, surely?"))
     setspeaker("{RIVAL}")
-    msgbox(format("He is right, and you have no answer for him.\pDo not present what you cannot defend."))
+    msgbox(format("He is right.\pDo not present what you cannot defend."))
     setspeaker(NULL)
     closemessage
     delay(20)
@@ -462,7 +458,7 @@ script tarc3_Accusation_EventScript_Ev_SilencedWitness {
     call(tarc3_Accusation_EventScript_ScoreIchiroT2)
     setspeaker("{PLAYER}")
     msgbox(format("Natsue, Franziska and I heard two sounds from the deck.\pA splash, and then something heavy striking the floor."))
-    msgbox(format("The order is decisive. The splash came first.\pSomeone stood at that rail, disposing of the knife that killed Gozo."))
+    msgbox(format("The order is important. The splash came first.\pSomeone stood at that rail, disposing of the knife that killed Gozo."))
     msgbox(format("Tatsuo saw the weapon go over the side. That is the entire reason he is dead."))
     setspeaker("Mariko")
     msgbox(format("Or, an accomplice.\pIt has always been an accomplice, and you have never once dealt with it!"))
@@ -509,9 +505,9 @@ script tarc3_Accusation_EventScript_Ev_TheAccompliceTheory {
 script tarc3_Accusation_EventScript_Ev_SmeargleRepertoire {
     call(tarc3_Accusation_EventScript_ScoreIchiroT1)
     setspeaker("{PLAYER}")
-    msgbox(format("Ichiro's Smeargle battled me this afternoon. It possessed no Electric move.\pI have the notes."))
+    msgbox(format("Ichiro's Smeargle battled me this afternoon, but I didn't see all of its moves."))
     setspeaker("Kitaro")
-    msgbox(format("It's an artist, like its trainer. It never needed one."))
+    msgbox(format("Smeargle can Sketch any move. What is your argument?"))
     setspeaker(NULL)
     closemessage
     delay(20)
@@ -532,18 +528,6 @@ script tarc3_Accusation_EventScript_Ev_TheOddBattle {
     return
 }
 
-script tarc3_Accusation_EventScript_Ev_BrokenLatch {
-    call(tarc3_Accusation_EventScript_ScoreIchiroT1)
-    setspeaker("{PLAYER}")
-    msgbox(format("The breaker housing had a latch. It was broken off and thrown in a bin nearby."))
-    setspeaker("Kitaro")
-    msgbox(format("...Someone forced it open deliberately."))
-    setspeaker(NULL)
-    closemessage
-    delay(20)
-    call(tarc3_Accusation_EventScript_Fz_OffTargetIchiroT1)
-    return
-}
 
 script tarc3_Accusation_EventScript_Ev_TheHoldAdjoins {
     call(tarc3_Accusation_EventScript_ScoreTakeshiT1)
@@ -561,11 +545,11 @@ script tarc3_Accusation_EventScript_Ev_TheHoldAdjoins {
 script tarc3_Accusation_EventScript_Ev_SmeargleKnowsDischarge {
     call(tarc3_Accusation_EventScript_ScoreIchiroT2)
     setspeaker("{PLAYER}")
-    msgbox(format("Ichiro's Smeargle acquired an Electric move during this voyage.\pIt sketched Discharge from Kitaro's Pawmot - and it did so on Ichiro's instruction."))
+    msgbox(format("Ichiro's Smeargle sketched Discharge from Kitaro's Pawmot - and it did so on Ichiro's instruction."))
     setspeaker("Kitaro")
-    msgbox(format("I didn't notice it, and Ichiro surely wouldn't think to do that in a battle."))
+    msgbox(format("I didn't notice it. Surely, Ichiro wouldn't think to do that in a battle?"))
     setspeaker("Mariko")
-    msgbox(format("So at best, either of them could have done it.\pWe are all still in the dark. How appropriate."))
+    msgbox(format("So what if it did?\pWe are all still in the dark. How appropriate."))
     setspeaker(NULL)
     closemessage
     delay(20)
@@ -578,8 +562,7 @@ script tarc3_Accusation_EventScript_Ev_PanelStruck {
     setspeaker("{PLAYER}")
     msgbox(format("That panel did not short.\pIt was struck once, from outside the casing, by a single focused jolt of electricity."))
     setspeaker("Suzuki")
-    msgbox(format("I said the wiring was old. I believed it, too."))
-    msgbox(format("...I am less certain now."))
+    msgbox(format("I said the wiring was old. I believed it, too, but I am less certain now."))
     setspeaker(NULL)
     closemessage
     delay(20)
@@ -590,9 +573,9 @@ script tarc3_Accusation_EventScript_Ev_PanelStruck {
 script tarc3_Accusation_EventScript_Ev_TheNearestHand {
     call(tarc3_Accusation_EventScript_ScoreTakeshiT2)
     setspeaker("{PLAYER}")
-    msgbox(format("The hold shares a deck with the breaker, and the service door nearest it does not latch.\pThe escaped man was at liberty precisely where the lights died."))
+    msgbox(format("The storage room is located next to the breaker room.\pThe escaped man was at liberty precisely where the lights died."))
     setspeaker("Mariko")
-    msgbox(format("So he walked out of a room he was locked in and just put his hand on a switch."))
+    msgbox(format("So he escaped from a room he was locked in, and just put his hand on a switch."))
     if (var(VAR_TARC3_ACCUSED) == TARC3_ACCUSED_TAKESHI) {
         setspeaker("Takeshi")
         msgbox(format("I didn't unlock that door. I've told you. I heard it open."))
@@ -610,13 +593,13 @@ script tarc3_Accusation_EventScript_Ev_TheNearestHand {
 
 script tarc3_Accusation_EventScript_Ev_SketchedDischarge {
     call(tarc3_Accusation_EventScript_ScoreIchiroT3)
-    if (var(VAR_TARC3_ACCUSED) == TARC3_ACCUSED_ICHIRO && var(VAR_TARC3_ACCUSE_T3) < TARC3_T3_SKETCHED_DISCHARGE) {
+    if (var(VAR_TARC3_ACCUSED) == TARC3_ACCUSED_ICHIRO) {
         addvar(VAR_TARC3_ACCUSE_T3, TARC3_T3_SKETCHED_DISCHARGE)
     }
     setspeaker("{PLAYER}")
     msgbox(format("We have all heard of the ship's alleged old wiring. Discard it."))
     msgbox(format("That panel did not short.\pIt was struck once, from outside the casing, by a focused jolt of electricity."))
-    msgbox(format("Ichiro's Smeargle carried no Electric move when it battled me this afternoon.\pI have the notes. Tonight it knows Discharge - sketched from Kitaro's Pawmot, on Ichiro's instruction."))
+    msgbox(format("Ichiro's Smeargle sketched Discharge from Kitaro's Pawmot, on Ichiro's instruction. We witnessed this battle."))
     msgbox(format("The blackout was a Pokemon's move, aimed at a breaker.\pAnd precisely one Pokemon aboard this ship learned to produce it today."))
     closemessage
     playse(SE_PIN)
@@ -630,7 +613,7 @@ script tarc3_Accusation_EventScript_Ev_SketchedDischarge {
     if (var(VAR_TARC3_ACCUSED) == TARC3_ACCUSED_ICHIRO) {
         setspeaker("{RIVAL}")
         msgbox(format("A Pokemon's move, aimed at a breaker. That is incontrovertible."))
-        msgbox(format("...Adequate, {PLAYER} Edgeworth."))
+        msgbox(format("...Flawless, {PLAYER} Edgeworth."))
     } else {
         setspeaker("{RIVAL}")
         msgbox(format("That was flawless, and it points squarely at a man you did not accuse."))
@@ -648,7 +631,7 @@ script tarc3_Accusation_EventScript_Ev_NoDefensiveWounds {
     setspeaker("{PLAYER}")
     msgbox(format("There are no defensive wounds on his hands. No cuts to the forearms.\pNothing whatsoever."))
     setspeaker("Natsue")
-    msgbox(format("You're saying he did that to himself.\pSay it properly, if you're going to say it in front of him."))
+    msgbox(format("You're saying he did that to himself? Surely not."))
     setspeaker(NULL)
     closemessage
     delay(20)
@@ -704,7 +687,7 @@ script tarc3_Accusation_EventScript_Ev_InconsistentDisposal {
 
 script tarc3_Accusation_EventScript_Ev_SelfInflictedWound {
     call(tarc3_Accusation_EventScript_ScoreIchiroT3)
-    if (var(VAR_TARC3_ACCUSED) == TARC3_ACCUSED_ICHIRO && var(VAR_TARC3_ACCUSE_T3) < TARC3_T3_SELF_INFLICTED) {
+    if (var(VAR_TARC3_ACCUSED) == TARC3_ACCUSED_ICHIRO) {
         addvar(VAR_TARC3_ACCUSE_T3, TARC3_T3_SELF_INFLICTED)
     }
     setspeaker("{PLAYER}")
@@ -722,7 +705,7 @@ script tarc3_Accusation_EventScript_Ev_SelfInflictedWound {
     delay(60)
     if (var(VAR_TARC3_ACCUSED) == TARC3_ACCUSED_ICHIRO) {
         setspeaker("{RIVAL}")
-        msgbox(format("Fools. Every last one of you."))
+        msgbox(format("An impressive deduction, {PLAYER} Edgeworth. It makes sense."))
     } else {
         setspeaker("{RIVAL}")
         msgbox(format("You have just told this room that Ichiro wounded himself."))
@@ -736,13 +719,13 @@ script tarc3_Accusation_EventScript_Ev_SelfInflictedWound {
 script tarc3_Accusation_EventScript_Ev_HiddenPipe {
     call(tarc3_Accusation_EventScript_ScoreIchiroT1)
     setspeaker("{PLAYER}")
-    msgbox(format("There is a sack of maintenance equipment on the foredeck, with two lengths of pipe jutting out of the top of it.\pEvery one of you has walked past it all evening and taken it for ship's stores."))
+    msgbox(format("There is a sack of maintenance equipment on the foredeck, with two lengths of pipe jutting out of the top of it."))
     msgbox(format("Tatsuo broke those fittings himself this afternoon and hid them in there.\pHe told me so, laughing."))
     setspeaker("Akie")
     msgbox(format("...That is exactly the sort of thing he would do."))
     setspeaker("{PLAYER}")
     msgbox(format("One of those two pipes has his blood on it, and it is still in that sack.\pThe weapon that killed him was lying a step from where he stood."))
-    msgbox(format("Nothing was carried out onto that deck. Whoever went out to be rid of the knife took up the first heavy thing he stumbled over - because he had not gone out there to kill anybody."))
+    msgbox(format("Nothing was carried out onto that deck. Ichiro took up the first heavy thing he found - he did not intend to kill again."))
     setspeaker(NULL)
     closemessage
     delay(20)
@@ -750,17 +733,3 @@ script tarc3_Accusation_EventScript_Ev_HiddenPipe {
     return
 }
 
-script tarc3_Accusation_EventScript_Ev_KnivesCounted {
-    call(tarc3_Accusation_EventScript_ScoreIchiroT1)
-    setspeaker("{PLAYER}")
-    msgbox(format("Before dinner Joji told me he had used his knives when preparing dinner."))
-    setspeaker("Joji")
-    msgbox(format("I had all eight. I would swear to it.\pI count them the way you'd count your fingers."))
-    setspeaker("{PLAYER}")
-    msgbox(format("Then both of the missing knives left that roll tonight.\pNothing came aboard for this. Everything used was found here."))
-    setspeaker(NULL)
-    closemessage
-    delay(20)
-    call(tarc3_Accusation_EventScript_Fz_OffTargetIchiroT1)
-    return
-}

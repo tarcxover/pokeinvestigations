@@ -354,7 +354,7 @@ enum {
 
 static const struct Coords16 sAccuseMenuIconPos = {111, 43};
 
-static const u8 sText_DeductionSuccess[] = _("Deduction Successful. Recieved new evidence:\n{STR_VAR_1}");
+static const u8 sText_DeductionSuccess[] = _("Deduction successful. Received new evidence:\n{STR_VAR_1}");
 
 static void AccuseMenu_SetupCB(void);
 static void AccuseMenu_MainCB(void);
@@ -1358,7 +1358,7 @@ static void Accuse_CreateYesNoMenu(const struct WindowTemplate *window, u16 base
 
 static void Accuse_CreateProgBar()
 {
-    gAccuseMenuProgTracker.max = 100;
+    gAccuseMenuProgTracker.max = 80;
     gAccuseMenuProgTracker.curr = gAccuseScore;
     gAccuseMenuProgTracker.target = gAccuseMenuProgTracker.curr;
     u32 progTaskId = ProgBar_CreateBar(&sAccuseProgBarTemplate,&gAccuseMenuProgTracker);

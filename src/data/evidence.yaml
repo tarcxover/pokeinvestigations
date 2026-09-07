@@ -294,7 +294,7 @@ evidence:
   - id: LONG_ABSENCE
     name: Long Absence
     icon: IchirosAbsence
-    question: [tatsuo, lights]
+    question: [lights]
     suspects: [Ichiro]
     recipes: NULL
     description: |
@@ -334,7 +334,7 @@ evidence:
     name: Blood on the Stair
     icon: BloodOnTheStair
     question: [tatsuo]
-    suspects: [ICHIRO]
+    suspects: [Ichiro]
     recipes: NULL
     description: |
       A smear of blood and

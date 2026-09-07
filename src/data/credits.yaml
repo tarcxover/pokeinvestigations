@@ -7,45 +7,58 @@ credits:
     - Pommelo
   feature_branches:
     - Montblanc (SwSh Uis)
-    - RavePossum (Swsh Uis)
+    - RavePossum (BW Summary Screen)
     - TheXaman (Options Menu)
-  assets:
-    - Mudskip
-    - Eva (Pokemon Hearth)
-    - AveonTrainer
+  tilesets:
     - ekat99
-    - PMD Explorers of Skies
-    - PMD Red Rescue Team
+    - AveonTrainer (Art Easles)
+    - Morlock-Liam (Bathroom & Mirror)
+    - Fisham (various edits)
+  overworlds:
+    - Miriam (Franziska/Edgeworth)
+    - Eva (Edgeworth)
+    - Aveontrainer (Natsue/Mariko)
+    - Mashirosakura (Akie/Tatsuo)
+    - Delta321 (Gozo)
+    - Fisham (various edits)
+  other_assets:
+    - Miriam (Edgeworth trainer sprite)
+    - Mudskip (Pokeball scrolling BG)
+    - Eva (Pokemon Hearth)
     - Cursenho (UI Essentials Pack)
     - Glionox (Items pack)
   music:
-    - Specker
-    - Castlevania Aria of Sorrow
-    - Ace Attorney
-    - Ace Attorney Investigations
-  inspiration:
+    - Specker (universal voicegroup)
+  graphics_inspiration:
     - PMD Explorers of Skies
     - PMD Red Rescue Team
+    - Pokemon Hearth
+  story_inspiration:
     - Detective Conan
-    - Castlevania Aria of Sorrow
+  music_inspiration:
     - Ace Attorney
     - Ace Attorney Investigations
-    - Pokemon Hearth
+    - Castlevania Aria of Sorrow
   tooling:
     - ShantyTown (porydaw)
+    - Specker (porydaw)
     - grunt-lucas (porytiles)
     - GriffinR (porymap)
   misc_code:
     - Hedara (even_sprite)
     - grunt-lucas (sample_ui)
+    - ShantyTown (comfy_anims)
   special_thanks:
     - Eva
     - Gudf
+    - MGriffin
+    - SBird
     - Hedara
     - Lemmanade
+    - Boyo
+    - The Spriter's Resource
     - pret (pokeemerald)
     - RHH (pokeemerald-expansion)
   emotional_support:
     - GBATEK
     - TONC
-

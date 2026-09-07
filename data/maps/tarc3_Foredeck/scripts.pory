@@ -322,7 +322,7 @@ script tarc3_Foredeck_EventScript_Tatsuo {
     lock
     faceplayer
     setspeaker("Tatsuo")
-    msgbox(format("A kid... They let a kid aboard?!\pWhy not, I guess.\pEveryone else here is also freeloading."))
+    msgbox(format("They let a random guy aboard?!\pWhy not, I guess. You have a nice suit.\pEveryone else here is also freeloading."))
     msgbox(format("You know what this family is worth? Neither do I.\pThe old man won't tell us."))
     msgbox(format("I just spend my time out here on the deck.\pAkie locks me out of the cabin when she's angry, and she's always angry."))
     setspeaker(NULL)

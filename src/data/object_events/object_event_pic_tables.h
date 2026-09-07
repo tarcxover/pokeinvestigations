@@ -2530,3 +2530,7 @@ static const struct SpriteFrameImage sPicTable_TatsuoDead[] = {
 static const struct SpriteFrameImage sPicTable_IchiroInjured[] = {
     overworld_ascending_frames(gObjectEventPic_IchiroInjured, 2, 4),
 };
+
+static const struct SpriteFrameImage sPicTable_PoliceofficerM[] = {
+    overworld_ascending_frames(gObjectEventPic_PoliceofficerM, 2, 4),
+};

@@ -44,7 +44,7 @@
     },
     {
       "local_id": "LOCALID_DEST_OFFICER_A",
-      "graphics_id": "OBJ_EVENT_GFX_PROF_BIRCH",
+      "graphics_id": "OBJ_EVENT_GFX_POLICEOFFICER_M",
       "x": 7,
       "y": 12,
       "elevation": 0,
@@ -58,7 +58,7 @@
     },
     {
       "local_id": "LOCALID_DEST_OFFICER_B",
-      "graphics_id": "OBJ_EVENT_GFX_PROF_BIRCH",
+      "graphics_id": "OBJ_EVENT_GFX_POLICEOFFICER_M",
       "x": 6,
       "y": 12,
       "elevation": 0,

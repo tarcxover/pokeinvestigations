@@ -992,10 +992,10 @@ script tarc3_MainDeck_EventScript_RoomSettles {
 
 script tarc3_MainDeck_EventScript_GatherTalkDone {
     addvar(VAR_TARC3_GATHER_TALKED, 1)
-    if (var(VAR_TARC3_GATHER_TALKED) == 3) {
+    if (var(VAR_TARC3_GATHER_TALKED) == 2) {
         goto(tarc3_MainDeck_EventScript_IchiroExcusesHimself)
     }
-    if (var(VAR_TARC3_GATHER_TALKED) >= 6) {
+    if (var(VAR_TARC3_GATHER_TALKED) >= 7) {
         goto(tarc3_MainDeck_EventScript_Blackout)
     }
     release

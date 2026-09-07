@@ -423,8 +423,6 @@ script tarc3_Accusation_EventScript_Q3Loop {
             call(tarc3_Accusation_EventScript_Ev_SmeargleRepertoire)
         case EVD_THE_ODD_BATTLE:
             call(tarc3_Accusation_EventScript_Ev_TheOddBattle)
-        case EVD_BROKEN_LATCH:
-            call(tarc3_Accusation_EventScript_Ev_BrokenLatch)
         case EVD_LONG_ABSENCE:
             call(tarc3_Accusation_EventScript_Ev_LongAbsence)
         case EVD_THE_HOLD_ADJOINS:
@@ -548,7 +546,7 @@ script tarc3_Accusation_EventScript_Q4Loop {
         case EVD_OPEN_STORAGE_DOOR:
             call(tarc3_Accusation_EventScript_Ev_OpenStorageDoor)
         case EVD_KNIVES_COUNTED:
-            call(tarc3_Accusation_EventScript_Ev_KnivesCounted)
+            call(tarc3_Accusation_EventScript_Ev_RawClue)
         case EVD_INJURED_LEG:
             call(tarc3_Accusation_EventScript_Ev_RawClue)
         case EVD_BATHROOM_BLACKOUT:

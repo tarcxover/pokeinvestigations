@@ -887,13 +887,13 @@ tarc3_Accusation_EventScript_Q3Loop::
 # 424 "data/scripts/tarc3_accusation.pory"
 	case EVD_THE_ODD_BATTLE, tarc3_Accusation_EventScript_Q3Loop_8
 # 426 "data/scripts/tarc3_accusation.pory"
-	case EVD_BROKEN_LATCH, tarc3_Accusation_EventScript_Q3Loop_9
+	case EVD_LONG_ABSENCE, tarc3_Accusation_EventScript_Q3Loop_9
 # 428 "data/scripts/tarc3_accusation.pory"
-	case EVD_LONG_ABSENCE, tarc3_Accusation_EventScript_Q3Loop_10
+	case EVD_THE_HOLD_ADJOINS, tarc3_Accusation_EventScript_Q3Loop_10
 # 430 "data/scripts/tarc3_accusation.pory"
-	case EVD_THE_HOLD_ADJOINS, tarc3_Accusation_EventScript_Q3Loop_11
+	case EVD_OPEN_STORAGE_DOOR, tarc3_Accusation_EventScript_Q3Loop_11
 # 432 "data/scripts/tarc3_accusation.pory"
-	case EVD_OPEN_STORAGE_DOOR, tarc3_Accusation_EventScript_Q3Loop_12
+	case EVD_BROKEN_LATCH, tarc3_Accusation_EventScript_Q3Loop_12
 # 434 "data/scripts/tarc3_accusation.pory"
 	case EVD_SCORCHED_PANEL, tarc3_Accusation_EventScript_Q3Loop_13
 # 437 "data/scripts/tarc3_accusation.pory"
@@ -939,22 +939,22 @@ tarc3_Accusation_EventScript_Q3Loop_8:
 
 tarc3_Accusation_EventScript_Q3Loop_9:
 # 427 "data/scripts/tarc3_accusation.pory"
-	call tarc3_Accusation_EventScript_Ev_BrokenLatch
+	call tarc3_Accusation_EventScript_Ev_LongAbsence
 	goto tarc3_Accusation_EventScript_Q3Loop_1
 
 tarc3_Accusation_EventScript_Q3Loop_10:
 # 429 "data/scripts/tarc3_accusation.pory"
-	call tarc3_Accusation_EventScript_Ev_LongAbsence
+	call tarc3_Accusation_EventScript_Ev_TheHoldAdjoins
 	goto tarc3_Accusation_EventScript_Q3Loop_1
 
 tarc3_Accusation_EventScript_Q3Loop_11:
 # 431 "data/scripts/tarc3_accusation.pory"
-	call tarc3_Accusation_EventScript_Ev_TheHoldAdjoins
+	call tarc3_Accusation_EventScript_Ev_OpenStorageDoor
 	goto tarc3_Accusation_EventScript_Q3Loop_1
 
 tarc3_Accusation_EventScript_Q3Loop_12:
 # 433 "data/scripts/tarc3_accusation.pory"
-	call tarc3_Accusation_EventScript_Ev_OpenStorageDoor
+	call tarc3_Accusation_EventScript_Ev_RawClue
 	goto tarc3_Accusation_EventScript_Q3Loop_1
 
 tarc3_Accusation_EventScript_Q3Loop_13:
@@ -1204,7 +1204,7 @@ tarc3_Accusation_EventScript_Q4Loop_10:
 
 tarc3_Accusation_EventScript_Q4Loop_11:
 # 549 "data/scripts/tarc3_accusation.pory"
-	call tarc3_Accusation_EventScript_Ev_KnivesCounted
+	call tarc3_Accusation_EventScript_Ev_RawClue
 	goto tarc3_Accusation_EventScript_Q4Loop_1
 
 tarc3_Accusation_EventScript_Q4Loop_12:
@@ -2739,13 +2739,13 @@ tarc3_Accusation_EventScript_Naming_Text_2:
 	.string "whole of it.\p"
 	.string "I intend to name that person, and to\n"
 	.string "demonstrate - with evidence, not\l"
-	.string "intuition - that it could have been no\l"
-	.string "one else.$"
+	.string "intuition - that it could have been\l"
+	.string "no one else.$"
 
 tarc3_Accusation_EventScript_NameMenu_Text_0:
 # 47 "data/scripts/tarc3_accusation.pory"
-	.string "{FONT_NARROW}Whose name am I about to place before this\n"
-	.string "room?$"
+	.string "{FONT_NARROW}Whose name am I about to place before\n"
+	.string "this room?$"
 
 tarc3_Accusation_EventScript_NameMenu_Text_1:
 # 49 "data/scripts/tarc3_accusation.pory"
@@ -2789,8 +2789,8 @@ tarc3_Accusation_EventScript_NameIchiro_Text_5:
 
 tarc3_Accusation_EventScript_NameIchiro_Text_6:
 # 92 "data/scripts/tarc3_accusation.pory"
-	.string "{PLAYER}, we found him bleeding on a\n"
-	.string "bathroom floor.$"
+	.string "{PLAYER}, we found him bleeding on\n"
+	.string "a bathroom floor.$"
 
 tarc3_Accusation_EventScript_NameIchiro_Text_7:
 # 94 "data/scripts/tarc3_accusation.pory"
@@ -2802,15 +2802,16 @@ tarc3_Accusation_EventScript_NameIchiro_Text_8:
 
 tarc3_Accusation_EventScript_NameIchiro_Text_9:
 # 97 "data/scripts/tarc3_accusation.pory"
-	.string "Then permit me to lay out the facts of\n"
-	.string "each of tonight's incidents. In order.$"
+	.string "Then permit me to lay out the facts\n"
+	.string "of each of tonight's incidents. In\l"
+	.string "order.$"
 
 tarc3_Accusation_EventScript_NameTakeshi_Text_0:
 # 107 "data/scripts/tarc3_accusation.pory"
 	.string "It was Takeshi who killed Gozo.\p"
-	.string "Tatsuo observed him disposing of the\n"
-	.string "evidence afterwards. That was reason\l"
-	.string "enough to kill him also.$"
+	.string "Tatsuo observed him disposing of\n"
+	.string "the evidence afterwards. That was\l"
+	.string "reason enough to kill him also.$"
 
 tarc3_Accusation_EventScript_NameTakeshi_Text_1:
 # 109 "data/scripts/tarc3_accusation.pory"
@@ -2855,8 +2856,8 @@ tarc3_Accusation_EventScript_NameTakeshi_Text_9:
 # 123 "data/scripts/tarc3_accusation.pory"
 	.string "Make your accusations. I know the\n"
 	.string "truth.\p"
-	.string "If you proceed down this path, a killer\n"
-	.string "will walk free.$"
+	.string "If you proceed down this path, a\n"
+	.string "killer will walk free.$"
 
 tarc3_Accusation_EventScript_Q1_Text_0:
 # 160 "data/scripts/tarc3_accusation.pory"
@@ -2903,8 +2904,8 @@ tarc3_Accusation_EventScript_Q1SummaryPoor_Text_2:
 
 tarc3_Accusation_EventScript_Q1SummaryNone_Text_0:
 # 267 "data/scripts/tarc3_accusation.pory"
-	.string "Nothing you have said touches the man\n"
-	.string "you named.$"
+	.string "Nothing you have said touches the\n"
+	.string "man you named.$"
 
 tarc3_Accusation_EventScript_Q1SummaryNone_Text_1:
 # 269 "data/scripts/tarc3_accusation.pory"
@@ -2935,7 +2936,8 @@ tarc3_Accusation_EventScript_Q2SummaryGood_Text_0:
 tarc3_Accusation_EventScript_Q2SummaryGood_Text_1:
 # 348 "data/scripts/tarc3_accusation.pory"
 	.string "...So he only saw something he\n"
-	.string "shouldn't have. That's all it ever was.$"
+	.string "shouldn't have. That's all it ever\l"
+	.string "was.$"
 
 tarc3_Accusation_EventScript_Q2SummaryGood_Text_2:
 # 350 "data/scripts/tarc3_accusation.pory"
@@ -2943,8 +2945,8 @@ tarc3_Accusation_EventScript_Q2SummaryGood_Text_2:
 
 tarc3_Accusation_EventScript_Q2SummaryPoor_Text_0:
 # 359 "data/scripts/tarc3_accusation.pory"
-	.string "An accomplice still explains more than\n"
-	.string "anything you have offered.$"
+	.string "An accomplice still explains more\n"
+	.string "than anything you have offered.$"
 
 tarc3_Accusation_EventScript_Q2SummaryPoor_Text_1:
 # 361 "data/scripts/tarc3_accusation.pory"
@@ -2959,10 +2961,11 @@ tarc3_Accusation_EventScript_Q2SummaryNone_Text_0:
 
 tarc3_Accusation_EventScript_Q2SummaryNone_Text_1:
 # 372 "data/scripts/tarc3_accusation.pory"
-	.string "A foolishly foolish detour, {PLAYER}\n"
-	.string "Edgeworth.\p"
+	.string "A foolishly foolish detour,\n"
+	.string "{PLAYER} Edgeworth.\p"
 	.string "The man is dead and you have said\n"
-	.string "nothing of him. Keep to the question.$"
+	.string "nothing of him. Keep to the\l"
+	.string "question.$"
 
 tarc3_Accusation_EventScript_Q2SummarySkipped_Text_0:
 # 381 "data/scripts/tarc3_accusation.pory"
@@ -2974,8 +2977,8 @@ tarc3_Accusation_EventScript_Q2SummarySkipped_Text_1:
 
 tarc3_Accusation_EventScript_Q2SummarySkipped_Text_2:
 # 384 "data/scripts/tarc3_accusation.pory"
-	.string "No, you don't get to do that. That one\n"
-	.string "was my husband.$"
+	.string "No, you don't get to do that. That\n"
+	.string "one was my husband.$"
 
 tarc3_Accusation_EventScript_Q2SummarySkipped_Text_3:
 # 385 "data/scripts/tarc3_accusation.pory"
@@ -3013,10 +3016,10 @@ tarc3_Accusation_EventScript_Q3SummaryPoor_Text_1:
 
 tarc3_Accusation_EventScript_Q3SummaryPoor_Text_2:
 # 476 "data/scripts/tarc3_accusation.pory"
-	.string "Old wiring. That is what you have left\n"
-	.string "this room with.\p"
-	.string "My father would have had them in hand\n"
-	.string "an hour ago.$"
+	.string "Old wiring. That is what you have\n"
+	.string "left this room with.\p"
+	.string "My father would have had them in\n"
+	.string "hand an hour ago.$"
 
 tarc3_Accusation_EventScript_Q3SummaryNone_Text_0:
 # 485 "data/scripts/tarc3_accusation.pory"
@@ -3068,7 +3071,8 @@ tarc3_Accusation_EventScript_Q4SummaryGood_Text_0:
 
 tarc3_Accusation_EventScript_Q4SummaryPoor_Text_0:
 # 593 "data/scripts/tarc3_accusation.pory"
-	.string "You've proven nothing. Nothing at all.$"
+	.string "You've proven nothing. Nothing at\n"
+	.string "all.$"
 
 tarc3_Accusation_EventScript_Q4SummaryPoor_Text_1:
 # 596 "data/scripts/tarc3_accusation.pory"
@@ -3082,8 +3086,8 @@ tarc3_Accusation_EventScript_Q4SummaryNone_Text_0:
 
 tarc3_Accusation_EventScript_Q4SummaryNone_Text_1:
 # 607 "data/scripts/tarc3_accusation.pory"
-	.string "Four questions, and a foolish fool has\n"
-	.string "answered none of them.\p"
+	.string "Four questions, and a foolish fool\n"
+	.string "has answered none of them.\p"
 	.string "You have humiliated us both.$"
 
 tarc3_Accusation_EventScript_Q4SummarySkipped_Text_0:
@@ -3136,13 +3140,13 @@ tarc3_Accusation_EventScript_PerfectAnswer_Text_5:
 
 tarc3_Accusation_EventScript_PerfectAnswer_Text_6:
 # 683 "data/scripts/tarc3_accusation.pory"
-	.string "He was polite. He waited until I'd said\n"
-	.string "the whole thing.$"
+	.string "He was polite. He waited until I'd\n"
+	.string "said the whole thing.$"
 
 tarc3_Accusation_EventScript_PerfectAnswer_Text_7:
 # 684 "data/scripts/tarc3_accusation.pory"
-	.string "'A local boy with borrowed tuition and\n"
-	.string "a half-finished art career.'$"
+	.string "'A local boy with borrowed tuition\n"
+	.string "and a half-finished art career.'$"
 
 tarc3_Accusation_EventScript_PerfectAnswer_Text_8:
 # 685 "data/scripts/tarc3_accusation.pory"
@@ -3190,7 +3194,8 @@ tarc3_Accusation_EventScript_PerfectAnswer_Text_16:
 
 tarc3_Accusation_EventScript_PerfectAnswer_Text_17:
 # 700 "data/scripts/tarc3_accusation.pory"
-	.string "He got eleven years of a person for it.$"
+	.string "He got eleven years of a person for\n"
+	.string "it.$"
 
 tarc3_Accusation_EventScript_PerfectCloset_Text_0:
 # 709 "data/scripts/tarc3_accusation.pory"
@@ -3202,14 +3207,15 @@ tarc3_Accusation_EventScript_PerfectCloset_Text_1:
 
 tarc3_Accusation_EventScript_PerfectCloset_Text_2:
 # 713 "data/scripts/tarc3_accusation.pory"
-	.string "You should have been told the moment\n"
-	.string "I found him. You were not.$"
+	.string "You should have been told the\n"
+	.string "moment I found him. You were not.$"
 
 tarc3_Accusation_EventScript_PerfectCloset_Text_3:
 # 715 "data/scripts/tarc3_accusation.pory"
 	.string "You searched my cabin.\p"
-	.string "You opened that door, and you closed\n"
-	.string "it again, and you said nothing to me.$"
+	.string "You opened that door, and you\n"
+	.string "closed it again, and you said\l"
+	.string "nothing to me.$"
 
 tarc3_Accusation_EventScript_PerfectCloset_Text_4:
 # 717 "data/scripts/tarc3_accusation.pory"
@@ -3217,9 +3223,9 @@ tarc3_Accusation_EventScript_PerfectCloset_Text_4:
 
 tarc3_Accusation_EventScript_PerfectCloset_Text_5:
 # 719 "data/scripts/tarc3_accusation.pory"
-	.string "My husband is on the foredeck under a\n"
-	.string "tablecloth, and you walked out of my\l"
-	.string "room without a word.$"
+	.string "My husband is on the foredeck under\n"
+	.string "a tablecloth, and you walked out of\l"
+	.string "my room without a word.$"
 
 tarc3_Accusation_EventScript_PerfectCloset_Text_6:
 # 721 "data/scripts/tarc3_accusation.pory"
@@ -3229,8 +3235,8 @@ tarc3_Accusation_EventScript_PerfectCloset_Text_6:
 
 tarc3_Accusation_EventScript_PerfectCloset_Text_7:
 # 722 "data/scripts/tarc3_accusation.pory"
-	.string "That does not make it a small thing to\n"
-	.string "have done to you.$"
+	.string "That does not make it a small thing\n"
+	.string "to have done to you.$"
 
 tarc3_Accusation_EventScript_PerfectCloset_Text_8:
 # 727 "data/scripts/tarc3_accusation.pory"
@@ -3248,8 +3254,8 @@ tarc3_Accusation_EventScript_PerfectCloset_Text_10:
 tarc3_Accusation_EventScript_PerfectCloset_Text_11:
 # 733 "data/scripts/tarc3_accusation.pory"
 	.string "Since I searched this deck. He hid\n"
-	.string "himself there hours before that, and\l"
-	.string "told no one.$"
+	.string "himself there hours before that,\l"
+	.string "and told no one.$"
 
 tarc3_Accusation_EventScript_PerfectCloset_Text_12:
 # 735 "data/scripts/tarc3_accusation.pory"
@@ -3280,14 +3286,15 @@ tarc3_Accusation_EventScript_PerfectTakeshi_Text_4:
 tarc3_Accusation_EventScript_PerfectTakeshi_Text_5:
 # 752 "data/scripts/tarc3_accusation.pory"
 	.string "As you know, Hatamoto Corp took his\n"
-	.string "company. He killed himself the spring\l"
-	.string "after. I was fifteen.$"
+	.string "company. He killed himself the\l"
+	.string "spring after. I was fifteen.$"
 
 tarc3_Accusation_EventScript_PerfectTakeshi_Text_6:
 # 753 "data/scripts/tarc3_accusation.pory"
-	.string "I joined the Corporation under a name\n"
-	.string "that wasn't mine, and I did it to take\l"
-	.string "something from your grandfather.$"
+	.string "I joined the Corporation under a\n"
+	.string "name that wasn't mine, and I did it\l"
+	.string "to take something from your\l"
+	.string "grandfather.$"
 
 tarc3_Accusation_EventScript_PerfectTakeshi_Text_7:
 # 754 "data/scripts/tarc3_accusation.pory"
@@ -3297,8 +3304,8 @@ tarc3_Accusation_EventScript_PerfectTakeshi_Text_7:
 
 tarc3_Accusation_EventScript_PerfectTakeshi_Text_8:
 # 755 "data/scripts/tarc3_accusation.pory"
-	.string "Gozo called me into that cabin before\n"
-	.string "dinner because he knew.$"
+	.string "Gozo called me into that cabin\n"
+	.string "before dinner because he knew.$"
 
 tarc3_Accusation_EventScript_PerfectTakeshi_Text_9:
 # 757 "data/scripts/tarc3_accusation.pory"
@@ -3306,13 +3313,13 @@ tarc3_Accusation_EventScript_PerfectTakeshi_Text_9:
 
 tarc3_Accusation_EventScript_PerfectTakeshi_Text_10:
 # 759 "data/scripts/tarc3_accusation.pory"
-	.string "For months. He had all of it. The name,\n"
-	.string "my father, the year I joined.$"
+	.string "For months. He had all of it. The\n"
+	.string "name, my father, the year I joined.$"
 
 tarc3_Accusation_EventScript_PerfectTakeshi_Text_11:
 # 760 "data/scripts/tarc3_accusation.pory"
-	.string "He looked at me and he said, 'I see the\n"
-	.string "man Natsue chose.'$"
+	.string "He looked at me and he said, 'I see\n"
+	.string "the man Natsue chose.'$"
 
 tarc3_Accusation_EventScript_PerfectTakeshi_Text_12:
 # 761 "data/scripts/tarc3_accusation.pory"
@@ -3327,7 +3334,8 @@ tarc3_Accusation_EventScript_PerfectTakeshi_Text_14:
 # 772 "data/scripts/tarc3_accusation.pory"
 	.string "I did everything he asked of me. I\n"
 	.string "never asked him twice.\p"
-	.string "I said thank you, and I left the room.$"
+	.string "I said thank you, and I left the\n"
+	.string "room.$"
 
 tarc3_Accusation_EventScript_PerfectTakeshi_Text_15:
 # 773 "data/scripts/tarc3_accusation.pory"
@@ -3370,8 +3378,8 @@ tarc3_Accusation_EventScript_GoodAnswer_Text_3:
 tarc3_Accusation_EventScript_GoodAnswer_Text_4:
 # 803 "data/scripts/tarc3_accusation.pory"
 	.string "I killed him.\p"
-	.string "I killed Tatsuo as well - he saw me at\n"
-	.string "the rail and he called out to me.$"
+	.string "I killed Tatsuo as well - he saw me\n"
+	.string "at the rail and he called out to me.$"
 
 tarc3_Accusation_EventScript_GoodAnswer_Text_5:
 # 804 "data/scripts/tarc3_accusation.pory"
@@ -3400,12 +3408,13 @@ tarc3_Accusation_EventScript_GoodMotiveKept_Text_2:
 
 tarc3_Accusation_EventScript_GoodMotiveKept_Text_3:
 # 832 "data/scripts/tarc3_accusation.pory"
-	.string "Two terms left and nothing behind me.\n"
-	.string "I'd have gone home with nothing.$"
+	.string "Two terms left and nothing behind\n"
+	.string "me. I'd have gone home with nothing.$"
 
 tarc3_Accusation_EventScript_GoodMotiveKept_Text_4:
 # 835 "data/scripts/tarc3_accusation.pory"
-	.string "You killed my father over school fees.$"
+	.string "You killed my father over school\n"
+	.string "fees.$"
 
 tarc3_Accusation_EventScript_GoodMotiveKept_Text_5:
 # 839 "data/scripts/tarc3_accusation.pory"
@@ -3438,8 +3447,9 @@ tarc3_Accusation_EventScript_GoodMotiveDenied_Text_1:
 
 tarc3_Accusation_EventScript_GoodMotiveDenied_Text_2:
 # 869 "data/scripts/tarc3_accusation.pory"
-	.string "We all heard what it was, Ichiro. Every\n"
-	.string "one of us, standing in this room.$"
+	.string "We all heard what it was, Ichiro.\n"
+	.string "Every one of us, standing in this\l"
+	.string "room.$"
 
 tarc3_Accusation_EventScript_GoodMotiveDenied_Text_3:
 # 871 "data/scripts/tarc3_accusation.pory"
@@ -3456,8 +3466,8 @@ tarc3_Accusation_EventScript_GoodMotiveDenied_Text_5:
 
 tarc3_Accusation_EventScript_GoodAnswerEnough_Text_0:
 # 889 "data/scripts/tarc3_accusation.pory"
-	.string "...Isn't it enough? You've got what you\n"
-	.string "came for.$"
+	.string "...Isn't it enough? You've got what\n"
+	.string "you came for.$"
 
 tarc3_Accusation_EventScript_GoodAnswerEnough_Text_1:
 # 891 "data/scripts/tarc3_accusation.pory"
@@ -3496,8 +3506,9 @@ tarc3_Accusation_EventScript_GoodCloset_Text_5:
 
 tarc3_Accusation_EventScript_GoodStern_Text_0:
 # 933 "data/scripts/tarc3_accusation.pory"
-	.string "Later, at the stern rail. Only the four\n"
-	.string "of them. The family stayed below.$"
+	.string "Later, at the stern rail. Only the\n"
+	.string "four of them. The family stayed\l"
+	.string "below.$"
 
 tarc3_Accusation_EventScript_GoodStern_Text_1:
 # 937 "data/scripts/tarc3_accusation.pory"
@@ -3512,14 +3523,14 @@ tarc3_Accusation_EventScript_GoodStern_Text_2:
 
 tarc3_Accusation_EventScript_GoodStern_Text_3:
 # 939 "data/scripts/tarc3_accusation.pory"
-	.string "I joined under a name that wasn't mine\n"
-	.string "because I meant to take something\l"
-	.string "from your grandfather.$"
+	.string "I joined under a name that wasn't\n"
+	.string "mine because I meant to take\l"
+	.string "something from your grandfather.$"
 
 tarc3_Accusation_EventScript_GoodStern_Text_4:
 # 943 "data/scripts/tarc3_accusation.pory"
-	.string "He knew before dinner. He'd known for\n"
-	.string "months.$"
+	.string "He knew before dinner. He'd known\n"
+	.string "for months.$"
 
 tarc3_Accusation_EventScript_GoodStern_Text_5:
 # 945 "data/scripts/tarc3_accusation.pory"
@@ -3527,12 +3538,14 @@ tarc3_Accusation_EventScript_GoodStern_Text_5:
 
 tarc3_Accusation_EventScript_GoodStern_Text_6:
 # 947 "data/scripts/tarc3_accusation.pory"
-	.string "He said, 'I see the man Natsue chose.'\n"
-	.string "Then he told me to go and eat.$"
+	.string "He said, 'I see the man Natsue\n"
+	.string "chose.' Then he told me to go and\l"
+	.string "eat.$"
 
 tarc3_Accusation_EventScript_GoodStern_Text_7:
 # 950 "data/scripts/tarc3_accusation.pory"
-	.string "That's the kindest thing he ever did.$"
+	.string "That's the kindest thing he ever\n"
+	.string "did.$"
 
 tarc3_Accusation_EventScript_GoodStern_Text_8:
 # 951 "data/scripts/tarc3_accusation.pory"
@@ -3551,14 +3564,15 @@ tarc3_Accusation_EventScript_BadAnswer_Text_0:
 
 tarc3_Accusation_EventScript_BadAnswer_Text_1:
 # 970 "data/scripts/tarc3_accusation.pory"
-	.string "The crumbs. In the blood, by the door.\n"
-	.string "That's the one you keep coming back\l"
-	.string "to.$"
+	.string "The crumbs. In the blood, by the\n"
+	.string "door. That's the one you keep coming\l"
+	.string "back to.$"
 
 tarc3_Accusation_EventScript_BadAnswer_Text_2:
 # 971 "data/scripts/tarc3_accusation.pory"
-	.string "I've sketched on the salon deck every\n"
-	.string "day since Florio. In the same chair.$"
+	.string "I've sketched on the salon deck\n"
+	.string "every day since Florio. In the same\l"
+	.string "chair.$"
 
 tarc3_Accusation_EventScript_BadAnswer_Text_3:
 # 972 "data/scripts/tarc3_accusation.pory"
@@ -3590,14 +3604,14 @@ tarc3_Accusation_EventScript_BadAnswer_Text_8:
 
 tarc3_Accusation_EventScript_BadAnswer_Text_9:
 # 983 "data/scripts/tarc3_accusation.pory"
-	.string "I want the man who did this as much as\n"
-	.string "anyone in this room does.$"
+	.string "I want the man who did this as much\n"
+	.string "as anyone in this room does.$"
 
 tarc3_Accusation_EventScript_BadAnswerGeneric_Text_0:
 # 994 "data/scripts/tarc3_accusation.pory"
-	.string "Whatever you found, ask where else it\n"
-	.string "could have come from. That's all I'd\l"
-	.string "say.$"
+	.string "Whatever you found, ask where else\n"
+	.string "it could have come from. That's all\l"
+	.string "I'd say.$"
 
 tarc3_Accusation_EventScript_BadAnswerGeneric_Text_1:
 # 995 "data/scripts/tarc3_accusation.pory"
@@ -3616,15 +3630,15 @@ tarc3_Accusation_EventScript_BadAnswerGeneric_Text_3:
 
 tarc3_Accusation_EventScript_BadAnswerGeneric_Text_4:
 # 1000 "data/scripts/tarc3_accusation.pory"
-	.string "I sketch on the salon deck every day,\n"
-	.string "in the same chair.\p"
-	.string "Anything I've touched could ride to a\n"
-	.string "doorway on somebody's shoe.$"
+	.string "I sketch on the salon deck every\n"
+	.string "day, in the same chair.\p"
+	.string "Anything I've touched could ride to\n"
+	.string "a doorway on somebody's shoe.$"
 
 tarc3_Accusation_EventScript_BadNearMissBook_Text_0:
 # 1026 "data/scripts/tarc3_accusation.pory"
-	.string "Then let us discuss the sketchbook I\n"
-	.string "took from your cabin.$"
+	.string "Then let us discuss the sketchbook\n"
+	.string "I took from your cabin.$"
 
 tarc3_Accusation_EventScript_BadNearMissBook_Text_1:
 # 1037 "data/scripts/tarc3_accusation.pory"
@@ -3654,20 +3668,20 @@ tarc3_Accusation_EventScript_BadWall_Text_2:
 
 tarc3_Accusation_EventScript_BadWall_Text_3:
 # 1062 "data/scripts/tarc3_accusation.pory"
-	.string "And I have spent six hours of my life\n"
-	.string "waiting on you.$"
+	.string "And I have spent six hours of my\n"
+	.string "life waiting on you.$"
 
 tarc3_Accusation_EventScript_BadWall_Text_4:
 # 1063 "data/scripts/tarc3_accusation.pory"
-	.string "Whatever you are where you come from,\n"
-	.string "you are nothing here.\p"
+	.string "Whatever you are where you come\n"
+	.string "from, you are nothing here.\p"
 	.string "You are a passenger my niece took\n"
 	.string "pity on at a dock.$"
 
 tarc3_Accusation_EventScript_BadWall_Text_5:
 # 1064 "data/scripts/tarc3_accusation.pory"
-	.string "Whoever told you that you were clever\n"
-	.string "lied to you.$"
+	.string "Whoever told you that you were\n"
+	.string "clever lied to you.$"
 
 tarc3_Accusation_EventScript_BadCloset_Text_0:
 # 1073 "data/scripts/tarc3_accusation.pory"
@@ -3691,8 +3705,8 @@ tarc3_Accusation_EventScript_BadCloset_Text_3:
 tarc3_Accusation_EventScript_BadCloset_Text_4:
 # 1081 "data/scripts/tarc3_accusation.pory"
 	.string "I found him when I searched these\n"
-	.string "cabins, shortly before I asked you all\l"
-	.string "to gather.$"
+	.string "cabins, shortly before I asked you\l"
+	.string "all to gather.$"
 
 tarc3_Accusation_EventScript_BadCloset_Text_5:
 # 1083 "data/scripts/tarc3_accusation.pory"
@@ -3704,14 +3718,14 @@ tarc3_Accusation_EventScript_BadCloset_Text_6:
 
 tarc3_Accusation_EventScript_BadCloset_Text_7:
 # 1086 "data/scripts/tarc3_accusation.pory"
-	.string "He was in fear of his life. He asked me\n"
-	.string "to prove it before I called anyone,\l"
-	.string "and I judged...$"
+	.string "He was in fear of his life. He asked\n"
+	.string "me to prove it before I called\l"
+	.string "anyone, and I judged...$"
 
 tarc3_Accusation_EventScript_BadCloset_Text_8:
 # 1088 "data/scripts/tarc3_accusation.pory"
-	.string "You knew where he was, and you let us\n"
-	.string "stand here.\p"
+	.string "You knew where he was, and you let\n"
+	.string "us stand here.\p"
 	.string "You pointed at every one of us with\n"
 	.string "the man behind that door.$"
 
@@ -3739,7 +3753,8 @@ tarc3_Accusation_EventScript_BadCloset_Text_13:
 
 tarc3_Accusation_EventScript_BadCloset_Text_14:
 # 1103 "data/scripts/tarc3_accusation.pory"
-	.string "You found him, and you did not tell me.$"
+	.string "You found him, and you did not tell\n"
+	.string "me.$"
 
 tarc3_Accusation_EventScript_BadCloset_Text_15:
 # 1104 "data/scripts/tarc3_accusation.pory"
@@ -3759,8 +3774,8 @@ tarc3_Accusation_EventScript_WorstAnswer_Text_1:
 
 tarc3_Accusation_EventScript_WorstAnswer_Text_2:
 # 1121 "data/scripts/tarc3_accusation.pory"
-	.string "You heard tonight what Gozo did to my\n"
-	.string "father. This is the rest of it.$"
+	.string "You heard tonight what Gozo did to\n"
+	.string "my father. This is the rest of it.$"
 
 tarc3_Accusation_EventScript_WorstAnswer_Text_3:
 # 1123 "data/scripts/tarc3_accusation.pory"
@@ -3774,9 +3789,9 @@ tarc3_Accusation_EventScript_WorstAnswer_Text_4:
 
 tarc3_Accusation_EventScript_WorstAnswer_Text_5:
 # 1125 "data/scripts/tarc3_accusation.pory"
-	.string "I joined the Corporation under a name\n"
-	.string "that wasn't mine, to take something\l"
-	.string "from your grandfather.$"
+	.string "I joined the Corporation under a\n"
+	.string "name that wasn't mine, to take\l"
+	.string "something from your grandfather.$"
 
 tarc3_Accusation_EventScript_WorstAnswer_Text_6:
 # 1127 "data/scripts/tarc3_accusation.pory"
@@ -3790,7 +3805,8 @@ tarc3_Accusation_EventScript_WorstAnswer_Text_7:
 
 tarc3_Accusation_EventScript_WorstAnswer_Text_8:
 # 1133 "data/scripts/tarc3_accusation.pory"
-	.string "He knew. And an hour later he was dead.$"
+	.string "He knew. And an hour later he was\n"
+	.string "dead.$"
 
 tarc3_Accusation_EventScript_WorstAnswer_Text_9:
 # 1134 "data/scripts/tarc3_accusation.pory"
@@ -3802,8 +3818,8 @@ tarc3_Accusation_EventScript_WorstAnswer_Text_10:
 
 tarc3_Accusation_EventScript_WorstRoom_Text_0:
 # 1146 "data/scripts/tarc3_accusation.pory"
-	.string "...I'm sorry. I can't. I can't stand here\n"
-	.string "and say it isn't true.$"
+	.string "...I'm sorry. I can't. I can't stand\n"
+	.string "here and say it isn't true.$"
 
 tarc3_Accusation_EventScript_WorstRoom_Text_1:
 # 1148 "data/scripts/tarc3_accusation.pory"
@@ -3825,7 +3841,8 @@ tarc3_Accusation_EventScript_WorstIchiro_Text_1:
 
 tarc3_Accusation_EventScript_WorstIchiro_Text_2:
 # 1170 "data/scripts/tarc3_accusation.pory"
-	.string "You shouldn't have to watch this part.$"
+	.string "You shouldn't have to watch this\n"
+	.string "part.$"
 
 tarc3_Accusation_EventScript_WorstRefusedAnswer_Text_0:
 # 1195 "data/scripts/tarc3_accusation.pory"
@@ -3862,8 +3879,8 @@ tarc3_Accusation_EventScript_WorstRefusedTakeshi_Text_0:
 
 tarc3_Accusation_EventScript_WorstRefusedTakeshi_Text_1:
 # 1215 "data/scripts/tarc3_accusation.pory"
-	.string "You heard tonight what Gozo did to my\n"
-	.string "father. Here is the rest.$"
+	.string "You heard tonight what Gozo did to\n"
+	.string "my father. Here is the rest.$"
 
 tarc3_Accusation_EventScript_WorstRefusedTakeshi_Text_2:
 # 1217 "data/scripts/tarc3_accusation.pory"
@@ -3890,8 +3907,8 @@ tarc3_Accusation_EventScript_WorstRefusedTakeshi_Text_6:
 tarc3_Accusation_EventScript_WorstRefusedTakeshi_Text_7:
 # 1229 "data/scripts/tarc3_accusation.pory"
 	.string "My husband is under a tablecloth on\n"
-	.string "that deck, and not one of you can tell\l"
-	.string "me who put him there.$"
+	.string "that deck, and not one of you can\l"
+	.string "tell me who put him there.$"
 
 tarc3_Accusation_EventScript_Depart_Text_0:
 # 1266 "data/scripts/tarc3_accusation.pory"

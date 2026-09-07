@@ -225,8 +225,8 @@ script tarc3_Hold_EventScript_StorageDoor {
         end
     }
     msgbox(format("The bolt is drawn back and resting in its keeper. Not bent, not forced, not a mark on the plate."))
-    msgbox(format("{FONT_NARROW}(It only works from out here. No handle on the inside, and Suzuki shot it across in front of everybody.)", "1_latin_rse_narrow"))
-    msgbox(format("{FONT_NARROW}(So somebody stood where I'm standing and slid it open again.)", "1_latin_rse_narrow"))
+    msgbox(format("{FONT_NARROW}It only works from out here. No handle on the inside, and Suzuki shot it across in front of everybody.", "1_latin_rse_narrow"))
+    msgbox(format("{FONT_NARROW}So somebody stood where I'm standing and slid it open again.", "1_latin_rse_narrow"))
     closemessage
     giveevidence(EVD_OPEN_STORAGE_DOOR)
     closemessage

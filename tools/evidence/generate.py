@@ -5,13 +5,14 @@
 # ///
 # pyright: basic
 
+import re
 from collections import defaultdict
 from dataclasses import dataclass
 from pathlib import Path
+from socket import if_indextoname
 from textwrap import dedent
 
 import yaml
-import re
 
 type Macro = list[str]
 type Deductions = defaultdict[str, list[list[str]]]
@@ -148,7 +149,7 @@ def emit_suspect_table(evidence: list[Evidence]) -> None:
 def emit_suspect_list(evidence: list[Evidence]) -> None:
     suspects = collect_suspects(evidence)
     suspect_list = flatten(suspects.values())
-    suspect_list = sorted(list(set(suspect_list)), key=lambda s: (s.lower() == "count", s))
+    suspect_list = sorted(set(suspect_list), key=lambda s: (s.lower() == "count", s))
 
     lines = ["#define FOREACH_SUSPECT(F)"]
     for s in suspect_list:
@@ -218,16 +219,32 @@ def build_question_map(data) -> list[Question]:
     return res
 
 def calculate_score(evd: list[Evidence]):
-    def get_score_from_recipes(count: int):
-        if count > 1:
+
+    def get_evd_by_id(id: str):
+        return next(e for e in evd if e.id == id)
+
+    def is_deduction(evd_item: Evidence):
+        deductions_required: int = evd_item.recipes != []
+        return int(deductions_required)
+
+    def get_score_for_evidence(evd_item: Evidence):
+        num_deductions = is_deduction(evd_item)
+
+        if not num_deductions:
+            return 2
+
+        for r in sorted(set(flatten(evd_item.recipes))):
+            num_deductions += is_deduction(get_evd_by_id(r))
+
+        if num_deductions > 1:
             return 13
-        elif count > 0:
+        if num_deductions > 0:
             return 5
         else:
             return 2
 
     for i, e in enumerate(evd):
-        evd[i].score = get_score_from_recipes(len(evd[i].recipes))
+        evd[i].score = get_score_for_evidence(e)
 
 def main() -> None:
     script_dir = Path(__file__).resolve().parent

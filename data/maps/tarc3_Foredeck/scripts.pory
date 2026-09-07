@@ -748,6 +748,7 @@ script tarc3_Foredeck_EventScript_Deck2Ichiro {
 }
 
 script tarc3_Foredeck_EventScript_EvdCloth {
+    setflag(FLAG_SAFE_FOLLOWER_MOVEMENT)
     lockall
     goto_if_set(FLAG_TARC3_DECK2_FOUND_CLOTH, tarc3_Foredeck_EventScript_EvdClothSeen)
     if (var(VAR_TARC3_ACT2) < TARC3_ACT2_BODY_ON_DECK) {
@@ -760,6 +761,8 @@ script tarc3_Foredeck_EventScript_EvdCloth {
     delay(20)
     msgbox(format("{FONT_NARROW}There's something out there, but I can't reach it.", "1_latin_rse_narrow"))
     closemessage
+    getlivemonspecies(VAR_0x8005)
+    goto_if_eq(VAR_0x8005, SPECIES_CRAMORANT, tarc3_Foredeck_EventScript_EvdClothFollower)
     setvar(VAR_0x8004, SPECIES_CRAMORANT)
     specialvar(VAR_RESULT, DoesPlayerPartyContainSpecies)
     goto_if_eq(VAR_RESULT, TRUE, tarc3_Foredeck_EventScript_EvdClothCramorant)
@@ -767,7 +770,26 @@ script tarc3_Foredeck_EventScript_EvdCloth {
     end
 }
 
+script tarc3_Foredeck_EventScript_EvdClothFollower {
+    delay(20)
+    playmoncry(SPECIES_CRAMORANT, CRY_MODE_ENCOUNTER)
+    waitmoncry
+    delay(20)
+    applymovement(OBJ_EVENT_ID_FOLLOWER, moves(jump_2_right, walk_fast_right * 6, face_down, walk_in_place_fast_down))
+    waitmovement(0)
+    delay(20)
+    setmetatile(22, 17, 0x094, TRUE)
+    setmetatile(22, 18, 0x09C, TRUE)
+    special(DrawWholeMapView)
+    delay(20)
+    applymovement(OBJ_EVENT_ID_FOLLOWER, moves(face_left, walk_fast_left * 6, jump_2_left, face_right))
+    waitmovement(0)
+    delay(20)
+    goto(tarc3_Foredeck_EventScript_EvdClothTaken)
+}
+
 script tarc3_Foredeck_EventScript_EvdClothCramorant {
+    hidefollower
     delay(20)
     playmoncry(SPECIES_CRAMORANT, CRY_MODE_ENCOUNTER)
     waitmoncry
@@ -787,6 +809,10 @@ script tarc3_Foredeck_EventScript_EvdClothCramorant {
     setflag(FLAG_HIDE_TARC3_DECK2_CRAMORANT)
     removeobject(LOCALID_FOREDECK_CRAMORANT_2)
     delay(20)
+    goto(tarc3_Foredeck_EventScript_EvdClothTaken)
+}
+
+script tarc3_Foredeck_EventScript_EvdClothTaken {
     msgbox(format("Cramorant drops a scrap of cloth at {PLAYER}'s feet."))
     giveevidence(EVD_BLOODY_CLOTH)
     closemessage

@@ -523,13 +523,7 @@ script tarc3_Destination_EventScript_FinOnBlack {
     setvar(VAR_TARC3_ACT3, TARC3_ACT3_PIER)
     setflag(FLAG_SYS_GAME_CLEAR)
     delay(30)
-    call(Common_EventScript_SaveGame)
-    waitstate
-    closemessage
-    delay(30)
-    // start credits??
-    fadescreen(FADE_FROM_BLACK)
-    delay(30)
+    showcredits(CB2_ReturnToField)
     releaseall
     end
 }

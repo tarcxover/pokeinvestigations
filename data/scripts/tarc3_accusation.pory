@@ -949,8 +949,6 @@ script tarc3_Accusation_EventScript_GoodStern {
     msgbox(format("..."))
     msgbox(format("That's the kindest thing he ever did."))
     msgbox(format("And he did it where nobody could see it."))
-    setspeaker(NULL)
-    msgbox(format("Comfey lifts from her shoulder and winds a garland around both their wrists."))
     closemessage
     delay(40)
     goto(tarc3_Accusation_EventScript_End)

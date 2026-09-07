@@ -1972,632 +1972,628 @@ tarc3_Accusation_EventScript_GoodStern::
 # 951 "data/scripts/tarc3_accusation.pory"
 	msgbox tarc3_Accusation_EventScript_GoodStern_Text_8
 # 952 "data/scripts/tarc3_accusation.pory"
-	setspeaker NULL
-# 953 "data/scripts/tarc3_accusation.pory"
-	msgbox tarc3_Accusation_EventScript_GoodStern_Text_9
-# 954 "data/scripts/tarc3_accusation.pory"
 	closemessage
-# 955 "data/scripts/tarc3_accusation.pory"
+# 953 "data/scripts/tarc3_accusation.pory"
 	delay 40
-# 956 "data/scripts/tarc3_accusation.pory"
+# 954 "data/scripts/tarc3_accusation.pory"
 	goto tarc3_Accusation_EventScript_End
 	return
 
 
 tarc3_Accusation_EventScript_BadAnswer::
-# 962 "data/scripts/tarc3_accusation.pory"
+# 960 "data/scripts/tarc3_accusation.pory"
 	closemessage
-# 963 "data/scripts/tarc3_accusation.pory"
+# 961 "data/scripts/tarc3_accusation.pory"
 	delay 30
-# 964 "data/scripts/tarc3_accusation.pory"
+# 962 "data/scripts/tarc3_accusation.pory"
 	setspeaker tarc3_Accusation_EventScript_NameMenu_Text_1
-# 965 "data/scripts/tarc3_accusation.pory"
+# 963 "data/scripts/tarc3_accusation.pory"
 	msgbox tarc3_Accusation_EventScript_BadAnswer_Text_0
+# 964 "data/scripts/tarc3_accusation.pory"
+	setspeaker tarc3_Accusation_EventScript_Naming_Text_0
+# 965 "data/scripts/tarc3_accusation.pory"
+	msgbox tarc3_Accusation_EventScript_NameIchiro_Text_7
 # 966 "data/scripts/tarc3_accusation.pory"
-	setspeaker tarc3_Accusation_EventScript_Naming_Text_0
-# 967 "data/scripts/tarc3_accusation.pory"
-	msgbox tarc3_Accusation_EventScript_NameIchiro_Text_7
-# 968 "data/scripts/tarc3_accusation.pory"
 	goto_if_unset FLAG_TARC3_ACCUSE_CRUMBS, tarc3_Accusation_EventScript_BadAnswerGeneric
-# 969 "data/scripts/tarc3_accusation.pory"
+# 967 "data/scripts/tarc3_accusation.pory"
 	setspeaker tarc3_Accusation_EventScript_NameMenu_Text_1
-# 970 "data/scripts/tarc3_accusation.pory"
+# 968 "data/scripts/tarc3_accusation.pory"
 	msgbox tarc3_Accusation_EventScript_BadAnswer_Text_1
-# 971 "data/scripts/tarc3_accusation.pory"
+# 969 "data/scripts/tarc3_accusation.pory"
 	msgbox tarc3_Accusation_EventScript_BadAnswer_Text_2
-# 972 "data/scripts/tarc3_accusation.pory"
+# 970 "data/scripts/tarc3_accusation.pory"
 	msgbox tarc3_Accusation_EventScript_BadAnswer_Text_3
-# 973 "data/scripts/tarc3_accusation.pory"
+# 971 "data/scripts/tarc3_accusation.pory"
 	setspeaker tarc3_Accusation_EventScript_Q1SummaryBest_Text_1
-# 974 "data/scripts/tarc3_accusation.pory"
+# 972 "data/scripts/tarc3_accusation.pory"
 	msgbox tarc3_Accusation_EventScript_BadAnswer_Text_4
-# 975 "data/scripts/tarc3_accusation.pory"
+# 973 "data/scripts/tarc3_accusation.pory"
 	setspeaker tarc3_Accusation_EventScript_NameMenu_Text_1
-# 976 "data/scripts/tarc3_accusation.pory"
+# 974 "data/scripts/tarc3_accusation.pory"
 	msgbox tarc3_Accusation_EventScript_BadAnswer_Text_5
-# 977 "data/scripts/tarc3_accusation.pory"
+# 975 "data/scripts/tarc3_accusation.pory"
 	msgbox tarc3_Accusation_EventScript_BadAnswer_Text_6
-# 978 "data/scripts/tarc3_accusation.pory"
+# 976 "data/scripts/tarc3_accusation.pory"
 	msgbox tarc3_Accusation_EventScript_BadAnswer_Text_7
-# 979 "data/scripts/tarc3_accusation.pory"
+# 977 "data/scripts/tarc3_accusation.pory"
 	setspeaker tarc3_Accusation_EventScript_Naming_Text_0
-# 980 "data/scripts/tarc3_accusation.pory"
+# 978 "data/scripts/tarc3_accusation.pory"
 	msgbox tarc3_Accusation_EventScript_NameIchiro_Text_7
-# 981 "data/scripts/tarc3_accusation.pory"
+# 979 "data/scripts/tarc3_accusation.pory"
 	setspeaker tarc3_Accusation_EventScript_NameMenu_Text_1
-# 982 "data/scripts/tarc3_accusation.pory"
+# 980 "data/scripts/tarc3_accusation.pory"
 	msgbox tarc3_Accusation_EventScript_BadAnswer_Text_8
-# 983 "data/scripts/tarc3_accusation.pory"
+# 981 "data/scripts/tarc3_accusation.pory"
 	msgbox tarc3_Accusation_EventScript_BadAnswer_Text_9
-# 984 "data/scripts/tarc3_accusation.pory"
+# 982 "data/scripts/tarc3_accusation.pory"
 	setspeaker NULL
-# 985 "data/scripts/tarc3_accusation.pory"
+# 983 "data/scripts/tarc3_accusation.pory"
 	closemessage
-# 986 "data/scripts/tarc3_accusation.pory"
+# 984 "data/scripts/tarc3_accusation.pory"
 	delay 40
-# 987 "data/scripts/tarc3_accusation.pory"
+# 985 "data/scripts/tarc3_accusation.pory"
 	goto tarc3_Accusation_EventScript_BadNearMiss
 	return
 
 
 tarc3_Accusation_EventScript_BadAnswerGeneric::
-# 993 "data/scripts/tarc3_accusation.pory"
+# 991 "data/scripts/tarc3_accusation.pory"
 	setspeaker tarc3_Accusation_EventScript_NameMenu_Text_1
-# 994 "data/scripts/tarc3_accusation.pory"
+# 992 "data/scripts/tarc3_accusation.pory"
 	msgbox tarc3_Accusation_EventScript_BadAnswerGeneric_Text_0
-# 995 "data/scripts/tarc3_accusation.pory"
+# 993 "data/scripts/tarc3_accusation.pory"
 	msgbox tarc3_Accusation_EventScript_BadAnswerGeneric_Text_1
-# 996 "data/scripts/tarc3_accusation.pory"
+# 994 "data/scripts/tarc3_accusation.pory"
 	msgbox tarc3_Accusation_EventScript_BadAnswerGeneric_Text_2
-# 997 "data/scripts/tarc3_accusation.pory"
+# 995 "data/scripts/tarc3_accusation.pory"
 	setspeaker tarc3_Accusation_EventScript_Q1SummaryBest_Text_1
-# 998 "data/scripts/tarc3_accusation.pory"
+# 996 "data/scripts/tarc3_accusation.pory"
 	msgbox tarc3_Accusation_EventScript_BadAnswerGeneric_Text_3
-# 999 "data/scripts/tarc3_accusation.pory"
+# 997 "data/scripts/tarc3_accusation.pory"
 	setspeaker tarc3_Accusation_EventScript_NameMenu_Text_1
-# 1000 "data/scripts/tarc3_accusation.pory"
+# 998 "data/scripts/tarc3_accusation.pory"
 	msgbox tarc3_Accusation_EventScript_BadAnswerGeneric_Text_4
-# 1001 "data/scripts/tarc3_accusation.pory"
+# 999 "data/scripts/tarc3_accusation.pory"
 	setspeaker tarc3_Accusation_EventScript_Naming_Text_0
-# 1002 "data/scripts/tarc3_accusation.pory"
+# 1000 "data/scripts/tarc3_accusation.pory"
 	msgbox tarc3_Accusation_EventScript_NameIchiro_Text_7
-# 1003 "data/scripts/tarc3_accusation.pory"
+# 1001 "data/scripts/tarc3_accusation.pory"
 	setspeaker tarc3_Accusation_EventScript_NameMenu_Text_1
-# 1004 "data/scripts/tarc3_accusation.pory"
+# 1002 "data/scripts/tarc3_accusation.pory"
 	msgbox tarc3_Accusation_EventScript_BadAnswer_Text_8
-# 1005 "data/scripts/tarc3_accusation.pory"
+# 1003 "data/scripts/tarc3_accusation.pory"
 	msgbox tarc3_Accusation_EventScript_BadAnswer_Text_9
-# 1006 "data/scripts/tarc3_accusation.pory"
+# 1004 "data/scripts/tarc3_accusation.pory"
 	setspeaker NULL
-# 1007 "data/scripts/tarc3_accusation.pory"
+# 1005 "data/scripts/tarc3_accusation.pory"
 	closemessage
-# 1008 "data/scripts/tarc3_accusation.pory"
+# 1006 "data/scripts/tarc3_accusation.pory"
 	delay 40
-# 1009 "data/scripts/tarc3_accusation.pory"
+# 1007 "data/scripts/tarc3_accusation.pory"
 	goto tarc3_Accusation_EventScript_BadNearMiss
 	return
 
 
 tarc3_Accusation_EventScript_BadNearMiss::
-# 1015 "data/scripts/tarc3_accusation.pory"
+# 1013 "data/scripts/tarc3_accusation.pory"
 	checkevidence EVD_SKETCHBOOK
+# 1014 "data/scripts/tarc3_accusation.pory"
+	goto_if_eq VAR_RESULT, TRUE, tarc3_Accusation_EventScript_BadNearMissBook
+# 1015 "data/scripts/tarc3_accusation.pory"
+	checkevidence EVD_UNREQUITED_LOVE
 # 1016 "data/scripts/tarc3_accusation.pory"
 	goto_if_eq VAR_RESULT, TRUE, tarc3_Accusation_EventScript_BadNearMissBook
 # 1017 "data/scripts/tarc3_accusation.pory"
-	checkevidence EVD_UNREQUITED_LOVE
+	checkevidence EVD_TWIN_REFUSAL
 # 1018 "data/scripts/tarc3_accusation.pory"
 	goto_if_eq VAR_RESULT, TRUE, tarc3_Accusation_EventScript_BadNearMissBook
 # 1019 "data/scripts/tarc3_accusation.pory"
-	checkevidence EVD_TWIN_REFUSAL
-# 1020 "data/scripts/tarc3_accusation.pory"
-	goto_if_eq VAR_RESULT, TRUE, tarc3_Accusation_EventScript_BadNearMissBook
-# 1021 "data/scripts/tarc3_accusation.pory"
 	goto tarc3_Accusation_EventScript_BadWall
 	return
 
 
 tarc3_Accusation_EventScript_BadNearMissBook::
-# 1025 "data/scripts/tarc3_accusation.pory"
+# 1023 "data/scripts/tarc3_accusation.pory"
 	setspeaker tarc3_Accusation_EventScript_Naming_Text_0
-# 1026 "data/scripts/tarc3_accusation.pory"
+# 1024 "data/scripts/tarc3_accusation.pory"
 	msgbox tarc3_Accusation_EventScript_BadNearMissBook_Text_0
-# 1027 "data/scripts/tarc3_accusation.pory"
+# 1025 "data/scripts/tarc3_accusation.pory"
 	closemessage
-# 1028 "data/scripts/tarc3_accusation.pory"
+# 1026 "data/scripts/tarc3_accusation.pory"
 	delay 40
-# 1029 "data/scripts/tarc3_accusation.pory"
+# 1027 "data/scripts/tarc3_accusation.pory"
 	playse SE_PIN
-# 1030 "data/scripts/tarc3_accusation.pory"
+# 1028 "data/scripts/tarc3_accusation.pory"
 	applymovement LOCALID_CABINS_ICHIRO, tarc3_Accusation_EventScript_NameIchiro_Movement_0
+# 1029 "data/scripts/tarc3_accusation.pory"
+	waitmovement 0
+# 1030 "data/scripts/tarc3_accusation.pory"
+	delay 30
 # 1031 "data/scripts/tarc3_accusation.pory"
-	waitmovement 0
-# 1032 "data/scripts/tarc3_accusation.pory"
-	delay 30
-# 1033 "data/scripts/tarc3_accusation.pory"
 	applymovement LOCALID_CABINS_ICHIRO, tarc3_Accusation_EventScript_OpenCloset_Movement_0
+# 1032 "data/scripts/tarc3_accusation.pory"
+	waitmovement 0
+# 1033 "data/scripts/tarc3_accusation.pory"
+	delay 30
 # 1034 "data/scripts/tarc3_accusation.pory"
-	waitmovement 0
-# 1035 "data/scripts/tarc3_accusation.pory"
-	delay 30
-# 1036 "data/scripts/tarc3_accusation.pory"
 	setspeaker tarc3_Accusation_EventScript_NameIchiro_Text_1
-# 1037 "data/scripts/tarc3_accusation.pory"
+# 1035 "data/scripts/tarc3_accusation.pory"
 	msgbox tarc3_Accusation_EventScript_BadNearMissBook_Text_1
+# 1036 "data/scripts/tarc3_accusation.pory"
+	closemessage
+# 1037 "data/scripts/tarc3_accusation.pory"
+	delay 20
 # 1038 "data/scripts/tarc3_accusation.pory"
-	closemessage
-# 1039 "data/scripts/tarc3_accusation.pory"
-	delay 20
-# 1040 "data/scripts/tarc3_accusation.pory"
 	applymovement LOCALID_CABINS_ICHIRO, tarc3_Accusation_EventScript_PerfectAnswer_Movement_0
-# 1041 "data/scripts/tarc3_accusation.pory"
+# 1039 "data/scripts/tarc3_accusation.pory"
 	waitmovement 0
-# 1042 "data/scripts/tarc3_accusation.pory"
+# 1040 "data/scripts/tarc3_accusation.pory"
 	delay 20
-# 1043 "data/scripts/tarc3_accusation.pory"
+# 1041 "data/scripts/tarc3_accusation.pory"
 	setspeaker tarc3_Accusation_EventScript_NameMenu_Text_1
-# 1044 "data/scripts/tarc3_accusation.pory"
+# 1042 "data/scripts/tarc3_accusation.pory"
 	msgbox tarc3_Accusation_EventScript_BadNearMissBook_Text_2
-# 1045 "data/scripts/tarc3_accusation.pory"
+# 1043 "data/scripts/tarc3_accusation.pory"
 	msgbox tarc3_Accusation_EventScript_BadNearMissBook_Text_3
-# 1046 "data/scripts/tarc3_accusation.pory"
+# 1044 "data/scripts/tarc3_accusation.pory"
 	closemessage
-# 1047 "data/scripts/tarc3_accusation.pory"
+# 1045 "data/scripts/tarc3_accusation.pory"
 	delay 30
-# 1048 "data/scripts/tarc3_accusation.pory"
+# 1046 "data/scripts/tarc3_accusation.pory"
 	goto tarc3_Accusation_EventScript_BadWall
 	return
 
 
 tarc3_Accusation_EventScript_BadWall::
-# 1052 "data/scripts/tarc3_accusation.pory"
+# 1050 "data/scripts/tarc3_accusation.pory"
 	setspeaker tarc3_Accusation_EventScript_NameIchiro_Text_1
-# 1053 "data/scripts/tarc3_accusation.pory"
+# 1051 "data/scripts/tarc3_accusation.pory"
 	msgbox tarc3_Accusation_EventScript_BadWall_Text_0
-# 1054 "data/scripts/tarc3_accusation.pory"
+# 1052 "data/scripts/tarc3_accusation.pory"
 	closemessage
-# 1055 "data/scripts/tarc3_accusation.pory"
+# 1053 "data/scripts/tarc3_accusation.pory"
 	delay 20
-# 1056 "data/scripts/tarc3_accusation.pory"
+# 1054 "data/scripts/tarc3_accusation.pory"
 	setspeaker NULL
-# 1057 "data/scripts/tarc3_accusation.pory"
+# 1055 "data/scripts/tarc3_accusation.pory"
 	msgbox tarc3_Accusation_EventScript_BadWall_Text_1
-# 1058 "data/scripts/tarc3_accusation.pory"
+# 1056 "data/scripts/tarc3_accusation.pory"
 	closemessage
-# 1059 "data/scripts/tarc3_accusation.pory"
+# 1057 "data/scripts/tarc3_accusation.pory"
 	delay 30
-# 1060 "data/scripts/tarc3_accusation.pory"
+# 1058 "data/scripts/tarc3_accusation.pory"
 	setspeaker tarc3_Accusation_EventScript_NameIchiro_Text_3
-# 1061 "data/scripts/tarc3_accusation.pory"
+# 1059 "data/scripts/tarc3_accusation.pory"
 	msgbox tarc3_Accusation_EventScript_BadWall_Text_2
-# 1062 "data/scripts/tarc3_accusation.pory"
+# 1060 "data/scripts/tarc3_accusation.pory"
 	msgbox tarc3_Accusation_EventScript_BadWall_Text_3
-# 1063 "data/scripts/tarc3_accusation.pory"
+# 1061 "data/scripts/tarc3_accusation.pory"
 	msgbox tarc3_Accusation_EventScript_BadWall_Text_4
-# 1064 "data/scripts/tarc3_accusation.pory"
+# 1062 "data/scripts/tarc3_accusation.pory"
 	msgbox tarc3_Accusation_EventScript_BadWall_Text_5
-# 1065 "data/scripts/tarc3_accusation.pory"
+# 1063 "data/scripts/tarc3_accusation.pory"
 	setspeaker NULL
-# 1066 "data/scripts/tarc3_accusation.pory"
+# 1064 "data/scripts/tarc3_accusation.pory"
 	closemessage
-# 1067 "data/scripts/tarc3_accusation.pory"
+# 1065 "data/scripts/tarc3_accusation.pory"
 	delay 40
-# 1068 "data/scripts/tarc3_accusation.pory"
+# 1066 "data/scripts/tarc3_accusation.pory"
 	goto tarc3_Accusation_EventScript_BadCloset
 	return
 
 
 tarc3_Accusation_EventScript_BadCloset::
-# 1072 "data/scripts/tarc3_accusation.pory"
+# 1070 "data/scripts/tarc3_accusation.pory"
 	setspeaker tarc3_Accusation_EventScript_Naming_Text_0
-# 1073 "data/scripts/tarc3_accusation.pory"
+# 1071 "data/scripts/tarc3_accusation.pory"
 	msgbox tarc3_Accusation_EventScript_BadCloset_Text_0
-# 1074 "data/scripts/tarc3_accusation.pory"
+# 1072 "data/scripts/tarc3_accusation.pory"
 	msgbox tarc3_Accusation_EventScript_BadCloset_Text_1
+# 1073 "data/scripts/tarc3_accusation.pory"
+	closemessage
+# 1074 "data/scripts/tarc3_accusation.pory"
+	delay 50
 # 1075 "data/scripts/tarc3_accusation.pory"
-	closemessage
-# 1076 "data/scripts/tarc3_accusation.pory"
-	delay 50
-# 1077 "data/scripts/tarc3_accusation.pory"
 	setspeaker tarc3_Accusation_EventScript_Q2SummaryGood_Text_0
-# 1078 "data/scripts/tarc3_accusation.pory"
+# 1076 "data/scripts/tarc3_accusation.pory"
 	msgbox tarc3_Accusation_EventScript_BadCloset_Text_2
-# 1079 "data/scripts/tarc3_accusation.pory"
+# 1077 "data/scripts/tarc3_accusation.pory"
 	msgbox tarc3_Accusation_EventScript_BadCloset_Text_3
-# 1080 "data/scripts/tarc3_accusation.pory"
+# 1078 "data/scripts/tarc3_accusation.pory"
 	setspeaker tarc3_Accusation_EventScript_Naming_Text_0
-# 1081 "data/scripts/tarc3_accusation.pory"
+# 1079 "data/scripts/tarc3_accusation.pory"
 	msgbox tarc3_Accusation_EventScript_BadCloset_Text_4
-# 1082 "data/scripts/tarc3_accusation.pory"
+# 1080 "data/scripts/tarc3_accusation.pory"
 	setspeaker tarc3_Accusation_EventScript_NameIchiro_Text_3
-# 1083 "data/scripts/tarc3_accusation.pory"
+# 1081 "data/scripts/tarc3_accusation.pory"
 	msgbox tarc3_Accusation_EventScript_BadCloset_Text_5
-# 1084 "data/scripts/tarc3_accusation.pory"
+# 1082 "data/scripts/tarc3_accusation.pory"
 	msgbox tarc3_Accusation_EventScript_BadCloset_Text_6
-# 1085 "data/scripts/tarc3_accusation.pory"
+# 1083 "data/scripts/tarc3_accusation.pory"
 	setspeaker tarc3_Accusation_EventScript_Naming_Text_0
-# 1086 "data/scripts/tarc3_accusation.pory"
+# 1084 "data/scripts/tarc3_accusation.pory"
 	msgbox tarc3_Accusation_EventScript_BadCloset_Text_7
-# 1087 "data/scripts/tarc3_accusation.pory"
+# 1085 "data/scripts/tarc3_accusation.pory"
 	setspeaker tarc3_Accusation_EventScript_NameIchiro_Text_5
-# 1088 "data/scripts/tarc3_accusation.pory"
+# 1086 "data/scripts/tarc3_accusation.pory"
 	msgbox tarc3_Accusation_EventScript_BadCloset_Text_8
-# 1089 "data/scripts/tarc3_accusation.pory"
+# 1087 "data/scripts/tarc3_accusation.pory"
 	closemessage
-# 1090 "data/scripts/tarc3_accusation.pory"
+# 1088 "data/scripts/tarc3_accusation.pory"
 	delay 30
-# 1091 "data/scripts/tarc3_accusation.pory"
+# 1089 "data/scripts/tarc3_accusation.pory"
 	call tarc3_Accusation_EventScript_OpenCloset
-# 1092 "data/scripts/tarc3_accusation.pory"
+# 1090 "data/scripts/tarc3_accusation.pory"
 	setspeaker tarc3_Accusation_EventScript_NameMenu_Text_2
-# 1093 "data/scripts/tarc3_accusation.pory"
+# 1091 "data/scripts/tarc3_accusation.pory"
 	msgbox tarc3_Accusation_EventScript_BadCloset_Text_9
-# 1094 "data/scripts/tarc3_accusation.pory"
+# 1092 "data/scripts/tarc3_accusation.pory"
 	setspeaker tarc3_Accusation_EventScript_NameIchiro_Text_3
-# 1095 "data/scripts/tarc3_accusation.pory"
+# 1093 "data/scripts/tarc3_accusation.pory"
 	msgbox tarc3_Accusation_EventScript_BadCloset_Text_10
-# 1096 "data/scripts/tarc3_accusation.pory"
+# 1094 "data/scripts/tarc3_accusation.pory"
 	msgbox tarc3_Accusation_EventScript_BadCloset_Text_11
-# 1097 "data/scripts/tarc3_accusation.pory"
+# 1095 "data/scripts/tarc3_accusation.pory"
 	msgbox tarc3_Accusation_EventScript_BadCloset_Text_12
-# 1098 "data/scripts/tarc3_accusation.pory"
+# 1096 "data/scripts/tarc3_accusation.pory"
 	closemessage
-# 1099 "data/scripts/tarc3_accusation.pory"
+# 1097 "data/scripts/tarc3_accusation.pory"
 	delay 40
-# 1100 "data/scripts/tarc3_accusation.pory"
+# 1098 "data/scripts/tarc3_accusation.pory"
 	setspeaker tarc3_Accusation_EventScript_Q1SummaryBest_Text_1
-# 1101 "data/scripts/tarc3_accusation.pory"
+# 1099 "data/scripts/tarc3_accusation.pory"
 	msgbox tarc3_Accusation_EventScript_NameIchiro_Text_7
-# 1102 "data/scripts/tarc3_accusation.pory"
+# 1100 "data/scripts/tarc3_accusation.pory"
 	msgbox tarc3_Accusation_EventScript_BadCloset_Text_13
-# 1103 "data/scripts/tarc3_accusation.pory"
+# 1101 "data/scripts/tarc3_accusation.pory"
 	msgbox tarc3_Accusation_EventScript_BadCloset_Text_14
-# 1104 "data/scripts/tarc3_accusation.pory"
+# 1102 "data/scripts/tarc3_accusation.pory"
 	msgbox tarc3_Accusation_EventScript_BadCloset_Text_15
-# 1105 "data/scripts/tarc3_accusation.pory"
+# 1103 "data/scripts/tarc3_accusation.pory"
 	setspeaker NULL
-# 1106 "data/scripts/tarc3_accusation.pory"
+# 1104 "data/scripts/tarc3_accusation.pory"
 	closemessage
-# 1107 "data/scripts/tarc3_accusation.pory"
+# 1105 "data/scripts/tarc3_accusation.pory"
 	delay 50
-# 1108 "data/scripts/tarc3_accusation.pory"
+# 1106 "data/scripts/tarc3_accusation.pory"
 	goto tarc3_Accusation_EventScript_End
 	return
 
 
 tarc3_Accusation_EventScript_WorstAnswer::
-# 1114 "data/scripts/tarc3_accusation.pory"
+# 1112 "data/scripts/tarc3_accusation.pory"
 	closemessage
-# 1115 "data/scripts/tarc3_accusation.pory"
+# 1113 "data/scripts/tarc3_accusation.pory"
 	delay 40
-# 1116 "data/scripts/tarc3_accusation.pory"
+# 1114 "data/scripts/tarc3_accusation.pory"
 	setspeaker tarc3_Accusation_EventScript_NameIchiro_Text_3
-# 1117 "data/scripts/tarc3_accusation.pory"
+# 1115 "data/scripts/tarc3_accusation.pory"
 	msgbox tarc3_Accusation_EventScript_WorstAnswer_Text_0
-# 1118 "data/scripts/tarc3_accusation.pory"
+# 1116 "data/scripts/tarc3_accusation.pory"
 	setspeaker tarc3_Accusation_EventScript_NameMenu_Text_2
-# 1119 "data/scripts/tarc3_accusation.pory"
+# 1117 "data/scripts/tarc3_accusation.pory"
 	msgbox tarc3_Accusation_EventScript_WorstAnswer_Text_1
-# 1120 "data/scripts/tarc3_accusation.pory"
+# 1118 "data/scripts/tarc3_accusation.pory"
 	goto_if_set FLAG_TARC3_ACCUSE_HISTORY, tarc3_Accusation_EventScript_WorstAnswer_2
 tarc3_Accusation_EventScript_WorstAnswer_1:
-# 1123 "data/scripts/tarc3_accusation.pory"
+# 1121 "data/scripts/tarc3_accusation.pory"
 	msgbox tarc3_Accusation_EventScript_WorstAnswer_Text_3
-# 1124 "data/scripts/tarc3_accusation.pory"
+# 1122 "data/scripts/tarc3_accusation.pory"
 	msgbox tarc3_Accusation_EventScript_WorstAnswer_Text_4
-# 1125 "data/scripts/tarc3_accusation.pory"
+# 1123 "data/scripts/tarc3_accusation.pory"
 	msgbox tarc3_Accusation_EventScript_WorstAnswer_Text_5
-# 1126 "data/scripts/tarc3_accusation.pory"
+# 1124 "data/scripts/tarc3_accusation.pory"
 	setspeaker tarc3_Accusation_EventScript_NameIchiro_Text_5
-# 1127 "data/scripts/tarc3_accusation.pory"
+# 1125 "data/scripts/tarc3_accusation.pory"
 	msgbox tarc3_Accusation_EventScript_WorstAnswer_Text_6
-# 1128 "data/scripts/tarc3_accusation.pory"
+# 1126 "data/scripts/tarc3_accusation.pory"
 	setspeaker tarc3_Accusation_EventScript_NameIchiro_Text_1
-# 1129 "data/scripts/tarc3_accusation.pory"
+# 1127 "data/scripts/tarc3_accusation.pory"
 	msgbox tarc3_Accusation_EventScript_PerfectCloset_Text_8
-# 1130 "data/scripts/tarc3_accusation.pory"
+# 1128 "data/scripts/tarc3_accusation.pory"
 	setspeaker tarc3_Accusation_EventScript_NameMenu_Text_2
-# 1131 "data/scripts/tarc3_accusation.pory"
+# 1129 "data/scripts/tarc3_accusation.pory"
 	msgbox tarc3_Accusation_EventScript_WorstAnswer_Text_7
-# 1132 "data/scripts/tarc3_accusation.pory"
+# 1130 "data/scripts/tarc3_accusation.pory"
 	setspeaker tarc3_Accusation_EventScript_NameIchiro_Text_3
-# 1133 "data/scripts/tarc3_accusation.pory"
+# 1131 "data/scripts/tarc3_accusation.pory"
 	msgbox tarc3_Accusation_EventScript_WorstAnswer_Text_8
-# 1134 "data/scripts/tarc3_accusation.pory"
+# 1132 "data/scripts/tarc3_accusation.pory"
 	msgbox tarc3_Accusation_EventScript_WorstAnswer_Text_9
-# 1135 "data/scripts/tarc3_accusation.pory"
+# 1133 "data/scripts/tarc3_accusation.pory"
 	setspeaker tarc3_Accusation_EventScript_NameMenu_Text_2
-# 1136 "data/scripts/tarc3_accusation.pory"
+# 1134 "data/scripts/tarc3_accusation.pory"
 	msgbox tarc3_Accusation_EventScript_PerfectCloset_Text_4
-# 1137 "data/scripts/tarc3_accusation.pory"
+# 1135 "data/scripts/tarc3_accusation.pory"
 	msgbox tarc3_Accusation_EventScript_WorstAnswer_Text_10
-# 1138 "data/scripts/tarc3_accusation.pory"
+# 1136 "data/scripts/tarc3_accusation.pory"
 	setspeaker NULL
-# 1139 "data/scripts/tarc3_accusation.pory"
+# 1137 "data/scripts/tarc3_accusation.pory"
 	closemessage
-# 1140 "data/scripts/tarc3_accusation.pory"
+# 1138 "data/scripts/tarc3_accusation.pory"
 	delay 50
-# 1141 "data/scripts/tarc3_accusation.pory"
+# 1139 "data/scripts/tarc3_accusation.pory"
 	goto tarc3_Accusation_EventScript_WorstRoom
 	return
 
 tarc3_Accusation_EventScript_WorstAnswer_2:
-# 1121 "data/scripts/tarc3_accusation.pory"
+# 1119 "data/scripts/tarc3_accusation.pory"
 	msgbox tarc3_Accusation_EventScript_WorstAnswer_Text_2
 	goto tarc3_Accusation_EventScript_WorstAnswer_1
 
 
 tarc3_Accusation_EventScript_WorstRoom::
-# 1145 "data/scripts/tarc3_accusation.pory"
+# 1143 "data/scripts/tarc3_accusation.pory"
 	setspeaker tarc3_Accusation_EventScript_NameIchiro_Text_1
-# 1146 "data/scripts/tarc3_accusation.pory"
+# 1144 "data/scripts/tarc3_accusation.pory"
 	msgbox tarc3_Accusation_EventScript_WorstRoom_Text_0
-# 1147 "data/scripts/tarc3_accusation.pory"
+# 1145 "data/scripts/tarc3_accusation.pory"
 	setspeaker tarc3_Accusation_EventScript_Q2SummaryGood_Text_0
-# 1148 "data/scripts/tarc3_accusation.pory"
+# 1146 "data/scripts/tarc3_accusation.pory"
 	msgbox tarc3_Accusation_EventScript_WorstRoom_Text_1
-# 1149 "data/scripts/tarc3_accusation.pory"
+# 1147 "data/scripts/tarc3_accusation.pory"
 	msgbox tarc3_Accusation_EventScript_WorstRoom_Text_2
-# 1150 "data/scripts/tarc3_accusation.pory"
+# 1148 "data/scripts/tarc3_accusation.pory"
 	setspeaker tarc3_Accusation_EventScript_NameIchiro_Text_3
-# 1151 "data/scripts/tarc3_accusation.pory"
+# 1149 "data/scripts/tarc3_accusation.pory"
 	msgbox tarc3_Accusation_EventScript_PerfectTakeshi_Text_18
-# 1152 "data/scripts/tarc3_accusation.pory"
+# 1150 "data/scripts/tarc3_accusation.pory"
 	setspeaker tarc3_Accusation_EventScript_Q1SummaryBest_Text_1
-# 1153 "data/scripts/tarc3_accusation.pory"
+# 1151 "data/scripts/tarc3_accusation.pory"
 	msgbox tarc3_Accusation_EventScript_NameIchiro_Text_7
-# 1154 "data/scripts/tarc3_accusation.pory"
+# 1152 "data/scripts/tarc3_accusation.pory"
 	msgbox tarc3_Accusation_EventScript_PerfectTakeshi_Text_19
-# 1155 "data/scripts/tarc3_accusation.pory"
+# 1153 "data/scripts/tarc3_accusation.pory"
 	setspeaker NULL
-# 1156 "data/scripts/tarc3_accusation.pory"
+# 1154 "data/scripts/tarc3_accusation.pory"
 	closemessage
-# 1157 "data/scripts/tarc3_accusation.pory"
+# 1155 "data/scripts/tarc3_accusation.pory"
 	delay 30
-# 1158 "data/scripts/tarc3_accusation.pory"
+# 1156 "data/scripts/tarc3_accusation.pory"
 	applymovement LOCALID_CABINS_SUZUKI, tarc3_Accusation_EventScript_WorstRoom_Movement_0
-# 1159 "data/scripts/tarc3_accusation.pory"
+# 1157 "data/scripts/tarc3_accusation.pory"
 	waitmovement 0
-# 1160 "data/scripts/tarc3_accusation.pory"
+# 1158 "data/scripts/tarc3_accusation.pory"
 	playse SE_EXIT
-# 1161 "data/scripts/tarc3_accusation.pory"
+# 1159 "data/scripts/tarc3_accusation.pory"
 	removeobject LOCALID_CABINS_SUZUKI
-# 1162 "data/scripts/tarc3_accusation.pory"
+# 1160 "data/scripts/tarc3_accusation.pory"
 	delay 40
-# 1163 "data/scripts/tarc3_accusation.pory"
+# 1161 "data/scripts/tarc3_accusation.pory"
 	goto tarc3_Accusation_EventScript_WorstIchiro
 	return
 
 
 tarc3_Accusation_EventScript_WorstIchiro::
-# 1167 "data/scripts/tarc3_accusation.pory"
+# 1165 "data/scripts/tarc3_accusation.pory"
 	setspeaker tarc3_Accusation_EventScript_NameMenu_Text_1
-# 1168 "data/scripts/tarc3_accusation.pory"
+# 1166 "data/scripts/tarc3_accusation.pory"
 	msgbox tarc3_Accusation_EventScript_WorstIchiro_Text_0
-# 1169 "data/scripts/tarc3_accusation.pory"
+# 1167 "data/scripts/tarc3_accusation.pory"
 	msgbox tarc3_Accusation_EventScript_WorstIchiro_Text_1
-# 1170 "data/scripts/tarc3_accusation.pory"
+# 1168 "data/scripts/tarc3_accusation.pory"
 	msgbox tarc3_Accusation_EventScript_WorstIchiro_Text_2
-# 1171 "data/scripts/tarc3_accusation.pory"
+# 1169 "data/scripts/tarc3_accusation.pory"
 	setspeaker tarc3_Accusation_EventScript_NameTakeshi_Text_2
-# 1172 "data/scripts/tarc3_accusation.pory"
+# 1170 "data/scripts/tarc3_accusation.pory"
 	msgbox tarc3_Accusation_EventScript_NameIchiro_Text_7
-# 1173 "data/scripts/tarc3_accusation.pory"
+# 1171 "data/scripts/tarc3_accusation.pory"
 	setspeaker NULL
-# 1174 "data/scripts/tarc3_accusation.pory"
+# 1172 "data/scripts/tarc3_accusation.pory"
 	closemessage
-# 1175 "data/scripts/tarc3_accusation.pory"
+# 1173 "data/scripts/tarc3_accusation.pory"
 	delay 30
-# 1176 "data/scripts/tarc3_accusation.pory"
+# 1174 "data/scripts/tarc3_accusation.pory"
 	applymovement LOCALID_CABINS_ICHIRO, tarc3_Accusation_EventScript_WorstIchiro_Movement_0
+# 1175 "data/scripts/tarc3_accusation.pory"
+	waitmovement 0
+# 1176 "data/scripts/tarc3_accusation.pory"
+	playse SE_EXIT
 # 1177 "data/scripts/tarc3_accusation.pory"
-	waitmovement 0
-# 1178 "data/scripts/tarc3_accusation.pory"
-	playse SE_EXIT
-# 1179 "data/scripts/tarc3_accusation.pory"
 	removeobject LOCALID_CABINS_ICHIRO
-# 1180 "data/scripts/tarc3_accusation.pory"
+# 1178 "data/scripts/tarc3_accusation.pory"
 	delay 20
-# 1181 "data/scripts/tarc3_accusation.pory"
+# 1179 "data/scripts/tarc3_accusation.pory"
 	applymovement LOCALID_CABINS_NATSUE, tarc3_Accusation_EventScript_WorstIchiro_Movement_1
-# 1182 "data/scripts/tarc3_accusation.pory"
+# 1180 "data/scripts/tarc3_accusation.pory"
 	waitmovement 0
-# 1183 "data/scripts/tarc3_accusation.pory"
+# 1181 "data/scripts/tarc3_accusation.pory"
 	playse SE_EXIT
-# 1184 "data/scripts/tarc3_accusation.pory"
+# 1182 "data/scripts/tarc3_accusation.pory"
 	removeobject LOCALID_CABINS_NATSUE
-# 1185 "data/scripts/tarc3_accusation.pory"
+# 1183 "data/scripts/tarc3_accusation.pory"
 	delay 50
-# 1186 "data/scripts/tarc3_accusation.pory"
+# 1184 "data/scripts/tarc3_accusation.pory"
 	goto tarc3_Accusation_EventScript_End
 	return
 
 
 tarc3_Accusation_EventScript_WorstRefusedAnswer::
+# 1190 "data/scripts/tarc3_accusation.pory"
+	closemessage
+# 1191 "data/scripts/tarc3_accusation.pory"
+	delay 40
 # 1192 "data/scripts/tarc3_accusation.pory"
-	closemessage
+	setspeaker tarc3_Accusation_EventScript_NameIchiro_Text_3
 # 1193 "data/scripts/tarc3_accusation.pory"
-	delay 40
-# 1194 "data/scripts/tarc3_accusation.pory"
-	setspeaker tarc3_Accusation_EventScript_NameIchiro_Text_3
-# 1195 "data/scripts/tarc3_accusation.pory"
 	msgbox tarc3_Accusation_EventScript_WorstRefusedAnswer_Text_0
-# 1196 "data/scripts/tarc3_accusation.pory"
+# 1194 "data/scripts/tarc3_accusation.pory"
 	setspeaker tarc3_Accusation_EventScript_Q1SummaryBest_Text_1
-# 1197 "data/scripts/tarc3_accusation.pory"
+# 1195 "data/scripts/tarc3_accusation.pory"
 	msgbox tarc3_Accusation_EventScript_WorstRefusedAnswer_Text_1
-# 1198 "data/scripts/tarc3_accusation.pory"
+# 1196 "data/scripts/tarc3_accusation.pory"
 	setspeaker tarc3_Accusation_EventScript_NameIchiro_Text_3
-# 1199 "data/scripts/tarc3_accusation.pory"
+# 1197 "data/scripts/tarc3_accusation.pory"
 	msgbox tarc3_Accusation_EventScript_WorstRefusedAnswer_Text_2
-# 1200 "data/scripts/tarc3_accusation.pory"
+# 1198 "data/scripts/tarc3_accusation.pory"
 	setspeaker tarc3_Accusation_EventScript_Q1SummaryBest_Text_1
-# 1201 "data/scripts/tarc3_accusation.pory"
+# 1199 "data/scripts/tarc3_accusation.pory"
 	msgbox tarc3_Accusation_EventScript_WorstRefusedAnswer_Text_3
-# 1202 "data/scripts/tarc3_accusation.pory"
+# 1200 "data/scripts/tarc3_accusation.pory"
 	msgbox tarc3_Accusation_EventScript_WorstRefusedAnswer_Text_4
-# 1203 "data/scripts/tarc3_accusation.pory"
+# 1201 "data/scripts/tarc3_accusation.pory"
 	setspeaker tarc3_Accusation_EventScript_NameIchiro_Text_5
-# 1204 "data/scripts/tarc3_accusation.pory"
+# 1202 "data/scripts/tarc3_accusation.pory"
 	msgbox tarc3_Accusation_EventScript_WorstRefusedAnswer_Text_5
-# 1205 "data/scripts/tarc3_accusation.pory"
+# 1203 "data/scripts/tarc3_accusation.pory"
 	setspeaker NULL
-# 1206 "data/scripts/tarc3_accusation.pory"
+# 1204 "data/scripts/tarc3_accusation.pory"
 	closemessage
-# 1207 "data/scripts/tarc3_accusation.pory"
+# 1205 "data/scripts/tarc3_accusation.pory"
 	delay 40
-# 1208 "data/scripts/tarc3_accusation.pory"
+# 1206 "data/scripts/tarc3_accusation.pory"
 	goto tarc3_Accusation_EventScript_WorstRefusedTakeshi
 	return
 
 
 tarc3_Accusation_EventScript_WorstRefusedTakeshi::
-# 1212 "data/scripts/tarc3_accusation.pory"
+# 1210 "data/scripts/tarc3_accusation.pory"
 	setspeaker tarc3_Accusation_EventScript_NameMenu_Text_2
-# 1213 "data/scripts/tarc3_accusation.pory"
+# 1211 "data/scripts/tarc3_accusation.pory"
 	msgbox tarc3_Accusation_EventScript_WorstRefusedTakeshi_Text_0
-# 1214 "data/scripts/tarc3_accusation.pory"
+# 1212 "data/scripts/tarc3_accusation.pory"
 	goto_if_set FLAG_TARC3_ACCUSE_HISTORY, tarc3_Accusation_EventScript_WorstRefusedTakeshi_2
 tarc3_Accusation_EventScript_WorstRefusedTakeshi_1:
-# 1217 "data/scripts/tarc3_accusation.pory"
+# 1215 "data/scripts/tarc3_accusation.pory"
 	msgbox tarc3_Accusation_EventScript_WorstRefusedTakeshi_Text_2
-# 1218 "data/scripts/tarc3_accusation.pory"
+# 1216 "data/scripts/tarc3_accusation.pory"
 	msgbox tarc3_Accusation_EventScript_WorstRefusedTakeshi_Text_3
-# 1219 "data/scripts/tarc3_accusation.pory"
+# 1217 "data/scripts/tarc3_accusation.pory"
 	setspeaker tarc3_Accusation_EventScript_NameIchiro_Text_3
-# 1220 "data/scripts/tarc3_accusation.pory"
+# 1218 "data/scripts/tarc3_accusation.pory"
 	msgbox tarc3_Accusation_EventScript_WorstRefusedTakeshi_Text_4
-# 1221 "data/scripts/tarc3_accusation.pory"
+# 1219 "data/scripts/tarc3_accusation.pory"
 	setspeaker tarc3_Accusation_EventScript_Q1SummaryBest_Text_1
-# 1222 "data/scripts/tarc3_accusation.pory"
+# 1220 "data/scripts/tarc3_accusation.pory"
 	msgbox tarc3_Accusation_EventScript_WorstRefusedTakeshi_Text_5
-# 1223 "data/scripts/tarc3_accusation.pory"
+# 1221 "data/scripts/tarc3_accusation.pory"
 	setspeaker tarc3_Accusation_EventScript_NameTakeshi_Text_2
-# 1224 "data/scripts/tarc3_accusation.pory"
+# 1222 "data/scripts/tarc3_accusation.pory"
 	msgbox tarc3_Accusation_EventScript_PerfectTakeshi_Text_0
-# 1225 "data/scripts/tarc3_accusation.pory"
+# 1223 "data/scripts/tarc3_accusation.pory"
 	setspeaker tarc3_Accusation_EventScript_NameMenu_Text_2
-# 1226 "data/scripts/tarc3_accusation.pory"
+# 1224 "data/scripts/tarc3_accusation.pory"
 	msgbox tarc3_Accusation_EventScript_PerfectTakeshi_Text_1
-# 1227 "data/scripts/tarc3_accusation.pory"
+# 1225 "data/scripts/tarc3_accusation.pory"
 	setspeaker tarc3_Accusation_EventScript_Q2SummaryGood_Text_0
-# 1228 "data/scripts/tarc3_accusation.pory"
+# 1226 "data/scripts/tarc3_accusation.pory"
 	msgbox tarc3_Accusation_EventScript_WorstRefusedTakeshi_Text_6
-# 1229 "data/scripts/tarc3_accusation.pory"
+# 1227 "data/scripts/tarc3_accusation.pory"
 	msgbox tarc3_Accusation_EventScript_WorstRefusedTakeshi_Text_7
-# 1230 "data/scripts/tarc3_accusation.pory"
+# 1228 "data/scripts/tarc3_accusation.pory"
 	setspeaker tarc3_Accusation_EventScript_NameIchiro_Text_3
-# 1231 "data/scripts/tarc3_accusation.pory"
+# 1229 "data/scripts/tarc3_accusation.pory"
 	msgbox tarc3_Accusation_EventScript_PerfectTakeshi_Text_18
-# 1232 "data/scripts/tarc3_accusation.pory"
+# 1230 "data/scripts/tarc3_accusation.pory"
 	setspeaker tarc3_Accusation_EventScript_Q1SummaryBest_Text_1
-# 1233 "data/scripts/tarc3_accusation.pory"
+# 1231 "data/scripts/tarc3_accusation.pory"
 	msgbox tarc3_Accusation_EventScript_NameIchiro_Text_7
-# 1234 "data/scripts/tarc3_accusation.pory"
+# 1232 "data/scripts/tarc3_accusation.pory"
 	msgbox tarc3_Accusation_EventScript_PerfectTakeshi_Text_19
-# 1235 "data/scripts/tarc3_accusation.pory"
+# 1233 "data/scripts/tarc3_accusation.pory"
 	setspeaker NULL
-# 1236 "data/scripts/tarc3_accusation.pory"
+# 1234 "data/scripts/tarc3_accusation.pory"
 	closemessage
-# 1237 "data/scripts/tarc3_accusation.pory"
+# 1235 "data/scripts/tarc3_accusation.pory"
 	delay 50
-# 1238 "data/scripts/tarc3_accusation.pory"
+# 1236 "data/scripts/tarc3_accusation.pory"
 	goto tarc3_Accusation_EventScript_End
 	return
 
 tarc3_Accusation_EventScript_WorstRefusedTakeshi_2:
-# 1215 "data/scripts/tarc3_accusation.pory"
+# 1213 "data/scripts/tarc3_accusation.pory"
 	msgbox tarc3_Accusation_EventScript_WorstRefusedTakeshi_Text_1
 	goto tarc3_Accusation_EventScript_WorstRefusedTakeshi_1
 
 
 tarc3_Accusation_EventScript_End::
-# 1242 "data/scripts/tarc3_accusation.pory"
+# 1240 "data/scripts/tarc3_accusation.pory"
 	closemessage
-# 1243 "data/scripts/tarc3_accusation.pory"
+# 1241 "data/scripts/tarc3_accusation.pory"
 	delay 30
-# 1244 "data/scripts/tarc3_accusation.pory"
+# 1242 "data/scripts/tarc3_accusation.pory"
 	fadescreen FADE_TO_BLACK
-# 1245 "data/scripts/tarc3_accusation.pory"
+# 1243 "data/scripts/tarc3_accusation.pory"
 	removeobject LOCALID_CABINS_TAKESHI_CLOSET
-# 1246 "data/scripts/tarc3_accusation.pory"
+# 1244 "data/scripts/tarc3_accusation.pory"
 	removeobject LOCALID_CABINS_NATSUE
-# 1247 "data/scripts/tarc3_accusation.pory"
+# 1245 "data/scripts/tarc3_accusation.pory"
 	removeobject LOCALID_CABINS_ICHIRO
-# 1248 "data/scripts/tarc3_accusation.pory"
+# 1246 "data/scripts/tarc3_accusation.pory"
 	removeobject LOCALID_CABINS_SUZUKI
-# 1249 "data/scripts/tarc3_accusation.pory"
+# 1247 "data/scripts/tarc3_accusation.pory"
 	removeobject LOCALID_CABINS_AKIE
-# 1250 "data/scripts/tarc3_accusation.pory"
+# 1248 "data/scripts/tarc3_accusation.pory"
 	removeobject LOCALID_CABINS_KITARO
-# 1251 "data/scripts/tarc3_accusation.pory"
+# 1249 "data/scripts/tarc3_accusation.pory"
 	removeobject LOCALID_CABINS_JOJI
-# 1252 "data/scripts/tarc3_accusation.pory"
+# 1250 "data/scripts/tarc3_accusation.pory"
 	removeobject LOCALID_CABINS_MARIKO
-# 1253 "data/scripts/tarc3_accusation.pory"
+# 1251 "data/scripts/tarc3_accusation.pory"
 	delay 30
-# 1254 "data/scripts/tarc3_accusation.pory"
+# 1252 "data/scripts/tarc3_accusation.pory"
 	fadescreen FADE_FROM_BLACK
-# 1255 "data/scripts/tarc3_accusation.pory"
+# 1253 "data/scripts/tarc3_accusation.pory"
 	delay 40
-# 1256 "data/scripts/tarc3_accusation.pory"
+# 1254 "data/scripts/tarc3_accusation.pory"
 	goto tarc3_Accusation_EventScript_Depart
 	return
 
 
 tarc3_Accusation_EventScript_Depart::
-# 1260 "data/scripts/tarc3_accusation.pory"
+# 1258 "data/scripts/tarc3_accusation.pory"
 	applymovement LOCALID_CABINS_RAN, tarc3_Accusation_EventScript_Depart_Movement_0
+# 1259 "data/scripts/tarc3_accusation.pory"
+	waitmovement 0
+# 1260 "data/scripts/tarc3_accusation.pory"
+	applymovement OBJ_EVENT_ID_PLAYER, tarc3_Accusation_EventScript_OpenCloset_Movement_2
 # 1261 "data/scripts/tarc3_accusation.pory"
 	waitmovement 0
 # 1262 "data/scripts/tarc3_accusation.pory"
-	applymovement OBJ_EVENT_ID_PLAYER, tarc3_Accusation_EventScript_OpenCloset_Movement_2
+	delay 20
 # 1263 "data/scripts/tarc3_accusation.pory"
-	waitmovement 0
+	setspeaker tarc3_Accusation_EventScript_Begin_Text_0
 # 1264 "data/scripts/tarc3_accusation.pory"
-	delay 20
-# 1265 "data/scripts/tarc3_accusation.pory"
-	setspeaker tarc3_Accusation_EventScript_Begin_Text_0
-# 1266 "data/scripts/tarc3_accusation.pory"
 	msgbox tarc3_Accusation_EventScript_Depart_Text_0
-# 1267 "data/scripts/tarc3_accusation.pory"
+# 1265 "data/scripts/tarc3_accusation.pory"
 	msgbox tarc3_Accusation_EventScript_Depart_Text_1
-# 1268 "data/scripts/tarc3_accusation.pory"
+# 1266 "data/scripts/tarc3_accusation.pory"
 	setspeaker tarc3_Accusation_EventScript_Naming_Text_0
-# 1269 "data/scripts/tarc3_accusation.pory"
+# 1267 "data/scripts/tarc3_accusation.pory"
 	msgbox tarc3_Accusation_EventScript_NameIchiro_Text_7
+# 1268 "data/scripts/tarc3_accusation.pory"
+	setspeaker NULL
+# 1269 "data/scripts/tarc3_accusation.pory"
+	closemessage
 # 1270 "data/scripts/tarc3_accusation.pory"
-	setspeaker NULL
-# 1271 "data/scripts/tarc3_accusation.pory"
-	closemessage
-# 1272 "data/scripts/tarc3_accusation.pory"
 	delay 40
-# 1273 "data/scripts/tarc3_accusation.pory"
+# 1271 "data/scripts/tarc3_accusation.pory"
 	playse SE_RG_SS_ANNE_HORN
-# 1274 "data/scripts/tarc3_accusation.pory"
+# 1272 "data/scripts/tarc3_accusation.pory"
 	delay 80
-# 1275 "data/scripts/tarc3_accusation.pory"
+# 1273 "data/scripts/tarc3_accusation.pory"
 	setspeaker tarc3_Accusation_EventScript_Begin_Text_0
-# 1276 "data/scripts/tarc3_accusation.pory"
+# 1274 "data/scripts/tarc3_accusation.pory"
 	msgbox tarc3_Accusation_EventScript_Depart_Text_2
-# 1277 "data/scripts/tarc3_accusation.pory"
+# 1275 "data/scripts/tarc3_accusation.pory"
 	msgbox tarc3_Accusation_EventScript_Depart_Text_3
-# 1278 "data/scripts/tarc3_accusation.pory"
+# 1276 "data/scripts/tarc3_accusation.pory"
 	setspeaker NULL
-# 1279 "data/scripts/tarc3_accusation.pory"
+# 1277 "data/scripts/tarc3_accusation.pory"
 	closemessage
-# 1280 "data/scripts/tarc3_accusation.pory"
+# 1278 "data/scripts/tarc3_accusation.pory"
 	delay 20
-# 1281 "data/scripts/tarc3_accusation.pory"
+# 1279 "data/scripts/tarc3_accusation.pory"
 	savebgm MUS_DUMMY
-# 1282 "data/scripts/tarc3_accusation.pory"
+# 1280 "data/scripts/tarc3_accusation.pory"
 	fadedefaultbgm
-# 1283 "data/scripts/tarc3_accusation.pory"
+# 1281 "data/scripts/tarc3_accusation.pory"
 	setvar VAR_TARC3_ACT3, TARC3_ACT3_COMPLETE
-# 1284 "data/scripts/tarc3_accusation.pory"
+# 1282 "data/scripts/tarc3_accusation.pory"
 	fwdtime TARC3_TOD_DAWN_HOUR, TARC3_TOD_DAWN_MINUTE
-# 1285 "data/scripts/tarc3_accusation.pory"
+# 1283 "data/scripts/tarc3_accusation.pory"
 	warp MAP_TARC3_DESTINATION, 14, 18
-# 1286 "data/scripts/tarc3_accusation.pory"
+# 1284 "data/scripts/tarc3_accusation.pory"
 	waitstate
 	end
 
@@ -2658,57 +2654,57 @@ tarc3_Accusation_EventScript_PerfectTakeshi_Movement_0:
 	face_left
 	step_end
 
-# 1158 "data/scripts/tarc3_accusation.pory"
+# 1156 "data/scripts/tarc3_accusation.pory"
 tarc3_Accusation_EventScript_WorstRoom_Movement_0:
-# 1158 "data/scripts/tarc3_accusation.pory"
+# 1156 "data/scripts/tarc3_accusation.pory"
 	walk_right
-# 1158 "data/scripts/tarc3_accusation.pory"
+# 1156 "data/scripts/tarc3_accusation.pory"
 	walk_right
-# 1158 "data/scripts/tarc3_accusation.pory"
+# 1156 "data/scripts/tarc3_accusation.pory"
 	walk_down
-# 1158 "data/scripts/tarc3_accusation.pory"
+# 1156 "data/scripts/tarc3_accusation.pory"
 	walk_down
-# 1158 "data/scripts/tarc3_accusation.pory"
+# 1156 "data/scripts/tarc3_accusation.pory"
 	walk_down
-# 1158 "data/scripts/tarc3_accusation.pory"
+# 1156 "data/scripts/tarc3_accusation.pory"
 	walk_left
 	step_end
 
-# 1176 "data/scripts/tarc3_accusation.pory"
+# 1174 "data/scripts/tarc3_accusation.pory"
 tarc3_Accusation_EventScript_WorstIchiro_Movement_0:
-# 1176 "data/scripts/tarc3_accusation.pory"
+# 1174 "data/scripts/tarc3_accusation.pory"
 	walk_down
-# 1176 "data/scripts/tarc3_accusation.pory"
+# 1174 "data/scripts/tarc3_accusation.pory"
 	walk_down
-# 1176 "data/scripts/tarc3_accusation.pory"
+# 1174 "data/scripts/tarc3_accusation.pory"
 	walk_down
-# 1176 "data/scripts/tarc3_accusation.pory"
+# 1174 "data/scripts/tarc3_accusation.pory"
 	walk_down
-# 1176 "data/scripts/tarc3_accusation.pory"
+# 1174 "data/scripts/tarc3_accusation.pory"
 	walk_left
 	step_end
 
-# 1181 "data/scripts/tarc3_accusation.pory"
+# 1179 "data/scripts/tarc3_accusation.pory"
 tarc3_Accusation_EventScript_WorstIchiro_Movement_1:
-# 1181 "data/scripts/tarc3_accusation.pory"
+# 1179 "data/scripts/tarc3_accusation.pory"
 	walk_down
-# 1181 "data/scripts/tarc3_accusation.pory"
+# 1179 "data/scripts/tarc3_accusation.pory"
 	walk_right
-# 1181 "data/scripts/tarc3_accusation.pory"
+# 1179 "data/scripts/tarc3_accusation.pory"
 	walk_right
-# 1181 "data/scripts/tarc3_accusation.pory"
+# 1179 "data/scripts/tarc3_accusation.pory"
 	walk_down
-# 1181 "data/scripts/tarc3_accusation.pory"
+# 1179 "data/scripts/tarc3_accusation.pory"
 	walk_down
-# 1181 "data/scripts/tarc3_accusation.pory"
+# 1179 "data/scripts/tarc3_accusation.pory"
 	walk_down
-# 1181 "data/scripts/tarc3_accusation.pory"
+# 1179 "data/scripts/tarc3_accusation.pory"
 	walk_left
 	step_end
 
-# 1260 "data/scripts/tarc3_accusation.pory"
+# 1258 "data/scripts/tarc3_accusation.pory"
 tarc3_Accusation_EventScript_Depart_Movement_0:
-# 1260 "data/scripts/tarc3_accusation.pory"
+# 1258 "data/scripts/tarc3_accusation.pory"
 	walk_left
 	step_end
 
@@ -3552,379 +3548,373 @@ tarc3_Accusation_EventScript_GoodStern_Text_8:
 	.string "And he did it where nobody could see\n"
 	.string "it.$"
 
-tarc3_Accusation_EventScript_GoodStern_Text_9:
-# 953 "data/scripts/tarc3_accusation.pory"
-	.string "Comfey lifts from her shoulder and\n"
-	.string "winds a garland around both their\l"
-	.string "wrists.$"
-
 tarc3_Accusation_EventScript_BadAnswer_Text_0:
-# 965 "data/scripts/tarc3_accusation.pory"
+# 963 "data/scripts/tarc3_accusation.pory"
 	.string "May I?$"
 
 tarc3_Accusation_EventScript_BadAnswer_Text_1:
-# 970 "data/scripts/tarc3_accusation.pory"
+# 968 "data/scripts/tarc3_accusation.pory"
 	.string "The crumbs. In the blood, by the\n"
 	.string "door. That's the one you keep coming\l"
 	.string "back to.$"
 
 tarc3_Accusation_EventScript_BadAnswer_Text_2:
-# 971 "data/scripts/tarc3_accusation.pory"
+# 969 "data/scripts/tarc3_accusation.pory"
 	.string "I've sketched on the salon deck\n"
 	.string "every day since Florio. In the same\l"
 	.string "chair.$"
 
 tarc3_Accusation_EventScript_BadAnswer_Text_3:
-# 972 "data/scripts/tarc3_accusation.pory"
+# 970 "data/scripts/tarc3_accusation.pory"
 	.string "Suzuki. Is that chair cleared each\n"
 	.string "evening?$"
 
 tarc3_Accusation_EventScript_BadAnswer_Text_4:
-# 974 "data/scripts/tarc3_accusation.pory"
+# 972 "data/scripts/tarc3_accusation.pory"
 	.string "...It is.$"
 
 tarc3_Accusation_EventScript_BadAnswer_Text_5:
-# 976 "data/scripts/tarc3_accusation.pory"
+# 974 "data/scripts/tarc3_accusation.pory"
 	.string "Then it's anyone's shoe. Any one of\n"
 	.string "you. Including me, walking to dinner.$"
 
 tarc3_Accusation_EventScript_BadAnswer_Text_6:
-# 977 "data/scripts/tarc3_accusation.pory"
+# 975 "data/scripts/tarc3_accusation.pory"
 	.string "You should also know the bread I use\n"
 	.string "goes hard inside a day.$"
 
 tarc3_Accusation_EventScript_BadAnswer_Text_7:
-# 978 "data/scripts/tarc3_accusation.pory"
+# 976 "data/scripts/tarc3_accusation.pory"
 	.string "If the crumb you found was dry, it\n"
 	.string "didn't come off my cuff tonight.$"
 
 tarc3_Accusation_EventScript_BadAnswer_Text_8:
-# 982 "data/scripts/tarc3_accusation.pory"
+# 980 "data/scripts/tarc3_accusation.pory"
 	.string "I'm trying to help you.$"
 
 tarc3_Accusation_EventScript_BadAnswer_Text_9:
-# 983 "data/scripts/tarc3_accusation.pory"
+# 981 "data/scripts/tarc3_accusation.pory"
 	.string "I want the man who did this as much\n"
 	.string "as anyone in this room does.$"
 
 tarc3_Accusation_EventScript_BadAnswerGeneric_Text_0:
-# 994 "data/scripts/tarc3_accusation.pory"
+# 992 "data/scripts/tarc3_accusation.pory"
 	.string "Whatever you found, ask where else\n"
 	.string "it could have come from. That's all\l"
 	.string "I'd say.$"
 
 tarc3_Accusation_EventScript_BadAnswerGeneric_Text_1:
-# 995 "data/scripts/tarc3_accusation.pory"
+# 993 "data/scripts/tarc3_accusation.pory"
 	.string "Nine people have walked every\n"
 	.string "corridor on this ship tonight.\p"
 	.string "Eight of them are standing in this\n"
 	.string "room.$"
 
 tarc3_Accusation_EventScript_BadAnswerGeneric_Text_2:
-# 996 "data/scripts/tarc3_accusation.pory"
+# 994 "data/scripts/tarc3_accusation.pory"
 	.string "Suzuki. When are the decks swept?$"
 
 tarc3_Accusation_EventScript_BadAnswerGeneric_Text_3:
-# 998 "data/scripts/tarc3_accusation.pory"
+# 996 "data/scripts/tarc3_accusation.pory"
 	.string "...Each evening.$"
 
 tarc3_Accusation_EventScript_BadAnswerGeneric_Text_4:
-# 1000 "data/scripts/tarc3_accusation.pory"
+# 998 "data/scripts/tarc3_accusation.pory"
 	.string "I sketch on the salon deck every\n"
 	.string "day, in the same chair.\p"
 	.string "Anything I've touched could ride to\n"
 	.string "a doorway on somebody's shoe.$"
 
 tarc3_Accusation_EventScript_BadNearMissBook_Text_0:
-# 1026 "data/scripts/tarc3_accusation.pory"
+# 1024 "data/scripts/tarc3_accusation.pory"
 	.string "Then let us discuss the sketchbook\n"
 	.string "I took from your cabin.$"
 
 tarc3_Accusation_EventScript_BadNearMissBook_Text_1:
-# 1037 "data/scripts/tarc3_accusation.pory"
+# 1035 "data/scripts/tarc3_accusation.pory"
 	.string "That's enough.$"
 
 tarc3_Accusation_EventScript_BadNearMissBook_Text_2:
-# 1044 "data/scripts/tarc3_accusation.pory"
+# 1042 "data/scripts/tarc3_accusation.pory"
 	.string "...That's my sketchbook, yes.$"
 
 tarc3_Accusation_EventScript_BadNearMissBook_Text_3:
-# 1045 "data/scripts/tarc3_accusation.pory"
+# 1043 "data/scripts/tarc3_accusation.pory"
 	.string "I draw people. I'm an art student.$"
 
 tarc3_Accusation_EventScript_BadWall_Text_0:
-# 1053 "data/scripts/tarc3_accusation.pory"
+# 1051 "data/scripts/tarc3_accusation.pory"
 	.string "He's had enough from this family for\n"
 	.string "one voyage. Leave him be.$"
 
 tarc3_Accusation_EventScript_BadWall_Text_1:
-# 1057 "data/scripts/tarc3_accusation.pory"
+# 1055 "data/scripts/tarc3_accusation.pory"
 	.string "{FONT_NARROW}He said that to me two hours ago, in the\n"
 	.string "dining room.$"
 
 tarc3_Accusation_EventScript_BadWall_Text_2:
-# 1061 "data/scripts/tarc3_accusation.pory"
+# 1059 "data/scripts/tarc3_accusation.pory"
 	.string "My father is dead. Tatsuo is dead.$"
 
 tarc3_Accusation_EventScript_BadWall_Text_3:
-# 1062 "data/scripts/tarc3_accusation.pory"
+# 1060 "data/scripts/tarc3_accusation.pory"
 	.string "And I have spent six hours of my\n"
 	.string "life waiting on you.$"
 
 tarc3_Accusation_EventScript_BadWall_Text_4:
-# 1063 "data/scripts/tarc3_accusation.pory"
+# 1061 "data/scripts/tarc3_accusation.pory"
 	.string "Whatever you are where you come\n"
 	.string "from, you are nothing here.\p"
 	.string "You are a passenger my niece took\n"
 	.string "pity on at a dock.$"
 
 tarc3_Accusation_EventScript_BadWall_Text_5:
-# 1064 "data/scripts/tarc3_accusation.pory"
+# 1062 "data/scripts/tarc3_accusation.pory"
 	.string "Whoever told you that you were\n"
 	.string "clever lied to you.$"
 
 tarc3_Accusation_EventScript_BadCloset_Text_0:
-# 1073 "data/scripts/tarc3_accusation.pory"
+# 1071 "data/scripts/tarc3_accusation.pory"
 	.string "There is one more thing, and you had\n"
 	.string "better hear it from me.$"
 
 tarc3_Accusation_EventScript_BadCloset_Text_1:
-# 1074 "data/scripts/tarc3_accusation.pory"
+# 1072 "data/scripts/tarc3_accusation.pory"
 	.string "Takeshi is in this room. He is behind\n"
 	.string "that closet door.$"
 
 tarc3_Accusation_EventScript_BadCloset_Text_2:
-# 1078 "data/scripts/tarc3_accusation.pory"
+# 1076 "data/scripts/tarc3_accusation.pory"
 	.string "...In my closet.$"
 
 tarc3_Accusation_EventScript_BadCloset_Text_3:
-# 1079 "data/scripts/tarc3_accusation.pory"
+# 1077 "data/scripts/tarc3_accusation.pory"
 	.string "He has been standing in my closet\n"
 	.string "while we all stood here.$"
 
 tarc3_Accusation_EventScript_BadCloset_Text_4:
-# 1081 "data/scripts/tarc3_accusation.pory"
+# 1079 "data/scripts/tarc3_accusation.pory"
 	.string "I found him when I searched these\n"
 	.string "cabins, shortly before I asked you\l"
 	.string "all to gather.$"
 
 tarc3_Accusation_EventScript_BadCloset_Text_5:
-# 1083 "data/scripts/tarc3_accusation.pory"
+# 1081 "data/scripts/tarc3_accusation.pory"
 	.string "You found him.$"
 
 tarc3_Accusation_EventScript_BadCloset_Text_6:
-# 1084 "data/scripts/tarc3_accusation.pory"
+# 1082 "data/scripts/tarc3_accusation.pory"
 	.string "You found him, and you said nothing.$"
 
 tarc3_Accusation_EventScript_BadCloset_Text_7:
-# 1086 "data/scripts/tarc3_accusation.pory"
+# 1084 "data/scripts/tarc3_accusation.pory"
 	.string "He was in fear of his life. He asked\n"
 	.string "me to prove it before I called\l"
 	.string "anyone, and I judged...$"
 
 tarc3_Accusation_EventScript_BadCloset_Text_8:
-# 1088 "data/scripts/tarc3_accusation.pory"
+# 1086 "data/scripts/tarc3_accusation.pory"
 	.string "You knew where he was, and you let\n"
 	.string "us stand here.\p"
 	.string "You pointed at every one of us with\n"
 	.string "the man behind that door.$"
 
 tarc3_Accusation_EventScript_BadCloset_Text_9:
-# 1093 "data/scripts/tarc3_accusation.pory"
+# 1091 "data/scripts/tarc3_accusation.pory"
 	.string "Don't. He was helping me.$"
 
 tarc3_Accusation_EventScript_BadCloset_Text_10:
-# 1095 "data/scripts/tarc3_accusation.pory"
+# 1093 "data/scripts/tarc3_accusation.pory"
 	.string "Yes. I'm sure he was.$"
 
 tarc3_Accusation_EventScript_BadCloset_Text_11:
-# 1096 "data/scripts/tarc3_accusation.pory"
+# 1094 "data/scripts/tarc3_accusation.pory"
 	.string "There's your accomplice, Suzuki.$"
 
 tarc3_Accusation_EventScript_BadCloset_Text_12:
-# 1097 "data/scripts/tarc3_accusation.pory"
+# 1095 "data/scripts/tarc3_accusation.pory"
 	.string "He kept him for exactly as long as it\n"
 	.string "suited him, and produced him the\l"
 	.string "moment it did not.$"
 
 tarc3_Accusation_EventScript_BadCloset_Text_13:
-# 1102 "data/scripts/tarc3_accusation.pory"
+# 1100 "data/scripts/tarc3_accusation.pory"
 	.string "I asked you to find him, {PLAYER}.$"
 
 tarc3_Accusation_EventScript_BadCloset_Text_14:
-# 1103 "data/scripts/tarc3_accusation.pory"
+# 1101 "data/scripts/tarc3_accusation.pory"
 	.string "You found him, and you did not tell\n"
 	.string "me.$"
 
 tarc3_Accusation_EventScript_BadCloset_Text_15:
-# 1104 "data/scripts/tarc3_accusation.pory"
+# 1102 "data/scripts/tarc3_accusation.pory"
 	.string "...I think you had better go up on\n"
 	.string "deck.$"
 
 tarc3_Accusation_EventScript_WorstAnswer_Text_0:
-# 1117 "data/scripts/tarc3_accusation.pory"
+# 1115 "data/scripts/tarc3_accusation.pory"
 	.string "Well? Say something. Anything at all.$"
 
 tarc3_Accusation_EventScript_WorstAnswer_Text_1:
-# 1119 "data/scripts/tarc3_accusation.pory"
+# 1117 "data/scripts/tarc3_accusation.pory"
 	.string "...There is a part of this you don't\n"
 	.string "have.\p"
 	.string "You should hear it from me, and not\n"
 	.string "read it somewhere in a year.$"
 
 tarc3_Accusation_EventScript_WorstAnswer_Text_2:
-# 1121 "data/scripts/tarc3_accusation.pory"
+# 1119 "data/scripts/tarc3_accusation.pory"
 	.string "You heard tonight what Gozo did to\n"
 	.string "my father. This is the rest of it.$"
 
 tarc3_Accusation_EventScript_WorstAnswer_Text_3:
-# 1123 "data/scripts/tarc3_accusation.pory"
+# 1121 "data/scripts/tarc3_accusation.pory"
 	.string "You know my father was Isao Zaiki.\p"
 	.string "Hatamoto Corp took his company and\n"
 	.string "he killed himself the spring after.$"
 
 tarc3_Accusation_EventScript_WorstAnswer_Text_4:
-# 1124 "data/scripts/tarc3_accusation.pory"
+# 1122 "data/scripts/tarc3_accusation.pory"
 	.string "I was fifteen.$"
 
 tarc3_Accusation_EventScript_WorstAnswer_Text_5:
-# 1125 "data/scripts/tarc3_accusation.pory"
+# 1123 "data/scripts/tarc3_accusation.pory"
 	.string "I joined the Corporation under a\n"
 	.string "name that wasn't mine, to take\l"
 	.string "something from your grandfather.$"
 
 tarc3_Accusation_EventScript_WorstAnswer_Text_6:
-# 1127 "data/scripts/tarc3_accusation.pory"
+# 1125 "data/scripts/tarc3_accusation.pory"
 	.string "...Arceus help us.$"
 
 tarc3_Accusation_EventScript_WorstAnswer_Text_7:
-# 1131 "data/scripts/tarc3_accusation.pory"
+# 1129 "data/scripts/tarc3_accusation.pory"
 	.string "Gozo called me into his cabin before\n"
 	.string "dinner and told me he had known for\l"
 	.string "months.$"
 
 tarc3_Accusation_EventScript_WorstAnswer_Text_8:
-# 1133 "data/scripts/tarc3_accusation.pory"
+# 1131 "data/scripts/tarc3_accusation.pory"
 	.string "He knew. And an hour later he was\n"
 	.string "dead.$"
 
 tarc3_Accusation_EventScript_WorstAnswer_Text_9:
-# 1134 "data/scripts/tarc3_accusation.pory"
+# 1132 "data/scripts/tarc3_accusation.pory"
 	.string "Do you hear yourself?$"
 
 tarc3_Accusation_EventScript_WorstAnswer_Text_10:
-# 1137 "data/scripts/tarc3_accusation.pory"
+# 1135 "data/scripts/tarc3_accusation.pory"
 	.string "I hear myself.$"
 
 tarc3_Accusation_EventScript_WorstRoom_Text_0:
-# 1146 "data/scripts/tarc3_accusation.pory"
+# 1144 "data/scripts/tarc3_accusation.pory"
 	.string "...I'm sorry. I can't. I can't stand\n"
 	.string "here and say it isn't true.$"
 
 tarc3_Accusation_EventScript_WorstRoom_Text_1:
-# 1148 "data/scripts/tarc3_accusation.pory"
+# 1146 "data/scripts/tarc3_accusation.pory"
 	.string "I don't care.$"
 
 tarc3_Accusation_EventScript_WorstRoom_Text_2:
-# 1149 "data/scripts/tarc3_accusation.pory"
+# 1147 "data/scripts/tarc3_accusation.pory"
 	.string "My husband is on the deck under a\n"
 	.string "tablecloth. Somebody put him there.\p"
 	.string "If it's him, it's him.$"
 
 tarc3_Accusation_EventScript_WorstIchiro_Text_0:
-# 1168 "data/scripts/tarc3_accusation.pory"
+# 1166 "data/scripts/tarc3_accusation.pory"
 	.string "Natsue.$"
 
 tarc3_Accusation_EventScript_WorstIchiro_Text_1:
-# 1169 "data/scripts/tarc3_accusation.pory"
+# 1167 "data/scripts/tarc3_accusation.pory"
 	.string "Let me walk you back to your cabin.$"
 
 tarc3_Accusation_EventScript_WorstIchiro_Text_2:
-# 1170 "data/scripts/tarc3_accusation.pory"
+# 1168 "data/scripts/tarc3_accusation.pory"
 	.string "You shouldn't have to watch this\n"
 	.string "part.$"
 
 tarc3_Accusation_EventScript_WorstRefusedAnswer_Text_0:
-# 1195 "data/scripts/tarc3_accusation.pory"
+# 1193 "data/scripts/tarc3_accusation.pory"
 	.string "Well. There it is.$"
 
 tarc3_Accusation_EventScript_WorstRefusedAnswer_Text_1:
-# 1197 "data/scripts/tarc3_accusation.pory"
+# 1195 "data/scripts/tarc3_accusation.pory"
 	.string "There what is, madam?$"
 
 tarc3_Accusation_EventScript_WorstRefusedAnswer_Text_2:
-# 1199 "data/scripts/tarc3_accusation.pory"
+# 1197 "data/scripts/tarc3_accusation.pory"
 	.string "You heard the case.$"
 
 tarc3_Accusation_EventScript_WorstRefusedAnswer_Text_3:
-# 1201 "data/scripts/tarc3_accusation.pory"
+# 1199 "data/scripts/tarc3_accusation.pory"
 	.string "I heard a flower and a grudge.$"
 
 tarc3_Accusation_EventScript_WorstRefusedAnswer_Text_4:
-# 1202 "data/scripts/tarc3_accusation.pory"
+# 1200 "data/scripts/tarc3_accusation.pory"
 	.string "I bolted a man into a storeroom once\n"
 	.string "tonight on the strength of that\l"
 	.string "flower.\p"
 	.string "I will not do it twice.$"
 
 tarc3_Accusation_EventScript_WorstRefusedAnswer_Text_5:
-# 1204 "data/scripts/tarc3_accusation.pory"
+# 1202 "data/scripts/tarc3_accusation.pory"
 	.string "...He's right, Mariko. There is nothing\n"
 	.string "here a court would touch.$"
 
 tarc3_Accusation_EventScript_WorstRefusedTakeshi_Text_0:
-# 1213 "data/scripts/tarc3_accusation.pory"
+# 1211 "data/scripts/tarc3_accusation.pory"
 	.string "You should still hear the rest of it.\n"
 	.string "All of you.$"
 
 tarc3_Accusation_EventScript_WorstRefusedTakeshi_Text_1:
-# 1215 "data/scripts/tarc3_accusation.pory"
+# 1213 "data/scripts/tarc3_accusation.pory"
 	.string "You heard tonight what Gozo did to\n"
 	.string "my father. Here is the rest.$"
 
 tarc3_Accusation_EventScript_WorstRefusedTakeshi_Text_2:
-# 1217 "data/scripts/tarc3_accusation.pory"
+# 1215 "data/scripts/tarc3_accusation.pory"
 	.string "You know my father was Isao Zaiki.$"
 
 tarc3_Accusation_EventScript_WorstRefusedTakeshi_Text_3:
-# 1218 "data/scripts/tarc3_accusation.pory"
+# 1216 "data/scripts/tarc3_accusation.pory"
 	.string "Gozo ruined him, and I joined this\n"
 	.string "company under a false name to take\l"
 	.string "something back.$"
 
 tarc3_Accusation_EventScript_WorstRefusedTakeshi_Text_4:
-# 1220 "data/scripts/tarc3_accusation.pory"
+# 1218 "data/scripts/tarc3_accusation.pory"
 	.string "There! Out of his own mouth!$"
 
 tarc3_Accusation_EventScript_WorstRefusedTakeshi_Text_5:
-# 1222 "data/scripts/tarc3_accusation.pory"
+# 1220 "data/scripts/tarc3_accusation.pory"
 	.string "A name is not a knife, madam.$"
 
 tarc3_Accusation_EventScript_WorstRefusedTakeshi_Text_6:
-# 1228 "data/scripts/tarc3_accusation.pory"
+# 1226 "data/scripts/tarc3_accusation.pory"
 	.string "I don't care what he wanted.$"
 
 tarc3_Accusation_EventScript_WorstRefusedTakeshi_Text_7:
-# 1229 "data/scripts/tarc3_accusation.pory"
+# 1227 "data/scripts/tarc3_accusation.pory"
 	.string "My husband is under a tablecloth on\n"
 	.string "that deck, and not one of you can\l"
 	.string "tell me who put him there.$"
 
 tarc3_Accusation_EventScript_Depart_Text_0:
-# 1266 "data/scripts/tarc3_accusation.pory"
+# 1264 "data/scripts/tarc3_accusation.pory"
 	.string "Well. The room is empty, and there is\n"
 	.string "nobody left to perform for.$"
 
 tarc3_Accusation_EventScript_Depart_Text_1:
-# 1267 "data/scripts/tarc3_accusation.pory"
+# 1265 "data/scripts/tarc3_accusation.pory"
 	.string "You may stop standing like that.$"
 
 tarc3_Accusation_EventScript_Depart_Text_2:
-# 1276 "data/scripts/tarc3_accusation.pory"
+# 1274 "data/scripts/tarc3_accusation.pory"
 	.string "...There. The harbour.$"
 
 tarc3_Accusation_EventScript_Depart_Text_3:
-# 1277 "data/scripts/tarc3_accusation.pory"
+# 1275 "data/scripts/tarc3_accusation.pory"
 	.string "Gather yourself, {PLAYER}\n"
 	.string "Edgeworth.\p"
 	.string "It is time to depart.$"

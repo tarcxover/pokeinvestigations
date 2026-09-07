@@ -523,10 +523,65 @@ script tarc3_Destination_EventScript_FinOnBlack {
     setvar(VAR_TARC3_ACT3, TARC3_ACT3_PIER)
     setflag(FLAG_SYS_GAME_CLEAR)
     delay(30)
-    showcredits(CB2_ReturnToField)
+    showcredits(CB2_ReturnToFieldContinueScript)
+    delay(30)
+    goto(tarc3_Destination_EventScript_CaseFile)
+}
+
+script tarc3_Destination_EventScript_CaseFile {
+    setspeaker(NULL)
+    msgbox(format("{FONT_NARROW}THE END\pThank you for playing.", "1_latin_rse_narrow"))
+    switch (var(VAR_TARC3_ACCUSE_T3)) {
+        case TARC3_T3_REFUSAL_ONLY:
+        case TARC3_T3_LIGHTS_ONLY:
+        case TARC3_T3_WOUND_ONLY:
+            setvar(VAR_0x8005, 1)
+        case TARC3_T3_REFUSAL_LIGHTS:
+        case TARC3_T3_REFUSAL_WOUND:
+        case TARC3_T3_LIGHTS_WOUND:
+            setvar(VAR_0x8005, 2)
+        case TARC3_T3_ALL:
+            setvar(VAR_0x8005, 3)
+        default:
+            setvar(VAR_0x8005, 0)
+    }
+    copyvar(VAR_0x8006, VAR_TARC3_ACCUSE_HITS)
+    subvar(VAR_0x8006, VAR_0x8005)
+    bufferevidencecount
+    buffernumberstring(STR_VAR_2, VAR_0x8006)
+    buffernumberstring(STR_VAR_3, VAR_0x8005)
+    msgbox(format("{FONT_NARROW}Evidence recovered: {STR_VAR_1}\pTier 1 deductions presented: {STR_VAR_2}\pTier 2 deductions presented: {STR_VAR_3}/3", "1_latin_rse_narrow"))
+    buffernumberstring(STR_VAR_1, VAR_TARC3_ACCUSE_SCORE)
+    if (var(VAR_TARC3_ACCUSED) == TARC3_ACCUSED_ICHIRO) {
+        bufferstring(STR_VAR_2, tarc3_Destination_Text_NamedIchiro)
+    } else {
+        bufferstring(STR_VAR_2, tarc3_Destination_Text_NamedTakeshi)
+    }
+    switch (var(VAR_TARC3_ENDING)) {
+        case TARC3_ENDING_PERFECT:
+            bufferstring(STR_VAR_3, tarc3_Destination_Text_VerdictAirtight)
+        case TARC3_ENDING_GOOD:
+            bufferstring(STR_VAR_3, tarc3_Destination_Text_VerdictProven)
+        case TARC3_ENDING_BAD:
+            bufferstring(STR_VAR_3, tarc3_Destination_Text_VerdictUnproven)
+        case TARC3_ENDING_WORST:
+            bufferstring(STR_VAR_3, tarc3_Destination_Text_VerdictWrong)
+        default:
+            bufferstring(STR_VAR_3, tarc3_Destination_Text_VerdictRefused)
+    }
+    msgbox(format("{FONT_NARROW}Case score: {STR_VAR_1}\NNamed: {STR_VAR_2}\NVerdict: {STR_VAR_3}", "1_latin_rse_narrow"))
+    closemessage
     releaseall
     end
 }
+
+text tarc3_Destination_Text_NamedIchiro { "Ichiro" }
+text tarc3_Destination_Text_NamedTakeshi { "Takeshi" }
+text tarc3_Destination_Text_VerdictAirtight { "Airtight case" }
+text tarc3_Destination_Text_VerdictProven { "Case proven" }
+text tarc3_Destination_Text_VerdictUnproven { "Case unproven" }
+text tarc3_Destination_Text_VerdictWrong { "Wrong suspect" }
+text tarc3_Destination_Text_VerdictRefused { "Case refused" }
 
 script tarc3_Destination_EventScript_DebugFin {
     delay(30)

@@ -40,6 +40,10 @@
 	  callnative ScrCmd_getheldevidencecount
   .endm
 
+  .macro bufferevidencecount
+	callnative ScrCmd_bufferevidencecount
+  .endm
+
   .macro getevidenceatpos pos:req
 	callnative ScrCmd_getevidenceatpos
 	.2byte \pos

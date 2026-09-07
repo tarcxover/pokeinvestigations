@@ -466,6 +466,11 @@ script tarc3_Cabins_EventScript_GatherRan {
     msgbox(format("Then begin."))
     setspeaker(NULL)
     closemessage
+    msgbox(format("{COLOR RED}IMPORTANT:{COLOR DARK_GRAY} This will begin the final cutscene of the game.\pYou may want to save. Would you like to save now?"), MSGBOX_YESNO)
+    if (var(VAR_RESULT) == YES) {
+        call(Common_EventScript_SaveGame)
+    }
+    closemessage
     release
     goto(tarc3_Accusation_EventScript_Begin)
 }

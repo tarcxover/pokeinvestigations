@@ -15,6 +15,7 @@ script tarc3_Foredeck_OnTransition {
 }
 
 script tarc3_Foredeck_OnLoad {
+    setflag(FLAG_HIDE_TARC3_FOREDECK_HELPER_MON)
     setflag(FLAG_HIDE_TARC3_COMFEY)
     setflag(FLAG_HIDE_TARC3_DECK2_CAST)
     setflag(FLAG_HIDE_TARC3_DECK2_FOLLOWERS)
@@ -654,11 +655,10 @@ script tarc3_Foredeck_EventScript_OfferStoutlandPipe {
 script tarc3_Foredeck_EventScript_FollowerStoutlandSack {
     goto_if_unset(FLAG_TARC3_DECK2_FOUND_WEAPON, tarc3_EventScript_FollowerHookEnd)
     goto_if_set(FLAG_TARC3_DECK2_PIPE_SCENT, tarc3_EventScript_FollowerHookEnd)
-    getlivemonspecies(VAR_0x8008)
-    if (var(VAR_0x8008) == SPECIES_STOUTLAND) {
-        applymovement(OBJ_EVENT_ID_FOLLOWER, moves(walk_in_place_fast_up, walk_in_place_fast_right, walk_in_place_fast_down))
-        waitmovement(0)
-    }
+    setvar(VAR_OBJ_GFX_ID_0, OBJ_EVENT_GFX_SPECIES(STOUTLAND))
+    call(tarc3_Foredeck_EventScript_HelperMonEnter)
+    applymovement(LOCALID_FOREDECK_HELPER_MON, moves(walk_in_place_fast_up, walk_in_place_fast_right, walk_in_place_fast_down, walk_in_place_fast_right))
+    waitmovement(0)
     delay(20)
     msgbox(format("Stoutland works its nose along the pipe, and then along it again."))
     closemessage
@@ -668,6 +668,7 @@ script tarc3_Foredeck_EventScript_FollowerStoutlandSack {
     msgbox(format("{FONT_NARROW}It is not the blood it is going back for. There is something else on this pipe.", "1_latin_rse_narrow"))
     msgbox(format("{FONT_NARROW}Fine black dust, worked into the grip end of it.", "1_latin_rse_narrow"))
     closemessage
+    call(tarc3_Foredeck_EventScript_HelperMonExit)
     setflag(FLAG_TARC3_DECK2_PIPE_SCENT)
     goto(tarc3_EventScript_FollowerHandled)
 }
@@ -841,4 +842,20 @@ script tarc3_Foredeck_EventScript_EvdClothSeen {
     msgbox(format("The rail is bare. The bloodied cloth is in {PLAYER}'s bag."))
     releaseall
     end
+}
+
+script tarc3_Foredeck_EventScript_HelperMonEnter {
+    hidefollower
+    clearflag(FLAG_HIDE_TARC3_FOREDECK_HELPER_MON)
+    addobject(LOCALID_FOREDECK_HELPER_MON)
+    delay(20)
+    return
+}
+
+script tarc3_Foredeck_EventScript_HelperMonExit {
+    delay(20)
+    setflag(FLAG_HIDE_TARC3_FOREDECK_HELPER_MON)
+    removeobject(LOCALID_FOREDECK_HELPER_MON)
+    delay(20)
+    return
 }

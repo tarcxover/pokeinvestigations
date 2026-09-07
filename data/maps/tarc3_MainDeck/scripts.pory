@@ -23,6 +23,7 @@ script tarc3_MainDeck_OnTransition {
 }
 
 script tarc3_MainDeck_OnLoad {
+    setflag(FLAG_HIDE_TARC3_MAINDECK_HELPER_MON)
     setflag(FLAG_HIDE_TARC3_COMFEY)
     setflag(FLAG_HIDE_TARC3_NIGHT_MONS)
     if (var(VAR_TARC3_ACT1) == TARC3_ACT1_NIGHT_ROAM || var(VAR_TARC3_ACT2) == TARC3_ACT2_DECK_DOOR) {
@@ -1488,7 +1489,13 @@ script tarc3_MainDeck_EventScript_OfferMagnezoneFlash {
     msgbox(format("{FONT_NARROW}I can barely see the end of the corridor.\pMagnezone can do something about that.", "1_latin_rse_narrow"))
     msgbox(format("Have Magnezone use Flash?"), MSGBOX_YESNO)
     goto_if_eq(VAR_RESULT, NO, tarc3_EventScript_OfferEnd)
-    goto(tarc3_EventScript_FollowerMagnezoneFlash)
+    setvar(VAR_OBJ_GFX_ID_0, OBJ_EVENT_GFX_SPECIES(MAGNEZONE))
+    call(tarc3_MainDeck_EventScript_HelperMonEnter)
+    playmoncry(SPECIES_MAGNEZONE, CRY_MODE_ENCOUNTER)
+    waitmoncry
+    call(tarc3_EventScript_MagnezoneFlash)
+    call(tarc3_MainDeck_EventScript_HelperMonExit)
+    return
 }
 
 script tarc3_MainDeck_EventScript_SuzukiLeaves {
@@ -1502,7 +1509,7 @@ script tarc3_MainDeck_EventScript_SuzukiLeaves {
     removeobject(LOCALID_MAINDECK_SUZUKI_DINING)
     delay(30)
     setspeaker("{RIVAL}")
-    msgbox(format("He will be some minutes."))
+    msgbox(format("I hope he can fix the lights soon."))
     msgbox(format("This way, {PLAYER} Edgeworth."))
     setspeaker(NULL)
     closemessage
@@ -2071,4 +2078,20 @@ script tarc3_MainDeck_EventScript_NightRecallMons {
 script tarc3_MainDeck_EventScript_NightOddBattleEnd {
     release
     end
+}
+
+script tarc3_MainDeck_EventScript_HelperMonEnter {
+    hidefollower
+    clearflag(FLAG_HIDE_TARC3_MAINDECK_HELPER_MON)
+    addobject(LOCALID_MAINDECK_HELPER_MON)
+    delay(20)
+    return
+}
+
+script tarc3_MainDeck_EventScript_HelperMonExit {
+    delay(20)
+    setflag(FLAG_HIDE_TARC3_MAINDECK_HELPER_MON)
+    removeobject(LOCALID_MAINDECK_HELPER_MON)
+    delay(20)
+    return
 }

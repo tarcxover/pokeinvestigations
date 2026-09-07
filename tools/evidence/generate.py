@@ -5,13 +5,13 @@
 # ///
 # pyright: basic
 
+import re
 from collections import defaultdict
 from dataclasses import dataclass
 from pathlib import Path
 from textwrap import dedent
 
 import yaml
-import re
 
 type Macro = list[str]
 type Deductions = defaultdict[str, list[list[str]]]
@@ -148,7 +148,7 @@ def emit_suspect_table(evidence: list[Evidence]) -> None:
 def emit_suspect_list(evidence: list[Evidence]) -> None:
     suspects = collect_suspects(evidence)
     suspect_list = flatten(suspects.values())
-    suspect_list = sorted(list(set(suspect_list)), key=lambda s: (s.lower() == "count", s))
+    suspect_list = sorted(set(suspect_list), key=lambda s: (s.lower() == "count", s))
 
     lines = ["#define FOREACH_SUSPECT(F)"]
     for s in suspect_list:
@@ -227,7 +227,7 @@ def calculate_score(evd: list[Evidence]):
             return 2
 
     for i, e in enumerate(evd):
-        evd[i].score = get_score_from_recipes(len(evd[i].recipes))
+        evd[i].score = get_score_from_recipes(len(e.recipes))
 
 def main() -> None:
     script_dir = Path(__file__).resolve().parent

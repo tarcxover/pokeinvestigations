@@ -1474,9 +1474,21 @@ script tarc3_MainDeck_EventScript_BlackoutReturn {
     setspeaker(NULL)
     closemessage
     delay(20)
+    call(tarc3_MainDeck_EventScript_OfferMagnezoneFlash)
     setvar(VAR_TARC3_ACT2, TARC3_ACT2_LEAVING_DINING)
     releaseall
     end
+}
+
+script tarc3_MainDeck_EventScript_OfferMagnezoneFlash {
+    goto_if_set(FLAG_TARC3_MAGNEZONE_FLASH, tarc3_EventScript_OfferEnd)
+    setvar(VAR_0x8004, SPECIES_MAGNEZONE)
+    specialvar(VAR_RESULT, DoesPlayerPartyContainSpecies)
+    goto_if_eq(VAR_RESULT, FALSE, tarc3_EventScript_OfferEnd)
+    msgbox(format("{FONT_NARROW}I can barely see the end of the corridor.\pMagnezone can do something about that.", "1_latin_rse_narrow"))
+    msgbox(format("Have Magnezone use Flash?"), MSGBOX_YESNO)
+    goto_if_eq(VAR_RESULT, NO, tarc3_EventScript_OfferEnd)
+    goto(tarc3_EventScript_FollowerMagnezoneFlash)
 }
 
 script tarc3_MainDeck_EventScript_SuzukiLeaves {

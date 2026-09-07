@@ -46,6 +46,7 @@ LTO          ?= 0
 # Makes an optimized build for release, also enabling NDEBUG macro and disabling other debugging features
 # Enables LTO by default, but can be changed in the config.mk file
 RELEASE      ?= 0
+PATCH        ?= 0
 
 ifeq (compare,$(MAKECMDGOALS))
   COMPARE := 1
@@ -56,7 +57,11 @@ endif
 ifeq (debug,$(MAKECMDGOALS))
   DEBUG := 1
 endif
-ifneq (,$(filter release tidyrelease,$(MAKECMDGOALS)))
+ifneq (,$(filter release tidyrelease, patch,$(MAKECMDGOALS)))
+  RELEASE := 1
+endif
+ifneq (,$(filter patch,$(MAKECMDGOALS)))
+  PATCH := 1
   RELEASE := 1
 endif
 
@@ -127,6 +132,7 @@ endif
 ELF := $(ROM:.gba=.elf)
 MAP := $(ROM:.gba=.map)
 SYM := $(ROM:.gba=.sym)
+XDELTA := $(ROM:.gba=.xdelta)
 
 # Commonly used directories
 C_SUBDIR = src
@@ -352,6 +358,7 @@ modern: all
 compare: all
 debug: all
 release: all
+patch: all
 # Uncomment the next line, and then comment the 4 lines after it to reenable agbcc.
 #agbcc: all
 agbcc:
@@ -385,6 +392,9 @@ check: $(TESTELF)
 rom: $(ROM)
 ifeq ($(COMPARE),1)
 	@$(SHA1) rom.sha1
+endif
+ifeq ($(PATCH), 1)
+	xdelta3 -e -f -s baserom.gba $(ROM) $(XDELTA)
 endif
 
 syms: $(SYM)
@@ -610,7 +620,7 @@ endif
 $(ROM): $(ELF)
 	$(OBJCOPY) -O binary $< $@
 	$(FIX) $@ -p --silent
-
+ 
 emerald: all
 firered: all
 leafgreen: all

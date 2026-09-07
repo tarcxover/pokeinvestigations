@@ -148,7 +148,7 @@ script tarc3_Foredeck_EventScript_Departure {
     setspeaker("Gozo")
     msgbox(format("Silence. We'll discuss it later."))
     msgbox(format("I came out here with a request.\pPull the art school accounts when we dock."))
-    msgbox(format("Three years of tuition and not one commission to show for it."))
+    msgbox(format("Eleven years of tuition and not one commission to show for it."))
     msgbox(format("A boy can only trade on 'promising student' for so long."))
     setspeaker(NULL)
     closemessage

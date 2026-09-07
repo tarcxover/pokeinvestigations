@@ -402,7 +402,6 @@ script tarc3_Recon_EventScript_Closing {
 }
 
 script tarc3_Recon_EventScript_ClosingBest {
-    fadeoutbgm(4)
     delay(60)
     setspeaker(NULL)
     msgbox(format("Nobody in the corridor says anything at all."))

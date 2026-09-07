@@ -696,7 +696,7 @@ script tarc3_Accusation_EventScript_PerfectAnswer {
     setspeaker("Ichiro")
     msgbox(format("You want to know what I am to this family? I can give you the figure."))
     msgbox(format("I am not a close friend. I'm an expense.\pA plaything, one you might bring on a trip to Hoenn or Galar."))
-    msgbox(format("I was counting what I owed. $500,000 per year."))
+    msgbox(format("I was counting what I owed. ¥500,000 per year."))
     msgbox(format("He got eleven years of a person for it."))
     setspeaker(NULL)
     closemessage

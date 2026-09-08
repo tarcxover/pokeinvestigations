@@ -135,6 +135,9 @@ jobs:
           RELEASE_NAME="$(make -s print_release_name)"
           echo "RELEASE_NAME=$RELEASE_NAME" >> "$GITHUB_ENV"
 
+      - name: Generate shasum
+        run: shasum ${{env.RELEASE_NAME}}.gba > ${{env.RELEASE_NAME}}.sha1
+
       - name: Publish
         uses: softprops/action-gh-release@v3
         with:
@@ -142,6 +145,7 @@ jobs:
           files: |
             ${{env.RELEASE_NAME}}.xdelta
             ${{env.RELEASE_NAME}}.bps
+            ${{env.RELEASE_NAME}}.sha1
           target_commitish: ${{ github.sha }}
 
   test:

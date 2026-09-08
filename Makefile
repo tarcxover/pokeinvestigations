@@ -27,7 +27,11 @@ KEEP_TEMPS  ?= 0
 
 # `File name`.gba
 FILE_NAME := poke$(BUILD_NAME)
+RELEASE_NAME := $(FILE_NAME)-release
 BUILD_DIR := build
+
+#pokeemerald baserom
+BASEROM := baserom.gba
 
 # Compares the ROM to a checksum of the original - only makes sense using when non-modern
 COMPARE     ?= 0
@@ -46,7 +50,6 @@ LTO          ?= 0
 # Makes an optimized build for release, also enabling NDEBUG macro and disabling other debugging features
 # Enables LTO by default, but can be changed in the config.mk file
 RELEASE      ?= 0
-PATCH        ?= 0
 
 ifeq (compare,$(MAKECMDGOALS))
   COMPARE := 1
@@ -58,10 +61,6 @@ ifeq (debug,$(MAKECMDGOALS))
   DEBUG := 1
 endif
 ifneq (,$(filter release tidyrelease patch,$(MAKECMDGOALS)))
-  RELEASE := 1
-endif
-ifneq (,$(filter patch,$(MAKECMDGOALS)))
-  PATCH := 1
   RELEASE := 1
 endif
 
@@ -102,6 +101,7 @@ ifeq ($(RELEASE),1)
 endif
 
 ROM_NAME := $(FILE_NAME).gba
+RELEASE_ROM_NAME := $(RELEASE_NAME).gba
 OBJ_DIR_NAME := $(BUILD_DIR)/$(BUILD_NAME)
 OBJ_DIR_NAME_TEST := $(BUILD_DIR)/$(BUILD_NAME)-test
 OBJ_DIR_NAME_DEBUG := $(BUILD_DIR)/$(BUILD_NAME)-debug
@@ -133,6 +133,7 @@ ELF := $(ROM:.gba=.elf)
 MAP := $(ROM:.gba=.map)
 SYM := $(ROM:.gba=.sym)
 XDELTA := $(ROM:.gba=.xdelta)
+BPS := $(ROM:.gba=.bps)
 
 # Commonly used directories
 C_SUBDIR = src
@@ -358,13 +359,25 @@ modern: all
 compare: all
 debug: all
 release: all
-patch: all
 # Uncomment the next line, and then comment the 4 lines after it to reenable agbcc.
 #agbcc: all
 agbcc:
 	@echo "'make agbcc' is deprecated as of pokeemerald-expansion 1.9 and will be removed in 1.10."
 	@echo "Search for 'agbcc: all' in Makefile to reenable agbcc."
 	@exit 1
+
+.PHONY: patch
+patch: $(XDELTA) $(BPS)
+
+$(BASEROM):
+	@echo "Error: Please place the baserom at $@"
+	@exit 1
+
+$(XDELTA): $(RELEASE_ROM_NAME) $(BASEROM)
+	xdelta3 -e -f -s $(BASEROM) $(ROM) $(XDELTA)
+
+$(BPS): $(RELEASE_ROM_NAME) $(BASEROM)
+	tools/flips/flips --create $(BASEROM) $(ROM) $(BPS)
 
 LD_SCRIPT_TEST := ld_script_test.ld
 
@@ -392,9 +405,6 @@ check: $(TESTELF)
 rom: $(ROM)
 ifeq ($(COMPARE),1)
 	@$(SHA1) rom.sha1
-endif
-ifeq ($(PATCH), 1)
-	xdelta3 -e -f -s baserom.gba $(ROM) $(XDELTA)
 endif
 
 syms: $(SYM)
@@ -627,3 +637,7 @@ leafgreen: all
 # Symbol file (`make syms`)
 $(SYM): $(ELF)
 	$(OBJDUMP) -t $< | sort -u | grep -E "^0[2389]" | $(PERL) -p -e 's/^(\w{8}) (\w).{6} \S+\t(\w{8}) (\S+)$$/\1 \2 \3 \4/g' > $@
+
+.PHONY: print_release_name
+print_release_name:
+	@echo $(RELEASE_NAME)

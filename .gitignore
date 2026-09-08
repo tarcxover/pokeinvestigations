@@ -4,6 +4,7 @@
 *.elf
 *.gba
 *.xdelta
+*.bps
 !data/*.gba
 *.sgm
 *.sa1

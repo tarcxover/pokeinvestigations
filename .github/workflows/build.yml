@@ -128,11 +128,20 @@ jobs:
           GAME_VERSION: EMERALD
         run: make -j$(nproc) patch
 
+      - name: Capture Build Name
+        env:
+          GAME_VERSION: EMERALD
+        run: |
+          RELEASE_NAME="$(make -s print_release_name)"
+          echo "RELEASE_NAME=$RELEASE_NAME" >> "$GITHUB_ENV"
+
       - name: Publish
         uses: softprops/action-gh-release@v3
         with:
           token: ${{secrets.RELEASE_TOKEN}}
-          files: pokeinvestigations-release.xdelta
+          files: |
+            ${{env.RELEASE_NAME}}.xdelta
+            ${{env.RELEASE_NAME}}.bps
           target_commitish: ${{ github.sha }}
 
   test:

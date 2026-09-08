@@ -1173,10 +1173,10 @@ const struct SpeciesInfo gSpeciesInfoGen9[] =
     [SPECIES_PAWMOT] =
     {
         .baseHP        = 70,
-        .baseAttack    = 115,
+        .baseAttack    = 40,
         .baseDefense   = 70,
         .baseSpeed     = 105,
-        .baseSpAttack  = 70,
+        .baseSpAttack  = 10,
         .baseSpDefense = 60,
         .types = MON_TYPES(TYPE_ELECTRIC, TYPE_FIGHTING),
         .catchRate = 45,

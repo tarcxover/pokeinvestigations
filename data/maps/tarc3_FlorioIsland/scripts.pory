@@ -16,7 +16,12 @@ script tarc3_FlorioIsland_EventScript_HidePlayerForDeparture {
 script tarc3_FlorioIsland_EventScript_OpeningCutscene {
     lockall
     setflag(FLAG_SYS_POKEMON_GET)
-    givemon(SPECIES_BISHARP, 50, ball=ITEM_POKE_BALL, nature=NATURE_HARDY, abilityNum=1, hpIv=31, atkIv=31, defIv=31, speedIv=31, spAtkIv=31, spDefIv=31, move1=MOVE_NIGHT_SLASH, move2=MOVE_IRON_HEAD, move3=MOVE_RETALIATE, move4=MOVE_ASSURANCE)
+    givemon(SPECIES_BISHARP, 50, 
+            ball=ITEM_POKE_BALL,
+            nature=NATURE_HARDY, 
+            abilityNum=1,
+            hpIv=31, atkIv=31, defIv=31, speedIv=31, spAtkIv=31, spDefIv=31,
+            move1=MOVE_NIGHT_SLASH, move2=MOVE_IRON_HEAD, move3=MOVE_RETALIATE, move4=MOVE_PSYCHO_CUT)
     setflag(FLAG_BADGE01_GET)
     setflag(FLAG_BADGE02_GET)
     setflag(FLAG_BADGE03_GET)
@@ -121,7 +126,7 @@ script tarc3_FlorioIsland_EventScript_CatchCramorant {
         release
         end
     }
-    givemon(SPECIES_CRAMORANT, 50, ball=ITEM_POKE_BALL, nature=NATURE_HARDY, abilityNum=0, hpIv=20, atkIv=20, defIv=20, speedIv=20, spAtkIv=20, spDefIv=20, move1=MOVE_SCALD, move2=MOVE_DRILL_PECK, move3=MOVE_ROOST, move4=MOVE_DIVE)
+    givemon(SPECIES_CRAMORANT, 50, ball=ITEM_POKE_BALL, nature=NATURE_HARDY, abilityNum=0, hpIv=20, atkIv=20, defIv=20, speedIv=20, spAtkIv=20, spDefIv=20, move1=MOVE_SCALD, move2=MOVE_DRILL_PECK, move3=MOVE_PROTECT, move4=MOVE_DIVE)
     playfanfare(MUS_CAUGHT)
     msgbox(format("{PLAYER} added Cramorant to the party!"))
     waitfanfare

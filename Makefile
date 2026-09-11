@@ -1,6 +1,6 @@
 GAME_VERSION ?= EMERALD
-TITLE        ?= POKEMON EMER
-GAME_CODE    ?= BPEE
+TITLE        ?= POKEMON ITAS
+GAME_CODE    ?= PITS
 BUILD_NAME   ?= investigations
 MAP_VERSION  ?= emerald
 

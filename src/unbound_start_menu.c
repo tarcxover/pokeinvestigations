@@ -10,10 +10,8 @@
 #include "constants/characters.h"
 #include "constants/field_weather.h"
 #include "constants/flags.h"
-#include "constants/unbound_start_menu.h"
-#include "constants/unbound_start_menu.h"
-#include "constants/rgb.h"
 #include "constants/songs.h"
+#include "constants/unbound_start_menu.h"
 #include "datetime.h"
 #include "debug.h"
 #include "decompress.h"
@@ -28,13 +26,9 @@
 #include "frontier_pass.h"
 #include "gba/defines.h"
 #include "gba/io_reg.h"
-#include "gba/isagbprint.h"
-#include "gba/macro.h"
-#include "gba/types.h"
 #include "gpu_regs.h"
 #include "international_string_util.h"
 #include "item_menu.h"
-#include "link.h"
 #include "logic_menu.h"
 #include "main.h"
 #include "malloc.h"
@@ -52,9 +46,7 @@
 #include "script.h"
 #include "sound.h"
 #include "sprite.h"
-#include "start_menu.h"
 #include "string_util.h"
-#include "strings.h"
 #include "task.h"
 #include "text.h"
 #include "trainer_card.h"
@@ -76,24 +68,16 @@ typedef void (*Usm_DeferredCB)(void);
 #define USM_ICON_YPOS 128
 
 enum Usm_IconTiletags {
-    USM_TILETAG_POKEDEX = 0x1000,
-    USM_TILETAG_PARTY,
-    USM_TILETAG_BAG,
-    USM_TILETAG_POKENAV,
-    USM_TILETAG_DEXNAV,
-    USM_TILETAG_TRAINER,
-    USM_TILETAG_SAVE,
-    USM_TILETAG_OPTIONS,
-    USM_TILETAG_RETIRE,
-    USM_TILETAG_DEBUG,
-    USM_TILETAG_HAND,
-    USM_TILETAG_EVIDENCE,
+    USM_TILETAG_HAND = 0x1000,
     USM_TILETAG_ARROW,
 };
 
 enum Usm_Paltags {
-    USM_PALTAG_ICON = 0x1000 | BLEND_IMMUNE_FLAG,
+    USM_PALTAG_ICON_INACTIVE = 0x1000 | BLEND_IMMUNE_FLAG,
+    USM_PALTAG_ICON
 };
+
+#define USM_PALTAG_ICON_COUNT (USM_PALTAG_ICON_7 - USM_PALTAG_ICON_0 + 1)
 
 enum Usm_Activation {
     USM_INACTIVE,
@@ -115,6 +99,7 @@ enum Usm_Windows {
     USM_WIN_INFO,
     USM_WIN_COUNT,
 };
+
 struct Usm_VisibleIcons {
     u8 iconIndex[USM_MAX_ICON_COUNT];
     u8 count;
@@ -153,35 +138,63 @@ struct Usm_Memory {
 struct Usm_MenuItem {
     const struct SpriteTemplate* template;
     const struct CompressedSpriteSheet* sheet;
+    const u32* spriteGfx;
+    const enum Usm_IconTiletags tiletag;
+    struct SpriteFrameImage* picTable;
+    const u16* palette;
     const u8* label;
     Usm_MenuCB callback;
 };
 
 // Graphics
-static const u32 sPokedexIconGfx[] = INCBIN_U32("graphics/unbound_start_menu/sprites/pokedex.4bpp.smol");
-static const u32 sPartyIconGfx[] = INCBIN_U32("graphics/unbound_start_menu/sprites/party.4bpp.smol");
-static const u32 sBagIconGfx[] = INCBIN_U32("graphics/unbound_start_menu/sprites/bag.4bpp.smol");
-static const u32 sPokenavIconGfx[] = INCBIN_U32("graphics/unbound_start_menu/sprites/pokenav.4bpp.smol");
-static const u32 sDexnavIconGfx[] = INCBIN_U32("graphics/unbound_start_menu/sprites/dexnav.4bpp.smol");
-static const u32 sTrainerIconGfx[] = INCBIN_U32("graphics/unbound_start_menu/sprites/trainer.4bpp.smol");
-static const u32 sSaveIconGfx[] = INCBIN_U32("graphics/unbound_start_menu/sprites/save.4bpp.smol");
-static const u32 sOptionsIconGfx[] = INCBIN_U32("graphics/unbound_start_menu/sprites/options.4bpp.smol");
-static const u32 sDebugIconGfx[] = INCBIN_U32("graphics/unbound_start_menu/sprites/debug.4bpp.smol");
-static const u32 sRetireIconGfx[] = INCBIN_U32("graphics/unbound_start_menu/sprites/retire.4bpp.smol");
-static const u32 sEvidenceIconGfx[] = INCBIN_U32("graphics/unbound_start_menu/sprites/evidence.4bpp.smol");
+static const u32 sUsmIconGfx_Pokedex[]  = INCBIN_U32("graphics/unbound_start_menu/sprites/pokedex.4bpp");
+static const u32 sUsmIconGfx_Party[]    = INCBIN_U32("graphics/unbound_start_menu/sprites/party.4bpp");
+static const u32 sUsmIconGfx_Bag[]      = INCBIN_U32("graphics/unbound_start_menu/sprites/bag.4bpp");
+static const u32 sUsmIconGfx_Pokenav[]  = INCBIN_U32("graphics/unbound_start_menu/sprites/pokenav.4bpp");
+static const u32 sUsmIconGfx_Dexnav[]   = INCBIN_U32("graphics/unbound_start_menu/sprites/pokedex.4bpp");
+static const u32 sUsmIconGfx_Trainer[]  = INCBIN_U32("graphics/unbound_start_menu/sprites/trainer.4bpp");
+static const u32 sUsmIconGfx_Save[]     = INCBIN_U32("graphics/unbound_start_menu/sprites/save.4bpp");
+static const u32 sUsmIconGfx_Settings[] = INCBIN_U32("graphics/unbound_start_menu/sprites/settings.4bpp");
+static const u32 sUsmIconGfx_Debug[]    = INCBIN_U32("graphics/unbound_start_menu/sprites/debug.4bpp");
+static const u32 sUsmIconGfx_Retire[]   = INCBIN_U32("graphics/unbound_start_menu/sprites/save.4bpp");
+static const u32 sUsmIconGfx_Logic[]    = INCBIN_U32("graphics/unbound_start_menu/sprites/logic.4bpp");
 
-static const u32 sUsmHandGfx[] = INCBIN_U32("graphics/unbound_start_menu/sprites/hand.4bpp.smol");
-static const u32 sUsmArrowGfx[] = INCBIN_U32("graphics/unbound_start_menu/sprites/arrow.4bpp.smol");
+static const u16 sPokedexIconPal[]  = INCBIN_U16("graphics/unbound_start_menu/sprites/pokedex.gbapal");
+static const u16 sPartyIconPal[]    = INCBIN_U16("graphics/unbound_start_menu/sprites/party.gbapal");
+static const u16 sBagIconPal[]      = INCBIN_U16("graphics/unbound_start_menu/sprites/bag.gbapal");
+static const u16 sPokenavIconPal[]  = INCBIN_U16("graphics/unbound_start_menu/sprites/pokenav.gbapal");
+static const u16 sDexnavIconPal[]   = INCBIN_U16("graphics/unbound_start_menu/sprites/pokedex.gbapal");
+static const u16 sTrainerIconPal[]  = INCBIN_U16("graphics/unbound_start_menu/sprites/trainer.gbapal");
+static const u16 sSaveIconPal[]     = INCBIN_U16("graphics/unbound_start_menu/sprites/save.gbapal");
+static const u16 sSettingsIconPal[] = INCBIN_U16("graphics/unbound_start_menu/sprites/settings.gbapal");
+static const u16 sDebugIconPal[]    = INCBIN_U16("graphics/unbound_start_menu/sprites/debug.gbapal");
+static const u16 sRetireIconPal[]   = INCBIN_U16("graphics/unbound_start_menu/sprites/save.gbapal");
+static const u16 sLogicIconPal[]    = INCBIN_U16("graphics/unbound_start_menu/sprites/logic.gbapal");
 
-static const u8 sUsmStepGfx[] = INCBIN_U8("graphics/unbound_start_menu/step.4bpp");
-static const u8 sUsmBallGfx[] = INCBIN_U8("graphics/unbound_start_menu/ball.4bpp");
-static const u8 sUsmFloorGfx[] = INCBIN_U8("graphics/unbound_start_menu/floor.4bpp");
+static const u32 sUsmHandGfx[]   = INCBIN_U32("graphics/unbound_start_menu/sprites/hand.4bpp.smol");
+static const u32 sUsmArrowGfx[]  = INCBIN_U32("graphics/unbound_start_menu/sprites/arrow.4bpp.smol");
 
-static const u16 sIconPal[] = INCBIN_U16("graphics/unbound_start_menu/sprites/icons.gbapal");
+static const u8 sUsmStepGfx[]    = INCBIN_U8("graphics/unbound_start_menu/step.4bpp");
+static const u8 sUsmBallGfx[]    = INCBIN_U8("graphics/unbound_start_menu/ball.4bpp");
+static const u8 sUsmFloorGfx[]   = INCBIN_U8("graphics/unbound_start_menu/floor.4bpp");
 
-static const u32 sUsmBgTiles[] = INCBIN_U32("graphics/unbound_start_menu/bg/tiles.4bpp.smol");
+static const u32 sUsmBgTiles[]   = INCBIN_U32("graphics/unbound_start_menu/bg/tiles.4bpp.smol");
 static const u32 sUsmBgTilemap[] = INCBIN_U32("graphics/unbound_start_menu/bg/map.bin.smolTM");
 static const u16 sUsmBgPalette[] = INCBIN_U16("graphics/unbound_start_menu/bg/palette_14.gbapal");
+
+#define USM_FOREACH_ICON(F) \
+    F(DEBUG,    Debug,    ) \
+    F(POKEDEX,  Pokedex,  ) \
+    F(PARTY,    Party,    ) \
+    F(BAG,      Bag,      ) \
+    F(POKENAV,  Pokenav,  "Pokénav") \
+    F(LOGIC,    Logic,    ) \
+    F(DEXNAV,   Dexnav,   ) \
+    F(TRAINER,  Trainer,  ) \
+    F(SETTINGS, Settings, ) \
+    F(SAVE,     Save,     ) \
+    F(REST,     Save,     "Rest") \
+    F(RETIRE,   Retire,   )
 
 enum FontColor {
     FONT_WHITE,
@@ -221,9 +234,8 @@ static const struct OamData sIconOam = {
     .paletteNum = 0,
 };
 
-static const union AnimCmd sAnim_Icon_Frame1[] = {ANIMCMD_FRAME(0, 30), ANIMCMD_END};
-
-static const union AnimCmd sAnim_Icon_Frame2[] = {ANIMCMD_FRAME(16, 30), ANIMCMD_END};
+static const union AnimCmd sAnim_Icon_Frame1[] = {ANIMCMD_FRAME(0, 0), ANIMCMD_END};
+static const union AnimCmd sAnim_Icon_Frame2[] = {ANIMCMD_FRAME(1, 0), ANIMCMD_END};
 
 static const union AnimCmd* const sIconAnimTable[] = {
     sAnim_Icon_Frame1,
@@ -254,34 +266,12 @@ static const union AffineAnimCmd* const sIconAffineAnimTable[] = {
     sAffineAnim_RotateAndScale
 };
 
-#define ICON_TEMPLATE(_icon, name)                                    \
-    static const struct SpriteTemplate sSpriteTemplate_##name = {     \
-        .tileTag = USM_TILETAG_##_icon,                               \
-        .paletteTag = USM_PALTAG_ICON,                                \
-        .oam = &sIconOam,                                             \
-        .anims = sIconAnimTable,                                      \
-        .affineAnims = sIconAffineAnimTable,                          \
-        .callback = SpriteCallbackDummy,                              \
-    };                                                                \
-    static const struct CompressedSpriteSheet sSpriteSheet_##name = { \
-        .data = s##name##IconGfx, .size = 0x400, .tag = USM_TILETAG_##_icon};
-
-ICON_TEMPLATE(POKEDEX, Pokedex)
-ICON_TEMPLATE(PARTY, Party)
-ICON_TEMPLATE(BAG, Bag)
-ICON_TEMPLATE(POKENAV, Pokenav)
-ICON_TEMPLATE(DEXNAV, Dexnav)
-ICON_TEMPLATE(TRAINER, Trainer)
-ICON_TEMPLATE(SAVE, Save)
-ICON_TEMPLATE(OPTIONS, Options)
-ICON_TEMPLATE(DEBUG, Debug)
-ICON_TEMPLATE(RETIRE, Retire)
-ICON_TEMPLATE(EVIDENCE, Evidence)
-
-static const struct SpritePalette sSpritePalette_Icons = {.data = sIconPal, .tag = USM_PALTAG_ICON};
+#define USM_PIC_TABLE(_id, name, ...) \
+    EWRAM_DATA static struct SpriteFrameImage sUsmPicTable_##name;
+USM_FOREACH_ICON(USM_PIC_TABLE)
 
 // Static Variables
-static COMMON_DATA bool32 (*sUsmMenuCallback)(u32) = NULL;
+static EWRAM_DATA bool32 (*sUsmMenuCallback)(u32) = NULL;
 static EWRAM_DATA struct Usm_Memory* sUsmMemory;
 static EWRAM_DATA struct Usm_State* sUsmState;
 static EWRAM_DATA u8 sUsmSavedIcon = 0;
@@ -294,7 +284,6 @@ static void Usm_RunMenuCallbackAndExit(u8 taskId);
 // Static Functions
 static void Usm_LoadBgGfx(void);
 static void Usm_CreateIcons(s16 x, s16 y);
-static void Usm_LoadIconGfx(void);
 static void Usm_ShowSafariText(void);
 static void Usm_ShowPyramidText(void);
 static enum Usm_Icons Usm_GetSelectedIconId(void);
@@ -323,7 +312,6 @@ static u32 Usm_CreateArrowSprite(s16 x, s16 y, bool32 flip);
 static void Usm_SwapIconPos(u8 grabIndex, u8 targetIndex);
 static void Usm_RedrawIcons();
 static void Usm_DestroyVisibleIcons(void);
-static void Usm_SetIconFrame(u8 visibleIndex, enum Usm_Activation activation);
 static void Usm_StartIconAffineAnim(u8 visibleIndex);
 static void Usm_StopIconAffineAnim(u8 visibleIndex);
 static void Usm_StopIconAnim(u8 visibleIndex);
@@ -334,24 +322,17 @@ static void Usm_CreateScrollingArrows(void);
 static bool32 Usm_IsFlashObscured(void);
 static void Usm_RunDeferredCallback(void);
 static void Usm_DeferCallback(Usm_DeferredCB func);
+static u32 Usm_CreateIcon(enum Usm_Icons iconId, s32 x, s32 y);
 
 // Menu Callbacks
-static bool32 UsmMenuCB_Pokedex(u32 state);
-static bool32 UsmMenuCB_Party(u32 state);
-static bool32 UsmMenuCB_Bag(u32 state);
-static bool32 UsmMenuCB_Pokenav(u32 state);
-static bool32 UsmMenuCB_Trainer(u32 state);
-static bool32 UsmMenuCB_Save(u32 state);
-static bool32 UsmMenuCB_Options(u32 state);
-static bool32 UsmMenuCB_Exit(u32 state);
-static bool32 UsmMenuCB_Retire(u32 state);
+#define USM_MENU_CALLBACK(_id, name, ...) \
+    static bool32 UsmMenuCB_##name(u32 state);
+USM_FOREACH_ICON(USM_MENU_CALLBACK)
+
 static bool32 UsmMenuCB_RetireSafariZone(u32 state);
 static bool32 UsmMenuCB_TrainerLinkMode(u32 state);
 static bool32 UsmMenuCB_RetireBattlePyramid(u32 state);
 static bool32 UsmMenuCB_BagBattlePyramid(u32 state);
-static bool32 UsmMenuCB_Debug(u32 state);
-static bool32 UsmMenuCB_Dexnav(u32 state);
-static bool32 UsmMenuCB_Evidence(u32 state);
 
 static void Usm_HandleMainInput(void);
 static void Usm_HandleMoveInput(void);
@@ -363,32 +344,33 @@ static Usm_ModeCB sUsmModeCallbacks[] = {
     [USM_MODE_SELECT]   = Usm_HandleSelection,
 };
 
-#define USM_MENU_ITEM(name, ...)  \
-    {.template = &sSpriteTemplate_##name,  \
-     .sheet = &sSpriteSheet_##name,        \
-     .label = COMPOUND_STRING(DEFAULT(STR(name), __VA_ARGS__)), \
-     .callback = UsmMenuCB_##name}
+#define USM_MENU_ITEM(id, name, ...)                               \
+    [USM_ICO_##id] = {                                             \
+        .spriteGfx = sUsmIconGfx_##name,                           \
+        .picTable = &sUsmPicTable_##name,                          \
+        .label = COMPOUND_STRING(DEFAULT(STR(name), __VA_ARGS__)), \
+        .palette = CAT(s##name, IconPal),                          \
+        .callback = UsmMenuCB_##name,                              \
+    },
 
+ 
 static const struct Usm_MenuItem sUsmMenuItems[USM_ICO_COUNT] = {
-    [USM_ICO_POKEDEX]  = USM_MENU_ITEM(Pokedex, "Pokédex"),
-    [USM_ICO_PARTY]    = USM_MENU_ITEM(Party),
-    [USM_ICO_BAG]      = USM_MENU_ITEM(Bag),
-    [USM_ICO_POKENAV]  = USM_MENU_ITEM(Pokenav, "PokéNav"),
-    [USM_ICO_DEXNAV]   = USM_MENU_ITEM(Dexnav),
-    [USM_ICO_TRAINER]  = USM_MENU_ITEM(Trainer),
-    [USM_ICO_SAVE]     = USM_MENU_ITEM(Save),
-    [USM_ICO_REST]     = USM_MENU_ITEM(Save, "Rest"),
-    [USM_ICO_OPTIONS]  = USM_MENU_ITEM(Options),
-    [USM_ICO_EVIDENCE] = USM_MENU_ITEM(Evidence, "Logic"),
-    [USM_ICO_DEBUG]    = USM_MENU_ITEM(Debug),
-    [USM_ICO_RETIRE]   = USM_MENU_ITEM(Retire),
+    USM_FOREACH_ICON(USM_MENU_ITEM)
 };
+
+static void Usm_FadeScreen()
+{
+    if (GetGpuReg(REG_OFFSET_DISPSTAT) & DISPSTAT_HBLANK_INTR)
+        FadeScreenHardware(FADE_TO_BLACK, 0);
+    else
+        FadeScreen(FADE_TO_BLACK, 0);
+}
 
 static bool32 UsmMenuCB_Pokedex(u32 state)
 {
     switch (state) {
     case 0:
-        FadeScreen(FADE_TO_BLACK, 0);
+        Usm_FadeScreen();
         return FALSE;
     default:
         if (!gPaletteFade.active) {
@@ -406,7 +388,7 @@ static bool32 UsmMenuCB_Party(u32 state)
 {
     switch (state) {
     case 0:
-        FadeScreen(FADE_TO_BLACK, 0);
+        Usm_FadeScreen();
         return FALSE;
     default:
         if (!gPaletteFade.active) {
@@ -426,7 +408,7 @@ static bool32 UsmMenuCB_Bag(u32 state)
 
     switch (state) {
     case 0:
-        FadeScreen(FADE_TO_BLACK, 0);
+        Usm_FadeScreen();
         return FALSE;
     default:
         if (!gPaletteFade.active) {
@@ -444,7 +426,7 @@ static bool32 UsmMenuCB_BagBattlePyramid(u32 state)
 {
     switch (state) {
     case 0:
-        FadeScreen(FADE_TO_BLACK, 0);
+        Usm_FadeScreen();
         return FALSE;
     default:
         if (!gPaletteFade.active) {
@@ -461,7 +443,7 @@ static bool32 UsmMenuCB_Pokenav(u32 state)
 {
     switch (state) {
     case 0:
-        FadeScreen(FADE_TO_BLACK, 0);
+        Usm_FadeScreen();
         return FALSE;
     default:
         if (!gPaletteFade.active) {
@@ -481,7 +463,7 @@ static bool32 UsmMenuCB_Trainer(u32 state)
 
     switch (state) {
     case 0:
-        FadeScreen(FADE_TO_BLACK, 0);
+        Usm_FadeScreen();
         return FALSE;
     default:
         if (!gPaletteFade.active) {
@@ -521,11 +503,11 @@ static bool32 UsmMenuCB_Save(u32 state)
     return TRUE;
 }
 
-static bool32 UsmMenuCB_Options(u32 state)
+static bool32 UsmMenuCB_Settings(u32 state)
 {
     switch (state) {
     case 0:
-        FadeScreen(FADE_TO_BLACK, 0);
+        Usm_FadeScreen();
         return FALSE;
     default:
         if (!gPaletteFade.active) {
@@ -585,11 +567,11 @@ static bool32 UsmMenuCB_Dexnav(u32 state)
     return TRUE;
 }
 
-static bool32 UsmMenuCB_Evidence(u32 state)
+static bool32 UsmMenuCB_Logic(u32 state)
 {
     switch (state) {
     case 0:
-        FadeScreen(FADE_TO_BLACK, 0);
+        Usm_FadeScreen();
         return FALSE;
     default:
         if (!gPaletteFade.active) {
@@ -650,17 +632,9 @@ static void Usm_LoadBgGfx(void)
     ScheduleBgCopyTilemapToVram(0);
 }
 
-static void Usm_LoadIconGfx(void)
-{
-    for (u32 i = 0; i < USM_ICO_COUNT; i++) {
-        LoadCompressedSpriteSheet(sUsmMenuItems[i].sheet);
-    }
-}
-
 void Usm_LoadIconPalette(void)
 {
-    LoadSpritePalette(&sSpritePalette_Icons);
-    PreservePaletteInWeather(IndexOfSpritePaletteTag(USM_PALTAG_ICON) + 16);
+    PreservePaletteInWeather(IndexOfSpritePaletteTag(USM_PALTAG_ICON_INACTIVE) + 16);
 }
 
 void Usm_InitStartMenu(void)
@@ -678,6 +652,8 @@ void Usm_InitStartMenu(void)
         SetMainCallback2(CB2_ReturnToField);
         return;
     }
+
+    memset(sUsmMemory->spriteIds, SPRITE_NONE, sizeof(sUsmMemory->spriteIds));
 
     if (Usm_IsFlashObscured())
     {
@@ -700,10 +676,10 @@ void Usm_InitStartMenu(void)
     Usm_PrintEvidenceCount();
     Usm_PrintButtonHints();
     Usm_PrintIconLabel();
-    Usm_LoadIconGfx();
     Usm_LoadIconPalette();
     sUsmState->mode = USM_MODE_NORMAL;
     Usm_CreateIcons(0, USM_ICON_YPOS);
+    PreservePaletteInWeather(IndexOfSpritePaletteTag(USM_PALTAG_ICON) + 16);
     Usm_AnimateSelectedIcon();
     Usm_CreateScrollingArrows();
     Usm_ShowSafariText();
@@ -926,11 +902,8 @@ static bool32 Usm_ListContains(enum Usm_Icons item, u8 *list, u8 count)
     return FALSE;
 }
 
-static const enum Usm_Icons sUsmDefaultItems[] = {
-    USM_ICO_DEBUG,   USM_ICO_POKEDEX, USM_ICO_PARTY, USM_ICO_BAG,
-    USM_ICO_POKENAV, USM_ICO_DEXNAV, USM_ICO_EVIDENCE,
-    USM_ICO_SAVE, USM_ICO_REST, USM_ICO_OPTIONS, USM_ICO_RETIRE
-};
+#define USM_DEFAULT_LIST(id, ...) USM_ICO_##id,
+static const enum Usm_Icons sUsmDefaultItems[] = { USM_FOREACH_ICON(USM_DEFAULT_LIST)};
 
 static u32 Usm_GetDefaultIndex(enum Usm_Icons item)
 {
@@ -1030,7 +1003,7 @@ static bool32 Usm_IsItemAvailable(enum Usm_Icons item)
         case USM_ICO_SAVE:     return !GetSafariZoneFlag() && !Usm_IsPlayerInBattlePyramid();
         case USM_ICO_REST:     return Usm_IsPlayerInBattlePyramid();
         case USM_ICO_DEBUG:    return DEBUG_OVERWORLD_MENU && DEBUG_OVERWORLD_IN_MENU;
-        case USM_ICO_EVIDENCE: return FlagGet(FLAG_TARC3_EVIDENCE_MENU);
+        case USM_ICO_LOGIC: return FlagGet(FLAG_TARC3_EVIDENCE_MENU);
         case USM_ICO_TRAINER:  return FALSE;
         default:               return TRUE;
     }
@@ -1075,20 +1048,48 @@ static void Usm_CreateIcons(s16 x, s16 y)
 
     s16 startX = 24 + (USM_BANNER_WIDTH - (count * USM_ICON_WIDTH)) / 2;
 
-    for (u32 i = 0; i < count; i++) {
+    for (u32 i = 0; i < count; i++)
+    {
         s16 posX = startX + i * USM_ICON_WIDTH;
-
         u8 iconId = sUsmState->visible.iconIndex[i];
 
-        u8 id = CreateSprite(sUsmMenuItems[iconId].template, posX, y, 1);
-        if (Usm_IsFlashObscured())
-            gSprites[id].copyToObjWin = TRUE;
+        u32 id = Usm_CreateIcon(iconId, posX, y);
         sUsmMemory->spriteIds[i] = id;
     }
 }
 
+static u32 Usm_CreateIcon(enum Usm_Icons iconId, s32 x, s32 y)
+{
+    const struct Usm_MenuItem* item = &sUsmMenuItems[iconId];
+    struct Even_CreateSpriteStruct cs = {0};
+    cs.palette = item->palette;
+    cs.palTag = USM_PALTAG_ICON;
+    cs.sprite = item->spriteGfx;
+    cs.tileTag = TAG_NONE;
+    cs.spriteCompressed = FALSE;
+    cs.numFrames = 2;
+    cs.images = item->picTable;
+    cs.spriteSize = SPRITE_SIZE(32x32);
+    cs.spriteShape = SPRITE_SHAPE(32x32);
+    cs.subpriority = 1;
+    cs.posX = x;
+    cs.posY = y;
+
+    u8 id = Even_CreateSprite(&cs);
+    struct Sprite *sprPtr = &gSprites[id];
+
+    sprPtr->affineAnims = sIconAffineAnimTable;
+    sprPtr->anims = sIconAnimTable;
+    sprPtr->oam.priority = 0;
+    if (Usm_IsFlashObscured())
+        sprPtr->copyToObjWin = TRUE;
+
+    return id;
+}
+
 static void Usm_AnimateSelectedIcon(void)
 {
+    u32 activePalIndex = IndexOfSpritePaletteTag(USM_PALTAG_ICON);
     for (u32 i = 0; i < sUsmState->visible.count; i++)
     {
         if (i != sUsmState->selectedVisibleIdx)
@@ -1097,8 +1098,9 @@ static void Usm_AnimateSelectedIcon(void)
         }
         else
         {
-            Usm_SetIconFrame(i, USM_ACTIVE);
-
+            struct Sprite* sprPtr = &gSprites[sUsmMemory->spriteIds[i]];
+            LoadPalette(sUsmMenuItems[sUsmState->visible.iconIndex[i]].palette, OBJ_PLTT_ID(activePalIndex), PLTT_SIZEOF(16));
+            StartSpriteAnim(sprPtr, 1);
             if (sUsmState->mode == USM_MODE_NORMAL)
                 Usm_StartIconAffineAnim(i);
         }
@@ -1120,15 +1122,10 @@ static void Usm_StopIconAffineAnim(u8 visibleIndex)
     FreeSpriteOamMatrix(sprite);
 }
 
-static void Usm_SetIconFrame(u8 visibleIndex, enum Usm_Activation activation)
-{
-    struct Sprite* sprite = Usm_GetIconSprite(visibleIndex);
-    StartSpriteAnim(sprite, activation);
-}
-
 static void Usm_StopIconAnim(u8 visibleIndex)
 {
-    Usm_SetIconFrame(visibleIndex, USM_INACTIVE);
+    struct Sprite *sprPtr = &gSprites[sUsmMemory->spriteIds[visibleIndex]];
+    StartSpriteAnim(sprPtr, 0);
     Usm_StopIconAffineAnim(visibleIndex);
 }
 
@@ -1353,7 +1350,7 @@ static void Usm_SwitchSelectedIcon(enum Usm_Icons iconId)
 static u32 Usm_CreateArrowSprite(s16 x, s16 y, bool32 flip)
 {
     u8 spriteId = Even_CreateSpriteParametrized(
-        sUsmArrowGfx, USM_TILETAG_ARROW, sIconPal, USM_PALTAG_ICON,
+        sUsmArrowGfx, USM_TILETAG_ARROW, NULL, USM_PALTAG_ICON,
         SPRITE_SIZE(32x32), SPRITE_SHAPE(32x32), x, y, 0, SpriteCB_UsmArrow,
         TRUE);
     gSprites[spriteId].oam.priority = 0;
@@ -1367,7 +1364,7 @@ static u32 Usm_CreateArrowSprite(s16 x, s16 y, bool32 flip)
 static u32 Usm_CreateHandSprite(s16 x, s16 y)
 {
     u8 spriteId = Even_CreateSpriteParametrized(
-        sUsmHandGfx, USM_TILETAG_HAND, sIconPal, USM_PALTAG_ICON,
+        sUsmHandGfx, USM_TILETAG_HAND, NULL, USM_PALTAG_ICON,
         SPRITE_SIZE(32x32), SPRITE_SHAPE(32x32), x, y, 0, SpriteCallbackDummy,
         TRUE);
     gSprites[spriteId].oam.priority = 0;

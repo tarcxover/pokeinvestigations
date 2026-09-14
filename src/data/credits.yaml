@@ -1,57 +1,122 @@
 credits:
-  developers:
-    - Miriam
-    - Fisham
-  playtesters:
-    - MaximeGr
-    - Pommelo
+  core_team:
+    developers:
+      - Miriam
+      - Fisham
+    playtesters:
+      - MaximeGr
+      - Pommelo
   feature_branches:
-    - Montblanc (SwSh Uis)
-    - RavePossum (BW Summary Screen)
-    - TheXaman (Options Menu)
+      $SwSh UI:
+      - Montblanc
+      - RavePossum
+      options_menu:
+      - TheXaman
   tilesets:
-    - ekat99
-    - AveonTrainer (Art Easles)
-    - Morlock-Liam (Bathroom & Mirror)
-    - Fisham (various edits)
+      assorted_tilesets:
+      - ekat99
+      art_easles:
+        - AveonTrainer
+      bathroom_&_mirror:
+        - Morlock-Liam
+      misc_edits:
+      - Fisham
   overworlds:
-    - Miriam (Franziska/Edgeworth)
-    - Eva/Doodle (Edgeworth)
-    - Aveontrainer (Natsue/Mariko)
-    - Mashirosakura (Akie/Tatsuo)
-    - Delta321 (Gozo)
-    - Fisham (various edits)
-  other_assets:
-    - Miriam (Edgeworth trainer sprite)
-    - Mudskip (Pokeball scrolling BG)
-    - Eva/Doodle (Pokemon Hearth)
-    - Cursenho (UI Essentials Pack)
-    - Glionox (Items pack)
+      edgeworth:
+        still:
+          - Eva/Doodle
+        moving:
+          - Miriam
+      franziska:
+        - Miriam
+      natsue:
+        - AveonTrainer 
+      mariko:
+        - AveonTrainer
+      akie:
+        - Mashirosakura
+      tatsuo:
+        - Mashirosakura
+      gozo:
+        - Delta321
+      sprite_template:
+        - Kasen
+      misc_edits:
+        - Fisham
+  trainer_sprites:
+      edgeworth:
+        - Miriam
+  scrolling_backgrounds:
+    pokeball:
+      - Mudskip
+    accuse_menu:
+      - Eva/Doodle
+  asset_packs:
+    $UI Essentials:
+      - Cursenho
+    items_pack:
+      - Glionox
+
+  other_graphics:
+    title_screen:
+      - PMD Explorers of Skies
+      - PMD Red Rescue Team
+    main_menu:
+      pokeball:
+        - Pokemon Hearth
+      background:
+        - UI Essentials
+
+  audio:
+    $HQ Mixer:
+      - Ipatix
+    universal_voicegroup:
+      - Specker
+
   music:
-    - Ipatix (HQ Mixer)
-    - Hedara (HQ Mixer Implementation)
-    - Specker (universal voicegroup)
-  graphics_inspiration:
-    - PMD Explorers of Skies
-    - PMD Red Rescue Team
-    - Pokemon Hearth
-  story_inspiration:
-    - Detective Conan
-  music_inspiration:
-    - Ace Attorney
-    - Ace Attorney Investigations
-    - Castlevania Aria of Sorrow
+      castelvania_aos:
+       - "Dracula's Fate"
+       - Black Sun
+      ace_attorney:
+        - Trial
+      ace_attorney_investigations:
+      - Logic & Truth
+      - Confrontation Presto
+
+  inspiration:
+    story:
+      - Detective Conan
+    mechanics:
+      - Ace Attorney
+      - Ace Attorney Investigations
+
   tooling:
-    - ShantyTown (porydaw)
-    - Specker (porydaw)
-    - grunt-lucas (porytiles)
-    - GriffinR (porymap)
+    porydaw:
+      - ShantyTown
+      - Specker
+    porytiles:
+      - grunt-lucas
+    porymap:
+      - GriffinR
+      - ShantyTown
+
   misc_code:
-    - Hedara (even_sprite)
-    - grunt-lucas (sample_ui)
-    - ShantyTown (comfy_anims)
+    even_sprite:
+      - Hedara
+    $Sample UI:
+      - grunt-lucas
+    comfy_anims:
+      - ShantyTown
+
+  rom_base:
+    $pokeemerald:
+      - pret
+    $pokeemerald-expansion:
+      - RHH
+
   special_thanks:
     - Eva/Doodle
+    - Jamie Foster
     - Gudf
     - MGriffin
     - SBird
@@ -59,8 +124,7 @@ credits:
     - Lemmanade
     - Boyo
     - The Spriter's Resource
-    - pret (pokeemerald)
-    - RHH (pokeemerald-expansion)
+
   emotional_support:
     - GBATEK
     - TONC

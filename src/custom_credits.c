@@ -1,27 +1,19 @@
 #include "global.h"
-#include "assertf.h"
 #include "comfy_anim.h"
-#include "constants/characters.h"
 #include "constants/field_weather.h"
-#include "even_sprite.h"
 #include "field_weather.h"
 #include "fpmath.h"
 #include "gba/io_reg.h"
-#include "gba/isagbprint.h"
 #include "gba/types.h"
 #include "gba/defines.h"
 #include "international_string_util.h"
-#include "intro.h"
 #include "main.h"
 #include "bg.h"
-#include "main_menu.h"
 #include "custom_main_menu.h"
 #include "rtc.h"
 #include "save.h"
 #include "script.h"
 #include "text.h"
-#include "text_window.h"
-#include "trig.h"
 #include "window.h"
 #include "palette.h"
 #include "task.h"
@@ -33,19 +25,10 @@
 #include "scanline_effect.h"
 #include "sprite.h"
 #include "constants/rgb.h"
-#include "decompress.h"
 #include "constants/songs.h"
 #include "sound.h"
 #include "sprite.h"
-#include "string_util.h"
-#include "pokemon_icon.h"
-#include "graphics.h"
-#include "data.h"
-#include "pokedex.h"
 #include "gpu_regs.h"
-#include "custom_title.h"
-#include "subsprite.h"
-#include "m4a.h"
 #include <stdint.h>
 #include <string.h>
 
@@ -86,7 +69,7 @@ static const struct WindowTemplate sCustomCreditsWinTemplates[] = {
             .tilemapLeft = 5,
             .tilemapTop = 0,
             .bg = 0,
-            .height = 32,
+            .height = 22,
             .width = 20,
             .paletteNum = 15,
             .baseBlock = 1,
@@ -98,15 +81,95 @@ static const u32 CmmScrollingBgTiles[] = INCGFX_U32("graphics/custom_main_menu/s
 static const u32 CmmScrollingBgTilemap[] = INCBIN_U32("graphics/custom_main_menu/scrolling_bg/map.bin.smolTM");
 static const u16 CmmScrollingBgPalette[] = INCGFX_U16("graphics/custom_main_menu/scrolling_bg/palette_01.pal", ".gbapal");
 
+static const u16 sCreditsRoll_MenuPal[] = INCGFX_U16("graphics/credits_roll/credits_roll_menu.pal", ".gbapal");
+
 enum FontColor
 {
     FONT_WHITE,
-    FONT_RED
+    FONT_RED,
+    FONT_GREEN,
+    FONT_BLUE,
+    FONT_ORANGE,
+    FONT_YELLOW,
 };
-static const u8 sCustomCreditsWindowFontColors[][3] =
-{
-    [FONT_WHITE]  = {TEXT_COLOR_TRANSPARENT, TEXT_COLOR_WHITE,      TEXT_COLOR_DARK_GRAY},
-    [FONT_RED]    = {TEXT_COLOR_TRANSPARENT, TEXT_COLOR_LIGHT_RED,        TEXT_COLOR_RED},
+
+enum CreditsTextColor {
+    CREDCLR_TRANSPARENT,
+    CREDCLR_WHITE,
+    CREDCLR_DARK_GRAY,
+    CREDCLR_LIGHT_GRAY,
+    CREDCLR_RED,
+    CREDCLR_LIGHT_RED,
+    CREDCLR_GREEN,
+    CREDCLR_LIGHT_GREEN,
+    CREDCLR_BLUE,
+    CREDCLR_LIGHT_BLUE,
+    CREDCLR_ORANGE,
+    CREDCLR_LIGHT_ORANGE,
+    CREDCLR_YELLOW,
+    CREDCLR_LIGHT_YELLOW,
+    CREDIT_DYNAMIC_COLOR_5,
+    CREDIT_DYNAMIC_COLOR_6,
+};
+
+static const u8 sFontColors[][3] = {
+    [FONT_WHITE] =
+        {
+            CREDCLR_TRANSPARENT,
+            CREDCLR_WHITE,
+            CREDCLR_DARK_GRAY,
+        },
+    [FONT_RED] =
+        {
+            CREDCLR_TRANSPARENT,
+            CREDCLR_LIGHT_RED,
+            CREDCLR_RED,
+        },
+    [FONT_GREEN] =
+        {
+            CREDCLR_TRANSPARENT,
+            CREDCLR_LIGHT_GREEN,
+            CREDCLR_GREEN,
+        },
+    [FONT_BLUE] =
+        {
+            CREDCLR_TRANSPARENT,
+            CREDCLR_LIGHT_BLUE,
+            CREDCLR_BLUE,
+        },
+    [FONT_ORANGE] =
+        {
+            CREDCLR_TRANSPARENT,
+            CREDCLR_LIGHT_ORANGE,
+            CREDCLR_ORANGE,
+        },
+    [FONT_YELLOW] =
+        {
+            CREDCLR_TRANSPARENT,
+            CREDCLR_LIGHT_YELLOW,
+            CREDCLR_YELLOW,
+        }
+};
+
+#define CREDIT_ENTRY_NUM 100
+
+enum CreditType {
+    CREDIT_CATEGORY,
+    CREDIT_HEADER,
+    CREDIT_SUBHEADER,
+    CREDIT_ENTRY,
+};
+
+typedef struct CreditEntry {
+    const u8* creditText;
+    enum CreditType creditType;
+} CreditEntry;
+
+#define CREDITS_ENTRY(a,...) {COMPOUND_STRING(a) __VA_OPT__(,__VA_ARGS__)}
+#define CREDIT_NULL {0, 0}
+
+static const CreditEntry sCustomCreditEntries[] = {
+#include "data/credits_list.h"
 };
 
 // Callbacks for the Credits Screen
@@ -120,6 +183,7 @@ static void Task_CustomCreditsMainInput(u8 taskId);
 static void Task_CustomCreditsWaitFadeAndBail(u8 taskId);
 static void Task_CustomCreditsWaitFadeAndExitGracefully(u8 taskId);
 static void Task_ScrollCredits(u8 taskId);
+static void Task_CustomCreditsScrollBg(u8 taskId);
 
 //Custom Credits helper functions
 static void CustomCredits_Init(MainCallback callback);
@@ -129,7 +193,7 @@ static void CustomCredits_FadeAndBail(void);
 static bool8 CustomCredits_LoadGraphics(void);
 static void CustomCredits_FreeResources(void);
 static void CustomCredits_InitWindows(void);
-static void Task_CustomCreditsScrollBg(u8 taskId);
+static void CustomCredits_PrintLine(struct CreditEntry entry);
 
 static void CB2_GoToMainMenu(void)
 {
@@ -387,7 +451,7 @@ static bool8 CustomCredits_LoadGraphics(void)
         break;
     case 2:
         LoadPalette(CmmScrollingBgPalette, BG_PLTT_ID(1), PLTT_SIZE_4BPP);
-        LoadPalette(gStandardMenuPalette, BG_PLTT_ID(15), PLTT_SIZE_4BPP);
+        LoadPalette(sCreditsRoll_MenuPal, BG_PLTT_ID(15), PLTT_SIZE_4BPP);
         sCustomCreditsState->loadState++;
     default:
         sCustomCreditsState->loadState = 0;
@@ -409,7 +473,7 @@ static void CustomCredits_InitWindows()
         SetWindowAttribute(++windowId, WINDOW_BASE_BLOCK, b+h*w);
     }
     ScheduleBgCopyTilemapToVram(0);
-    FillWindowPixelBuffer(WIN_CREDITS_MAIN, PIXEL_FILL(TEXT_COLOR_TRANSPARENT));
+    FillWindowPixelBuffer(WIN_CREDITS_MAIN, PIXEL_FILL(CREDCLR_TRANSPARENT));
     for (int i = 0; i < WIN_CREDITS_COUNT; i++)
     {
         PutWindowTilemap(i);
@@ -417,75 +481,124 @@ static void CustomCredits_InitWindows()
     }
 }
 
-#define CREDIT_ENTRY_NUM 100
+static u32 CustomCredits_GetFontId(struct CreditEntry entry)
+{
+    u32 fontId;
+    switch (entry.creditType)
+    {
+    case CREDIT_CATEGORY:
+        fontId = GetFontIdToFit(entry.creditText, FONT_NORMAL, 0, 100);
+        break;
+    case CREDIT_HEADER:
+        fontId = GetFontIdToFit(entry.creditText, FONT_NORMAL, 0, 100);
+        break;
+    case CREDIT_SUBHEADER:
+        fontId = GetFontIdToFit(entry.creditText, FONT_SMALL, 0, 100);
+        break;
+    case CREDIT_ENTRY:
+    default:
+        fontId = GetFontIdToFit(entry.creditText, FONT_SMALL_NARROW, 0, 100);
+    }
 
-struct CreditEntry {
-    const u8* creditText;
-    bool32 isHeader;
-};
+    return fontId;
+}
 
-#define CREDITS_ENTRY(a,...) {COMPOUND_STRING(a) __VA_OPT__(,__VA_ARGS__)}
-#define CREDIT_NULL {0, 0}
+static u32 CustomCredits_GetYMult(struct CreditEntry entry)
+{
+    switch (entry.creditType)
+    {
+    case CREDIT_CATEGORY:
+        return 40;
+    case CREDIT_HEADER:
+        return 20;
+    case CREDIT_SUBHEADER:
+        return 16;
+    case CREDIT_ENTRY:
+    default:
+        return 13;
+    }
+}
 
-#include "data/credits_list.h"
+static const u8* CustomCredits_GetFontColor(struct CreditEntry entry)
+{
+    switch (entry.creditType)
+    {
+    case CREDIT_CATEGORY:
+        return sFontColors[FONT_RED];
+    case CREDIT_HEADER:
+        return sFontColors[FONT_ORANGE];
+    case CREDIT_SUBHEADER:
+        return sFontColors[FONT_YELLOW];
+    case CREDIT_ENTRY:
+    default:
+        return sFontColors[FONT_WHITE];
+    }
+}
 
 static void CustomCredits_PrintLine(struct CreditEntry entry)
 {
     u32 winPixelWidth = GetWindowAttribute(WIN_CREDITS_MAIN, WINDOW_WIDTH) * 8;
     u32 y = Q_8_8_TO_INT(GetBgY(0)) % 512;
-    u8 yMultiplier = 16;
+    u8 yMultiplier = CustomCredits_GetYMult(entry);
     u32 yPos = (DISPLAY_HEIGHT + y + 1) % 256;
 
-    FillWindowPixelRect(WIN_CREDITS_MAIN, PIXEL_FILL(TEXT_COLOR_TRANSPARENT), 0, yPos, winPixelWidth, yMultiplier);
+    FillWindowPixelRect(WIN_CREDITS_MAIN, PIXEL_FILL(CREDCLR_TRANSPARENT), 0, yPos, winPixelWidth, yMultiplier);
 
     if (entry.creditText == 0)
     {
-        CopyWindowToVram(WIN_CREDITS_MAIN, COPYWIN_GFX);
         return;
     }
 
-    u32 fontId = entry.isHeader ? FONT_NORMAL : FONT_SMALL_NARROWER;
-    const u8* color = entry.isHeader ? sCustomCreditsWindowFontColors[FONT_RED] : sCustomCreditsWindowFontColors[FONT_WHITE];
+    u32 fontId = CustomCredits_GetFontId(entry);
+    const u8* color = CustomCredits_GetFontColor(entry);
     u32 x = GetStringCenterAlignXOffset(fontId, entry.creditText, GetWindowAttribute(WIN_CREDITS_MAIN, WINDOW_WIDTH) * 8);
     AddTextPrinterParameterized4(WIN_CREDITS_MAIN, fontId, x, yPos, 0, 0, color, TEXT_SKIP_DRAW, entry.creditText);
 
-    CopyWindowToVram(WIN_CREDITS_MAIN, COPYWIN_GFX);
     sCustomCreditsState->scrollOffset++;
 }
 
 static void Task_ScrollCredits(u8 taskId)
 {
-    TASK_DATA(scrollOffset, countDown);
-    u32 yMultiplier = Q_8_8(16);
+    TASK_DATA(scrollOffset, countDown, accumulator);
+    const struct CreditEntry* entry = &sCustomCreditEntries[sCustomCreditsState->scrollOffset];
 
-    bool32 isCreditsOver =
-        !gCreditStrings[sCustomCreditsState->scrollOffset].creditText;
+    u32 yMultiplier = Q_8_8(CustomCredits_GetYMult(*entry));
 
+    bool32 isCreditsOver = !entry->creditText;
     bool32 isCountDownActive = tData->countDown > 0;
 
-    tData->scrollOffset += Q_8_8(0.5);
-
-    if (tData->scrollOffset >= yMultiplier)
+    tData->accumulator +=  Q_8_8(0.5);
+    if (tData->accumulator >= Q_8_8(1))
     {
-        if (isCreditsOver && !isCountDownActive)
+        u32 scrollAmount = Q_8_8_TO_INT(tData->accumulator);
+        tData->accumulator -= Q_8_8(1);
+        ScrollWindow(WIN_CREDITS_MAIN, 0, scrollAmount, 0);
+
+        if (isCountDownActive)
+            tData->countDown--;
+
+        tData->scrollOffset += scrollAmount;
+
+        if (tData->scrollOffset >= Q_8_8_TO_INT(yMultiplier))
         {
-            tData->countDown = 16;
+            tData->scrollOffset -= Q_8_8_TO_INT(yMultiplier);
+            CustomCredits_PrintLine(*entry);
         }
 
-        tData->scrollOffset -= yMultiplier;
-        CustomCredits_PrintLine(gCreditStrings[sCustomCreditsState->scrollOffset]);
-
-        if (tData->countDown > 0)
-            tData->countDown--;
+        if (isCreditsOver && !isCountDownActive)
+        {
+            tData->countDown = DISPLAY_HEIGHT + CustomCredits_GetYMult(*(entry - 1));
+            tData->countDown += 32;
+        }
 
         if (tData->countDown == 0)
         {
             FadeScreen(FADE_TO_BLACK, 1);
             gTasks[taskId].func = Task_CustomCreditsWaitFadeAndExitGracefully;
         }
-    }
 
-    ChangeBgY(0, Q_8_8(0.5), BG_COORD_ADD);
+        CopyWindowToVram(WIN_CREDITS_MAIN, COPYWIN_GFX);
+    }
 }
 
 static void Task_CustomCreditsScrollBg(u8 taskId)

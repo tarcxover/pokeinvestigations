@@ -261,7 +261,7 @@ static const struct Coords16 sLogicMenuIconPos[3] = {
     [EVD_POS_RESULT] = {169, 76},
 };
 
-static const u8 sText_DeductionSuccess[] = _("Deduction Successful. Recieved new evidence:\n{STR_VAR_1}");
+static const u8 sText_DeductionSuccess[] = _("Deduction Successful. Received new evidence:\n{STR_VAR_1}");
 
 static void LogicMenu_SetupCB(void);
 static void LogicMenu_MainCB(void);

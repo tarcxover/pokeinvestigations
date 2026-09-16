@@ -99,7 +99,7 @@ static u8 RunSaveCallback(void)
 
 static void SaveStartTimer(void)
 {
-    sSaveDialogTimer = 60;
+    sSaveDialogTimer = 1;
 }
 
 static bool8 SaveSuccesTimer(void)

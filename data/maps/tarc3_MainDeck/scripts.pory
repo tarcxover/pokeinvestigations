@@ -1797,6 +1797,12 @@ script tarc3_MainDeck_EventScript_DeckDoorNatsue {
     lock
     faceplayer
     setspeaker("Natsue")
+    if (var(VAR_TARC3_ACT2) >= TARC3_ACT2_BODY_ON_DECK) {
+        msgbox(format("That was no Pokémon. Something heavy hit the deck out there."))
+        setspeaker(NULL)
+        release
+        end
+    }
     msgbox(format("I keep looking at that door.\pAs though he might walk back through it and none of this evening happened."))
     setspeaker(NULL)
     release
@@ -1808,6 +1814,13 @@ script tarc3_MainDeck_EventScript_DeckDoorRan {
     applymovement(LOCALID_MAINDECK_RAN_DECK, moves(face_player))
     waitmovement(0)
     setspeaker("{RIVAL}")
+    if (var(VAR_TARC3_ACT2) >= TARC3_ACT2_BODY_ON_DECK) {
+        msgbox(format("Why are you still standing here?\pWhatever made that sound is outside. Go."))
+        setspeaker(NULL)
+        closemessage
+        releaseall
+        end
+    }
     msgbox(format("Well?\pHave you seen everything you needed to see?"), MSGBOX_YESNO)
     if (var(VAR_RESULT) == NO) {
         msgbox(format("Then go back and see it.\pI have no interest in a half-read room."))

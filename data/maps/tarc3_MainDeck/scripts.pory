@@ -63,6 +63,23 @@ script tarc3_MainDeck_OnLoad {
         setmetatile(18, 13, 0x0E8, FALSE)
         setmetatile(23, 13, 0x0E8, FALSE)
     }
+    if (var(VAR_TARC3_ACT1) < TARC3_ACT1_DINNER) {
+        setmetatile(39, 7, 0x0AC, TRUE)
+        setmetatile(40, 7, 0x0AD, TRUE)
+        setmetatile(41, 7, 0x0AE, TRUE)
+        setmetatile(39, 8, 0x0B4, TRUE)
+        setmetatile(40, 8, 0x0B5, TRUE)
+        setmetatile(41, 8, 0x0B6, TRUE)
+        setmetatile(45, 7, 0x0AC, TRUE)
+        setmetatile(46, 7, 0x0AE, TRUE)
+        setmetatile(45, 8, 0x0B4, TRUE)
+        setmetatile(46, 8, 0x0B6, TRUE)
+        setmetatile(39, 12, 0x0AC, TRUE)
+        setmetatile(40, 12, 0x0AE, TRUE)
+        setmetatile(39, 13, 0x0B4, TRUE)
+        setmetatile(40, 13, 0x0B6, TRUE)
+        setmetatile(46, 12, 0x0AC, TRUE)
+    }
     // act three moves the whole room down to Akie's cabin
     if (var(VAR_TARC3_ACT3) >= TARC3_ACT3_GATHERING) {
         setflag(FLAG_HIDE_TARC3_DINING_ICHIRO_HURT)
@@ -489,6 +506,9 @@ script tarc3_MainDeck_EventScript_Dinner {
 }
 
 script tarc3_MainDeck_EventScript_EvdPlate {
+    if (var(VAR_TARC3_ACT1) < TARC3_ACT1_DINNER) {
+        end
+    }
     lockall
     goto_if_set(FLAG_TARC3_DINING_FOUND_PLATE, tarc3_MainDeck_EventScript_EvdPlateSeen)
     msgbox(format("The setting at the head of the table has not been touched. The bread beside it is whole."))

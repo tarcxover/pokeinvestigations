@@ -9,6 +9,7 @@
 #include "evidence.h"
 #include "gba/isagbprint.h"
 #include "item.h"
+#include "pokemon.h"
 #include "list_menu.h"
 #include "malloc.h"
 #include "script.h"
@@ -183,11 +184,36 @@ bool32 ScrCmd_getheldevidencecount(struct ScriptContext *ctx)
     return FALSE;
 }
 
+static u32 GetObtainableEvidenceCount(void)
+{
+    u32 count = EVD_COUNT;
+    bool32 hasStoutland = FALSE;
+    bool32 hasCramorant = FALSE;
+
+    count -= 3; // -3 because 3 pieces of evidence aren't available to players currently
+
+    for (u32 i = 0; i < gPlayerPartyCount; i++)
+    {
+        u32 species = GetMonData(&gPlayerParty[i], MON_DATA_SPECIES);
+        if (species == SPECIES_STOUTLAND)
+            hasStoutland = TRUE;
+        else if (species == SPECIES_CRAMORANT)
+            hasCramorant = TRUE;
+    }
+
+    if (!hasStoutland)
+        count--;
+    if (!hasCramorant)
+        count--;
+
+    return count;
+}
+
 bool32 ScrCmd_bufferevidencecount(struct ScriptContext *ctx)
 {
     u8 *dest = ConvertIntToDecimalStringN(gStringVar1, GetHeldEvidenceCount(), STR_CONV_MODE_LEFT_ALIGN, 3);
     *dest++ = CHAR_SLASH;
-    ConvertIntToDecimalStringN(dest, EVD_COUNT, STR_CONV_MODE_LEFT_ALIGN, 3);
+    ConvertIntToDecimalStringN(dest, GetObtainableEvidenceCount(), STR_CONV_MODE_LEFT_ALIGN, 3);
     return FALSE;
 }
 

@@ -192,9 +192,9 @@ static u32 GetObtainableEvidenceCount(void)
 
     count -= 3; // -3 because 3 pieces of evidence aren't available to players currently
 
-    for (u32 i = 0; i < gPlayerPartyCount; i++)
+    for (u32 i = 0; i < gPartiesCount[B_TRAINER_PLAYER]; i++)
     {
-        u32 species = GetMonData(&gPlayerParty[i], MON_DATA_SPECIES);
+        u32 species = GetMonData(&gParties[B_TRAINER_PLAYER][i], MON_DATA_SPECIES);
         if (species == SPECIES_STOUTLAND)
             hasStoutland = TRUE;
         else if (species == SPECIES_CRAMORANT)

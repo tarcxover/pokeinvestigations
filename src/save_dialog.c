@@ -99,7 +99,7 @@ static u8 RunSaveCallback(void)
 
 static void SaveStartTimer(void)
 {
-    sSaveDialogTimer = 60;
+    sSaveDialogTimer = 1;
 }
 
 static bool8 SaveSuccesTimer(void)
@@ -467,4 +467,13 @@ static bool8 BattlePyramidRetireReturnCallback(void)
 {
     Usm_InitStartMenu();
     return FALSE;
+}
+
+void SaveDialog_AutoSave(void)
+{
+    SaveMapView();
+    IncrementGameStat(GAME_STAT_SAVED_GAME);
+    TrySavingData(SAVE_LINK);
+    gDifferentSaveFile = FALSE;
+    return;
 }

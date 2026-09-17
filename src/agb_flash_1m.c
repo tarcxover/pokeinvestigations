@@ -1,6 +1,8 @@
 #include "gba/gba.h"
 #include "gba/flash_internal.h"
 
+#define REG_DEBUG_ENABLE (vu16*) 0x4FFF780
+
 KEEP_SECTION USED static const char AgbLibFlashVersion[] = "FLASH1M_V103";
 
 static const struct FlashSetupInfo *const sSetupInfos[] =
@@ -48,8 +50,16 @@ u16 IdentifyFlash(void)
     return result;
 }
 
+bool32 IsMgba(void) {
+    *REG_DEBUG_ENABLE = 0xC0DE;
+    return *REG_DEBUG_ENABLE == 0x1DEA;
+}
+
 u16 WaitForFlashWrite_Common(u8 phase, u8 *addr, u8 lastData)
 {
+    if(IsMgba())
+        return 0;
+
     u16 result = 0;
     u8 status;
 

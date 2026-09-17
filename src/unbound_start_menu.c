@@ -34,6 +34,7 @@
 #include "malloc.h"
 #include "map_name_popup.h"
 #include "menu.h"
+#include "new_game.h"
 #include "option_menu.h"
 #include "overworld.h"
 #include "palette.h"
@@ -58,7 +59,14 @@
 #include <string.h>
 #include <sys/cdefs.h>
 
-typedef bool32 (*Usm_MenuCB)(u32 state);
+typedef enum Usm_Res
+{
+    USM_RES_WAIT,
+    USM_RES_EXIT,
+    USM_RES_RETURN,
+} Usm_Res;
+
+typedef  Usm_Res (*Usm_MenuCB)(u32 state);
 typedef void (*Usm_ModeCB)(void);
 typedef void (*Usm_DeferredCB)(void);
 
@@ -271,7 +279,7 @@ static const union AffineAnimCmd* const sIconAffineAnimTable[] = {
 USM_FOREACH_ICON(USM_PIC_TABLE)
 
 // Static Variables
-static EWRAM_DATA bool32 (*sUsmMenuCallback)(u32) = NULL;
+static EWRAM_DATA  Usm_Res (*sUsmMenuCallback)(u32) = NULL;
 static EWRAM_DATA struct Usm_Memory* sUsmMemory;
 static EWRAM_DATA struct Usm_State* sUsmState;
 static EWRAM_DATA u8 sUsmSavedIcon = 0;
@@ -296,6 +304,7 @@ static u8 Usm_GetWindowBaseColor(u8 winId);
 static void Usm_PrintText(u8 winId, u8 fontId, s16 x, s16 y, const u8* color, const u8* str);
 static void Usm_PrintIconLabel(void);
 static void Usm_PrintEvidenceCount();
+static void Usm_PrintSavingText();
 static void Usm_PrintButtonHints();
 static void Usm_AnimateSelectedIcon(void);
 static struct Sprite* Usm_GetIconSprite(u8 iconId);
@@ -326,13 +335,16 @@ static u32 Usm_CreateIcon(enum Usm_Icons iconId, s32 x, s32 y);
 
 // Menu Callbacks
 #define USM_MENU_CALLBACK(_id, name, ...) \
-    static bool32 UsmMenuCB_##name(u32 state);
+    static Usm_Res UsmMenuCB_##name(u32 state);
 USM_FOREACH_ICON(USM_MENU_CALLBACK)
 
-static bool32 UsmMenuCB_RetireSafariZone(u32 state);
-static bool32 UsmMenuCB_TrainerLinkMode(u32 state);
-static bool32 UsmMenuCB_RetireBattlePyramid(u32 state);
-static bool32 UsmMenuCB_BagBattlePyramid(u32 state);
+static Usm_Res UsmMenuCB_RetireSafariZone(u32 state);
+static Usm_Res UsmMenuCB_TrainerLinkMode(u32 state);
+static Usm_Res UsmMenuCB_RetireBattlePyramid(u32 state);
+static Usm_Res UsmMenuCB_BagBattlePyramid(u32 state);
+static Usm_Res UsmMenuCB_SaveDialog(u32 state);
+static Usm_Res UsmMenuCB_Exit(u32 state);
+
 
 static void Usm_HandleMainInput(void);
 static void Usm_HandleMoveInput(void);
@@ -366,7 +378,7 @@ static void Usm_FadeScreen()
         FadeScreen(FADE_TO_BLACK, 0);
 }
 
-static bool32 UsmMenuCB_Pokedex(u32 state)
+static Usm_Res UsmMenuCB_Pokedex(u32 state)
 {
     switch (state) {
     case 0:
@@ -384,7 +396,7 @@ static bool32 UsmMenuCB_Pokedex(u32 state)
     return FALSE;
 }
 
-static bool32 UsmMenuCB_Party(u32 state)
+static Usm_Res UsmMenuCB_Party(u32 state)
 {
     switch (state) {
     case 0:
@@ -401,7 +413,7 @@ static bool32 UsmMenuCB_Party(u32 state)
     return FALSE;
 }
 
-static bool32 UsmMenuCB_Bag(u32 state)
+static Usm_Res UsmMenuCB_Bag(u32 state)
 {
     if (Usm_IsPlayerInBattlePyramid())
         return UsmMenuCB_BagBattlePyramid(state);
@@ -422,7 +434,7 @@ static bool32 UsmMenuCB_Bag(u32 state)
     return FALSE;
 }
 
-static bool32 UsmMenuCB_BagBattlePyramid(u32 state)
+static Usm_Res UsmMenuCB_BagBattlePyramid(u32 state)
 {
     switch (state) {
     case 0:
@@ -439,7 +451,7 @@ static bool32 UsmMenuCB_BagBattlePyramid(u32 state)
     return FALSE;
 }
 
-static bool32 UsmMenuCB_Pokenav(u32 state)
+static Usm_Res UsmMenuCB_Pokenav(u32 state)
 {
     switch (state) {
     case 0:
@@ -456,7 +468,7 @@ static bool32 UsmMenuCB_Pokenav(u32 state)
     return FALSE;
 }
 
-static bool32 UsmMenuCB_Trainer(u32 state)
+static Usm_Res UsmMenuCB_Trainer(u32 state)
 {
     if (IsOverworldLinkActive())
         return UsmMenuCB_TrainerLinkMode(state);
@@ -479,7 +491,7 @@ static bool32 UsmMenuCB_Trainer(u32 state)
     return FALSE;
 }
 
-static bool32 UsmMenuCB_TrainerLinkMode(u32 state)
+static Usm_Res UsmMenuCB_TrainerLinkMode(u32 state)
 {
     if (!gPaletteFade.active)
     {
@@ -492,7 +504,30 @@ static bool32 UsmMenuCB_TrainerLinkMode(u32 state)
     return FALSE;
 }
 
-static bool32 UsmMenuCB_Save(u32 state)
+static Usm_Res UsmMenuCB_Save(u32 state)
+{
+    if (gDifferentSaveFile)
+    {
+        return UsmMenuCB_SaveDialog(state);
+    }
+
+    switch (state)
+    {
+    case 0:
+        Usm_SaveItems();
+        Usm_PrintSavingText();
+        return USM_RES_WAIT;
+    case 1:
+        SaveDialog_AutoSave();
+        return USM_RES_WAIT;
+    case 2:
+    default:
+        Usm_PrintEvidenceCount();
+        return USM_RES_RETURN;
+    }
+}
+
+static Usm_Res UsmMenuCB_SaveDialog(u32 state)
 {
     sUsmSavedIcon = 0;
     sUsmSavedOffset = 0;
@@ -500,10 +535,10 @@ static bool32 UsmMenuCB_Save(u32 state)
     LockPlayerFieldControls();
     FreezeObjectEvents();
     CreateTask(Task_SaveDialogHandleSave, 0);
-    return TRUE;
+    return USM_RES_EXIT;
 }
 
-static bool32 UsmMenuCB_Settings(u32 state)
+static Usm_Res UsmMenuCB_Settings(u32 state)
 {
     switch (state) {
     case 0:
@@ -521,7 +556,7 @@ static bool32 UsmMenuCB_Settings(u32 state)
     return FALSE;
 }
 
-static bool32 UsmMenuCB_Retire(u32 state)
+static Usm_Res UsmMenuCB_Retire(u32 state)
 {
     if (GetSafariZoneFlag())
         return UsmMenuCB_RetireSafariZone(state);
@@ -531,7 +566,7 @@ static bool32 UsmMenuCB_Retire(u32 state)
      return FALSE;
 }
 
-static bool32 UsmMenuCB_RetireSafariZone(u32 state)
+static Usm_Res UsmMenuCB_RetireSafariZone(u32 state)
 {
     if (!gPaletteFade.active)
     {
@@ -540,7 +575,7 @@ static bool32 UsmMenuCB_RetireSafariZone(u32 state)
     return TRUE;
 }
 
-static bool32 UsmMenuCB_RetireBattlePyramid(u32 state)
+static Usm_Res UsmMenuCB_RetireBattlePyramid(u32 state)
 {
     sUsmSavedIcon = 0;
     sUsmSavedOffset = 0;
@@ -551,7 +586,7 @@ static bool32 UsmMenuCB_RetireBattlePyramid(u32 state)
     return TRUE;
 }
 
-static bool32 UsmMenuCB_Debug(u32 state)
+static Usm_Res UsmMenuCB_Debug(u32 state)
 {
     sUsmSavedOffset = 0;
     sUsmSavedIcon = 0;
@@ -559,7 +594,7 @@ static bool32 UsmMenuCB_Debug(u32 state)
     return TRUE;
 }
 
-static bool32 UsmMenuCB_Dexnav(u32 state)
+static Usm_Res UsmMenuCB_Dexnav(u32 state)
 {
     sUsmSavedIcon = 0;
     sUsmSavedOffset = 0;
@@ -567,7 +602,7 @@ static bool32 UsmMenuCB_Dexnav(u32 state)
     return TRUE;
 }
 
-static bool32 UsmMenuCB_Logic(u32 state)
+static Usm_Res UsmMenuCB_Logic(u32 state)
 {
     switch (state) {
     case 0:
@@ -582,7 +617,7 @@ static bool32 UsmMenuCB_Logic(u32 state)
     return FALSE;
 }
 
-static bool32 UsmMenuCB_Exit(u32 state)
+static Usm_Res UsmMenuCB_Exit(u32 state)
 {
     UnlockPlayerFieldControls();
     UnfreezeObjectEvents();
@@ -730,6 +765,16 @@ static void Usm_PrintEvidenceCount()
     s16 x = GetStringCenterAlignXOffset(FONT_SMALL, gStringVar4, GetWindowAttribute(winId, WINDOW_WIDTH) * 8);
     FillWindowPixelBuffer(winId, PIXEL_FILL(Usm_GetWindowBaseColor(USM_WIN_CLOCK)));
     Usm_PrintText(sUsmMemory->windowIds[USM_WIN_CLOCK], FONT_SMALL, x, 0, sUsmWinFontColors[FONT_BLACK], gStringVar4);
+    CopyWindowToVram(winId, COPYWIN_GFX);
+}
+
+static void Usm_PrintSavingText()
+{
+    const u8* evdText = COMPOUND_STRING("Saving...");
+    u8 winId = sUsmMemory->windowIds[USM_WIN_CLOCK];
+    s16 x = GetStringCenterAlignXOffset(FONT_SMALL, evdText, GetWindowAttribute(winId, WINDOW_WIDTH) * 8);
+    FillWindowPixelBuffer(winId, PIXEL_FILL(Usm_GetWindowBaseColor(USM_WIN_CLOCK)));
+    Usm_PrintText(sUsmMemory->windowIds[USM_WIN_CLOCK], FONT_SMALL, x, 0, sUsmWinFontColors[FONT_BLACK], evdText);
     CopyWindowToVram(winId, COPYWIN_GFX);
 }
 
@@ -1309,13 +1354,24 @@ static void Usm_HandleDPadInput()
 
 static void Usm_RunMenuCallbackAndExit(u8 taskId)
 {
-    if (!sUsmMenuCallback(gTasks[taskId].data[0]))
-        gTasks[taskId].data[0]++;
-    else
+    TASK_DATA(state);
+
+    Usm_Res res = sUsmMenuCallback(tData->state);
+
+    switch (res)
     {
+    case USM_RES_WAIT:
+        tData->state++;
+        break;
+    case USM_RES_EXIT:
         Usm_ExitStartMenu();
         Usm_RunDeferredCallback();
         DestroyTask(taskId);
+        break;
+    case USM_RES_RETURN:
+        gTasks[taskId].func = Task_UsmMain;
+        sUsmState->mode = USM_MODE_NORMAL;
+        break;
     }
 }
 
